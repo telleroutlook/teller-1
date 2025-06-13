@@ -8,10 +8,16 @@
         v-for="sign in zodiacSigns" 
         :key="sign.name"
         @click="selectSign(sign)"
+        :disabled="isAnimating"
         class="zodiac-btn"
+        :class="{ 'opacity-50 cursor-not-allowed': isAnimating }"
       >
         {{ sign.emoji }} {{ sign.name }}
       </button>
+    </div>
+
+    <div v-if="isAnimating" class="text-center my-4">
+      <p class="text-purple-600 font-medium">✨ Consulting the stars... ✨</p>
     </div>
 
     <div v-if="selectedSign" class="result show">
@@ -32,6 +38,9 @@ interface ZodiacSign {
   horoscope: string
 }
 
+const { runMysticalAnimation } = useAnimations()
+const { logger } = useLogger()
+
 const zodiacSigns = ref<ZodiacSign[]>([
   { name: "Aries", emoji: "♈", horoscope: "Today brings new opportunities for leadership and initiative." },
   { name: "Taurus", emoji: "♉", horoscope: "Focus on stability and practical matters today." },
@@ -48,15 +57,42 @@ const zodiacSigns = ref<ZodiacSign[]>([
 ])
 
 const selectedSign = ref<ZodiacSign | null>(null)
+const isAnimating = ref(false)
 
-const selectSign = (sign: ZodiacSign): void => {
-  selectedSign.value = sign
+const selectSign = async (sign: ZodiacSign): Promise<void> => {
+  if (isAnimating.value) return
+  
+  try {
+    isAnimating.value = true
+    
+    logger.logUserAction('Zodiac sign selected', { 
+      sign: sign.name,
+      emoji: sign.emoji 
+    })
+
+    // Show mystical animation with the sign's name and emoji
+    await runMysticalAnimation(`${sign.emoji} ${sign.name} ${sign.emoji}`)
+    
+    // Set the selected sign after animation
+    selectedSign.value = sign
+    
+  } catch (error) {
+    logger.logError('AstrologyReading.selectSign', error as Error)
+    // Still show the result even if animation fails
+    selectedSign.value = sign
+  } finally {
+    isAnimating.value = false
+  }
 }
 
 const shareHoroscope = (): void => {
   if (!selectedSign.value) return
   
   const shareText = `My Horoscope\n\n${selectedSign.value.name} - Today's Horoscope\n${selectedSign.value.horoscope}\n\nvia Teller.eu.org`
+  
+  logger.logUserAction('Horoscope shared', { 
+    sign: selectedSign.value.name 
+  })
   
   if (navigator.share) {
     navigator.share({

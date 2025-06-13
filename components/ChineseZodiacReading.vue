@@ -44,6 +44,8 @@
 
 <script setup lang="ts">
 const { t: $t, locale } = useI18n()
+const { runMysticalAnimation } = useAnimations()
+const { logger, LogCategory } = useLogger()
 
 const birthYear = ref('')
 const yearError = ref(false)
@@ -53,21 +55,10 @@ const animalName = ref('')
 const animalTraits = ref('')
 const animalEmoji = ref('')
 
-// Simple animation function
-const runMysticalAnimation = (text: string, callback?: () => void) => {
-  if (!process.client) return
-  
-  const overlay = document.getElementById('animation-overlay')
-  if (overlay) {
-    overlay.classList.add('visible')
-    setTimeout(() => {
-      overlay.classList.remove('visible')
-      if (callback) callback()
-    }, 2000)
-  } else if (callback) {
-    callback()
-  }
-}
+// Initialize component logging
+onMounted(() => {
+  logger.logComponentInit('ChineseZodiacReading', { locale: locale.value })
+})
 
 const chineseZodiacData = {
   animals: {

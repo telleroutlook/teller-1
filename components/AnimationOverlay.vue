@@ -70,8 +70,8 @@ const showAnimation = (text: string, callback?: () => void) => {
     animatedTextRef.value.innerHTML = ''
   }
   
-  // Remove existing particles
-  const existingParticles = document.querySelectorAll('.particle')
+  // Remove existing particles of all types
+  const existingParticles = document.querySelectorAll('.particle, .particle-trail, .stardust')
   existingParticles.forEach(p => p.remove())
   
   // Reset styles
@@ -146,15 +146,13 @@ const runMysticalAnimation = (text: string, callback?: () => void) => {
     // Create and animate particles
     createAndAnimateParticles()
     
-    // Animate flare
+    // Animate flare - simplified approach
     $anime({
       targets: flareRef.value,
-      translateX: ['-50%', '50%'],
-      translateY: ['-50%', '50%'],
-      opacity: [0, 1, 0],
+      scale: [1, 1.2, 1],
+      opacity: [0.3, 0.8, 0.3],
       duration: 4000,
-      easing: 'easeInOutQuad',
-      direction: 'alternate',
+      easing: 'easeInOutSine',
       loop: true
     })
 
@@ -169,41 +167,55 @@ const runMysticalAnimation = (text: string, callback?: () => void) => {
       animatedTextRef.value?.appendChild(span)
     })
 
-    // Create animation timeline
-    const animationTimeline = $anime.timeline({
-      complete: () => {
-        $anime({
-          targets: '#animation-overlay',
-          opacity: 0,
-          duration: 500,
-          easing: 'easeInOutQuad',
-          complete: () => {
-            hideAnimation()
-            // Stop perpetual animations
-            $anime.remove([flareRef.value, '.particle'])
-            if (callback) setTimeout(callback, 50)
-          }
-        })
-      }
-    })
-
-    animationTimeline.add({
-      targets: '#animated-text span',
-      opacity: [0, 1],
-      scale: [0, 1],
-      translateY: ['100%', 0],
-      rotateZ: [180, 0],
-      duration: 1500,
-      easing: 'easeOutExpo',
-      delay: $anime.stagger(Math.max(50, 1000 / displayText.length))
-    }).add({
-      targets: '#animated-text span',
-      opacity: 0,
-      scale: 0.5,
-      duration: 1000,
-      easing: 'easeInExpo',
-      delay: $anime.stagger(50, { start: 500 })
-    }, '+=500')
+    // Simplified animation approach for better compatibility
+    const spans = animatedTextRef.value?.querySelectorAll('span')
+    
+    if (spans && spans.length > 0) {
+      // Entry animation
+      $anime({
+        targets: spans,
+        opacity: [0, 1],
+        scale: [0, 1],
+        translateY: ['100%', 0],
+        rotate: [180, 0],
+        duration: 1500,
+        easing: 'easeOutExpo',
+        delay: function(el: any, i: number) {
+          return i * Math.max(50, 1000 / displayText.length)
+        },
+        complete: () => {
+          // Exit animation after delay
+          setTimeout(() => {
+            $anime({
+              targets: spans,
+              opacity: 0,
+              scale: 0.5,
+              duration: 1000,
+              easing: 'easeInExpo',
+              delay: function(el: any, i: number) {
+                return i * 50
+              },
+              complete: () => {
+                // Fade out overlay
+                $anime({
+                  targets: '#animation-overlay',
+                  opacity: 0,
+                  duration: 500,
+                  easing: 'easeInOutQuad',
+                  complete: () => {
+                    hideAnimation()
+                    if (callback) setTimeout(callback, 50)
+                  }
+                })
+              }
+            })
+          }, 2000)
+        }
+      })
+    } else {
+      // Fallback if no spans found
+      runFallbackAnimation(text, callback)
+    }
 
   } catch (error) {
     console.error('Error in anime.js animation:', error)
@@ -217,45 +229,204 @@ const createAndAnimateParticles = () => {
   const overlay = document.getElementById('animation-overlay')
   if (!overlay) return
 
-  const colors = ['#FFD700', '#FF69B4', '#00FFFF', '#9370DB', '#FFFFFF']
-  
-  for (let i = 0; i < 70; i++) {
+  // 增强的神秘色彩调色板 - 更丰富的渐变色和特效色
+  const mysticalColors = [
+    '#FF0080', // 洋红色
+    '#8000FF', // 紫色
+    '#00FF80', // 青绿色
+    '#FF8000', // 橙色
+    '#0080FF', // 蓝色
+    '#FF4080', // 粉红色
+    '#80FF00', // 柠檬绿
+    '#4080FF', // 天蓝色
+    '#FF8040', // 珊瑚色
+    '#8040FF', // 靛蓝色
+    '#40FF80', // 春绿色
+    '#FFD700', // 金色
+    '#FF1493', // 深粉色
+    '#00CED1', // 暗青色
+    '#9370DB', // 中紫色
+    '#32CD32', // 酸橙绿
+    '#FF6347', // 番茄色
+    '#4169E1', // 皇家蓝
+    '#DA70D6', // 兰花紫
+    '#00FA9A'  // 中春绿
+  ]
+
+  // 创建更多数量的粒子，增强视觉效果
+  for (let i = 0; i < 150; i++) {
     const particle = document.createElement('div')
     particle.className = 'particle'
-    const size = Math.floor(Math.random() * 4) + 1 + 'px'
     
+    // 大小不一的粒子 - 从1px到12px
+    const size = Math.floor(Math.random() * 12) + 1
+    const color = mysticalColors[Math.floor(Math.random() * mysticalColors.length)]
+    
+    // 添加发光效果和更丰富的样式
     Object.assign(particle.style, {
-      width: size,
-      height: size,
+      width: `${size}px`,
+      height: `${size}px`,
       left: `${Math.random() * 100}%`,
       top: `${Math.random() * 100}%`,
-      backgroundColor: colors[Math.floor(Math.random() * colors.length)],
+      backgroundColor: color,
       opacity: '0',
       position: 'absolute',
       borderRadius: '50%',
       pointerEvents: 'none',
-      zIndex: '10000'
+      zIndex: '10000',
+      // 添加发光效果
+      boxShadow: `0 0 ${size * 2}px ${color}, 0 0 ${size * 4}px ${color}`,
+      // 添加渐变背景
+      background: `radial-gradient(circle, ${color} 0%, rgba(255,255,255,0.3) 50%, ${color} 100%)`,
+      filter: 'brightness(1.2) saturate(1.5)'
     })
     
     overlay.appendChild(particle)
   }
 
-  try {
-    $anime({
-      targets: '.particle',
-      opacity: [
-        { value: () => Math.random() * 0.8 + 0.2, duration: () => Math.random() * 600 + 200 },
-        { value: 0, duration: () => Math.random() * 400 + 200 }
-      ],
-      scale: [
-        { value: () => Math.random() * 1 + 0.5, duration: () => Math.random() * 700 + 300 },
-        { value: 1, duration: () => Math.random() * 300 + 200 }
-      ],
-      duration: () => Math.random() * 1500 + 1500,
-      easing: 'linear',
-      loop: true,
-      delay: (_el: HTMLElement, i: number) => i * 20
+  // 创建流动轨迹粒子
+  for (let i = 0; i < 30; i++) {
+    const trail = document.createElement('div')
+    trail.className = 'particle-trail'
+    
+    const color = mysticalColors[Math.floor(Math.random() * mysticalColors.length)]
+    
+    Object.assign(trail.style, {
+      width: '2px',
+      height: `${Math.random() * 50 + 20}px`,
+      left: `${Math.random() * 100}%`,
+      top: `${Math.random() * 100}%`,
+      background: `linear-gradient(to bottom, transparent, ${color}, transparent)`,
+      opacity: '0',
+      position: 'absolute',
+      pointerEvents: 'none',
+      zIndex: '9998',
+      borderRadius: '1px',
+      boxShadow: `0 0 4px ${color}`
     })
+    
+    overlay.appendChild(trail)
+  }
+
+  // 创建星尘效果
+  for (let i = 0; i < 50; i++) {
+    const stardust = document.createElement('div')
+    stardust.className = 'stardust'
+    
+    const size = Math.random() * 3 + 1
+    const color = mysticalColors[Math.floor(Math.random() * mysticalColors.length)]
+    
+    Object.assign(stardust.style, {
+      width: `${size}px`,
+      height: `${size}px`,
+      left: `${Math.random() * 100}%`,
+      top: `${Math.random() * 100}%`,
+      backgroundColor: color,
+      opacity: '0',
+      position: 'absolute',
+      pointerEvents: 'none',
+      zIndex: '9999',
+      borderRadius: '50%',
+      boxShadow: `0 0 ${size * 3}px ${color}`,
+      transform: 'rotate(45deg)'
+    })
+    
+    // 添加星形效果
+    stardust.style.clipPath = 'polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)'
+    
+    overlay.appendChild(stardust)
+  }
+
+  try {
+    // 动画常规粒子 - 增强流动效果
+    const particles = document.querySelectorAll('.particle')
+    particles.forEach((particle, index) => {
+      const startX = parseFloat((particle as HTMLElement).style.left)
+      const startY = parseFloat((particle as HTMLElement).style.top)
+      
+      $anime({
+        targets: particle,
+        opacity: [
+          { value: 0, duration: 200 },
+          { value: Math.random() * 0.9 + 0.3, duration: 300 },
+          { value: Math.random() * 0.8 + 0.4, duration: 1000 },
+          { value: 0, duration: 500 }
+        ],
+        scale: [
+          { value: 0, duration: 200 },
+          { value: Math.random() * 1.5 + 0.5, duration: 300 },
+          { value: Math.random() * 2 + 0.8, duration: 1000 },
+          { value: 0.2, duration: 500 }
+        ],
+        // 添加流动轨迹
+        translateX: [
+          { value: 0, duration: 0 },
+          { value: (Math.random() - 0.5) * 200, duration: 2000 }
+        ],
+        translateY: [
+          { value: 0, duration: 0 },
+          { value: (Math.random() - 0.5) * 150, duration: 2000 }
+        ],
+        rotate: [0, Math.random() * 720 - 360],
+        duration: Math.random() * 2000 + 2000,
+        easing: 'easeInOutSine',
+        loop: true,
+        delay: index * 30
+      })
+    })
+
+    // 动画流动轨迹
+    const trails = document.querySelectorAll('.particle-trail')
+    trails.forEach((trail, index) => {
+      $anime({
+        targets: trail,
+        opacity: [
+          { value: 0, duration: 100 },
+          { value: 0.8, duration: 300 },
+          { value: 0.6, duration: 1200 },
+          { value: 0, duration: 400 }
+        ],
+        translateY: [
+          { value: 0, duration: 0 },
+          { value: -100, duration: 2000 }
+        ],
+        translateX: [
+          { value: 0, duration: 0 },
+          { value: (Math.random() - 0.5) * 50, duration: 2000 }
+        ],
+        scaleY: [1, 1.5, 0.8, 1],
+        duration: Math.random() * 1500 + 2000,
+        easing: 'easeInOutQuad',
+        loop: true,
+        delay: index * 100
+      })
+    })
+
+    // 动画星尘效果
+    const stardusts = document.querySelectorAll('.stardust')
+    stardusts.forEach((stardust, index) => {
+      $anime({
+        targets: stardust,
+        opacity: [
+          { value: 0, duration: 300 },
+          { value: 1, duration: 200 },
+          { value: 0.7, duration: 800 },
+          { value: 0, duration: 700 }
+        ],
+        scale: [
+          { value: 0, duration: 300 },
+          { value: 1.5, duration: 200 },
+          { value: 1, duration: 800 },
+          { value: 0, duration: 700 }
+        ],
+        rotate: [0, 360],
+        duration: Math.random() * 3000 + 2000,
+        easing: 'easeInOutBack',
+        loop: true,
+        delay: index * 80
+      })
+    })
+
   } catch (error) {
     console.error('Error animating particles:', error)
   }
@@ -264,8 +435,8 @@ const createAndAnimateParticles = () => {
 const hideAnimation = () => {
   isVisible.value = false
   
-  // Clean up particles
-  const particles = document.querySelectorAll('.particle')
+  // Clean up all particle types
+  const particles = document.querySelectorAll('.particle, .particle-trail, .stardust')
   particles.forEach(p => p.remove())
 }
 
@@ -283,7 +454,11 @@ defineExpose({
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(10, 5, 20, 0.98);
+  background: 
+    radial-gradient(circle at 25% 25%, rgba(138, 43, 226, 0.3) 0%, transparent 50%),
+    radial-gradient(circle at 75% 75%, rgba(75, 0, 130, 0.3) 0%, transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(25, 25, 112, 0.4) 0%, transparent 70%),
+    linear-gradient(135deg, rgba(10, 5, 20, 0.95) 0%, rgba(25, 10, 35, 0.98) 100%);
   z-index: 9999;
   display: none;
   align-items: center;
@@ -302,16 +477,34 @@ defineExpose({
 
 #animation-flare {
   position: absolute;
-  width: 60vmax;
-  height: 60vmax;
-  background: radial-gradient(circle, rgba(120, 80, 255, 0.3) 0%, rgba(120, 80, 255, 0) 70%);
+  width: 80vmax;
+  height: 80vmax;
+  background: 
+    radial-gradient(circle, rgba(255, 0, 128, 0.4) 0%, rgba(128, 0, 255, 0.3) 30%, rgba(0, 255, 128, 0.2) 60%, transparent 80%),
+    radial-gradient(circle, rgba(138, 43, 226, 0.3) 0%, transparent 70%);
   border-radius: 50%;
-  filter: blur(20px);
+  filter: blur(25px);
   pointer-events: none;
   z-index: 9999;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  animation: mystical-pulse 4s ease-in-out infinite alternate;
+}
+
+@keyframes mystical-pulse {
+  0% {
+    transform: translate(-50%, -50%) scale(0.8);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.1);
+    opacity: 0.9;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.3);
+    opacity: 0.7;
+  }
 }
 
 #animated-text {
@@ -332,8 +525,45 @@ defineExpose({
   color: white;
   font-weight: bold;
   pointer-events: none;
-  text-shadow: 0 0 8px #fff, 0 0 15px #fff, 0 0 25px #ff00ff, 0 0 40px #ff00ff;
+  text-shadow: 
+    0 0 5px rgba(255, 255, 255, 0.8),
+    0 0 10px rgba(255, 0, 255, 0.6),
+    0 0 15px rgba(128, 0, 255, 0.5),
+    0 0 20px rgba(255, 0, 128, 0.4),
+    0 0 35px rgba(0, 255, 128, 0.3),
+    0 0 50px rgba(255, 215, 0, 0.2);
   margin: 0 0.1em;
+  animation: text-glow 3s ease-in-out infinite alternate;
+}
+
+@keyframes text-glow {
+  0% {
+    text-shadow: 
+      0 0 5px rgba(255, 255, 255, 0.8),
+      0 0 10px rgba(255, 0, 255, 0.6),
+      0 0 15px rgba(128, 0, 255, 0.5),
+      0 0 20px rgba(255, 0, 128, 0.4),
+      0 0 35px rgba(0, 255, 128, 0.3),
+      0 0 50px rgba(255, 215, 0, 0.2);
+  }
+  50% {
+    text-shadow: 
+      0 0 8px rgba(255, 255, 255, 1),
+      0 0 15px rgba(255, 0, 255, 0.8),
+      0 0 25px rgba(128, 0, 255, 0.7),
+      0 0 35px rgba(255, 0, 128, 0.6),
+      0 0 50px rgba(0, 255, 128, 0.5),
+      0 0 75px rgba(255, 215, 0, 0.4);
+  }
+  100% {
+    text-shadow: 
+      0 0 10px rgba(255, 255, 255, 0.9),
+      0 0 20px rgba(255, 0, 255, 0.7),
+      0 0 30px rgba(128, 0, 255, 0.6),
+      0 0 40px rgba(255, 0, 128, 0.5),
+      0 0 60px rgba(0, 255, 128, 0.4),
+      0 0 80px rgba(255, 215, 0, 0.3);
+  }
 }
 
 .particle {
@@ -341,6 +571,54 @@ defineExpose({
   border-radius: 50%;
   pointer-events: none;
   z-index: 10000;
+  transition: all 0.3s ease;
+}
+
+.particle-trail {
+  position: absolute;
+  pointer-events: none;
+  z-index: 9998;
+  border-radius: 1px;
+  animation: trail-flow 3s linear infinite;
+}
+
+.stardust {
+  position: absolute;
+  pointer-events: none;
+  z-index: 9999;
+  animation: stardust-twinkle 2s ease-in-out infinite alternate;
+}
+
+@keyframes trail-flow {
+  0% {
+    transform: translateY(100vh) translateX(0px);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.8;
+  }
+  90% {
+    opacity: 0.3;
+  }
+  100% {
+    transform: translateY(-100px) translateX(50px);
+    opacity: 0;
+  }
+}
+
+@keyframes stardust-twinkle {
+  0% {
+    transform: scale(0.5) rotate(0deg);
+    opacity: 0.3;
+  }
+  50% {
+    transform: scale(1.2) rotate(180deg);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0.8) rotate(360deg);
+    opacity: 0.5;
+  }
 }
 
 /* Mobile optimizations */

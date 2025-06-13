@@ -136,18 +136,21 @@ const selectCard = (index: number) => {
       if (!c.flipped) c.disabled = true
     })
     
-    // Trigger animation
-    const cardNames = selectedCards.value.map(c => c.name).join('  ')
-    logger.logAnimationStart('tarot-reading-complete', { 
-      selectedCards: selectedCards.value.map(c => c.name) 
-    })
-    
-    runMysticalAnimation(cardNames, () => {
-      showResult.value = true
-      logger.logUserAction('Tarot reading completed', { 
-        cards: selectedCards.value.map(c => c.name) 
+    // Wait for the third card's flip animation to complete before starting global animation
+    setTimeout(() => {
+      // Trigger animation after the flip animation completes
+      const cardNames = selectedCards.value.map(c => c.name).join('  ')
+      logger.logAnimationStart('tarot-reading-complete', { 
+        selectedCards: selectedCards.value.map(c => c.name) 
       })
-    })
+      
+      runMysticalAnimation(cardNames, () => {
+        showResult.value = true
+        logger.logUserAction('Tarot reading completed', { 
+          cards: selectedCards.value.map(c => c.name) 
+        })
+      })
+    }, 600) // 600ms matches the CSS transition duration for card flip
   }
 }
 
