@@ -9,7 +9,7 @@ export default defineNuxtConfig({
     '@nuxtjs/tailwindcss'
   ],
   i18n: {
-    vueI18n: './i18n/i18n.config.ts',
+    vueI18n: '~/i18n/i18n.config.ts',
     locales: [
       { code: 'en', iso: 'en-US', file: 'en.json', name: 'English' },
       { code: 'fr', iso: 'fr-FR', file: 'fr.json', name: 'Français' },
@@ -20,10 +20,16 @@ export default defineNuxtConfig({
     lazy: true,
     langDir: 'locales',
     defaultLocale: 'en',
-    strategy: 'prefix_except_default',
+    strategy: 'prefix',
     bundle: {
       optimizeTranslationDirective: false
     }
   },
-  css: ['~/assets/css/main.css']
+  css: ['~/assets/css/main.css'],
+  postcss: {
+    plugins: {
+      '@tailwindcss/postcss': {},
+      autoprefixer: {},
+    },
+  },
 })

@@ -26,7 +26,13 @@
 </template>
 
 <script setup lang="ts">
-const zodiacSigns = ref([
+interface ZodiacSign {
+  name: string
+  emoji: string
+  horoscope: string
+}
+
+const zodiacSigns = ref<ZodiacSign[]>([
   { name: "Aries", emoji: "♈", horoscope: "Today brings new opportunities for leadership and initiative." },
   { name: "Taurus", emoji: "♉", horoscope: "Focus on stability and practical matters today." },
   { name: "Gemini", emoji: "♊", horoscope: "Communication and learning are highlighted today." },
@@ -41,13 +47,15 @@ const zodiacSigns = ref([
   { name: "Pisces", emoji: "♓", horoscope: "Intuition and compassion open new doors." }
 ])
 
-const selectedSign = ref(null)
+const selectedSign = ref<ZodiacSign | null>(null)
 
-const selectSign = (sign: any) => {
+const selectSign = (sign: ZodiacSign): void => {
   selectedSign.value = sign
 }
 
-const shareHoroscope = () => {
+const shareHoroscope = (): void => {
+  if (!selectedSign.value) return
+  
   const shareText = `My Horoscope\n\n${selectedSign.value.name} - Today's Horoscope\n${selectedSign.value.horoscope}\n\nvia Teller.eu.org`
   
   if (navigator.share) {

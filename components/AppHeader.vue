@@ -1,8 +1,19 @@
 <template>
-  <header class="app-header">
-    <LanguageSwitcher />
-    <div class="logo">🔮 Teller.eu.org</div>
-    <div class="tagline">{{ t('tagline') }}</div>
+  <header class="relative bg-gradient-to-r from-blue-600 to-purple-700 text-white">
+    <div class="absolute top-4 left-4 z-10">
+      <LanguageSwitcher />
+    </div>
+    
+    <div class="px-4 py-8 text-center sm:py-12">
+      <div class="mx-auto max-w-4xl">
+        <div class="text-3xl font-bold mb-2 sm:text-4xl">
+          🔮 Teller.eu.org
+        </div>
+        <div class="text-lg opacity-90 font-medium">
+          {{ t('tagline') }}
+        </div>
+      </div>
+    </div>
   </header>
 </template>
 
@@ -11,44 +22,8 @@ const { t } = useI18n()
 </script>
 
 <style scoped>
-.app-header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 2rem 1rem;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-  text-align: center;
-  gap: 1rem;
-}
-
-.logo {
-  font-size: 2rem;
-  font-weight: bold;
-  margin: 0.5rem 0;
-}
-
-.tagline {
-  font-size: 1.1rem;
-  font-style: italic;
-  opacity: 0.9;
-}
-
-@media (min-width: 768px) {
-  .app-header {
-    flex-direction: row;
-    justify-content: space-between;
-    text-align: left;
-  }
-  
-  .logo {
-    flex: 1;
-    text-align: center;
-  }
-  
-  .tagline {
-    flex: 1;
-    text-align: right;
-  }
+/* Additional custom styles if needed */
+.logo-glow {
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
 }
 </style> 

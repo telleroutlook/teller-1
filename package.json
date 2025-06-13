@@ -10,6 +10,7 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@tailwindcss/postcss": "^4.1.10",
     "animejs": "^4.0.2",
     "nuxt": "^3.17.5",
     "vue": "^3.5.16",

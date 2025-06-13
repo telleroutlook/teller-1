@@ -3,7 +3,7 @@
     id="language-selector" 
     :value="locale" 
     @change="changeLanguage"
-    class="language-switcher"
+    class="px-3 py-2 bg-white/20 border border-white/30 rounded-lg text-white text-sm font-medium backdrop-blur-sm focus:bg-white/30 focus:outline-none focus:ring-2 focus:ring-white/50 transition-all duration-200 hover:bg-white/30"
   >
     <option value="en">English</option>
     <option value="zh">中文</option>
@@ -25,11 +25,10 @@ const changeLanguage = async (event: Event) => {
 </script>
 
 <style scoped>
-.language-switcher {
-  padding: 0.5rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+/* Option styling for better visibility */
+select option {
+  color: #333;
   background: white;
-  cursor: pointer;
+  padding: 0.5rem;
 }
 </style> 

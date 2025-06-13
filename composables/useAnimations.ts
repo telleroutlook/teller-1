@@ -1,12 +1,9 @@
-// @ts-ignore
-const anime = process.client ? require('animejs').default || require('animejs') : null
-
 export const useAnimations = () => {
   const { logger, LogCategory } = useLogger()
   const { $anime } = useNuxtApp()
 
-  // Use the anime instance from plugin or fallback
-  const animeInstance = $anime || anime
+  // Use the anime instance from plugin or null as fallback
+  const animeInstance = $anime || null
   
   // Check if animation is available
   const isAnimationAvailable = () => {
@@ -53,17 +50,23 @@ export const useAnimations = () => {
       if (overlay) {
         logger.logAnimationStart('overlay-hide', { elementId: 'animation-overlay' })
         
-        animeInstance({
-          targets: overlay,
-          opacity: 0,
-          duration: 500,
-          easing: 'easeInOutQuad',
-          complete: () => {
-            overlay.classList.remove('visible')
-            overlay.style.opacity = ''
-            logger.logAnimationEnd('overlay-hide', 500)
-          }
-        })
+        if (animeInstance) {
+          animeInstance({
+            targets: overlay,
+            opacity: 0,
+            duration: 500,
+            easing: 'easeInOutQuad',
+            complete: () => {
+              overlay.classList.remove('visible')
+              overlay.style.opacity = ''
+              logger.logAnimationEnd('overlay-hide', 500)
+            }
+          })
+        } else {
+          // Fallback without animation
+          overlay.classList.remove('visible')
+          overlay.style.opacity = ''
+        }
       }
     } catch (error) {
       logger.logError('useAnimations.hideAnimationOverlay', error as Error)

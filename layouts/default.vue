@@ -1,7 +1,7 @@
 <template>
-  <div class="container">
+  <div class="min-h-screen flex flex-col bg-gradient-to-br from-indigo-50 via-white to-purple-50">
     <AppHeader />
-    <main class="main-content">
+    <main class="flex-1 pb-20">
       <slot />
     </main>
     <BottomNav />
