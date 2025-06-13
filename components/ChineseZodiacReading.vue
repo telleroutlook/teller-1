@@ -13,7 +13,7 @@
         min="1900"
         max="2099"
         :class="{ error: yearError }"
-        @input="clearErrors"
+        @input="handleBirthYearInput"
       />
       <div class="input-help">{{ $t('lunarYearHelp') }}</div>
       <div v-if="yearError" class="error-message">
@@ -46,6 +46,7 @@
 const { t: $t, locale } = useI18n()
 const { runMysticalAnimation } = useAnimations()
 const { logger, LogCategory } = useLogger()
+const { setChineseZodiacData, getChineseZodiacData, clearChineseZodiacData } = useFormState()
 
 const birthYear = ref('')
 const yearError = ref(false)
@@ -58,157 +59,120 @@ const animalEmoji = ref('')
 // Initialize component logging
 onMounted(() => {
   logger.logComponentInit('ChineseZodiacReading', { locale: locale.value })
+  
+  // Restore saved form data
+  const savedData = getChineseZodiacData()
+  birthYear.value = savedData.birthYear
 })
 
-const chineseZodiacData = {
-  animals: {
-    en: ["Rat", "Ox", "Tiger", "Rabbit", "Dragon", "Snake", "Horse", "Goat", "Monkey", "Rooster", "Dog", "Pig"],
-    zh: ["鼠", "牛", "虎", "兔", "龙", "蛇", "马", "羊", "猴", "鸡", "狗", "猪"],
-    hi: ["चूहा", "बैल", "बाघ", "खरगोश", "ड्रैगन", "साँप", "घोड़ा", "बकरी", "बंदर", "मुर्गा", "कुत्ता", "सुअर"],
-    fr: ["Rat", "Bœuf", "Tigre", "Lapin", "Dragon", "Serpent", "Cheval", "Chèvre", "Singe", "Coq", "Chien", "Cochon"],
-    ar: ["الفأر", "الثور", "النمر", "الأرنب", "التنين", "الثعبان", "الحصان", "الماعز", "القرد", "الديك", "الكلب", "الخنزير"]
-  },
-  traits: {
-    en: {
-      Rat: "Clever, adaptable, quick-witted, charming, artistic", 
-      Ox: "Loyal, reliable, thorough, strong, reasonable", 
-      Tiger: "Enthusiastic, courageous, ambitious, leadership", 
-      Rabbit: "Trustworthy, empathetic, modest, diplomatic, sincere", 
-      Dragon: "Lucky, flexible, eccentric, imaginative, artistic", 
-      Snake: "Philosophical, organized, intelligent, intuitive", 
-      Horse: "Adaptable, loyal, courageous, ambitious, intelligent", 
-      Goat: "Tasteful, crafty, warm, elegant, charming", 
-      Monkey: "Quick-witted, charming, lucky, adaptable, bright", 
-      Rooster: "Honest, energetic, intelligent, flamboyant, flexible", 
-      Dog: "Loyal, responsible, trustworthy, honest, reliable", 
-      Pig: "Honorable, philanthropic, determined, optimistic"
-    },
-    zh: {
-      鼠: "聪明、适应能力强、机智、有魅力、有艺术感", 
-      牛: "忠诚、可靠、彻底、坚强、理性", 
-      虎: "热情、勇敢、有抱负、有领导才能", 
-      兔: "值得信赖、有同情心、谦虚、圆滑、真诚", 
-      龙: "幸运、灵活、古怪、富有想象力、有艺术感", 
-      蛇: "富有哲理、有条理、聪明、有直觉", 
-      马: "适应能力强、忠诚、勇敢、有抱负、聪明", 
-      羊: "有品味、灵巧、温暖、优雅、有魅力", 
-      猴: "机智、迷人、幸运、适应能力强、聪明", 
-      鸡: "诚实、精力充沛、聪明、华丽、灵活", 
-      狗: "忠诚、负责、值得信赖、诚实、可靠", 
-      猪: "可敬、乐善好施、坚定、乐观"
-    },
-    hi: {
-      चूहा: "चालाक, अनुकूलनीय, तेज-तर्रार, आकर्षक, कलात्मक", 
-      बैल: "वफादार, भरोसेमंद, संपूर्ण, मजबूत, उचित", 
-      बाघ: "उत्साही, साहसी, महत्वाकांक्षी, नेतृत्व", 
-      खरगोश: "विश्वसनीय, सहानुभूतिपूर्ण, विनम्र, राजनयिक, ईमानदार", 
-      ड्रैगन: "भाग्यशाली, लचीला, सनकी, कल्पनाशील, कलात्मक", 
-      साँप: "दार्शनिक, संगठित, बुद्धिमान, सहज", 
-      घोड़ा: "अनुकूलनीय, वफादार, साहसी, महत्वाकांक्षी, बुद्धिमान", 
-      बकरी: "सुंदर, चालाक, गर्म, सुरुचिपूर्ण, आकर्षक", 
-      बंदर: "तेज-तर्रार, आकर्षक, भाग्यशाली, अनुकूलनीय, उज्ज्वल", 
-      मुर्गा: "ईमानदार, ऊर्जावान, बुद्धिमान, तेजतर्रार, लचीला", 
-      कुत्ता: "वफादार, जिम्मेदार, भरोसेमंद, ईमानदार, विश्वसनीय", 
-      सुअर: "सम्माननीय, परोपकारी, दृढ़निश्चयी, आशावादी"
-    },
-    fr: {
-      Rat: "Intelligent, adaptable, vif d'esprit, charmant, artistique", 
-      Bœuf: "Loyal, fiable, minutieux, fort, raisonnable", 
-      Tigre: "Enthousiaste, courageus, ambitieux, leadership", 
-      Lapin: "Digne de confiance, empathique, modeste, diplomate, sincère", 
-      Dragon: "Chanceux, flexible, excentrique, imaginatif, artistique", 
-      Serpent: "Philosophe, organisé, intelligent, intuitif", 
-      Cheval: "Adaptable, loyal, courageus, ambitieux, intelligent", 
-      Chèvre: "Raffiné, astucieux, chaleureux, élégant, charmant", 
-      Singe: "Vif d'esprit, charmant, chanceux, adaptable, brillant", 
-      Coq: "Honnête, énergique, intelligent, flamboyant, flexible", 
-      Chien: "Loyal, responsable, digne de confiance, honnête, fiable", 
-      Cochon: "Honorable, philanthrope, déterminé, optimiste"
-    },
-    ar: {
-      الفأر: "ذكي، قابل للتكيف، سريع البديهة، ساحر، فني", 
-      الثور: "مخلص، موثوق، شامل، قوي، معقول", 
-      النمر: "متحمس، شجاع، طموح، قيادي", 
-      الأرنب: "جدير بالثقة، متعاطف، متواضع، دبلوماسي، مخلص", 
-      التنين: "محظوظ، مرن، غريب الأطوار، خيالي، فني", 
-      الثعبان: "فلسفي، منظم، ذكي، حدسي", 
-      الحصان: "قابل للتكيف، مخلص، شجاع، طموح، ذكي", 
-      الماعز: "ذواق، ماكر، دافئ، أنيق، ساحر", 
-      القرد: "سريع البديهة، ساحر، محظوظ، قابل للتكيف، مشرق", 
-      الديك: "صادق، نشيط، ذكي، براق، مرن", 
-      الكلب: "مخلص، مسؤول، جدير بالثقة، صادق، موثوق", 
-      الخنزير: "شريف، خيري، حازم، متفائل"
-    }
-  },
-  emojis: ["🐭", "🐂", "🐅", "🐰", "🐲", "🐍", "🐴", "🐐", "🐵", "🐓", "🐕", "🐖"]
+// Save form data when input changes
+const handleBirthYearInput = () => {
+  clearErrors()
+  setChineseZodiacData(birthYear.value)
 }
 
-const getChineseZodiacAnimal = (year: number) => {
-  const animals = chineseZodiacData.animals[locale.value as keyof typeof chineseZodiacData.animals] || chineseZodiacData.animals.en
-  const englishAnimals = chineseZodiacData.animals.en
-  const traits = chineseZodiacData.traits[locale.value as keyof typeof chineseZodiacData.traits] || chineseZodiacData.traits.en
-  
-  const animalIndex = (year - 4) % 12
-  const animal = animals[animalIndex]
-  const englishAnimal = englishAnimals[animalIndex]
-  const animalTrait = traits[englishAnimal as keyof typeof traits]
-  const emoji = chineseZodiacData.emojis[animalIndex]
-  
-  return {
-    animal,
-    englishAnimal,
-    traits: animalTrait,
-    emoji,
-    year
+// Watch for locale changes and update animal name/traits if result is already shown
+watch(locale, () => {
+  if (showResult.value && birthYear.value) {
+    updateZodiacResult()
   }
-}
-
-const validateInput = (): boolean => {
-  const year = parseInt(birthYear.value)
-  if (!birthYear.value || isNaN(year) || year < 1900 || year > 2099) {
-    yearError.value = true
-    return false
-  }
-  return true
-}
+})
 
 const clearErrors = () => {
   yearError.value = false
 }
 
+const validateYear = (): boolean => {
+  const year = parseInt(birthYear.value)
+  const isValid = !isNaN(year) && year >= 1900 && year <= 2099
+  
+  if (!isValid) {
+    yearError.value = true
+  }
+  
+  return isValid
+}
+
+const updateZodiacResult = () => {
+  const year = parseInt(birthYear.value)
+  const { getChineseZodiacAnimal } = useChineseZodiac()
+  const result = getChineseZodiacAnimal(year, locale.value)
+  
+  animalName.value = result.animal
+  animalTraits.value = result.traits
+  animalEmoji.value = getAnimalEmoji(result.englishAnimal)
+  zodiacResult.value = `${year} - ${$t('yearOf', { animal: result.animal })}`
+}
+
+const getAnimalEmoji = (animal: string): string => {
+  const emojis: Record<string, string> = {
+    'rat': '🐭',
+    'ox': '🐂', 
+    'tiger': '🐅',
+    'rabbit': '🐰',
+    'dragon': '🐉',
+    'snake': '🐍',
+    'horse': '🐴',
+    'goat': '🐐',
+    'monkey': '🐵',
+    'rooster': '🐓',
+    'dog': '🐕',
+    'pig': '🐷'
+  }
+  return emojis[animal.toLowerCase()] || '🐉'
+}
+
 const findZodiac = () => {
   clearErrors()
   
-  if (!validateInput()) {
+  if (!validateYear()) {
     return
   }
   
   const year = parseInt(birthYear.value)
-  const zodiacData = getChineseZodiacAnimal(year)
+  const textToShow = `${year} 🐉✨`
   
-  runMysticalAnimation(zodiacData.emoji + ' ' + zodiacData.animal, () => {
-    animalName.value = zodiacData.animal
-    animalTraits.value = zodiacData.traits
-    animalEmoji.value = zodiacData.emoji
-    zodiacResult.value = `${zodiacData.animal} - ${zodiacData.traits}`
+  runMysticalAnimation(textToShow, () => {
+    updateZodiacResult()
     showResult.value = true
+    
+    logger.logUserAction('Chinese zodiac calculated', {
+      year,
+      animal: animalName.value,
+      locale: locale.value
+    })
   })
 }
 
+const resetZodiac = () => {
+  birthYear.value = ''
+  showResult.value = false
+  zodiacResult.value = ''
+  clearErrors()
+  clearChineseZodiacData()
+  
+  logger.logUserAction('Chinese zodiac reset')
+}
+
 const shareZodiac = () => {
-  const shareText = `${$t('myZodiac')}\n\n${$t('yearOf', { animal: animalName.value })}\n${$t('traits')} ${animalTraits.value}\n\nvia Teller.eu.org`
+  logger.logUserAction('Chinese zodiac share attempted')
+  const shareText = `${$t('myZodiac')}\n\n${zodiacResult.value}\n\n${$t('traits')} ${animalTraits.value}\n\nvia Teller.eu.org`
   
   if (navigator.share) {
     navigator.share({
       title: $t('myZodiac'),
       text: shareText
+    }).then(() => {
+      logger.logUserAction('Chinese zodiac shared successfully')
     }).catch(() => {
       navigator.clipboard.writeText(shareText)
       alert($t('shareError'))
+      logger.logUserAction('Chinese zodiac copied to clipboard (share failed)')
     })
   } else {
     navigator.clipboard.writeText(shareText)
     alert($t('shareSuccess'))
+    logger.logUserAction('Chinese zodiac copied to clipboard')
   }
 }
 </script>

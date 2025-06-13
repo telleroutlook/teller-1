@@ -10,7 +10,7 @@
         v-model="birthDate"
         type="date" 
         :class="{ error: birthDateError }"
-        @input="clearErrors"
+        @input="handleBirthDateInput"
       />
       <div v-if="birthDateError" class="error-message">
         <span class="error-icon">⚠️</span>
@@ -26,7 +26,7 @@
         type="text" 
         :placeholder="$t('fullNamePlaceholder')"
         :class="{ error: fullNameError }"
-        @input="clearErrors"
+        @input="handleFullNameInput"
       />
       <div v-if="fullNameError" class="error-message">
         <span class="error-icon">⚠️</span>
@@ -61,6 +61,7 @@
 const { t: $t, locale } = useI18n()
 const { runMysticalAnimation } = useAnimations()
 const { logger, LogCategory } = useLogger()
+const { setNumerologyData, getNumerologyData, clearNumerologyData } = useFormState()
 
 const birthDate = ref('')
 const fullName = ref('')
@@ -76,6 +77,30 @@ const destinyMeaning = ref('')
 // Initialize component logging
 onMounted(() => {
   logger.logComponentInit('NumerologyReading', { locale: locale.value })
+  
+  // Restore saved form data
+  const savedData = getNumerologyData()
+  birthDate.value = savedData.birthDate
+  fullName.value = savedData.fullName
+})
+
+// Save form data when inputs change
+const handleBirthDateInput = () => {
+  clearErrors()
+  setNumerologyData(birthDate.value, fullName.value)
+}
+
+const handleFullNameInput = () => {
+  clearErrors()
+  setNumerologyData(birthDate.value, fullName.value)
+}
+
+// Watch for locale changes and update meanings if result is already shown
+watch(locale, () => {
+  if (showResult.value && lifePathNumber.value && destinyNumber.value) {
+    lifePathMeaning.value = getMeaning(lifePathNumber.value)
+    destinyMeaning.value = getMeaning(destinyNumber.value)
+  }
 })
 
 const lifePathMeanings = {
@@ -227,6 +252,7 @@ const resetCalculation = () => {
   showResult.value = false
   numerologyResult.value = ''
   clearErrors()
+  clearNumerologyData()
 }
 
 const shareNumbers = () => {
