@@ -30,7 +30,7 @@
             max-width: 1200px;
             width: 100%;
             margin: 0 auto;
-            padding: 10px 15px 75px 15px; /* Add padding-bottom for bottom nav */
+            padding: 10px 15px 75px 15px;
             display: flex;
             flex-direction: column;
             flex-grow: 1;
@@ -255,7 +255,6 @@
             border-radius: 8px;
             margin-top: 15px;
             display: none;
-            max-height: 100%; /* Fix for mobile scrolling */
         }
 
         .result.show {
@@ -304,6 +303,7 @@
             cursor: pointer;
             transition: all 0.3s ease;
             font-weight: 600;
+            border: none;
         }
         
         .zodiac-sign.active {
@@ -465,7 +465,7 @@
     </div>
     <div class="container">
         <header>
-            <select id="language-selector" onchange="changeLanguage(this.value)">
+            <select id="language-selector">
                 <option value="en">English</option>
                 <option value="zh">中文</option>
                 <option value="hi">हिन्दी</option>
@@ -486,8 +486,8 @@
                 <div class="result" id="tarotResult" aria-live="polite">
                     <div id="tarotInterpretation"></div>
                     <div class="reflection-prompt" data-translate="tarotReflection">Take a moment to reflect on how these insights resonate...</div>
-                    <button class="reset-btn" onclick="resetTarot()" style="display: none;" id="resetTarotBtn" data-translate="resetReadingBtn">New Reading</button>
-                    <button class="share-button" onclick="shareResult('tarot')" data-translate="shareReadingBtn">Share this Reading</button>
+                    <button class="reset-btn" id="resetTarotBtn" style="display: none;" data-translate="resetReadingBtn">New Reading</button>
+                    <button class="share-button" data-share-type="tarot" data-translate="shareReadingBtn">Share this Reading</button>
                 </div>
             </section>
 
@@ -495,24 +495,24 @@
                 <h2 class="section-title" data-translate="horoscopeTitle">⭐ Daily Horoscope</h2>
                 <p style="text-align: center; margin-bottom: 15px; font-size: 0.9rem;" data-translate="horoscopeIntro">Select your zodiac sign to see your horoscope for today.</p>
                 <div class="zodiac-grid" role="group" aria-label="Zodiac signs">
-                    <button class="zodiac-sign" onclick="triggerHoroscopeAnimation('aries')" tabindex="0" data-zodiac="aries">♈ Aries</button>
-                    <button class="zodiac-sign" onclick="triggerHoroscopeAnimation('taurus')" tabindex="0" data-zodiac="taurus">♉ Taurus</button>
-                    <button class="zodiac-sign" onclick="triggerHoroscopeAnimation('gemini')" tabindex="0" data-zodiac="gemini">♊ Gemini</button>
-                    <button class="zodiac-sign" onclick="triggerHoroscopeAnimation('cancer')" tabindex="0" data-zodiac="cancer">♋ Cancer</button>
-                    <button class="zodiac-sign" onclick="triggerHoroscopeAnimation('leo')" tabindex="0" data-zodiac="leo">♌ Leo</button>
-                    <button class="zodiac-sign" onclick="triggerHoroscopeAnimation('virgo')" tabindex="0" data-zodiac="virgo">♍ Virgo</button>
-                    <button class="zodiac-sign" onclick="triggerHoroscopeAnimation('libra')" tabindex="0" data-zodiac="libra">♎ Libra</button>
-                    <button class="zodiac-sign" onclick="triggerHoroscopeAnimation('scorpio')" tabindex="0" data-zodiac="scorpio">♏ Scorpio</button>
-                    <button class="zodiac-sign" onclick="triggerHoroscopeAnimation('sagittarius')" tabindex="0" data-zodiac="sagittarius">♐ Sagittarius</button>
-                    <button class="zodiac-sign" onclick="triggerHoroscopeAnimation('capricorn')" tabindex="0" data-zodiac="capricorn">♑ Capricorn</button>
-                    <button class="zodiac-sign" onclick="triggerHoroscopeAnimation('aquarius')" tabindex="0" data-zodiac="aquarius">♒ Aquarius</button>
-                    <button class="zodiac-sign" onclick="triggerHoroscopeAnimation('pisces')" tabindex="0" data-zodiac="pisces">♓ Pisces</button>
+                    <button class="zodiac-sign" tabindex="0" data-zodiac="aries">♈ Aries</button>
+                    <button class="zodiac-sign" tabindex="0" data-zodiac="taurus">♉ Taurus</button>
+                    <button class="zodiac-sign" tabindex="0" data-zodiac="gemini">♊ Gemini</button>
+                    <button class="zodiac-sign" tabindex="0" data-zodiac="cancer">♋ Cancer</button>
+                    <button class="zodiac-sign" tabindex="0" data-zodiac="leo">♌ Leo</button>
+                    <button class="zodiac-sign" tabindex="0" data-zodiac="virgo">♍ Virgo</button>
+                    <button class="zodiac-sign" tabindex="0" data-zodiac="libra">♎ Libra</button>
+                    <button class="zodiac-sign" tabindex="0" data-zodiac="scorpio">♏ Scorpio</button>
+                    <button class="zodiac-sign" tabindex="0" data-zodiac="sagittarius">♐ Sagittarius</button>
+                    <button class="zodiac-sign" tabindex="0" data-zodiac="capricorn">♑ Capricorn</button>
+                    <button class="zodiac-sign" tabindex="0" data-zodiac="aquarius">♒ Aquarius</button>
+                    <button class="zodiac-sign" tabindex="0" data-zodiac="pisces">♓ Pisces</button>
                 </div>
                 <div class="result" id="horoscopeResult" aria-live="polite">
                     <h3 id="horoscopeSign"></h3>
                     <div id="horoscopeText"></div>
                     <div class="reflection-prompt" data-translate="horoscopeReflection">Consider how this guidance might apply to your day ahead...</div>
-                    <button class="share-button" onclick="shareResult('horoscope')" data-translate="shareHoroscopeBtn">Share Today's Horoscope</button>
+                    <button class="share-button" data-share-type="horoscope" data-translate="shareHoroscopeBtn">Share Today's Horoscope</button>
                 </div>
             </section>
 
@@ -529,12 +529,12 @@
                     <input type="text" id="fullName" name="fullName" data-translate-placeholder="fullNamePlaceholder">
                     <div class="error-message" id="fullNameError"><span class="error-icon">⚠️</span> <span data-translate="fullNameError"></span></div>
                 </div>
-                <button class="btn" onclick="triggerNumerologyAnimation()" id="calculateBtn" data-translate="calculateBtn">Calculate My Numbers</button>
+                <button class="btn" id="calculateBtn" data-translate="calculateBtn">Calculate My Numbers</button>
                 <div class="result" id="numerologyResult" aria-live="polite">
                     <div id="numerologyText"></div>
                     <div class="reflection-prompt" data-translate="numerologyReflection">How do these numerical insights align with your personal experiences...</div>
-                    <button class="reset-btn" onclick="resetNumerology()" style="display: none;" id="resetNumerologyBtn" data-translate="recalculateBtn">Recalculate</button>
-                    <button class="share-button" onclick="shareResult('numerology')" data-translate="shareNumbersBtn">Share My Numbers</button>
+                    <button class="reset-btn" id="resetNumerologyBtn" style="display: none;" data-translate="recalculateBtn">Recalculate</button>
+                    <button class="share-button" data-share-type="numerology" data-translate="shareNumbersBtn">Share My Numbers</button>
                 </div>
             </section>
 
@@ -547,38 +547,37 @@
                     <div class="input-help" id="lunarYearHelp" data-translate="lunarYearHelp">Note: For those born in Jan or Feb, results may vary.</div>
                     <div class="error-message" id="birthYearError"><span class="error-icon">⚠️</span> <span data-translate="birthYearError"></span></div>
                 </div>
-                <button class="btn" onclick="triggerChineseZodiacAnimation()" id="chineseBtn" data-translate="findZodiacBtn">Find My Zodiac</button>
+                <button class="btn" id="chineseBtn" data-translate="findZodiacBtn">Find My Zodiac</button>
                 <div class="result" id="chineseResult" aria-live="polite">
                     <div id="chineseText"></div>
                     <div class="reflection-prompt" data-translate="chineseZodiacReflection">Embrace the wisdom of your zodiac animal...</div>
-                    <button class="reset-btn" onclick="resetChineseZodiac()" style="display: none;" id="resetChineseBtn" data-translate="recalculateBtn">Recalculate</button>
-                    <button class="share-button" onclick="shareResult('chinese')" data-translate="shareZodiacBtn">Share My Zodiac</button>
+                    <button class="reset-btn" id="resetChineseBtn" style="display: none;" data-translate="recalculateBtn">Recalculate</button>
+                    <button class="share-button" data-share-type="chinese" data-translate="shareZodiacBtn">Share My Zodiac</button>
                 </div>
             </section>
         </div>
     </div>
     
     <nav id="bottom-nav">
-        <button class="nav-btn active" onclick="showSection('tarot')" data-section="tarot">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"></rect><line x1="12" y1="4" x2="12" y2="20"></line><line x1="4" y1="12" x2="20" y2="12"></line></svg>
+        <button class="nav-btn active" data-section="tarot">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"></rect><line x1="12" y1="4" x2="12" y2="20"></line><line x1="4" y1="12" x2="20" y2="12"></line></svg>
             <span data-translate="tarotTab">Tarot</span>
         </button>
-        <button class="nav-btn" onclick="showSection('astrology')" data-section="astrology">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+        <button class="nav-btn" data-section="astrology">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
             <span data-translate="astrologyTab">Horoscope</span>
         </button>
-        <button class="nav-btn" onclick="showSection('numerology')" data-section="numerology">
-           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7V4h16v3"></path><path d="M9 20h6"></path><path d="M12 4v16"></path></svg>
+        <button class="nav-btn" data-section="numerology">
+           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7V4h16v3"></path><path d="M9 20h6"></path><path d="M12 4v16"></path></svg>
             <span data-translate="numerologyTab">Numerology</span>
         </button>
-        <button class="nav-btn" onclick="showSection('chinese')" data-section="chinese">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10z"></path><path d="M12 12a10.94 10.94 0 0 1-8.7-4.88"></path><path d="M2.5 12.5a10.94 10.94 0 0 1 0-1.22"></path><path d="M12 2.5a10.94 10.94 0 0 1 8.7 4.88"></path><path d="M21.5 12.5a10.94 10.94 0 0 1 0 1.22"></path><path d="M12 21.5a10.94 10.94 0 0 1-8.7-4.88"></path><path d="M2.5 11.5a10.94 10.94 0 0 0 0 1.22"></path><path d="M12 12a10.94 10.94 0 0 0 8.7 4.88"></path><path d="M21.5 11.5a10.94 10.94 0 0 0 0-1.22"></path></svg>
+        <button class="nav-btn" data-section="chinese">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10z"></path><path d="M12 12a10.94 10.94 0 0 1-8.7-4.88"></path><path d="M2.5 12.5a10.94 10.94 0 0 1 0-1.22"></path><path d="M12 2.5a10.94 10.94 0 0 1 8.7 4.88"></path><path d="M21.5 12.5a10.94 10.94 0 0 1 0 1.22"></path><path d="M12 21.5a10.94 10.94 0 0 1-8.7-4.88"></path><path d="M2.5 11.5a10.94 10.94 0 0 0 0 1.22"></path><path d="M12 12a10.94 10.94 0 0 0 8.7 4.88"></path><path d="M21.5 11.5a10.94 10.94 0 0 0 0-1.22"></path></svg>
             <span data-translate="chineseZodiacTab">Zodiac</span>
         </button>
     </nav>
 
     <script>
-        // --- Translations and Data objects are unchanged ---
         const translations = {
             en: {
                 tagline: "Discover Your Destiny Through Ancient Wisdom",
@@ -628,15 +627,12 @@
                 traits: "Traits:",
                 chineseZodiacReflection: "Embrace the wisdom of your zodiac animal.",
                 shareZodiacBtn: "Share My Zodiac",
-                shareTitle: "Share Result",
                 shareError: "Sharing failed or was cancelled. Your reading has been copied to the clipboard!",
                 shareSuccess: "Your reading has been copied to the clipboard!",
                 myTarotReading: "My Tarot Reading",
                 myHoroscope: "My Horoscope",
                 myNumerology: "My Numerology Reading",
                 myZodiac: "My Chinese Zodiac",
-                shareTextIntro: "Check out my fortune from Teller.eu.org! ",
-                closeModal: "Close modal",
             },
             zh: {
                 tagline: "通过古老的智慧发现你的命运",
@@ -686,15 +682,12 @@
                 traits: "性格特点:",
                 chineseZodiacReflection: "拥抱你生肖动物的智慧。",
                 shareZodiacBtn: "分享我的生肖",
-                shareTitle: "分享结果",
                 shareError: "分享失败或已取消。您的解读已复制到剪贴板！",
                 shareSuccess: "您的解读已复制到剪贴板！",
                 myTarotReading: "我的塔罗牌解读",
                 myHoroscope: "我的星座运势",
                 myNumerology: "我的命理学解读",
                 myZodiac: "我的中国生肖",
-                shareTextIntro: "看看我在 Teller.eu.org 得到的运势! ",
-                closeModal: "关闭弹窗",
             },
             hi: {
                 tagline: "प्राचीन ज्ञान के माध्यम से अपने भाग्य की खोज करें",
@@ -744,15 +737,12 @@
                 traits: "लक्षण:",
                 chineseZodiacReflection: "अपने राशि चक्र जानवर के ज्ञान को अपनाएं।",
                 shareZodiacBtn: "मेरी राशि साझा करें",
-                shareTitle: "परिणाम साझा करें",
                 shareError: "साझा करना विफल रहा या रद्द कर दिया गया। आपकी रीडिंग क्लिपबोर्ड पर कॉपी कर दी गई है!",
                 shareSuccess: "आपकी रीडिंग क्लिपबोर्ड पर कॉपी कर दी गई है!",
                 myTarotReading: "मेरी टैरो रीडिंग",
                 myHoroscope: "मेरा राशिफल",
                 myNumerology: "मेरी अंक ज्योतिष रीडिंग",
                 myZodiac: "मेरी चीनी राशि",
-                shareTextIntro: "Teller.eu.org से मेरा भाग्य देखें! ",
-                closeModal: "मोडल बंद करें",
             },
             fr: {
                 tagline: "Découvrez Votre Destin Grâce à la Sagesse Ancienne",
@@ -802,15 +792,12 @@
                 traits: "Traits :",
                 chineseZodiacReflection: "Accueillez la sagesse de votre animal du zodiaque.",
                 shareZodiacBtn: "Partager Mon Zodiaque",
-                shareTitle: "Partager le Résultat",
                 shareError: "Le partage a échoué ou a été annulé. Votre lecture a été copiée dans le presse-papiers !",
                 shareSuccess: "Votre lecture a été copiée dans le presse-papiers !",
                 myTarotReading: "Mon Tirage de Tarot",
                 myHoroscope: "Mon Horoscope",
                 myNumerology: "Ma Lecture de Numérologie",
                 myZodiac: "Mon Zodiaque Chinois",
-                shareTextIntro: "Découvrez ma fortune sur Teller.eu.org ! ",
-                closeModal: "Fermer la modale",
             },
             ar: {
                 tagline: "اكتشف مصيرك من خلال الحكمة القديمة",
@@ -860,15 +847,12 @@
                 traits: "صفات:",
                 chineseZodiacReflection: "احتضن حكمة حيوانك في الأبراج.",
                 shareZodiacBtn: "شارك برجي",
-                shareTitle: "مشاركة النتيجة",
                 shareError: "فشلت المشاركة أو تم إلغاؤها. تم نسخ قراءتك إلى الحافظة!",
                 shareSuccess: "تم نسخ قراءتك إلى الحافظة!",
                 myTarotReading: "قراءة التاروت الخاصة بي",
                 myHoroscope: "برجي",
                 myNumerology: "قراءة علم الأعداد الخاصة بي",
                 myZodiac: "برجي الصيني",
-                shareTextIntro: "تحقق من حظي من Teller.eu.org! ",
-                closeModal: "أغلق النافذة",
             }
         };
 
@@ -936,606 +920,457 @@
             },
         };
 
-        let selectedTarotCards = [];
-        let shuffledDeck = [];
-        let currentLang = 'en';
-
-        // --- All functions from the previous version remain, with upgrades below ---
-        function t(key, replacements = {}) {
-            let text = (translations[currentLang] && translations[currentLang][key]) || translations.en[key] || key;
-            for (const placeholder in replacements) {
-                text = text.replace(`{${placeholder}}`, replacements[placeholder]);
-            }
-            return text;
-        }
-
-        function changeLanguage(lang) {
-            const birthDateValue = document.getElementById('birthDate').value;
-            const fullNameValue = document.getElementById('fullName').value;
-            const birthYearValue = document.getElementById('birthYear').value;
-
-            currentLang = lang;
-            document.documentElement.lang = lang;
-            document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
-
-            document.querySelectorAll('[data-translate]').forEach(el => {
-                const key = el.getAttribute('data-translate');
-                el.textContent = t(key);
-            });
+        document.addEventListener('DOMContentLoaded', () => {
             
-            document.querySelectorAll('[data-translate-placeholder]').forEach(el => {
-                const key = el.getAttribute('data-translate-placeholder');
-                 el.placeholder = t(key);
-            });
+            const appState = {
+                selectedTarotCards: [],
+                shuffledDeck: [],
+                currentLang: 'en',
+            };
 
-            document.getElementById('birthDate').value = birthDateValue;
-            document.getElementById('fullName').value = fullNameValue;
-            document.getElementById('birthYear').value = birthYearValue;
+            const ui = {
+                languageSelector: document.getElementById('language-selector'),
+                navButtons: document.querySelectorAll('#bottom-nav .nav-btn'),
+                contentSections: document.querySelectorAll('.content-section'),
+                tarotDeck: document.getElementById('tarotDeck'),
+                tarotProgress: document.getElementById('tarotProgress'),
+                selectedCardsContainer: document.getElementById('selectedCards'),
+                tarotResult: document.getElementById('tarotResult'),
+                tarotInterpretation: document.getElementById('tarotInterpretation'),
+                resetTarotBtn: document.getElementById('resetTarotBtn'),
+                zodiacGrid: document.querySelector('.zodiac-grid'),
+                horoscopeResult: document.getElementById('horoscopeResult'),
+                horoscopeSign: document.getElementById('horoscopeSign'),
+                horoscopeText: document.getElementById('horoscopeText'),
+                birthDateInput: document.getElementById('birthDate'),
+                fullNameInput: document.getElementById('fullName'),
+                calculateNumerologyBtn: document.getElementById('calculateBtn'),
+                numerologyResult: document.getElementById('numerologyResult'),
+                numerologyText: document.getElementById('numerologyText'),
+                resetNumerologyBtn: document.getElementById('resetNumerologyBtn'),
+                birthYearInput: document.getElementById('birthYear'),
+                findChineseZodiacBtn: document.getElementById('chineseBtn'),
+                chineseResult: document.getElementById('chineseResult'),
+                chineseText: document.getElementById('chineseText'),
+                resetChineseBtn: document.getElementById('resetChineseBtn'),
+                animationOverlay: document.getElementById('animation-overlay'),
+                animatedText: document.getElementById('animated-text'),
+                animationFlare: document.getElementById('animation-flare'),
+                shareButtons: document.querySelectorAll('.share-button'),
+            };
 
-            updateZodiacSigns();
-            clearAllResults();
-        }
-
-        function clearAllResults() {
-            resetTarot();
-            document.getElementById('horoscopeResult').classList.remove('show');
-            document.querySelectorAll('.zodiac-sign').forEach(s => s.classList.remove('active'));
-            document.getElementById('numerologyResult').classList.remove('show');
-            document.getElementById('resetNumerologyBtn').style.display = 'none';
-            document.getElementById('chineseResult').classList.remove('show');
-            document.getElementById('resetChineseBtn').style.display = 'none';
-        }
-
-        function showSection(sectionName) {
-            document.querySelectorAll('.nav-btn').forEach(button => button.classList.remove('active'));
-            document.querySelector(`.nav-btn[data-section="${sectionName}"]`).classList.add('active');
-
-            document.querySelectorAll('.content-section').forEach(section => {
-                section.classList.remove('active');
-            });
-            
-            document.getElementById(sectionName).classList.add('active');
-        }
-        
-        function updateZodiacSigns() {
-            document.querySelectorAll('.zodiac-sign').forEach(button => {
-                const signKey = button.getAttribute('data-zodiac');
-                const emoji = button.textContent.split(' ')[0];
-                button.textContent = `${emoji} ${data.zodiacSigns[currentLang][signKey]}`;
-            });
-        }
-
-        function initializeTarotDeck() {
-            const currentTarotCards = data.tarotCards[currentLang];
-            shuffledDeck = currentTarotCards.map((name, index) => ({ name, index })).sort(() => Math.random() - 0.5);
-            
-            const deck = document.getElementById('tarotDeck');
-            deck.innerHTML = '';
-            
-            for (let i = 0; i < 22; i++) {
-                const card = document.createElement('div');
-                card.className = 'tarot-card';
-                card.onclick = () => selectTarotCard(card, i);
-                card.setAttribute('aria-label', `${t('tarotCard')} ${i + 1}`);
-                card.setAttribute('tabindex', '0');
-                card.innerHTML = `
-                    <div class="card-face card-front">🎴</div>
-                    <div class="card-face card-back"></div>
-                `;
-                deck.appendChild(card);
-            }
-        }
-
-        function selectTarotCard(cardElement, index) {
-            if (selectedTarotCards.length >= 3 || cardElement.classList.contains('flipped')) return;
-            
-            cardElement.classList.add('flipped');
-            
-            const selectedCard = shuffledDeck[index];
-            selectedTarotCards.push(selectedCard);
-            
-            const backFace = cardElement.querySelector('.card-back');
-            backFace.innerHTML = `<div>${selectedCard.name}</div>`;
-            cardElement.setAttribute('aria-label', t('tarotCardSelected', { cardName: selectedCard.name }));
-            
-            updateTarotProgress();
-            updateSelectedCards();
-            
-            if (selectedTarotCards.length === 3) {
-                disableRemainingCards();
-                triggerTarotAnimation();
-            }
-        }
-
-        function updateTarotProgress() {
-            const progress = document.getElementById('tarotProgress');
-            const remaining = 3 - selectedTarotCards.length;
-            
-            if (remaining > 0) {
-                progress.textContent = t('tarotProgressRemain', { remaining });
-            } else {
-                progress.textContent = t('tarotProgressDone');
-            }
-        }
-
-        function disableRemainingCards() {
-            const cards = document.querySelectorAll('.tarot-card:not(.flipped)');
-            cards.forEach(card => {
-                card.classList.add('disabled');
-            });
-        }
-
-        function updateSelectedCards() {
-            const container = document.getElementById('selectedCards');
-            container.innerHTML = '';
-            
-            const positions = [t('tarotPast'), t('tarotPresent'), t('tarotFuture')];
-            selectedTarotCards.forEach((card, index) => {
-                const cardElement = document.createElement('div');
-                cardElement.className = 'selected-card';
-                cardElement.innerHTML = `<strong>${positions[index]}:</strong><br>${card.name}`;
-                container.appendChild(cardElement);
-            });
-        }
-        
-        function showTarotReading() {
-            const positions = [t('tarotPast'), t('tarotPresent'), t('tarotFuture')];
-            let interpretation = `<h4>${t('yourReading')}</h4>`;
-            
-            selectedTarotCards.forEach((card, index) => {
-                const meaning = data.tarotMeanings[currentLang][card.index];
-                interpretation += `<p><strong>${positions[index]} - ${card.name}:</strong> ${meaning}</p>`;
-            });
-            
-            document.getElementById('tarotInterpretation').innerHTML = interpretation;
-            document.getElementById('tarotResult').classList.add('show');
-            document.getElementById('resetTarotBtn').style.display = 'inline-block';
-        }
-
-        function resetTarot() {
-            selectedTarotCards = [];
-            document.getElementById('selectedCards').innerHTML = '';
-            document.getElementById('tarotResult').classList.remove('show');
-            document.getElementById('tarotInterpretation').innerHTML = '';
-            document.getElementById('resetTarotBtn').style.display = 'none';
-            document.getElementById('tarotProgress').textContent = t('tarotProgressStart');
-            initializeTarotDeck();
-        }
-
-        function getHoroscope(signKey) {
-            document.querySelectorAll('.zodiac-sign').forEach(s => s.classList.remove('active'));
-            
-            const button = document.querySelector(`[data-zodiac="${signKey}"]`);
-            if (button) button.classList.add('active');
-            
-            const signName = data.zodiacSigns[currentLang][signKey];
-            document.getElementById('horoscopeSign').textContent = t('horoscopeFor', { sign: signName });
-            document.getElementById('horoscopeText').innerHTML = `<p>${data.horoscopes[currentLang][signKey]}</p>`;
-            
-            document.getElementById('horoscopeResult').classList.add('show');
-        }
-
-        function validateInput(inputElement, errorElementId, validationFn, errorMessageKey) {
-            const formGroupElement = inputElement.closest('.form-group');
-            const errorElement = document.getElementById(errorElementId);
-            if (!formGroupElement || !errorElement) return false;
-
-            const errorMessage = t(errorMessageKey);
-            let isValid = validationFn(inputElement.value);
-            
-            if (!isValid) {
-                formGroupElement.classList.add('has-error');
-                // Use querySelector on the specific error element to find the span to update
-                errorElement.querySelector('span:last-child').textContent = errorMessage;
-            } else {
-                // *** CRITICAL FIX: Corrected typo from "formGoupElement" to "formGroupElement" ***
-                formGroupElement.classList.remove('has-error');
-            }
-            return isValid;
-        }
-        
-        function normalizeName(name) {
-            let normalized = '';
-            for (let i = 0; i < name.length; i++) {
-                let char = name[i];
-                if (/[a-zA-Z]/.test(char)) {
-                    normalized += char;
-                } else {
-                    normalized += String.fromCharCode(65 + (char.charCodeAt(0) % 26));
+            const t = (key, replacements = {}) => {
+                let text = (translations[appState.currentLang] && translations[appState.currentLang][key]) || translations.en[key] || key;
+                for (const placeholder in replacements) {
+                    text = text.replace(`{${placeholder}}`, replacements[placeholder]);
                 }
-            }
-            return normalized;
-        }
+                return text;
+            };
 
-        function getResponsiveFontSize(text) {
-            const screenWidth = window.innerWidth;
-            const textLength = text.replace(/\s/g, '').length; 
-            if (textLength === 0) return 30;
+            const scrollToResult = (resultElement) => {
+                setTimeout(() => {
+                    const activeSection = document.querySelector('.content-section.active');
+                    if (activeSection && resultElement) {
+                        resultElement.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    }
+                }, 100);
+            };
             
-            // 改进字体大小计算，确保短文本也有合适的大小
-            let baseSize;
-            if (textLength <= 5) {
-                // 对于很短的文本，使用固定的较大字体
-                baseSize = Math.min(screenWidth * 0.15, 80);
-            } else if (textLength <= 15) {
-                // 中等长度文本
-                baseSize = Math.min(screenWidth * 0.1, 60);
-            } else {
-                // 长文本使用原来的计算方式
-                baseSize = (screenWidth / textLength) * 1.5;
-            }
-            
-            const minSize = 24;  // 增加最小字体大小
-            const maxSize = 80;  // 降低最大字体大小
-            return Math.max(minSize, Math.min(baseSize, maxSize));
-        }
-        
-        function createAndAnimateParticles(container) {
-            const colors = ['#FFD700', '#FF69B4', '#00FFFF', '#9370DB', '#FFFFFF', '#76ff7a', '#ff9c3d'];
-            
-            // 清理之前的粒子
-            const existingParticles = container.querySelectorAll('.particle');
-            existingParticles.forEach(p => {
-                anime.remove(p);
-                p.remove();
-            });
+            const showSection = (sectionName) => {
+                ui.navButtons.forEach(button => button.classList.toggle('active', button.dataset.section === sectionName));
+                ui.contentSections.forEach(section => section.classList.toggle('active', section.id === sectionName));
+            };
 
-            const particleCount = 70;
-            const newParticles = [];
-            
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                const size = anime.random(1, 4) + 'px';
-                particle.style.width = size;
-                particle.style.height = size;
-                particle.style.left = anime.random(0, 100) + '%';
-                particle.style.top = anime.random(0, 100) + '%';
-                particle.style.backgroundColor = colors[anime.random(0, colors.length - 1)];
-                particle.style.position = 'absolute';
-                particle.style.borderRadius = '50%';
-                particle.style.pointerEvents = 'none';
-                particle.style.zIndex = '10000';
-                particle.style.opacity = '0';
-                container.appendChild(particle);
-                newParticles.push(particle);
-            }
+            const changeLanguage = (lang) => {
+                const birthDateValue = ui.birthDateInput.value;
+                const fullNameValue = ui.fullNameInput.value;
+                const birthYearValue = ui.birthYearInput.value;
 
-            // 等待DOM更新后再开始动画
-            setTimeout(() => {
-                anime({
-                    targets: '.particle',
-                    opacity: [
-                        { value: () => anime.random(0.2, 1), duration: () => anime.random(200, 800) },
-                        { value: 0, duration: () => anime.random(200, 600) }
-                    ],
-                    scale: [
-                        { value: () => anime.random(0.5, 1.5), duration: () => anime.random(300, 1000) },
-                        { value: 1, duration: () => anime.random(200, 500) }
-                    ],
-                    duration: () => anime.random(1500, 3000),
-                    easing: 'linear',
-                    loop: true,
-                    delay: anime.stagger(20),
+                appState.currentLang = lang;
+                document.documentElement.lang = lang;
+                document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+
+                document.querySelectorAll('[data-translate]').forEach(el => {
+                    el.textContent = t(el.dataset.translate);
                 });
-            }, 10);
-        }
-        
-        function runMysticalAnimation(text, callback) {
-            const overlay = document.getElementById('animation-overlay');
-            const textContainer = document.getElementById('animated-text');
-            const flare = document.getElementById('animation-flare');
-
-            if (!overlay || !textContainer || !flare) {
-                if (callback) callback();
-                return;
-            }
-            
-            // 确保文本不为空，如果为空则使用占位符
-            if (!text || text.trim() === '') {
-                text = '✨';
-            }
-            
-            // 清理之前的动画状态
-            
-            // 停止所有正在进行的anime.js动画
-            anime.remove('.particle');
-            anime.remove('#animated-text span');
-            anime.remove('#animation-flare');
-            anime.remove('#animation-overlay');
-            
-            // 清理粒子
-            const existingParticles = overlay.querySelectorAll('.particle');
-            existingParticles.forEach(p => p.remove());
-            
-            // 重置文本容器
-            textContainer.innerHTML = '';
-            
-            // 重置闪光效果 - 只重置必要属性
-            flare.style.transform = '';
-            flare.style.opacity = '0';
-            
-            // 重置overlay状态
-            overlay.classList.remove('visible');
-            overlay.style.display = 'none';
-            
-            // 强制重绘
-            overlay.offsetHeight;
-            
-            // Step 1: Make the overlay visible immediately.
-            overlay.style.display = 'flex';
-            overlay.style.opacity = ''; // 清除内联opacity，让CSS类生效
-            overlay.classList.add('visible');
-            
-            setTimeout(() => {
                 
-                // 创建新的粒子动画
-                createAndAnimateParticles(overlay);
-                
-                // 启动闪光动画
-                anime({
-                    targets: flare,
-                    translateX: [ '-50%', '50%'],
-                    translateY: ['-50%', '50%'],
-                    opacity: [0, 1, 0],
-                    duration: 4000,
-                    easing: 'easeInOutQuad',
-                    direction: 'alternate',
-                    loop: true
+                document.querySelectorAll('[data-translate-placeholder]').forEach(el => {
+                    el.placeholder = t(el.dataset.translatePlaceholder);
                 });
 
-                const fontSize = getResponsiveFontSize(text);
+                ui.birthDateInput.value = birthDateValue;
+                ui.fullNameInput.value = fullNameValue;
+                ui.birthYearInput.value = birthYearValue;
+
+                updateZodiacSigns();
+                clearAllResults();
+            };
+
+            const updateZodiacSigns = () => {
+                document.querySelectorAll('.zodiac-sign').forEach(button => {
+                    const signKey = button.dataset.zodiac;
+                    const emoji = button.textContent.split(' ')[0];
+                    button.textContent = `${emoji} ${data.zodiacSigns[appState.currentLang][signKey]}`;
+                });
+            };
+
+            const clearAllResults = () => {
+                resetTarot();
+                ui.horoscopeResult.classList.remove('show');
+                document.querySelectorAll('.zodiac-sign').forEach(s => s.classList.remove('active'));
+                ui.numerologyResult.classList.remove('show');
+                ui.resetNumerologyBtn.style.display = 'none';
+                ui.chineseResult.classList.remove('show');
+                ui.resetChineseBtn.style.display = 'none';
+            };
+
+            const initializeTarotDeck = () => {
+                const currentTarotCards = data.tarotCards[appState.currentLang];
+                appState.shuffledDeck = currentTarotCards.map((name, index) => ({ name, index })).sort(() => Math.random() - 0.5);
                 
-                // 改进文本处理，确保每个字符都能正确显示
-                const characters = text.split('');
-                characters.forEach((char, index) => {
+                ui.tarotDeck.innerHTML = '';
+                for (let i = 0; i < 22; i++) {
+                    const card = document.createElement('div');
+                    card.className = 'tarot-card';
+                    card.dataset.index = i;
+                    card.setAttribute('aria-label', `${t('tarotCard')} ${i + 1}`);
+                    card.setAttribute('tabindex', '0');
+                    card.innerHTML = `
+                        <div class="card-face card-front">🎴</div>
+                        <div class="card-face card-back"></div>
+                    `;
+                    ui.tarotDeck.appendChild(card);
+                }
+            };
+
+            const selectTarotCard = (cardElement) => {
+                if (appState.selectedTarotCards.length >= 3 || cardElement.classList.contains('flipped')) return;
+                
+                cardElement.classList.add('flipped');
+                
+                const cardIndex = parseInt(cardElement.dataset.index);
+                const selectedCard = appState.shuffledDeck[cardIndex];
+                appState.selectedTarotCards.push(selectedCard);
+                
+                const backFace = cardElement.querySelector('.card-back');
+                backFace.innerHTML = `<div>${selectedCard.name}</div>`;
+                cardElement.setAttribute('aria-label', t('tarotCardSelected', { cardName: selectedCard.name }));
+                
+                updateTarotProgress();
+                updateSelectedCardsDisplay();
+                
+                if (appState.selectedTarotCards.length === 3) {
+                    disableRemainingCards();
+                    triggerTarotAnimation();
+                }
+            };
+
+            const updateTarotProgress = () => {
+                const remaining = 3 - appState.selectedTarotCards.length;
+                ui.tarotProgress.textContent = remaining > 0 ? t('tarotProgressRemain', { remaining }) : t('tarotProgressDone');
+            };
+
+            const disableRemainingCards = () => {
+                document.querySelectorAll('.tarot-card:not(.flipped)').forEach(card => card.classList.add('disabled'));
+            };
+
+            const updateSelectedCardsDisplay = () => {
+                ui.selectedCardsContainer.innerHTML = '';
+                const positions = [t('tarotPast'), t('tarotPresent'), t('tarotFuture')];
+                appState.selectedTarotCards.forEach((card, index) => {
+                    const cardElement = document.createElement('div');
+                    cardElement.className = 'selected-card';
+                    cardElement.innerHTML = `<strong>${positions[index]}:</strong><br>${card.name}`;
+                    ui.selectedCardsContainer.appendChild(cardElement);
+                });
+            };
+            
+            const showTarotReading = () => {
+                const positions = [t('tarotPast'), t('tarotPresent'), t('tarotFuture')];
+                let interpretation = `<h4>${t('yourReading')}</h4>`;
+                
+                appState.selectedTarotCards.forEach((card, index) => {
+                    const meaning = data.tarotMeanings[appState.currentLang][card.index];
+                    interpretation += `<p><strong>${positions[index]} - ${card.name}:</strong> ${meaning}</p>`;
+                });
+                
+                ui.tarotInterpretation.innerHTML = interpretation;
+                ui.tarotResult.classList.add('show');
+                ui.resetTarotBtn.style.display = 'inline-block';
+                scrollToResult(ui.tarotResult);
+            };
+
+            const resetTarot = () => {
+                appState.selectedTarotCards = [];
+                ui.selectedCardsContainer.innerHTML = '';
+                ui.tarotResult.classList.remove('show');
+                ui.tarotInterpretation.innerHTML = '';
+                ui.resetTarotBtn.style.display = 'none';
+                ui.tarotProgress.textContent = t('tarotProgressStart');
+                initializeTarotDeck();
+            };
+
+            const getHoroscope = (signKey) => {
+                document.querySelectorAll('.zodiac-sign').forEach(s => s.classList.remove('active'));
+                const button = document.querySelector(`[data-zodiac="${signKey}"]`);
+                if (button) button.classList.add('active');
+                
+                const signName = data.zodiacSigns[appState.currentLang][signKey];
+                ui.horoscopeSign.textContent = t('horoscopeFor', { sign: signName });
+                ui.horoscopeText.innerHTML = `<p>${data.horoscopes[appState.currentLang][signKey]}</p>`;
+                
+                ui.horoscopeResult.classList.add('show');
+                scrollToResult(ui.horoscopeResult);
+            };
+
+            const validateInput = (inputEl, errorElId, validationFn, errorMsgKey) => {
+                const groupEl = inputEl.closest('.form-group');
+                const errorEl = document.getElementById(errorElId);
+                if (!groupEl || !errorEl) return false;
+
+                const isValid = validationFn(inputEl.value);
+                groupEl.classList.toggle('has-error', !isValid);
+                if (!isValid) {
+                    errorEl.querySelector('span:last-child').textContent = t(errorMsgKey);
+                }
+                return isValid;
+            };
+
+            const reduceToSingleDigit = (sum) => {
+                while (sum > 9 && sum !== 11 && sum !== 22 && sum !== 33) {
+                    sum = String(sum).split('').reduce((acc, digit) => acc + Number(digit), 0);
+                }
+                return sum;
+            };
+            
+            const getLifePathNumber = (birthDate) => {
+                const sum = birthDate.replace(/-/g, '').split('').reduce((acc, digit) => acc + Number(digit), 0);
+                return reduceToSingleDigit(sum);
+            };
+
+            const getDestinyNumber = (name) => {
+                const values = { A: 1, B: 2, C: 3, D: 4, E: 5, F: 6, G: 7, H: 8, I: 9, J: 1, K: 2, L: 3, M: 4, N: 5, O: 6, P: 7, Q: 8, R: 9, S: 1, T: 2, U: 3, V: 4, W: 5, X: 6, Y: 7, Z: 8 };
+                const sum = name.toUpperCase().split('').reduce((acc, char) => acc + (values[char] || 0), 0);
+                return sum === 0 ? 1 : reduceToSingleDigit(sum);
+            };
+
+            const calculateNumerology = () => {
+                const lifePathNumber = getLifePathNumber(ui.birthDateInput.value);
+                const destinyNumber = getDestinyNumber(ui.fullNameInput.value);
+                
+                let resultHtml = `<h4>${t('yourNumerologyProfile')}</h4>`;
+                resultHtml += `<p><strong>${t('lifePathNumber')} ${lifePathNumber}:</strong><br>${data.lifePathMeanings[appState.currentLang][lifePathNumber]}</p>`;
+                resultHtml += `<p><strong>${t('destinyNumber')} ${destinyNumber}:</strong><br>${data.lifePathMeanings[appState.currentLang][destinyNumber]}</p>`;
+                
+                ui.numerologyText.innerHTML = resultHtml;
+                ui.numerologyResult.classList.add('show');
+                ui.resetNumerologyBtn.style.display = 'inline-block';
+                scrollToResult(ui.numerologyResult);
+            };
+
+            const getChineseZodiac = () => {
+                const year = parseInt(ui.birthYearInput.value);
+                const animalIndex = (year - 4) % 12;
+                const animal = data.chineseZodiac.animals[appState.currentLang][animalIndex];
+                const animalKey = data.chineseZodiac.animals['en'][animalIndex];
+                const traits = data.chineseZodiac.traits[appState.currentLang][animalKey];
+                
+                let resultHtml = `<h4>${t('yourZodiac')}</h4>`;
+                resultHtml += `<p><strong>${year} - ${t('yearOf', {animal})}</strong></p>`;
+                resultHtml += `<p><strong>${t('traits')}</strong> ${traits}</p>`;
+                
+                ui.chineseText.innerHTML = resultHtml;
+                ui.chineseResult.classList.add('show');
+                ui.resetChineseBtn.style.display = 'inline-block';
+                scrollToResult(ui.chineseResult);
+            };
+
+            const resetNumerology = () => {
+                ui.numerologyResult.classList.remove('show');
+                ui.resetNumerologyBtn.style.display = 'none';
+                ui.birthDateInput.value = '';
+                ui.fullNameInput.value = '';
+            };
+
+            const resetChineseZodiac = () => {
+                ui.chineseResult.classList.remove('show');
+                ui.resetChineseBtn.style.display = 'none';
+                ui.birthYearInput.value = '';
+            };
+            
+            const runMysticalAnimation = (text, callback) => {
+                anime.remove([ui.animationOverlay, ui.animatedText.children, ui.animationFlare, '.particle']);
+                ui.animatedText.innerHTML = '';
+                const existingParticles = ui.animationOverlay.querySelectorAll('.particle');
+                existingParticles.forEach(p => p.remove());
+
+                ui.animationOverlay.classList.add('visible');
+                
+                const createAndAnimateParticles = () => {
+                    const colors = ['#FFD700', '#FF69B4', '#00FFFF', '#9370DB', '#FFFFFF'];
+                    for (let i = 0; i < 70; i++) {
+                        const particle = document.createElement('div');
+                        particle.className = 'particle';
+                        const size = anime.random(1, 4) + 'px';
+                        Object.assign(particle.style, {
+                            width: size, height: size,
+                            left: `${anime.random(0, 100)}%`, top: `${anime.random(0, 100)}%`,
+                            backgroundColor: colors[anime.random(0, colors.length - 1)],
+                            opacity: '0'
+                        });
+                        ui.animationOverlay.appendChild(particle);
+                    }
+                    anime({
+                        targets: '.particle',
+                        opacity: [{ value: () => anime.random(0.2, 1), duration: () => anime.random(200, 800) }, { value: 0, duration: () => anime.random(200, 600) }],
+                        scale: [{ value: () => anime.random(0.5, 1.5), duration: () => anime.random(300, 1000) }, { value: 1, duration: () => anime.random(200, 500) }],
+                        duration: () => anime.random(1500, 3000), easing: 'linear', loop: true, delay: anime.stagger(20),
+                    });
+                };
+                
+                createAndAnimateParticles();
+                
+                anime({ targets: ui.animationFlare, translateX: ['-50%', '50%'], translateY: ['-50%', '50%'], opacity: [0, 1, 0], duration: 4000, easing: 'easeInOutQuad', direction: 'alternate', loop: true });
+
+                const displayText = text || '✨';
+                const fontSize = Math.max(24, Math.min((window.innerWidth / displayText.length) * 1.5, 80));
+                
+                displayText.split('').forEach(char => {
                     const span = document.createElement('span');
                     span.innerHTML = char === ' ' ? '&nbsp;' : char;
                     span.style.fontSize = `${fontSize}px`;
-                    span.style.display = 'inline-block';
-                    span.style.opacity = '0';
-                    span.style.transform = 'scale(0) translateY(100%) rotateZ(180deg)';
-                    span.style.position = 'relative';
-                    span.style.color = 'white';
-                    span.style.fontWeight = 'bold';
-                    span.style.textShadow = '0 0 8px #fff, 0 0 15px #fff, 0 0 25px #ff00ff, 0 0 40px #ff00ff';
-                    span.style.margin = '0 0.1em';
-                    textContainer.appendChild(span);
+                    ui.animatedText.appendChild(span);
                 });
 
-                // 调整动画参数以适配不同长度的文本
-                const textLength = characters.length;
-                const staggerDelay = Math.max(50, Math.min(120, 1000 / textLength));
-
-
-
-                anime.timeline({
+                const animationTimeline = anime.timeline({
                     complete: () => {
                         anime({
-                            targets: overlay,
+                            targets: ui.animationOverlay,
                             opacity: 0,
                             duration: 500,
                             easing: 'easeInOutQuad',
                             complete: () => {
-                                console.log("LOG: Starting final cleanup...");
-                                
-                                // *** 彻底清理动画状态 ***
-                                overlay.classList.remove('visible');
-                                overlay.style.display = 'none';
-                                overlay.style.opacity = '';
-                                
-                                // 停止并移除所有动画
-                                anime.remove('.particle');
-                                anime.remove('#animated-text span');
-                                anime.remove('#animation-flare');
-                                
-                                // 清理DOM元素
-                                const particles = overlay.querySelectorAll('.particle');
-                                particles.forEach(p => p.remove());
-                                
-                                textContainer.innerHTML = '';
-                                
-                                // 重置flare - 只重置动画相关属性
-                                flare.style.transform = '';
-                                flare.style.opacity = '';
-                                
-                                console.log("LOG: Final cleanup complete.");
-                                
-                                if (callback) {
-                                    console.log("LOG: Animation complete. Running callback.");
-                                    // 使用短延迟确保DOM完全清理后再执行回调
-                                    setTimeout(callback, 50);
-                                }
+                                ui.animationOverlay.classList.remove('visible');
+                                if (callback) setTimeout(callback, 50);
                             }
                         });
                     }
-                })
-                .add({
+                });
+
+                animationTimeline.add({
                     targets: '#animated-text span',
-                    opacity: [0, 1],
-                    scale: [0, 1],
-                    translateY: ['100%', 0],
-                    rotateZ: [180, 0],
-                    duration: 1500,
-                    easing: 'easeOutExpo',
-                    delay: anime.stagger(staggerDelay)
-                })
-                .add({
+                    opacity: [0, 1], scale: [0, 1], translateY: ['100%', 0], rotateZ: [180, 0],
+                    duration: 1500, easing: 'easeOutExpo', delay: anime.stagger(Math.max(50, 1000 / displayText.length))
+                }).add({
                     targets: '#animated-text span',
-                    opacity: 0,
-                    scale: 0.5,
-                    duration: 1000,
-                    easing: 'easeInExpo',
-                    delay: anime.stagger(Math.max(30, staggerDelay * 0.6), {start: 500})
+                    opacity: 0, scale: 0.5,
+                    duration: 1000, easing: 'easeInExpo', delay: anime.stagger(50, { start: 500 })
                 }, '+=500');
-            }, 50); // 增加延迟时间确保DOM完全准备好
-        }
-        
-        function triggerTarotAnimation() {
-            console.log("LOG: Firing up TAROT animation.");
-            const cardNames = selectedTarotCards.map(c => c.name).join('  ');
-            runMysticalAnimation(cardNames, showTarotReading);
-        }
+            };
 
-        function triggerHoroscopeAnimation(signKey) {
-            console.log(`LOG: Firing up HOROSCOPE animation for: ${signKey}`);
-            const signName = data.zodiacSigns[currentLang][signKey];
-            runMysticalAnimation(signName, () => getHoroscope(signKey));
-        }
+            const triggerTarotAnimation = () => {
+                const cardNames = appState.selectedTarotCards.map(c => c.name).join('  ');
+                runMysticalAnimation(cardNames, showTarotReading);
+            };
 
-        function triggerNumerologyAnimation() {
-            console.log("LOG: Attempting to fire NUMEROLOGY animation...");
-            const birthDateInput = document.getElementById('birthDate');
-            const fullNameInput = document.getElementById('fullName');
-            
-            let isValidBirthDate = validateInput(birthDateInput, 'birthDateError', (val) => val !== '', 'birthDateError');
-            let isValidFullName = validateInput(fullNameInput, 'fullNameError', (val) => val.trim() !== '', 'fullNameError');
+            const triggerHoroscopeAnimation = (signKey) => {
+                const signName = data.zodiacSigns[appState.currentLang][signKey];
+                runMysticalAnimation(signName, () => getHoroscope(signKey));
+            };
 
-            if (!isValidBirthDate || !isValidFullName) {
-                console.log("LOG: Validation FAILED. Numerology animation aborted.");
-                return;
-            }
-            
-            console.log("LOG: Validation PASSED. Firing up Numerology animation.");
-            // 改进动画文本，使其更适合显示
-            const textToShow = `${fullNameInput.value.slice(0, 20)} ✨ ${birthDateInput.value}`;
-            runMysticalAnimation(textToShow, calculateNumerology);
-        }
+            const triggerNumerologyAnimation = () => {
+                const isValidBirthDate = validateInput(ui.birthDateInput, 'birthDateError', val => val !== '', 'birthDateError');
+                const isValidFullName = validateInput(ui.fullNameInput, 'fullNameError', val => val.trim() !== '', 'fullNameError');
 
-        function triggerChineseZodiacAnimation() {
-            console.log("LOG: Attempting to fire CHINESE ZODIAC animation...");
-            const birthYearInput = document.getElementById('birthYear');
-            
-            let isValidYear = validateInput(birthYearInput, 'birthYearError', (val) => !isNaN(val) && val >= 1900 && val <= 2099, 'birthYearError');
-
-            if (!isValidYear) {
-                console.log("LOG: Validation FAILED. Chinese Zodiac animation aborted.");
-                return;
-            }
-
-            console.log("LOG: Validation PASSED. Firing up Chinese Zodiac animation.");
-            // 改进动画文本，使其更有趣
-            const textToShow = `🐉 ${birthYearInput.value} 🐉`;
-            runMysticalAnimation(textToShow, getChineseZodiac);
-        }
-
-        function calculateNumerology() {
-            const birthDateInput = document.getElementById('birthDate');
-            const fullNameInput = document.getElementById('fullName');
-            const numerologyResult = document.getElementById('numerologyResult');
-            
-            const normalizedFullName = normalizeName(fullNameInput.value);
-            const lifePathNumber = getLifePathNumber(birthDateInput.value);
-            const destinyNumber = getDestinyNumber(normalizedFullName);
-            
-            let resultHtml = `<h4>${t('yourNumerologyProfile')}</h4>`;
-            resultHtml += `<p><strong>${t('lifePathNumber')} ${lifePathNumber}:</strong><br>${data.lifePathMeanings[currentLang][lifePathNumber]}</p>`;
-            resultHtml += `<p><strong>${t('destinyNumber')} ${destinyNumber}:</strong><br>${data.lifePathMeanings[currentLang][destinyNumber]}</p>`;
-            
-            document.getElementById('numerologyText').innerHTML = resultHtml;
-            numerologyResult.classList.add('show');
-            document.getElementById('resetNumerologyBtn').style.display = 'inline-block';
-        }
-
-        function getLifePathNumber(birthDate) {
-            const digits = birthDate.replace(/-/g, '').split('').map(Number);
-            let sum = digits.reduce((a, b) => a + b, 0);
-            while (sum > 9 && sum !== 11 && sum !== 22 && sum !== 33) {
-                sum = sum.toString().split('').map(Number).reduce((a, b) => a + b, 0);
-            }
-            return sum;
-        }
-
-        function getDestinyNumber(name) {
-            const values = { A: 1, B: 2, C: 3, D: 4, E: 5, F: 6, G: 7, H: 8, I: 9, J: 1, K: 2, L: 3, M: 4, N: 5, O: 6, P: 7, Q: 8, R: 9, S: 1, T: 2, U: 3, V: 4, W: 5, X: 6, Y: 7, Z: 8 };
-            let sum = name.toUpperCase().split('').reduce((acc, char) => acc + (values[char] || 0), 0);
-            if (sum === 0) return 1;
-            while (sum > 9 && sum !== 11 && sum !== 22 && sum !== 33) {
-                sum = sum.toString().split('').map(Number).reduce((a, b) => a + b, 0);
-            }
-            return sum;
-        }
-
-        function getChineseZodiac() {
-            const birthYearInput = document.getElementById('birthYear');
-            const chineseResult = document.getElementById('chineseResult');
-            const year = parseInt(birthYearInput.value);
-            
-            const animalIndex = (year - 4) % 12;
-            const animal = data.chineseZodiac.animals[currentLang][animalIndex];
-            const animalKey = data.chineseZodiac.animals['en'][animalIndex];
-            const traits = data.chineseZodiac.traits[currentLang][animalKey];
-            
-            let resultHtml = `<h4>${t('yourZodiac')}</h4>`;
-            resultHtml += `<p><strong>${year} - ${t('yearOf', {animal})}</strong></p>`;
-            resultHtml += `<p><strong>${t('traits')}</strong> ${traits}</p>`;
-            
-            document.getElementById('chineseText').innerHTML = resultHtml;
-            chineseResult.classList.add('show');
-            document.getElementById('resetChineseBtn').style.display = 'inline-block';
-        }
-
-        function resetNumerology() {
-            document.getElementById('numerologyResult').classList.remove('show');
-            document.getElementById('resetNumerologyBtn').style.display = 'none';
-        }
-
-        function resetChineseZodiac() {
-            document.getElementById('chineseResult').classList.remove('show');
-            document.getElementById('resetChineseBtn').style.display = 'none';
-        }
-
-        async function shareResult(type) {
-            let shareText = t('shareTextIntro');
-            let title = "";
-            let url = window.location.href;
-
-            if (type === 'tarot') {
-                title = t('myTarotReading');
-                shareText += `${title}\n${document.getElementById('tarotInterpretation').innerText}`;
-            } else if (type === 'horoscope') {
-                title = t('myHoroscope');
-                shareText += `${document.getElementById('horoscopeSign').textContent}\n${document.getElementById('horoscopeText').innerText}`;
-            } else if (type === 'numerology') {
-                title = t('myNumerology');
-                shareText += `${document.getElementById('numerologyText').innerText}`;
-            } else if (type === 'chinese') {
-                title = t('myZodiac');
-                shareText += `${document.getElementById('chineseText').innerText}`;
-            }
-            
-            const fullShareText = shareText + "\n\n" + url;
-
-            if (navigator.share) {
-                try {
-                    await navigator.share({ title: title, text: shareText, url: url });
-                } catch (error) {
-                    console.error("Share failed:", error);
-                    copyToClipboard(fullShareText);
-                    alert(t('shareError'));
+                if (isValidBirthDate && isValidFullName) {
+                    const textToShow = `${ui.fullNameInput.value.slice(0, 20)} ✨ ${ui.birthDateInput.value}`;
+                    runMysticalAnimation(textToShow, calculateNumerology);
                 }
-            } else {
-                copyToClipboard(fullShareText);
-                alert(t('shareSuccess'));
+            };
+            
+            const triggerChineseZodiacAnimation = () => {
+                const isValidYear = validateInput(ui.birthYearInput, 'birthYearError', val => !isNaN(val) && val >= 1900 && val <= 2099, 'birthYearError');
+                if (isValidYear) {
+                    const textToShow = `🐉 ${ui.birthYearInput.value} 🐉`;
+                    runMysticalAnimation(textToShow, getChineseZodiac);
+                }
+            };
+            
+            async function shareResult(type) {
+                let shareText = t('shareTextIntro');
+                let title = "";
+                let content = "";
+                const url = window.location.href;
+
+                if (type === 'tarot') {
+                    title = t('myTarotReading');
+                    content = ui.tarotInterpretation.innerText;
+                } else if (type === 'horoscope') {
+                    title = t('myHoroscope');
+                    content = `${ui.horoscopeSign.textContent}\n${ui.horoscopeText.innerText}`;
+                } else if (type === 'numerology') {
+                    title = t('myNumerology');
+                    content = ui.numerologyText.innerText;
+                } else if (type === 'chinese') {
+                    title = t('myZodiac');
+                    content = ui.chineseText.innerText;
+                }
+                
+                shareText += `${title}\n${content}`;
+                const fullShareText = shareText + "\n\n" + url;
+
+                if (navigator.share) {
+                    try {
+                        await navigator.share({ title: title, text: shareText, url: url });
+                    } catch (error) {
+                        copyToClipboard(fullShareText);
+                        alert(t('shareError'));
+                    }
+                } else {
+                    copyToClipboard(fullShareText);
+                    alert(t('shareSuccess'));
+                }
             }
-        }
 
-        function copyToClipboard(text) {
-            const textarea = document.createElement('textarea');
-            textarea.value = text;
-            document.body.appendChild(textarea);
-            textarea.select();
-            document.execCommand('copy');
-            document.body.removeChild(textarea);
-        }
+            function copyToClipboard(text) {
+                const textarea = document.createElement('textarea');
+                textarea.value = text;
+                document.body.appendChild(textarea);
+                textarea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textarea);
+            }
 
-        window.onload = function() {
-            const userLang = navigator.language.split('-')[0];
-            const langToLoad = translations[userLang] ? userLang : 'en';
-            document.getElementById('language-selector').value = langToLoad;
-            changeLanguage(langToLoad);
-            showSection('tarot');
-        };
+            function initEventListeners() {
+                ui.languageSelector.addEventListener('change', (e) => changeLanguage(e.target.value));
+                ui.navButtons.forEach(btn => btn.addEventListener('click', () => showSection(btn.dataset.section)));
+                ui.tarotDeck.addEventListener('click', (e) => {
+                    const card = e.target.closest('.tarot-card');
+                    if (card) selectTarotCard(card);
+                });
+                ui.resetTarotBtn.addEventListener('click', resetTarot);
+                ui.zodiacGrid.addEventListener('click', (e) => {
+                    const signBtn = e.target.closest('.zodiac-sign');
+                    if(signBtn) triggerHoroscopeAnimation(signBtn.dataset.zodiac);
+                });
+                ui.calculateNumerologyBtn.addEventListener('click', triggerNumerologyAnimation);
+                ui.resetNumerologyBtn.addEventListener('click', resetNumerology);
+                ui.findChineseZodiacBtn.addEventListener('click', triggerChineseZodiacAnimation);
+                ui.resetChineseBtn.addEventListener('click', resetChineseZodiac);
+                ui.shareButtons.forEach(btn => btn.addEventListener('click', () => shareResult(btn.dataset.shareType)));
+            }
+
+            function initializeApp() {
+                const userLang = navigator.language.split('-')[0];
+                const langToLoad = translations[userLang] ? userLang : 'en';
+                ui.languageSelector.value = langToLoad;
+                changeLanguage(langToLoad);
+                showSection('tarot');
+                initEventListeners();
+            }
+
+            initializeApp();
+        });
     </script>
 </body>
 </html>
