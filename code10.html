@@ -860,7 +860,7 @@
             tarotCards: {
                 en: ["The Fool", "The Magician", "The High Priestess", "The Empress", "The Emperor", "The Hierophant", "The Lovers", "The Chariot", "Strength", "The Hermit", "Wheel of Fortune", "Justice", "The Hanged Man", "Death", "Temperance", "The Devil", "The Tower", "The Star", "The Moon", "The Sun", "Judgement", "The World"],
                 zh: ["愚人", "魔术师", "女祭司", "皇后", "皇帝", "教皇", "恋人", "战车", "力量", "隐士", "命运之轮", "正义", "倒吊人", "死亡", "节制", "恶魔", "塔", "星星", "月亮", "太阳", "审判", "世界"],
-                hi: ["मूर्ख", "जादूगर", "महायाजिका", "महारानी", "सम्राट", "धर्मगुरु", "प्रेमी", "रथ", "शक्ति", "एकांतवासी", "भाग्य का पहिया", "न्याय", "उल्टा लटका हुआ आदमी", "मृत्यु", "संयम", "शैतान", "टॉवर", "तारा", "चाँद", "सूरज", "निर्णय", "दुनिया"],
+                hi: ["मूर्ख", "जादूगर", "महायाजिका", "مहारानी", "सम्राट", "धर्मगुरु", "प्रेमी", "रथ", "शक्ति", "एकांतवासी", "भाग्य का पहिया", "न्याय", "उल्टा लटका हुआ आदमी", "मृत्यु", "संयम", "शैतान", "टॉवर", "तारा", "चाँद", "सूरज", "निर्णय", "दुनिया"],
                 fr: ["Le Mat", "Le Bateleur", "La Papesse", "L'Impératrice", "L'Empereur", "Le Pape", "L'Amoureux", "Le Chariot", "La Force", "L'Hermite", "La Roue de Fortune", "La Justice", "Le Pendu", "La Mort", "Tempérance", "Le Diable", "La Maison Dieu", "L'Étoile", "La Lune", "Le Soleil", "Le Jugement", "Le Monde"],
                 ar: ["الأحمق", "الساحر", "الكاهنة العليا", "الإمبراطورة", "الإمبراطور", "الكاهن", "العشاق", "العربة", "القوة", "الناسك", "عجلة الحظ", "العدالة", "الرجل المشنوق", "الموت", "الاعتدال", "الشيطان", "البرج", "النجمة", "القمر", "الشمس", "الحكم", "العالم"]
             },
@@ -1199,10 +1199,18 @@
             };
             
             const runMysticalAnimation = (text, callback) => {
-                anime.remove([ui.animationOverlay, ui.animatedText.children, ui.animationFlare, '.particle']);
+                // --- START: Thorough cleanup ---
+                // Stop any animations that might still be running.
+                anime.remove([ui.animationOverlay, ui.animatedText, ui.animationFlare, '.particle']);
+
+                // Clear out content from the previous animation run.
                 ui.animatedText.innerHTML = '';
                 const existingParticles = ui.animationOverlay.querySelectorAll('.particle');
                 existingParticles.forEach(p => p.remove());
+
+                // IMPORTANT: Reset inline styles set by previous animations to prevent conflicts.
+                ui.animationOverlay.style.opacity = ''; 
+                // --- END: Thorough cleanup ---
 
                 ui.animationOverlay.classList.add('visible');
                 
@@ -1250,7 +1258,13 @@
                             duration: 500,
                             easing: 'easeInOutQuad',
                             complete: () => {
+                                // --- START: Final cleanup ---
                                 ui.animationOverlay.classList.remove('visible');
+                                ui.animationOverlay.style.opacity = ''; // Reset for the next run
+                                // Stop perpetual animations to save resources
+                                anime.remove([ui.animationFlare, '.particle']);
+                                // --- END: Final cleanup ---
+                                
                                 if (callback) setTimeout(callback, 50);
                             }
                         });
