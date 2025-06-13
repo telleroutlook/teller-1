@@ -5,9 +5,11 @@
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
-    "generate": "nuxt generate",
+    "generate": "nuxt generate && npm run generate:sitemap",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "generate:sitemap": "tsx scripts/generate-sitemap.ts",
+    "sitemap:info": "curl -s http://localhost:3000/api/admin/sitemap-info | jq ."
   },
   "dependencies": {
     "@tailwindcss/postcss": "^4.1.10",
@@ -20,8 +22,10 @@
     "@nuxtjs/i18n": "^9.5.5",
     "@nuxtjs/tailwindcss": "^7.0.0-beta.0",
     "@tailwindcss/typography": "^0.5.16",
+    "@types/node": "^22.10.5",
     "autoprefixer": "^10.4.21",
     "postcss": "^8.5.5",
-    "tailwindcss": "^4.1.10"
+    "tailwindcss": "^4.1.10",
+    "tsx": "^4.19.2"
   }
 }

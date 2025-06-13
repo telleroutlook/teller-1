@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" 
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://teller.eu.org/en</loc>
+    <lastmod>2025-06-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1</priority>
+    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://teller.eu.org/fr" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://teller.eu.org/zh" />
+    <xhtml:link rel="alternate" hreflang="hi-IN" href="https://teller.eu.org/hi" />
+    <xhtml:link rel="alternate" hreflang="ar-SA" href="https://teller.eu.org/ar" />
+  </url>
+  <url>
+    <loc>https://teller.eu.org/fr</loc>
+    <lastmod>2025-06-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1</priority>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://teller.eu.org/en" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://teller.eu.org/zh" />
+    <xhtml:link rel="alternate" hreflang="hi-IN" href="https://teller.eu.org/hi" />
+    <xhtml:link rel="alternate" hreflang="ar-SA" href="https://teller.eu.org/ar" />
+  </url>
+  <url>
+    <loc>https://teller.eu.org/zh</loc>
+    <lastmod>2025-06-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1</priority>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://teller.eu.org/en" />
+    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://teller.eu.org/fr" />
+    <xhtml:link rel="alternate" hreflang="hi-IN" href="https://teller.eu.org/hi" />
+    <xhtml:link rel="alternate" hreflang="ar-SA" href="https://teller.eu.org/ar" />
+  </url>
+  <url>
+    <loc>https://teller.eu.org/hi</loc>
+    <lastmod>2025-06-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1</priority>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://teller.eu.org/en" />
+    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://teller.eu.org/fr" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://teller.eu.org/zh" />
+    <xhtml:link rel="alternate" hreflang="ar-SA" href="https://teller.eu.org/ar" />
+  </url>
+  <url>
+    <loc>https://teller.eu.org/ar</loc>
+    <lastmod>2025-06-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1</priority>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://teller.eu.org/en" />
+    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://teller.eu.org/fr" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://teller.eu.org/zh" />
+    <xhtml:link rel="alternate" hreflang="hi-IN" href="https://teller.eu.org/hi" />
+  </url>
+  <url>
+    <loc>https://teller.eu.org/en/tarot</loc>
+    <lastmod>2025-06-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://teller.eu.org/fr/tarot" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://teller.eu.org/zh/tarot" />
+    <xhtml:link rel="alternate" hreflang="hi-IN" href="https://teller.eu.org/hi/tarot" />
+    <xhtml:link rel="alternate" hreflang="ar-SA" href="https://teller.eu.org/ar/tarot" />
+  </url>
+  <url>
+    <loc>https://teller.eu.org/en/astrology</loc>
+    <lastmod>2025-06-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://teller.eu.org/fr/astrology" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://teller.eu.org/zh/astrology" />
+    <xhtml:link rel="alternate" hreflang="hi-IN" href="https://teller.eu.org/hi/astrology" />
+    <xhtml:link rel="alternate" hreflang="ar-SA" href="https://teller.eu.org/ar/astrology" />
+  </url>
+  <url>
+    <loc>https://teller.eu.org/en/numerology</loc>
+    <lastmod>2025-06-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://teller.eu.org/fr/numerology" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://teller.eu.org/zh/numerology" />
+    <xhtml:link rel="alternate" hreflang="hi-IN" href="https://teller.eu.org/hi/numerology" />
+    <xhtml:link rel="alternate" hreflang="ar-SA" href="https://teller.eu.org/ar/numerology" />
+  </url>
+  <url>
+    <loc>https://teller.eu.org/en/chinese-zodiac</loc>
+    <lastmod>2025-06-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://teller.eu.org/fr/chinese-zodiac" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://teller.eu.org/zh/chinese-zodiac" />
+    <xhtml:link rel="alternate" hreflang="hi-IN" href="https://teller.eu.org/hi/chinese-zodiac" />
+    <xhtml:link rel="alternate" hreflang="ar-SA" href="https://teller.eu.org/ar/chinese-zodiac" />
+  </url>
+  <url>
+    <loc>https://teller.eu.org/fr/tarot</loc>
+    <lastmod>2025-06-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://teller.eu.org/en/tarot" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://teller.eu.org/zh/tarot" />
+    <xhtml:link rel="alternate" hreflang="hi-IN" href="https://teller.eu.org/hi/tarot" />
+    <xhtml:link rel="alternate" hreflang="ar-SA" href="https://teller.eu.org/ar/tarot" />
+  </url>
+  <url>
+    <loc>https://teller.eu.org/fr/astrology</loc>
+    <lastmod>2025-06-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://teller.eu.org/en/astrology" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://teller.eu.org/zh/astrology" />
+    <xhtml:link rel="alternate" hreflang="hi-IN" href="https://teller.eu.org/hi/astrology" />
+    <xhtml:link rel="alternate" hreflang="ar-SA" href="https://teller.eu.org/ar/astrology" />
+  </url>
+  <url>
+    <loc>https://teller.eu.org/fr/numerology</loc>
+    <lastmod>2025-06-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://teller.eu.org/en/numerology" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://teller.eu.org/zh/numerology" />
+    <xhtml:link rel="alternate" hreflang="hi-IN" href="https://teller.eu.org/hi/numerology" />
+    <xhtml:link rel="alternate" hreflang="ar-SA" href="https://teller.eu.org/ar/numerology" />
+  </url>
+  <url>
+    <loc>https://teller.eu.org/fr/chinese-zodiac</loc>
+    <lastmod>2025-06-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://teller.eu.org/en/chinese-zodiac" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://teller.eu.org/zh/chinese-zodiac" />
+    <xhtml:link rel="alternate" hreflang="hi-IN" href="https://teller.eu.org/hi/chinese-zodiac" />
+    <xhtml:link rel="alternate" hreflang="ar-SA" href="https://teller.eu.org/ar/chinese-zodiac" />
+  </url>
+  <url>
+    <loc>https://teller.eu.org/zh/tarot</loc>
+    <lastmod>2025-06-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://teller.eu.org/en/tarot" />
+    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://teller.eu.org/fr/tarot" />
+    <xhtml:link rel="alternate" hreflang="hi-IN" href="https://teller.eu.org/hi/tarot" />
+    <xhtml:link rel="alternate" hreflang="ar-SA" href="https://teller.eu.org/ar/tarot" />
+  </url>
+  <url>
+    <loc>https://teller.eu.org/zh/astrology</loc>
+    <lastmod>2025-06-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://teller.eu.org/en/astrology" />
+    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://teller.eu.org/fr/astrology" />
+    <xhtml:link rel="alternate" hreflang="hi-IN" href="https://teller.eu.org/hi/astrology" />
+    <xhtml:link rel="alternate" hreflang="ar-SA" href="https://teller.eu.org/ar/astrology" />
+  </url>
+  <url>
+    <loc>https://teller.eu.org/zh/numerology</loc>
+    <lastmod>2025-06-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://teller.eu.org/en/numerology" />
+    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://teller.eu.org/fr/numerology" />
+    <xhtml:link rel="alternate" hreflang="hi-IN" href="https://teller.eu.org/hi/numerology" />
+    <xhtml:link rel="alternate" hreflang="ar-SA" href="https://teller.eu.org/ar/numerology" />
+  </url>
+  <url>
+    <loc>https://teller.eu.org/zh/chinese-zodiac</loc>
+    <lastmod>2025-06-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://teller.eu.org/en/chinese-zodiac" />
+    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://teller.eu.org/fr/chinese-zodiac" />
+    <xhtml:link rel="alternate" hreflang="hi-IN" href="https://teller.eu.org/hi/chinese-zodiac" />
+    <xhtml:link rel="alternate" hreflang="ar-SA" href="https://teller.eu.org/ar/chinese-zodiac" />
+  </url>
+  <url>
+    <loc>https://teller.eu.org/hi/tarot</loc>
+    <lastmod>2025-06-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://teller.eu.org/en/tarot" />
+    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://teller.eu.org/fr/tarot" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://teller.eu.org/zh/tarot" />
+    <xhtml:link rel="alternate" hreflang="ar-SA" href="https://teller.eu.org/ar/tarot" />
+  </url>
+  <url>
+    <loc>https://teller.eu.org/hi/astrology</loc>
+    <lastmod>2025-06-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://teller.eu.org/en/astrology" />
+    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://teller.eu.org/fr/astrology" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://teller.eu.org/zh/astrology" />
+    <xhtml:link rel="alternate" hreflang="ar-SA" href="https://teller.eu.org/ar/astrology" />
+  </url>
+  <url>
+    <loc>https://teller.eu.org/hi/numerology</loc>
+    <lastmod>2025-06-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://teller.eu.org/en/numerology" />
+    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://teller.eu.org/fr/numerology" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://teller.eu.org/zh/numerology" />
+    <xhtml:link rel="alternate" hreflang="ar-SA" href="https://teller.eu.org/ar/numerology" />
+  </url>
+  <url>
+    <loc>https://teller.eu.org/hi/chinese-zodiac</loc>
+    <lastmod>2025-06-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://teller.eu.org/en/chinese-zodiac" />
+    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://teller.eu.org/fr/chinese-zodiac" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://teller.eu.org/zh/chinese-zodiac" />
+    <xhtml:link rel="alternate" hreflang="ar-SA" href="https://teller.eu.org/ar/chinese-zodiac" />
+  </url>
+  <url>
+    <loc>https://teller.eu.org/ar/tarot</loc>
+    <lastmod>2025-06-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://teller.eu.org/en/tarot" />
+    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://teller.eu.org/fr/tarot" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://teller.eu.org/zh/tarot" />
+    <xhtml:link rel="alternate" hreflang="hi-IN" href="https://teller.eu.org/hi/tarot" />
+  </url>
+  <url>
+    <loc>https://teller.eu.org/ar/astrology</loc>
+    <lastmod>2025-06-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://teller.eu.org/en/astrology" />
+    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://teller.eu.org/fr/astrology" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://teller.eu.org/zh/astrology" />
+    <xhtml:link rel="alternate" hreflang="hi-IN" href="https://teller.eu.org/hi/astrology" />
+  </url>
+  <url>
+    <loc>https://teller.eu.org/ar/numerology</loc>
+    <lastmod>2025-06-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://teller.eu.org/en/numerology" />
+    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://teller.eu.org/fr/numerology" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://teller.eu.org/zh/numerology" />
+    <xhtml:link rel="alternate" hreflang="hi-IN" href="https://teller.eu.org/hi/numerology" />
+  </url>
+  <url>
+    <loc>https://teller.eu.org/ar/chinese-zodiac</loc>
+    <lastmod>2025-06-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://teller.eu.org/en/chinese-zodiac" />
+    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://teller.eu.org/fr/chinese-zodiac" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://teller.eu.org/zh/chinese-zodiac" />
+    <xhtml:link rel="alternate" hreflang="hi-IN" href="https://teller.eu.org/hi/chinese-zodiac" />
+  </url>
+  <url>
+    <loc>https://teller.eu.org</loc>
+    <lastmod>2025-06-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1</priority>
+  </url>
+  <url>
+    <loc>https://teller.eu.org/tarot</loc>
+    <lastmod>2025-06-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://teller.eu.org/astrology</loc>
+    <lastmod>2025-06-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://teller.eu.org/numerology</loc>
+    <lastmod>2025-06-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://teller.eu.org/chinese-zodiac</loc>
+    <lastmod>2025-06-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+</urlset>
