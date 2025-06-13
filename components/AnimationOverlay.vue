@@ -71,7 +71,7 @@ const showAnimation = (text: string, callback?: () => void) => {
   }
   
   // Remove existing particles of all types
-  const existingParticles = document.querySelectorAll('.particle, .particle-trail, .stardust')
+  const existingParticles = document.querySelectorAll('.particle, .particle-trail, .stardust, .magic-particle, .meteor-trail, .css-particle, .stardust-particle')
   existingParticles.forEach(p => p.remove())
   
   // Reset styles
@@ -130,7 +130,7 @@ const runFallbackAnimation = (text: string, callback?: () => void) => {
       hideAnimation()
       if (callback) callback()
     }, 500)
-  }, 2000)
+  }, 6000)
 }
 
 const runMysticalAnimation = (text: string, callback?: () => void) => {
@@ -140,17 +140,16 @@ const runMysticalAnimation = (text: string, callback?: () => void) => {
     return
   }
 
-  console.log('Running anime.js animation')
+  console.log('Running anime.js v4 animation')
 
   try {
-    // Create and animate particles
+    // Create and animate particles first
     createAndAnimateParticles()
     
-    // Animate flare - simplified approach
-    $anime({
-      targets: flareRef.value,
-      scale: [1, 1.2, 1],
-      opacity: [0.3, 0.8, 0.3],
+    // Animate flare with v4 syntax
+    $anime.animate(flareRef.value, {
+      scale: [1, 1.3, 1],
+      opacity: [0.3, 0.9, 0.3],
       duration: 4000,
       easing: 'easeInOutSine',
       loop: true
@@ -167,49 +166,46 @@ const runMysticalAnimation = (text: string, callback?: () => void) => {
       animatedTextRef.value?.appendChild(span)
     })
 
-    // Simplified animation approach for better compatibility
+    // Get spans for animation
     const spans = animatedTextRef.value?.querySelectorAll('span')
     
     if (spans && spans.length > 0) {
-      // Entry animation
-      $anime({
-        targets: spans,
+      // Entry animation with v4 syntax - designed for exactly 2.5 seconds
+      $anime.animate(spans, {
         opacity: [0, 1],
         scale: [0, 1],
         translateY: ['100%', 0],
         rotate: [180, 0],
-        duration: 1500,
+        duration: 1500, // Reduced to 1.5s for faster entry
         easing: 'easeOutExpo',
-        delay: function(el: any, i: number) {
-          return i * Math.max(50, 1000 / displayText.length)
-        },
+        delay: (el: any, i: number) => i * Math.min(50, 1000 / displayText.length), // Limited delay to control total time
         complete: () => {
-          // Exit animation after delay
+          // Hold animation for exactly 3 seconds (定格时间 - increased for better visibility)
+          console.log('Animation freeze period started - 3 seconds')
           setTimeout(() => {
-            $anime({
-              targets: spans,
+            console.log('Animation freeze period ended, starting exit')
+            // Exit animation after the 3-second freeze
+            $anime.animate(spans, {
               opacity: 0,
               scale: 0.5,
-              duration: 1000,
+              duration: 1500, // 1.5s exit
               easing: 'easeInExpo',
-              delay: function(el: any, i: number) {
-                return i * 50
-              },
+              delay: (el: any, i: number) => i * Math.min(30, 500 / displayText.length), // Faster exit
               complete: () => {
-                // Fade out overlay
-                $anime({
-                  targets: '#animation-overlay',
+                // Final fade out overlay - 1 second
+                $anime.animate('#animation-overlay', {
                   opacity: 0,
-                  duration: 500,
+                  duration: 1000,
                   easing: 'easeInOutQuad',
                   complete: () => {
                     hideAnimation()
+                    console.log('Animation completed - total ~7 seconds')
                     if (callback) setTimeout(callback, 50)
                   }
                 })
               }
             })
-          }, 2000)
+          }, 3000) // 3-second freeze period (定格时间)
         }
       })
     } else {
@@ -218,217 +214,190 @@ const runMysticalAnimation = (text: string, callback?: () => void) => {
     }
 
   } catch (error) {
-    console.error('Error in anime.js animation:', error)
+    console.error('Error in anime.js v4 animation:', error)
     runFallbackAnimation(text, callback)
   }
 }
 
 const createAndAnimateParticles = () => {
-  if (!isAnimeAvailable.value) return
+  if (!isAnimeAvailable.value) {
+    console.log('Anime not available, creating fallback particles')
+    createFallbackParticles()
+    return
+  }
   
   const overlay = document.getElementById('animation-overlay')
   if (!overlay) return
 
-  // 增强的神秘色彩调色板 - 更丰富的渐变色和特效色
+  console.log('Creating enhanced particle system with anime.js v4...')
+
+  // 神秘色彩系统 - 增加更多绚丽颜色
   const mysticalColors = [
-    '#FF0080', // 洋红色
-    '#8000FF', // 紫色
-    '#00FF80', // 青绿色
-    '#FF8000', // 橙色
-    '#0080FF', // 蓝色
-    '#FF4080', // 粉红色
-    '#80FF00', // 柠檬绿
-    '#4080FF', // 天蓝色
-    '#FF8040', // 珊瑚色
-    '#8040FF', // 靛蓝色
-    '#40FF80', // 春绿色
-    '#FFD700', // 金色
-    '#FF1493', // 深粉色
-    '#00CED1', // 暗青色
-    '#9370DB', // 中紫色
-    '#32CD32', // 酸橙绿
-    '#FF6347', // 番茄色
-    '#4169E1', // 皇家蓝
-    '#DA70D6', // 兰花紫
-    '#00FA9A'  // 中春绿
+    '#FF0066', '#6600FF', '#00FF66', '#FF6600', '#0066FF',
+    '#FF3399', '#9933FF', '#33FF99', '#FF9933', '#3399FF',
+    '#FFD700', '#FF1493', '#00CED1', '#32CD32', '#FF6347',
+    '#DA70D6', '#00FA9A', '#FF69B4', '#8A2BE2', '#20B2AA',
+    '#FF4500', '#1E90FF', '#FFB6C1', '#98FB98', '#F0E68C'
   ]
 
-  // 创建更多数量的粒子，增强视觉效果
-  for (let i = 0; i < 150; i++) {
+  // 创建主要粒子群
+  for (let i = 0; i < 120; i++) {
     const particle = document.createElement('div')
-    particle.className = 'particle'
+    particle.className = 'magic-particle'
     
-    // 大小不一的粒子 - 从1px到12px
-    const size = Math.floor(Math.random() * 12) + 1
+    const size = Math.random() * 5 + 2  // 2-7px
     const color = mysticalColors[Math.floor(Math.random() * mysticalColors.length)]
     
-    // 添加发光效果和更丰富的样式
-    Object.assign(particle.style, {
-      width: `${size}px`,
-      height: `${size}px`,
-      left: `${Math.random() * 100}%`,
-      top: `${Math.random() * 100}%`,
-      backgroundColor: color,
-      opacity: '0',
-      position: 'absolute',
-      borderRadius: '50%',
-      pointerEvents: 'none',
-      zIndex: '10000',
-      // 添加发光效果
-      boxShadow: `0 0 ${size * 2}px ${color}, 0 0 ${size * 4}px ${color}`,
-      // 添加渐变背景
-      background: `radial-gradient(circle, ${color} 0%, rgba(255,255,255,0.3) 50%, ${color} 100%)`,
-      filter: 'brightness(1.2) saturate(1.5)'
-    })
+    particle.style.cssText = `
+      position: absolute;
+      width: ${size}px;
+      height: ${size}px;
+      background: ${color};
+      border-radius: 50%;
+      left: ${Math.random() * 100}%;
+      top: ${Math.random() * 100}%;
+      opacity: 0;
+      pointer-events: none;
+      z-index: 10000;
+      box-shadow: 0 0 ${size * 3}px ${color}, 0 0 ${size * 6}px ${color}30;
+    `
     
     overlay.appendChild(particle)
   }
 
-  // 创建流动轨迹粒子
+  // 创建流星轨迹
   for (let i = 0; i < 30; i++) {
-    const trail = document.createElement('div')
-    trail.className = 'particle-trail'
+    const meteor = document.createElement('div')
+    meteor.className = 'meteor-trail'
     
     const color = mysticalColors[Math.floor(Math.random() * mysticalColors.length)]
+    const length = Math.random() * 40 + 30
     
-    Object.assign(trail.style, {
-      width: '2px',
-      height: `${Math.random() * 50 + 20}px`,
-      left: `${Math.random() * 100}%`,
-      top: `${Math.random() * 100}%`,
-      background: `linear-gradient(to bottom, transparent, ${color}, transparent)`,
-      opacity: '0',
-      position: 'absolute',
-      pointerEvents: 'none',
-      zIndex: '9998',
-      borderRadius: '1px',
-      boxShadow: `0 0 4px ${color}`
-    })
+    meteor.style.cssText = `
+      position: absolute;
+      width: 3px;
+      height: ${length}px;
+      background: linear-gradient(to bottom, transparent, ${color}, ${color}80, transparent);
+      left: ${Math.random() * 100}%;
+      top: ${Math.random() * 100}%;
+      opacity: 0;
+      pointer-events: none;
+      z-index: 9999;
+      transform: rotate(${Math.random() * 360}deg);
+      box-shadow: 0 0 8px ${color};
+    `
     
-    overlay.appendChild(trail)
+    overlay.appendChild(meteor)
   }
 
-  // 创建星尘效果
-  for (let i = 0; i < 50; i++) {
+  // 创建星尘粒子
+  for (let i = 0; i < 40; i++) {
     const stardust = document.createElement('div')
-    stardust.className = 'stardust'
+    stardust.className = 'stardust-particle'
     
     const size = Math.random() * 3 + 1
     const color = mysticalColors[Math.floor(Math.random() * mysticalColors.length)]
     
-    Object.assign(stardust.style, {
-      width: `${size}px`,
-      height: `${size}px`,
-      left: `${Math.random() * 100}%`,
-      top: `${Math.random() * 100}%`,
-      backgroundColor: color,
-      opacity: '0',
-      position: 'absolute',
-      pointerEvents: 'none',
-      zIndex: '9999',
-      borderRadius: '50%',
-      boxShadow: `0 0 ${size * 3}px ${color}`,
-      transform: 'rotate(45deg)'
-    })
-    
-    // 添加星形效果
-    stardust.style.clipPath = 'polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)'
+    stardust.style.cssText = `
+      position: absolute;
+      width: ${size}px;
+      height: ${size}px;
+      background: ${color};
+      left: ${Math.random() * 100}%;
+      top: ${Math.random() * 100}%;
+      opacity: 0;
+      pointer-events: none;
+      z-index: 10001;
+      clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+      box-shadow: 0 0 ${size * 4}px ${color};
+    `
     
     overlay.appendChild(stardust)
   }
 
   try {
-    // 动画常规粒子 - 增强流动效果
-    const particles = document.querySelectorAll('.particle')
-    particles.forEach((particle, index) => {
-      const startX = parseFloat((particle as HTMLElement).style.left)
-      const startY = parseFloat((particle as HTMLElement).style.top)
-      
-      $anime({
-        targets: particle,
-        opacity: [
-          { value: 0, duration: 200 },
-          { value: Math.random() * 0.9 + 0.3, duration: 300 },
-          { value: Math.random() * 0.8 + 0.4, duration: 1000 },
-          { value: 0, duration: 500 }
-        ],
-        scale: [
-          { value: 0, duration: 200 },
-          { value: Math.random() * 1.5 + 0.5, duration: 300 },
-          { value: Math.random() * 2 + 0.8, duration: 1000 },
-          { value: 0.2, duration: 500 }
-        ],
-        // 添加流动轨迹
-        translateX: [
-          { value: 0, duration: 0 },
-          { value: (Math.random() - 0.5) * 200, duration: 2000 }
-        ],
-        translateY: [
-          { value: 0, duration: 0 },
-          { value: (Math.random() - 0.5) * 150, duration: 2000 }
-        ],
-        rotate: [0, Math.random() * 720 - 360],
-        duration: Math.random() * 2000 + 2000,
-        easing: 'easeInOutSine',
-        loop: true,
-        delay: index * 30
-      })
+    console.log('Starting anime.js v4 particle animations...')
+    
+    // 动画主要粒子群 - 使用v4语法
+    $anime.animate('.magic-particle', {
+      opacity: [0, (el: any, i: number) => Math.random() * 0.9 + 0.3, 0],
+      scale: [0, (el: any, i: number) => Math.random() * 2 + 0.5, 0.2],
+      translateX: (el: any, i: number) => (Math.random() - 0.5) * 400,
+      translateY: (el: any, i: number) => (Math.random() - 0.5) * 400,
+      rotate: (el: any, i: number) => Math.random() * 720,
+      duration: (el: any, i: number) => 3000 + Math.random() * 3000,
+      delay: (el: any, i: number) => i * 40,
+      easing: 'easeOutQuart',
+      loop: true
     })
 
-    // 动画流动轨迹
-    const trails = document.querySelectorAll('.particle-trail')
-    trails.forEach((trail, index) => {
-      $anime({
-        targets: trail,
-        opacity: [
-          { value: 0, duration: 100 },
-          { value: 0.8, duration: 300 },
-          { value: 0.6, duration: 1200 },
-          { value: 0, duration: 400 }
-        ],
-        translateY: [
-          { value: 0, duration: 0 },
-          { value: -100, duration: 2000 }
-        ],
-        translateX: [
-          { value: 0, duration: 0 },
-          { value: (Math.random() - 0.5) * 50, duration: 2000 }
-        ],
-        scaleY: [1, 1.5, 0.8, 1],
-        duration: Math.random() * 1500 + 2000,
-        easing: 'easeInOutQuad',
-        loop: true,
-        delay: index * 100
-      })
+    // 动画流星轨迹
+    $anime.animate('.meteor-trail', {
+      opacity: [0, 0.9, 0],
+      translateX: (el: any, i: number) => (Math.random() - 0.5) * 300,
+      translateY: (el: any, i: number) => (Math.random() - 0.5) * 300,
+      rotate: (el: any, i: number) => Math.random() * 360,
+      scaleY: [1, 1.5, 0.8, 1],
+      duration: (el: any, i: number) => 2000 + Math.random() * 2000,
+      delay: (el: any, i: number) => i * 150,
+      easing: 'easeOutCubic',
+      loop: true
     })
 
-    // 动画星尘效果
-    const stardusts = document.querySelectorAll('.stardust')
-    stardusts.forEach((stardust, index) => {
-      $anime({
-        targets: stardust,
-        opacity: [
-          { value: 0, duration: 300 },
-          { value: 1, duration: 200 },
-          { value: 0.7, duration: 800 },
-          { value: 0, duration: 700 }
-        ],
-        scale: [
-          { value: 0, duration: 300 },
-          { value: 1.5, duration: 200 },
-          { value: 1, duration: 800 },
-          { value: 0, duration: 700 }
-        ],
-        rotate: [0, 360],
-        duration: Math.random() * 3000 + 2000,
-        easing: 'easeInOutBack',
-        loop: true,
-        delay: index * 80
-      })
+    // 动画星尘粒子
+    $anime.animate('.stardust-particle', {
+      opacity: [0, 1, 0.7, 0],
+      scale: [0, 1.8, 1, 0],
+      rotate: [0, 360, 720],
+      translateX: (el: any, i: number) => (Math.random() - 0.5) * 200,
+      translateY: (el: any, i: number) => (Math.random() - 0.5) * 200,
+      duration: (el: any, i: number) => 4000 + Math.random() * 2000,
+      delay: (el: any, i: number) => i * 100,
+      easing: 'easeInOutBack',
+      loop: true
     })
+
+    console.log('Anime.js v4 particle animations started successfully!')
 
   } catch (error) {
-    console.error('Error animating particles:', error)
+    console.error('Anime.js v4 particle animation failed, using fallback:', error)
+    createFallbackParticles()
+  }
+}
+
+// 纯CSS动画后备方案
+const createFallbackParticles = () => {
+  const overlay = document.getElementById('animation-overlay')
+  if (!overlay) return
+
+  console.log('Creating CSS fallback particles...')
+  
+  const colors = ['#FF0066', '#6600FF', '#00FF66', '#FF6600', '#0066FF']
+  
+  for (let i = 0; i < 50; i++) {
+    const particle = document.createElement('div')
+    particle.className = 'css-particle'
+    
+    const size = Math.random() * 4 + 2
+    const color = colors[Math.floor(Math.random() * colors.length)]
+    
+    particle.style.cssText = `
+      position: absolute;
+      width: ${size}px;
+      height: ${size}px;
+      background: ${color};
+      border-radius: 50%;
+      left: ${Math.random() * 100}%;
+      top: ${Math.random() * 100}%;
+      opacity: 0;
+      pointer-events: none;
+      z-index: 10000;
+      animation: css-particle-float ${2 + Math.random() * 3}s ease-in-out infinite;
+      animation-delay: ${Math.random() * 2}s;
+      box-shadow: 0 0 ${size * 2}px ${color};
+    `
+    
+    overlay.appendChild(particle)
   }
 }
 
@@ -436,7 +405,7 @@ const hideAnimation = () => {
   isVisible.value = false
   
   // Clean up all particle types
-  const particles = document.querySelectorAll('.particle, .particle-trail, .stardust')
+  const particles = document.querySelectorAll('.particle, .particle-trail, .stardust, .magic-particle, .meteor-trail, .css-particle, .stardust-particle')
   particles.forEach(p => p.remove())
 }
 
@@ -566,12 +535,25 @@ defineExpose({
   }
 }
 
-.particle {
+.particle, .magic-particle {
   position: absolute;
   border-radius: 50%;
   pointer-events: none;
   z-index: 10000;
   transition: all 0.3s ease;
+}
+
+.css-particle {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 10000;
+}
+
+.meteor-trail {
+  position: absolute;
+  pointer-events: none;
+  z-index: 9999;
 }
 
 .particle-trail {
@@ -587,6 +569,12 @@ defineExpose({
   pointer-events: none;
   z-index: 9999;
   animation: stardust-twinkle 2s ease-in-out infinite alternate;
+}
+
+.stardust-particle {
+  position: absolute;
+  pointer-events: none;
+  z-index: 10001;
 }
 
 @keyframes trail-flow {
@@ -618,6 +606,29 @@ defineExpose({
   100% {
     transform: scale(0.8) rotate(360deg);
     opacity: 0.5;
+  }
+}
+
+@keyframes css-particle-float {
+  0% {
+    opacity: 0;
+    transform: translateY(0px) translateX(0px) scale(0);
+  }
+  10% {
+    opacity: 1;
+    transform: translateY(-10px) translateX(5px) scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: translateY(-50px) translateX(25px) scale(1.2);
+  }
+  90% {
+    opacity: 0.3;
+    transform: translateY(-80px) translateX(45px) scale(0.8);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-100px) translateX(50px) scale(0);
   }
 }
 

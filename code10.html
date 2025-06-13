@@ -860,7 +860,7 @@
             tarotCards: {
                 en: ["The Fool", "The Magician", "The High Priestess", "The Empress", "The Emperor", "The Hierophant", "The Lovers", "The Chariot", "Strength", "The Hermit", "Wheel of Fortune", "Justice", "The Hanged Man", "Death", "Temperance", "The Devil", "The Tower", "The Star", "The Moon", "The Sun", "Judgement", "The World"],
                 zh: ["愚人", "魔术师", "女祭司", "皇后", "皇帝", "教皇", "恋人", "战车", "力量", "隐士", "命运之轮", "正义", "倒吊人", "死亡", "节制", "恶魔", "塔", "星星", "月亮", "太阳", "审判", "世界"],
-                hi: ["मूर्ख", "जादूगर", "महायाजिका", "مहारानी", "सम्राट", "धर्मगुरु", "प्रेमी", "रथ", "शक्ति", "एकांतवासी", "भाग्य का पहिया", "न्याय", "उल्टा लटका हुआ आदमी", "मृत्यु", "संयम", "शैतान", "टॉवर", "तारा", "चाँद", "सूरज", "निर्णय", "दुनिया"],
+                hi: ["मूर्ख", "जादूगर", "महायाजिका", "महारानी", "सम्राट", "धर्मगुरु", "प्रेमी", "रथ", "शक्ति", "एकांतवासी", "भाग्य का पहिया", "न्याय", "उल्टा लटका हुआ आदमी", "मृत्यु", "संयम", "शैतान", "टॉवर", "तारा", "चाँद", "सूरज", "निर्णय", "दुनिया"],
                 fr: ["Le Mat", "Le Bateleur", "La Papesse", "L'Impératrice", "L'Empereur", "Le Pape", "L'Amoureux", "Le Chariot", "La Force", "L'Hermite", "La Roue de Fortune", "La Justice", "Le Pendu", "La Mort", "Tempérance", "Le Diable", "La Maison Dieu", "L'Étoile", "La Lune", "Le Soleil", "Le Jugement", "Le Monde"],
                 ar: ["الأحمق", "الساحر", "الكاهنة العليا", "الإمبراطورة", "الإمبراطور", "الكاهن", "العشاق", "العربة", "القوة", "الناسك", "عجلة الحظ", "العدالة", "الرجل المشنوق", "الموت", "الاعتدال", "الشيطان", "البرج", "النجمة", "القمر", "الشمس", "الحكم", "العالم"]
             },
@@ -1061,7 +1061,10 @@
                 
                 if (appState.selectedTarotCards.length === 3) {
                     disableRemainingCards();
-                    triggerTarotAnimation();
+                    // Wait for the third card's flip animation to complete before starting global animation
+                    setTimeout(() => {
+                        triggerTarotAnimation();
+                    }, 1500); // Added 1500ms delay after the third card flip
                 }
             };
 
@@ -1215,24 +1218,53 @@
                 ui.animationOverlay.classList.add('visible');
                 
                 const createAndAnimateParticles = () => {
-                    const colors = ['#FFD700', '#FF69B4', '#00FFFF', '#9370DB', '#FFFFFF'];
-                    for (let i = 0; i < 70; i++) {
+                    // 更新的神秘色彩系统
+                    const mysticalColors = [
+                        '#FF0066', '#6600FF', '#00FF66', '#FF6600', '#0066FF',
+                        '#FF3399', '#9933FF', '#33FF99', '#FF9933', '#3399FF',
+                        '#FFD700', '#FF1493', '#00CED1', '#32CD32', '#FF6347'
+                    ];
+                    
+                    for (let i = 0; i < 100; i++) {
                         const particle = document.createElement('div');
                         particle.className = 'particle';
-                        const size = anime.random(1, 4) + 'px';
+                        const size = Math.random() * 5 + 2; // 2-7px
+                        const color = mysticalColors[Math.floor(Math.random() * mysticalColors.length)];
+                        
                         Object.assign(particle.style, {
-                            width: size, height: size,
-                            left: `${anime.random(0, 100)}%`, top: `${anime.random(0, 100)}%`,
-                            backgroundColor: colors[anime.random(0, colors.length - 1)],
-                            opacity: '0'
+                            width: size + 'px', 
+                            height: size + 'px',
+                            left: `${Math.random() * 100}%`, 
+                            top: `${Math.random() * 100}%`,
+                            backgroundColor: color,
+                            opacity: '0',
+                            boxShadow: `0 0 ${size * 3}px ${color}, 0 0 ${size * 6}px ${color}30`
                         });
                         ui.animationOverlay.appendChild(particle);
                     }
+                    
+                    // 使用改进的动画效果
                     anime({
                         targets: '.particle',
-                        opacity: [{ value: () => anime.random(0.2, 1), duration: () => anime.random(200, 800) }, { value: 0, duration: () => anime.random(200, 600) }],
-                        scale: [{ value: () => anime.random(0.5, 1.5), duration: () => anime.random(300, 1000) }, { value: 1, duration: () => anime.random(200, 500) }],
-                        duration: () => anime.random(1500, 3000), easing: 'linear', loop: true, delay: anime.stagger(20),
+                        opacity: [
+                            { value: 0, duration: 0 },
+                            { value: () => Math.random() * 0.9 + 0.3, duration: 400 },
+                            { value: () => Math.random() * 0.6 + 0.2, duration: 2000 },
+                            { value: 0, duration: 600 }
+                        ],
+                        scale: [
+                            { value: 0, duration: 0 },
+                            { value: () => Math.random() * 2 + 0.5, duration: 400 },
+                            { value: () => Math.random() * 1.5 + 0.5, duration: 2000 },
+                            { value: 0.2, duration: 600 }
+                        ],
+                        translateX: () => (Math.random() - 0.5) * 400,
+                        translateY: () => (Math.random() - 0.5) * 400,
+                        rotate: () => Math.random() * 720,
+                        duration: () => Math.random() * 3000 + 3000,
+                        delay: anime.stagger(40),
+                        easing: 'easeOutQuart',
+                        loop: true
                     });
                 };
                 
@@ -1274,12 +1306,12 @@
                 animationTimeline.add({
                     targets: '#animated-text span',
                     opacity: [0, 1], scale: [0, 1], translateY: ['100%', 0], rotateZ: [180, 0],
-                    duration: 1500, easing: 'easeOutExpo', delay: anime.stagger(Math.max(50, 1000 / displayText.length))
+                    duration: 1500, easing: 'easeOutExpo', delay: anime.stagger(Math.min(50, 1000 / displayText.length)) // 1.5s entry with controlled delay
                 }).add({
                     targets: '#animated-text span',
                     opacity: 0, scale: 0.5,
-                    duration: 1000, easing: 'easeInExpo', delay: anime.stagger(50, { start: 500 })
-                }, '+=500');
+                    duration: 1500, easing: 'easeInExpo', delay: anime.stagger(30) // 1.5s exit with faster delay
+                }, '+=3000'); // 3-second freeze period for total 7-second animation (1.5s entry + 3s freeze + 1.5s exit + 1s overlay fade)
             };
 
             const triggerTarotAnimation = () => {

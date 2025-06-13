@@ -74,7 +74,7 @@ export const useAnimations = () => {
       logger.info(LogCategory.ANIMATION, 'Cleaning up animations')
       
       // Remove all particle types
-      const particles = document.querySelectorAll('.particle, .particle-trail, .stardust')
+      const particles = document.querySelectorAll('.particle, .particle-trail, .stardust, .magic-particle, .meteor-trail, .css-particle, .stardust-particle')
       particles.forEach(particle => {
         if (particle.parentNode) {
           particle.parentNode.removeChild(particle)

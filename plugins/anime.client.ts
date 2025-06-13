@@ -5,24 +5,14 @@ export default defineNuxtPlugin(async () => {
       const animeModule = await import('animejs') as any
       
       // In animejs v4, the main function is 'animate'
-      const anime = animeModule.animate || animeModule.default?.animate || animeModule.default
+      const animate = animeModule.animate || animeModule.default?.animate || animeModule.default
       const stagger = animeModule.stagger || animeModule.default?.stagger
       const timeline = animeModule.createTimeline || animeModule.timeline || animeModule.default?.timeline
       const utils = animeModule.utils || animeModule.default?.utils || {}
       
       // Verify that animate function exists
-      if (typeof anime !== 'function') {
-        console.warn('AnimejS: animate function not found in module:', animeModule)
-        // Try fallback to default export
-        const fallbackAnime = animeModule.default
-        if (typeof fallbackAnime === 'function') {
-          console.log('AnimejS: Using default export as fallback')
-          return {
-            provide: {
-              anime: fallbackAnime as any
-            }
-          }
-        }
+      if (typeof animate !== 'function') {
+        console.warn('AnimejS v4: animate function not found in module:', animeModule)
         return {
           provide: {
             anime: null as any
@@ -32,47 +22,91 @@ export default defineNuxtPlugin(async () => {
       
       console.log('AnimejS v4: Successfully loaded with animate function')
       
-      // Create a wrapper that mimics the old anime.js API
-      const animeWrapper = ((options: any) => {
-        return anime(options)
-      }) as any
-      
-      // Add helper methods with proper fallbacks
-      animeWrapper.timeline = timeline ? (() => {
-        const tl = timeline()
-        return {
-          add: (opts: any, offset?: any) => {
-            if (tl && tl.add) {
-              return tl.add(opts, offset)
-            }
-            // Fallback: just run the animation directly
-            return anime(opts)
-          },
-          on: (event: string, callback: Function) => {
-            if (tl && tl.on) {
-              return tl.on(event, callback)
-            }
-            // Fallback: execute callback immediately for 'complete'
-            if (event === 'complete') {
-              setTimeout(callback, 1000)
+      // Create v4 compatible API
+      const animeAPI = {
+        // Main animate function - v4 style: animate(targets, parameters)
+        animate: (targets: any, parameters?: any) => {
+          if (parameters) {
+            // v4 style: animate(targets, parameters)
+            return animate(targets, parameters)
+          } else {
+            // v3 style: anime({ targets: ..., ... }) - convert to v4
+            const options = targets
+            if (options.targets) {
+              const { targets: target, ...params } = options
+              return animate(target, params)
+            } else {
+              console.warn('Invalid anime.js options:', options)
+              return null
             }
           }
-        }
-      }) : null
+        },
+        
+        // For backward compatibility with old syntax
+        __call: (options: any) => {
+          if (options.targets) {
+            const { targets, ...params } = options
+            return animate(targets, params)
+          } else {
+            console.warn('Invalid anime.js options (missing targets):', options)
+            return null
+          }
+        },
+        
+        // Helper methods
+        stagger: stagger || ((delay: number, start?: number) => {
+          return (target: any, index: number) => (start || 0) + (index * delay)
+        }),
+        
+        random: utils.random || ((min: number, max: number) => {
+          return Math.random() * (max - min) + min
+        }),
+        
+        remove: utils.remove || (() => {}),
+        
+        timeline: timeline ? () => {
+          const tl = timeline()
+          return {
+            add: (targets: any, params?: any, position?: any) => {
+              if (tl && tl.add) {
+                if (params) {
+                  // v4 style
+                  return tl.add(targets, params, position)
+                } else {
+                  // v3 style conversion
+                  const options = targets
+                  if (options.targets) {
+                    const { targets: target, ...parameters } = options
+                    return tl.add(target, parameters, params) // params becomes position
+                  }
+                }
+              }
+              return tl
+            },
+            on: (event: string, callback: Function) => {
+              if (tl && tl.on) {
+                return tl.on(event, callback)
+              }
+              if (event === 'complete') {
+                setTimeout(callback, 1000)
+              }
+              return tl
+            }
+          }
+        } : null
+      }
       
-      animeWrapper.stagger = stagger || ((delay: number, start?: number) => {
-        return (target: any, index: number) => (start || 0) + (index * delay)
-      })
+      // Make the API callable for backward compatibility
+      const callableAPI = ((options: any) => {
+        return animeAPI.__call(options)
+      }) as any
       
-      animeWrapper.random = utils.random || ((min: number, max: number) => {
-        return Math.random() * (max - min) + min
-      })
-      
-      animeWrapper.remove = utils.remove || (() => {})
+      // Copy all methods to the callable function
+      Object.assign(callableAPI, animeAPI)
       
       return {
         provide: {
-          anime: animeWrapper as any
+          anime: callableAPI as any
         }
       }
     } catch (error) {

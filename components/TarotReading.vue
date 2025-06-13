@@ -13,7 +13,7 @@
       </div>
     </div>
 
-    <div v-if="selectedCards.length < 3" class="card-grid" role="group" aria-label="Tarot card deck">
+    <div v-if="showCardGrid" class="card-grid" role="group" aria-label="Tarot card deck">
       <div
         v-for="(card, index) in shuffledDeck"
         :key="index"
@@ -90,6 +90,7 @@ const getTarotMeanings = (locale: string) => {
 const selectedCards = ref<TarotCard[]>([])
 const shuffledDeck = ref<TarotCard[]>([])
 const showResult = ref(false)
+const showCardGrid = ref(true)
 
 const progressText = computed(() => {
   const remaining = 3 - selectedCards.value.length
@@ -145,12 +146,13 @@ const selectCard = (index: number) => {
       })
       
       runMysticalAnimation(cardNames, () => {
+        showCardGrid.value = false // Hide card grid after animation
         showResult.value = true
         logger.logUserAction('Tarot reading completed', { 
           cards: selectedCards.value.map(c => c.name) 
         })
       })
-    }, 600) // 600ms matches the CSS transition duration for card flip
+    }, 1500) // Increased from 600ms to 1500ms for a longer pause after the third card flip
   }
 }
 
@@ -163,6 +165,7 @@ const resetReading = () => {
   logger.logUserAction('Tarot reading reset')
   selectedCards.value = []
   showResult.value = false
+  showCardGrid.value = true // Show card grid again when resetting
   initializeDeck()
 }
 
