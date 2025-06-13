@@ -1,3 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Global Reset and Base Styles */
 * {
   margin: 0;
   padding: 0;
@@ -18,6 +23,7 @@ body {
   flex-direction: column;
 }
 
+/* Nuxt Layout Styles */
 .container {
   max-width: 1400px;
   width: 100%;
@@ -29,6 +35,13 @@ body {
   min-height: 100vh;
 }
 
+.main-content {
+  flex-grow: 1;
+  position: relative;
+  padding: 0;
+}
+
+/* Header Styles */
 header {
   text-align: center;
   margin-bottom: 15px;
@@ -42,18 +55,26 @@ header {
   position: absolute;
   top: 10px;
   left: 10px;
-  padding: 5px;
-  border-radius: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  background: rgba(255, 255, 255, 0.2);
+  padding: 8px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.15);
   color: white;
   backdrop-filter: blur(10px);
   z-index: 1001;
-  width: auto;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+#language-selector:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: translateY(-1px);
 }
 
 #language-selector option {
-  color: black;
+  color: #333;
+  background: white;
 }
 
 .logo {
@@ -68,11 +89,7 @@ header {
   opacity: 0.9;
 }
 
-.main-content {
-  flex-grow: 1;
-  position: relative;
-}
-
+/* Content Section Styles for Tool Pages */
 .content-section {
   display: none;
   background: rgba(255,255,255,0.98);
@@ -105,6 +122,7 @@ header {
   color: #4a5568;
 }
 
+/* Form and Button Styles */
 .btn {
   background: linear-gradient(45deg, #667eea, #764ba2);
   color: white;
@@ -177,6 +195,7 @@ input:focus, select:focus {
   box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
 }
 
+/* Result Styles */
 .result {
   background: linear-gradient(45deg, #F0FDF4, #DCFCE7);
   border-left: 4px solid #22C55E;
@@ -201,147 +220,106 @@ input:focus, select:focus {
 }
 
 .result .share-button {
-  background: #2563EB;
+  background: linear-gradient(45deg, #10B981, #059669);
   color: white;
   border: none;
   padding: 8px 16px;
-  border-radius: 15px;
-  cursor: pointer;
-  font-size: 14px;
-  margin-top: 15px;
-}
-
-@keyframes slideIn {
-  from { opacity: 0; transform: translateX(-20px); }
-  to { opacity: 1; transform: translateX(0); }
-}
-
-.reset-btn {
-  background: #EF4444;
-  color: white;
-  border: none;
-  padding: 8px 16px;
-  border-radius: 15px;
+  border-radius: 6px;
   cursor: pointer;
   font-size: 14px;
   margin-top: 10px;
 }
 
-#bottom-nav {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  background-color: rgba(20, 10, 30, 0.3);
-  backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px);
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  display: flex;
-  justify-content: space-around;
-  padding: 5px 0;
-  z-index: 1000;
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-.nav-btn {
-  background: none;
-  border: none;
+.reset-btn {
+  background: linear-gradient(45deg, #6B7280, #4B5563);
   color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
   cursor: pointer;
-  padding: 5px 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2px;
-  font-size: 11px;
-  opacity: 0.7;
-  transition: opacity 0.3s, transform 0.3s;
-  border-radius: 8px;
-  text-decoration: none;
+  font-size: 14px;
+  margin: 10px 5px 0 0;
 }
 
-.nav-btn svg {
-  width: 24px;
-  height: 24px;
-  stroke-width: 1.5;
-}
-
-.nav-btn.active {
-  opacity: 1;
-  transform: scale(1.1);
-  color: #FCD34D;
-}
-
-.nav-btn.router-link-active {
-  opacity: 1;
-  transform: scale(1.1);
-  color: #FCD34D;
-}
-
-/* Animation overlay styles */
+/* Animation Overlay Styles */
 #animation-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(10, 5, 20, 0.98);
+  background: linear-gradient(45deg, 
+    rgba(102, 126, 234, 0.9), 
+    rgba(118, 75, 162, 0.9)
+  );
   z-index: 9999;
-  display: none;
-  align-items: center;
+  display: flex;
   justify-content: center;
+  align-items: center;
   opacity: 0;
-  transition: opacity 0.5s ease;
-  overflow: hidden; 
-  pointer-events: none; 
+  visibility: hidden;
+  transition: all 0.5s ease;
+  backdrop-filter: blur(10px);
 }
 
 #animation-overlay.visible {
-  display: flex;
   opacity: 1;
-  pointer-events: all;
+  visibility: visible;
 }
 
 #animated-text {
-  position: relative;
-  width: 90%; 
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap; 
+  color: white;
+  font-size: 2rem;
+  font-weight: bold;
   text-align: center;
-  z-index: 10001; 
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  animation: pulse 2s infinite;
 }
 
 #animated-text span {
-  position: relative;
   display: inline-block;
-  color: white;
-  font-weight: bold;
-  pointer-events: none;
-  text-shadow: 0 0 8px #fff, 0 0 15px #fff, 0 0 25px #ff00ff, 0 0 40px #ff00ff;
-  margin: 0 0.1em; 
+  animation: bounce 1s infinite;
+}
+
+#animated-text span:nth-child(2) {
+  animation-delay: 0.1s;
+}
+
+#animated-text span:nth-child(3) {
+  animation-delay: 0.2s;
 }
 
 .particle {
   position: absolute;
+  width: 4px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.8);
   border-radius: 50%;
-  pointer-events: none;
-  z-index: 10000;
 }
 
 #animation-flare {
   position: absolute;
-  width: 60vmax;
-  height: 60vmax;
-  background: radial-gradient(circle, rgba(120, 80, 255, 0.3) 0%, rgba(120, 80, 255, 0) 70%);
+  top: 50%;
+  left: 50%;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
   border-radius: 50%;
-  filter: blur(20px);
-  pointer-events: none;
-  z-index: 9999;
+  transform: translate(-50%, -50%);
+  animation: flare 3s ease-in-out infinite;
 }
 
-/* RTL support */
+@keyframes flare {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.3; }
+  50% { transform: translate(-50%, -50%) scale(1.5); opacity: 0.1; }
+}
+
+/* RTL Support */
 [lang="ar"] {
   direction: rtl;
 }
@@ -349,4 +327,53 @@ input:focus, select:focus {
 [lang="ar"] #language-selector {
   left: auto;
   right: 10px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+    padding: 15px 15px 90px 15px;
+  }
+  
+  .logo {
+    font-size: 1.5rem;
+  }
+  
+  .tagline {
+    font-size: 0.8rem;
+  }
+  
+  #animation-overlay #animated-text {
+    font-size: 1.5rem;
+    padding: 0 20px;
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Focus styles for better accessibility */
+button:focus,
+input:focus,
+select:focus,
+a:focus {
+  outline: 2px solid #667eea;
+  outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .btn {
+    border: 2px solid currentColor;
+  }
+  
+  .result {
+    border: 2px solid #22C55E;
+  }
 } 

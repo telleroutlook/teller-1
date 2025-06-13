@@ -1,108 +1,127 @@
 <template>
-  <div class="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
+  <div class="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50">
     <!-- Hero Section -->
-    <section class="relative px-4 pt-8 pb-12 sm:px-6 lg:px-8 lg:pt-16 lg:pb-20">
+    <section class="relative px-4 pt-12 pb-16 sm:px-6 lg:px-8 lg:pt-20 lg:pb-24">
       <div class="mx-auto max-w-4xl text-center">
-        <h1 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl lg:text-5xl">
+        <!-- Main Title with explicit styling to fix H1 warning -->
+        <h1 class="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl lg:text-6xl" 
+            style="font-size: 2.25rem; margin: 0 0 1.5rem 0;">
           {{ t('heroTitle') }}
         </h1>
-        <p class="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-gray-600 sm:text-lg lg:text-xl lg:mt-6">
+        <p class="mx-auto mt-6 max-w-3xl text-lg leading-8 text-gray-600 lg:text-xl">
           {{ t('heroSubtitle') }}
         </p>
+        
+        <!-- Feature highlights -->
+        <div class="mt-8 flex flex-wrap justify-center gap-4 text-sm text-gray-500">
+          <span class="flex items-center gap-1">
+            <span class="text-green-500">✓</span>
+            {{ t('feature5Languages') }}
+          </span>
+          <span class="flex items-center gap-1">
+            <span class="text-green-500">✓</span>
+            {{ t('featureInstantResults') }}
+          </span>
+          <span class="flex items-center gap-1">
+            <span class="text-green-500">✓</span>
+            {{ t('featureMobileOptimized') }}
+          </span>
+        </div>
       </div>
     </section>
 
     <!-- Tools Grid -->
-    <section class="px-4 pb-12 sm:px-6 lg:px-8 lg:pb-20">
-      <div class="mx-auto max-w-7xl">
-        <div class="grid gap-4 sm:gap-6 md:grid-cols-2 lg:gap-8 xl:grid-cols-2">
-          <div 
+    <section class="px-4 pb-16 sm:px-6 lg:px-8 lg:pb-24">
+      <div class="mx-auto max-w-6xl">
+        <div class="grid gap-6 sm:grid-cols-2 lg:gap-8">
+          <NuxtLink 
             v-for="tool in tools" 
             :key="tool.name"
-            class="group relative transform overflow-hidden rounded-2xl bg-white p-6 shadow-sm transition-all duration-300 ease-out hover:scale-[1.02] hover:shadow-xl focus-within:scale-[1.02] focus-within:shadow-xl sm:p-8 lg:p-10"
-            @click="navigateToTool(tool.name)"
-            :aria-label="t(tool.descriptionKey)"
-            tabindex="0"
-            @keydown.enter="navigateToTool(tool.name)"
-            @keydown.space.prevent="navigateToTool(tool.name)"
-            role="button"
+            :to="localePath(`/${tool.name}`)"
+            class="group relative block transform overflow-hidden rounded-3xl bg-white p-8 shadow-lg transition-all duration-300 hover:scale-[1.02] hover:shadow-xl focus:scale-[1.02] focus:shadow-xl focus:outline-none focus:ring-4 focus:ring-blue-500/20"
+            @click="handleToolClick(tool.name)"
           >
-            <!-- Gradient Border Effect -->
-            <div class="absolute inset-0 rounded-2xl bg-gradient-to-r from-blue-500 to-purple-600 opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus:opacity-100" 
-                 style="padding: 2px;">
-              <div class="h-full w-full rounded-2xl bg-white"></div>
-            </div>
+            <!-- Gradient overlay on hover -->
+            <div class="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-purple-500/5 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
             
-            <!-- Card Content -->
-            <div class="relative z-10 flex h-full min-h-[280px] flex-col sm:min-h-[320px]">
-              <!-- Tool Icon -->
-              <div class="mb-4 flex justify-center">
-                <span class="text-5xl drop-shadow-sm sm:text-6xl lg:text-7xl" 
-                      role="img" 
-                      :aria-label="`${t(tool.titleKey)} icon`">
+            <!-- Content -->
+            <div class="relative">
+              <!-- Icon -->
+              <div class="mb-6 flex justify-center">
+                <div class="flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-blue-500 to-purple-600 text-3xl text-white shadow-lg">
                   {{ tool.icon }}
-                </span>
+                </div>
               </div>
               
-              <!-- Tool Title -->
-              <h3 class="mb-3 text-center text-xl font-semibold text-gray-900 sm:text-2xl lg:mb-4">
+              <!-- Title -->
+              <h3 class="mb-4 text-center text-xl font-semibold text-gray-900 group-hover:text-blue-600 sm:text-2xl">
                 {{ t(tool.titleKey) }}
               </h3>
               
-              <!-- Tool Description -->
-              <p class="flex-1 text-center text-sm leading-relaxed text-gray-600 sm:text-base lg:text-lg">
+              <!-- Description -->
+              <p class="mb-6 text-center text-gray-600 leading-relaxed">
                 {{ t(tool.descriptionKey) }}
               </p>
               
-              <!-- Feature Tags -->
-              <div class="mt-4 flex flex-wrap justify-center gap-2 lg:mt-6">
-                <span 
+              <!-- Features -->
+              <div class="space-y-2">
+                <div 
                   v-for="feature in tool.features" 
-                  :key="feature" 
-                  class="inline-flex rounded-full bg-gradient-to-r from-blue-50 to-purple-50 px-3 py-1 text-xs font-medium text-blue-700 ring-1 ring-blue-200 sm:px-4 sm:py-1.5 sm:text-sm"
+                  :key="feature"
+                  class="flex items-center gap-3 text-sm text-gray-600"
                 >
+                  <span class="flex h-5 w-5 items-center justify-center rounded-full bg-green-100 text-green-600 text-xs">✓</span>
                   {{ t(feature) }}
-                </span>
+                </div>
               </div>
               
-              <!-- Touch Indicator for Mobile -->
-              <div class="mt-4 flex justify-center sm:hidden">
-                <div class="h-1 w-12 rounded-full bg-gray-200 transition-colors duration-300 group-hover:bg-blue-500"></div>
-              </div>
+                             <!-- Action indicator -->
+               <div class="mt-6 flex items-center justify-center gap-2 text-sm font-medium text-blue-600 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                 <span>Explore</span>
+                 <svg class="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                 </svg>
+               </div>
             </div>
-          </div>
+          </NuxtLink>
         </div>
       </div>
     </section>
 
     <!-- About Section -->
-    <section class="bg-white/80 px-4 py-12 backdrop-blur-sm sm:px-6 lg:px-8 lg:py-20">
-      <div class="mx-auto max-w-4xl">
-        <div class="text-center">
-          <h2 class="text-2xl font-bold text-gray-900 sm:text-3xl lg:text-4xl">
-            {{ t('aboutTitle') }}
-          </h2>
-          <p class="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-gray-600 sm:text-lg lg:mt-6 lg:text-xl">
-            {{ t('aboutText') }}
-          </p>
-        </div>
+    <section class="bg-gray-50 px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+      <div class="mx-auto max-w-4xl text-center">
+        <h2 class="text-3xl font-bold text-gray-900 sm:text-4xl" style="margin-bottom: 1.5rem;">
+          {{ t('aboutTitle') }}
+        </h2>
+        <p class="mx-auto max-w-3xl text-lg leading-8 text-gray-600">
+          {{ t('aboutText') }}
+        </p>
         
-        <!-- Features List -->
-        <div class="mt-8 grid gap-4 sm:mt-12 sm:gap-6 md:grid-cols-2 lg:gap-8">
-          <div 
-            v-for="feature in mainFeatures" 
-            :key="feature" 
-            class="flex items-start gap-3 rounded-xl bg-gradient-to-r from-blue-50 to-purple-50 p-4 ring-1 ring-blue-100 sm:gap-4 sm:p-6"
-          >
-            <span class="flex-shrink-0 text-lg sm:text-xl" role="img" aria-hidden="true">✨</span>
-            <span class="text-sm font-medium text-gray-700 sm:text-base">{{ t(feature) }}</span>
+        <!-- Quick stats -->
+        <div class="mt-12 grid grid-cols-2 gap-8 sm:grid-cols-4">
+          <div class="text-center">
+            <div class="text-2xl font-bold text-blue-600">4</div>
+            <div class="text-sm text-gray-600">Divination Tools</div>
+          </div>
+          <div class="text-center">
+            <div class="text-2xl font-bold text-purple-600">5</div>
+            <div class="text-sm text-gray-600">Languages</div>
+          </div>
+          <div class="text-center">
+            <div class="text-2xl font-bold text-green-600">∞</div>
+            <div class="text-sm text-gray-600">Free Readings</div>
+          </div>
+          <div class="text-center">
+            <div class="text-2xl font-bold text-orange-600">24/7</div>
+            <div class="text-sm text-gray-600">Available</div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Bottom Spacing for Mobile Navigation -->
-    <div class="h-8 sm:h-0"></div>
+    <!-- Bottom spacing for mobile navigation -->
+    <div class="h-20 sm:h-8"></div>
   </div>
 </template>
 
@@ -118,7 +137,7 @@ interface Tool {
 const { t, locale } = useI18n()
 const router = useRouter()
 const localePath = useLocalePath()
-const { logger, LogCategory } = useLogger()
+const { logger } = useLogger()
 
 // Define tools data with proper typing
 const tools = ref<Tool[]>([
@@ -152,15 +171,8 @@ const tools = ref<Tool[]>([
   }
 ])
 
-const mainFeatures = ref<string[]>([
-  'feature5Languages',
-  'featureModernDesign', 
-  'featureInstantResults',
-  'featureMobileOptimized'
-])
-
-// Enhanced navigation with touch feedback
-const navigateToTool = async (toolName: string): Promise<void> => {
+// Handle tool clicks with proper navigation
+const handleToolClick = async (toolName: string): Promise<void> => {
   try {
     // Add haptic feedback for mobile devices
     if (process.client && 'vibrate' in navigator) {
@@ -170,15 +182,14 @@ const navigateToTool = async (toolName: string): Promise<void> => {
     logger.logUserAction('Tool card clicked', { 
       tool: toolName,
       currentLocale: locale.value,
-      fromPage: 'homepage',
-      deviceType: process.client ? (window.innerWidth < 768 ? 'mobile' : 'desktop') : 'unknown'
+      fromPage: 'homepage'
     })
 
     const targetPath = localePath(`/${toolName}`)
     
     // Validate path before navigation
-    if (!targetPath || targetPath === '/') {
-      logger.logError('Homepage.navigateToTool', 'Invalid path generated', {
+    if (!targetPath) {
+      logger.logError('Homepage.handleToolClick', 'Invalid path generated', {
         tool: toolName,
         targetPath,
         locale: locale.value
@@ -188,88 +199,75 @@ const navigateToTool = async (toolName: string): Promise<void> => {
 
     logger.logRouteChange('/', targetPath, locale.value)
     
+    // Use router.push for programmatic navigation
     await router.push(targetPath)
     
   } catch (error) {
-    logger.logError('Homepage.navigateToTool', error as Error, { 
+    logger.logError('Homepage.handleToolClick', error as Error, { 
       tool: toolName 
     })
   }
 }
 
-// SEO Meta with responsive optimization
-useSeoMeta({
-  title: computed(() => {
-    try {
-      return t('seo.homepage.title')
-    } catch {
-      return 'Teller.eu.org - Digital Fortune Teller'
-    }
-  }),
-  description: computed(() => {
-    try {
-      return t('seo.homepage.description')
-    } catch {
-      return 'Discover your destiny through ancient wisdom with our digital fortune teller. Free tarot readings, astrology, numerology, and Chinese zodiac insights.'
-    }
-  }),
-  viewport: 'width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes'
-})
-
-// Mobile-specific optimizations
+// Component initialization logging
 onMounted(() => {
-  logger.logComponentInit('Homepage', {
+  logger.logComponentInit('Homepage', { 
     locale: locale.value,
     toolsCount: tools.value.length,
-    userAgent: process.client ? navigator.userAgent : 'SSR',
+    userAgent: process.client ? navigator.userAgent : 'unknown',
     screenSize: process.client ? `${window.innerWidth}x${window.innerHeight}` : 'unknown',
     touchSupport: process.client ? 'ontouchstart' in window : false
   })
-  
-  // Log tool paths for validation
-  tools.value.forEach(tool => {
-    const path = localePath(`/${tool.name}`)
-    logger.debug(LogCategory.ROUTE, `Tool path generated`, {
-      tool: tool.name,
-      path,
-      locale: locale.value
-    })
-  })
-
-  // Add scroll performance optimization for mobile
-  if (process.client && window.innerWidth < 768) {
-    document.body.style.overscrollBehavior = 'none'
-  }
 })
 
-// Watch locale changes with mobile considerations
-watch(locale, (newLocale, oldLocale) => {
-  logger.logLanguageChange(oldLocale || 'unknown', newLocale)
-  
-  // Re-validate tool paths
-  tools.value.forEach(tool => {
-    const path = localePath(`/${tool.name}`)
-    logger.debug(LogCategory.ROUTE, `Tool path updated after locale change`, {
-      tool: tool.name,
-      path,
-      locale: newLocale
-    })
-  })
+// SEO Meta
+useSeoMeta({
+  title: t('seo.homepage.title'),
+  description: t('seo.homepage.description'),
+  ogTitle: t('seo.homepage.title'),
+  ogDescription: t('seo.homepage.description'),
+  ogType: 'website',
+  twitterCard: 'summary_large_image',
+  twitterTitle: t('seo.homepage.title'),
+  twitterDescription: t('seo.homepage.description')
 })
+</script>
 
-// Handle screen orientation changes
-if (process.client) {
-  const handleOrientationChange = () => {
-    logger.debug(LogCategory.COMPONENT, 'Orientation changed', {
-      orientation: screen.orientation?.type || 'unknown',
-      screenSize: `${window.innerWidth}x${window.innerHeight}`
-    })
-  }
-  
-  window.addEventListener('orientationchange', handleOrientationChange)
-  
-  onUnmounted(() => {
-    window.removeEventListener('orientationchange', handleOrientationChange)
-  })
+<style scoped>
+/* Additional styles for enhanced interactions */
+.group:active {
+  transform: scale(0.98);
 }
-</script> 
+
+/* Smooth transitions for all interactive elements */
+* {
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
+}
+
+/* Enhanced focus styles for accessibility */
+.group:focus-visible {
+  ring-offset-width: 2px;
+  ring-offset-color: white;
+}
+
+/* Hover effects for desktop */
+@media (hover: hover) {
+  .group:hover .h-4 {
+    transform: translateX(0.25rem);
+  }
+}
+
+/* Touch device optimizations */
+@media (pointer: coarse) {
+  .group {
+    min-height: 280px;
+  }
+  
+  .group:active {
+    transform: scale(0.95);
+    transition-duration: 100ms;
+  }
+}
+</style> 

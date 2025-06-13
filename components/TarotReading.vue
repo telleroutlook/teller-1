@@ -61,28 +61,8 @@ interface TarotCard {
 const { t: $t, locale } = useI18n()
 const { logger, LogCategory } = useLogger()
 
-// Simple animation function without anime.js for now
-const runMysticalAnimation = (text: string, callback?: () => void) => {
-  if (!process.client) return
-  
-  logger.logAnimationStart('mystical-animation', { 
-    text: text.substring(0, 20) + '...', 
-    hasCallback: !!callback 
-  })
-  
-  const overlay = document.getElementById('animation-overlay')
-  if (overlay) {
-    overlay.classList.add('visible')
-    setTimeout(() => {
-      overlay.classList.remove('visible')
-      logger.logAnimationEnd('mystical-animation', 2000)
-      if (callback) callback()
-    }, 2000)
-  } else {
-    logger.logError('TarotReading.runMysticalAnimation', 'Animation overlay not found')
-    if (callback) callback()
-  }
-}
+// Use the animation composable
+const { runMysticalAnimation } = useAnimations()
 
 // Get data directly for now
 const getTarotCards = (locale: string) => {

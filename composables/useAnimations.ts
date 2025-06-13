@@ -1,7 +1,29 @@
-import * as anime from 'animejs'
+// @ts-ignore
+const anime = process.client ? require('animejs').default || require('animejs') : null
 
 export const useAnimations = () => {
   const { logger, LogCategory } = useLogger()
+  const { $anime } = useNuxtApp()
+
+  // Use the anime instance from plugin or fallback
+  const animeInstance = $anime || anime
+  
+  // Check if animation is available
+  const isAnimationAvailable = () => {
+    return process.client && animeInstance && typeof animeInstance === 'function'
+  }
+  
+  // Fallback animation function for when anime.js is not available
+  const fallbackAnimation = (callback?: () => void) => {
+    if (!process.client) return Promise.resolve()
+    
+    return new Promise<void>((resolve) => {
+      setTimeout(() => {
+        if (callback) callback()
+        resolve()
+      }, 1000)
+    })
+  }
 
   // Animation overlay management
   const showAnimationOverlay = () => {
@@ -31,7 +53,7 @@ export const useAnimations = () => {
       if (overlay) {
         logger.logAnimationStart('overlay-hide', { elementId: 'animation-overlay' })
         
-        anime({
+        animeInstance({
           targets: overlay,
           opacity: 0,
           duration: 500,
@@ -50,7 +72,7 @@ export const useAnimations = () => {
 
   // Particle system
   const createParticles = (container: HTMLElement, count: number = 70) => {
-    if (!process.client) return []
+    if (!process.client || !isAnimationAvailable()) return []
     
     try {
       logger.logAnimationStart('particles-create', { count, container: container.id })
@@ -62,15 +84,15 @@ export const useAnimations = () => {
         const particle = document.createElement('div')
         particle.className = 'particle'
         
-        const size = anime.random(1, 4) + 'px'
+        const size = animeInstance.random(1, 4) + 'px'
         Object.assign(particle.style, {
           position: 'absolute',
           width: size,
           height: size,
           borderRadius: '50%',
-          left: `${anime.random(0, 100)}%`,
-          top: `${anime.random(0, 100)}%`,
-          backgroundColor: colors[anime.random(0, colors.length - 1)],
+          left: `${animeInstance.random(0, 100)}%`,
+          top: `${animeInstance.random(0, 100)}%`,
+          backgroundColor: colors[animeInstance.random(0, colors.length - 1)],
           opacity: '0',
           pointerEvents: 'none',
           zIndex: '10000'
@@ -81,20 +103,20 @@ export const useAnimations = () => {
       }
       
       // Animate particles
-      anime({
+      animeInstance({
         targets: particles,
         opacity: [
-          { value: () => anime.random(0.2, 1), duration: () => anime.random(200, 800) },
-          { value: 0, duration: () => anime.random(200, 600) }
+          { value: () => animeInstance.random(0.2, 1), duration: () => animeInstance.random(200, 800) },
+          { value: 0, duration: () => animeInstance.random(200, 600) }
         ],
         scale: [
-          { value: () => anime.random(0.5, 1.5), duration: () => anime.random(300, 1000) },
-          { value: 1, duration: () => anime.random(200, 500) }
+          { value: () => animeInstance.random(0.5, 1.5), duration: () => animeInstance.random(300, 1000) },
+          { value: 1, duration: () => animeInstance.random(200, 500) }
         ],
-        duration: () => anime.random(1500, 3000),
+        duration: () => animeInstance.random(1500, 3000),
         easing: 'linear',
         loop: true,
-        delay: anime.stagger(20)
+        delay: animeInstance.stagger(20)
       })
       
       logger.logAnimationEnd('particles-create', count)
@@ -108,7 +130,7 @@ export const useAnimations = () => {
 
   // Text animation
   const animateText = (text: string, container: HTMLElement) => {
-    if (!process.client) return Promise.resolve()
+    if (!process.client || !isAnimationAvailable()) return Promise.resolve()
     
     return new Promise<void>((resolve) => {
       try {
@@ -135,7 +157,7 @@ export const useAnimations = () => {
         })
         
         // Animation timeline
-        const timeline = anime.timeline({
+        const timeline = animeInstance.timeline({
           complete: () => {
             logger.logAnimationEnd('text-animation', Date.now())
             resolve()
@@ -150,14 +172,14 @@ export const useAnimations = () => {
           rotateZ: [180, 0],
           duration: 1500,
           easing: 'easeOutExpo',
-          delay: anime.stagger(Math.max(50, 1000 / text.length))
+          delay: animeInstance.stagger(Math.max(50, 1000 / text.length))
         }).add({
           targets: container.children,
           opacity: 0,
           scale: 0.5,
           duration: 1000,
           easing: 'easeInExpo',
-          delay: anime.stagger(50, { start: 500 })
+          delay: animeInstance.stagger(50, { start: 500 })
         }, '+=500')
         
       } catch (error) {
@@ -169,12 +191,12 @@ export const useAnimations = () => {
 
   // Flare animation
   const animateFlare = (flareElement: HTMLElement) => {
-    if (!process.client) return
+    if (!process.client || !isAnimationAvailable()) return
     
     try {
       logger.logAnimationStart('flare-animation', { element: flareElement.id })
       
-      anime({
+      animeInstance({
         targets: flareElement,
         translateX: ['-50%', '50%'],
         translateY: ['-50%', '50%'],
@@ -197,6 +219,13 @@ export const useAnimations = () => {
         logger.warn(LogCategory.ANIMATION, 'runMysticalAnimation called on server side')
         if (callback) callback()
         resolve()
+        return
+      }
+      
+      // Check if animation is available, fallback if not
+      if (!isAnimationAvailable()) {
+        logger.warn(LogCategory.ANIMATION, 'anime.js not available, using fallback animation')
+        fallbackAnimation(callback).then(() => resolve())
         return
       }
 
@@ -300,13 +329,13 @@ export const useAnimations = () => {
 
   // Card flip animation
   const flipCard = (cardElement: HTMLElement, cardData?: any) => {
-    if (!process.client) return Promise.resolve()
+    if (!process.client || !isAnimationAvailable()) return Promise.resolve()
     
     return new Promise<void>((resolve) => {
       try {
         logger.logAnimationStart('card-flip', { element: cardElement.id, cardData })
         
-        anime({
+        animeInstance({
           targets: cardElement,
           rotateY: '180deg',
           duration: 600,
