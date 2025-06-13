@@ -1,7 +1,7 @@
 <template>
-  <div>
-    <h2 class="section-title">{{ $t('numerologyTitle') }}</h2>
-    <p class="intro-text">{{ $t('numerologyIntro') }}</p>
+  <div class="numerology-container">
+    <h2 class="mb-4 text-xl font-bold text-center text-gray-700 sm:mb-6 sm:text-2xl lg:text-3xl">{{ $t('numerologyTitle') }}</h2>
+    <p class="mb-4 text-center text-sm text-gray-600 sm:mb-6 sm:text-base">{{ $t('numerologyIntro') }}</p>
 
     <div class="form-group" :class="{ 'has-error': birthDateError }">
       <label for="birthDate">{{ $t('birthDateLabel') }}</label>
@@ -37,22 +37,24 @@
     <button @click="calculateNumerology" class="btn">{{ $t('calculateBtn') }}</button>
 
     <div v-if="numerologyResult && showResult" class="result show" aria-live="polite">
-      <h4>{{ $t('yourNumerologyProfile') }}</h4>
+      <h4 class="mb-4 text-lg font-semibold text-center text-gray-800 sm:text-xl">{{ $t('yourNumerologyProfile') }}</h4>
       <div class="numerology-results">
         <div class="number-result">
-          <h5>{{ $t('lifePathNumber') }} {{ lifePathNumber }}</h5>
-          <p>{{ lifePathMeaning }}</p>
+          <h5 class="mb-2 text-base font-medium text-blue-700 sm:text-lg">{{ $t('lifePathNumber') }} {{ lifePathNumber }}</h5>
+          <p class="text-sm text-gray-600 sm:text-base">{{ lifePathMeaning }}</p>
         </div>
         <div class="number-result">
-          <h5>{{ $t('destinyNumber') }} {{ destinyNumber }}</h5>
-          <p>{{ destinyMeaning }}</p>
+          <h5 class="mb-2 text-base font-medium text-purple-700 sm:text-lg">{{ $t('destinyNumber') }} {{ destinyNumber }}</h5>
+          <p class="text-sm text-gray-600 sm:text-base">{{ destinyMeaning }}</p>
         </div>
       </div>
       <div class="reflection-prompt">
         {{ $t('numerologyReflection') }}
       </div>
-      <button @click="resetCalculation" class="reset-btn">{{ $t('recalculateBtn') }}</button>
-      <button @click="shareNumbers" class="share-button">{{ $t('shareNumbersBtn') }}</button>
+      <div class="action-buttons">
+        <button @click="resetCalculation" class="reset-btn">{{ $t('recalculateBtn') }}</button>
+        <button @click="shareNumbers" class="share-button">{{ $t('shareNumbersBtn') }}</button>
+      </div>
     </div>
   </div>
 </template>

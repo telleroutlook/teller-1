@@ -1,7 +1,7 @@
 <template>
-  <div>
-    <h2 class="section-title">{{ $t('tarotTitle') }}</h2>
-    <p class="intro-text">{{ $t('tarotIntro') }}</p>
+  <div class="tarot-container">
+    <h2 class="mb-4 text-xl font-bold text-center text-gray-700 sm:mb-6 sm:text-2xl lg:text-3xl">{{ $t('tarotTitle') }}</h2>
+    <p class="mb-4 text-center text-sm text-gray-600 sm:mb-6 sm:text-base">{{ $t('tarotIntro') }}</p>
     
     <div class="tarot-progress" aria-live="polite">
       {{ progressText }}
@@ -31,18 +31,20 @@
     </div>
 
     <div v-if="selectedCards.length === 3 && showResult" class="result show">
-      <h4>{{ $t('yourReading') }}</h4>
+      <h4 class="mb-4 text-lg font-semibold text-center text-gray-800 sm:text-xl">{{ $t('yourReading') }}</h4>
       <div class="tarot-reading">
         <div v-for="(card, index) in selectedCards" :key="index" class="reading-card">
-          <h4>{{ getPositionLabel(index) }} - {{ card.name }}</h4>
-          <p>{{ card.meaning }}</p>
+          <h4 class="mb-2 text-base font-medium sm:text-lg">{{ getPositionLabel(index) }} - {{ card.name }}</h4>
+          <p class="text-sm text-gray-600 sm:text-base">{{ card.meaning }}</p>
         </div>
       </div>
       <div class="reflection-prompt">
         {{ $t('tarotReflection') }}
       </div>
-      <button @click="resetReading" class="reset-btn">{{ $t('resetReadingBtn') }}</button>
-      <button @click="shareReading" class="share-button">{{ $t('shareReadingBtn') }}</button>
+      <div class="action-buttons">
+        <button @click="resetReading" class="reset-btn">{{ $t('resetReadingBtn') }}</button>
+        <button @click="shareReading" class="share-button">{{ $t('shareReadingBtn') }}</button>
+      </div>
     </div>
   </div>
 </template>
@@ -209,6 +211,270 @@ watch(locale, (newLocale, oldLocale) => {
 </script>
 
 <style scoped>
+.tarot-container {
+  max-width: 100%;
+  padding: 0;
+}
+
+.tarot-progress {
+  text-align: center;
+  margin: 12px 0;
+  padding: 8px 16px;
+  background: linear-gradient(45deg, #EBF4FF, #DBEAFE);
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #1D4ED8;
+}
+
+@media (min-width: 640px) {
+  .tarot-progress {
+    margin: 16px 0;
+    padding: 12px 20px;
+    font-size: 16px;
+  }
+}
+
+.selected-cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+  margin: 16px 0;
+  padding: 12px;
+  background: #F3F4F6;
+  border-radius: 8px;
+}
+
+@media (min-width: 640px) {
+  .selected-cards {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 12px;
+    margin: 20px 0;
+    padding: 16px;
+  }
+}
+
+.selected-card {
+  padding: 8px 12px;
+  background: white;
+  border-radius: 6px;
+  font-size: 13px;
+  line-height: 1.4;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+@media (min-width: 640px) {
+  .selected-card {
+    padding: 12px 16px;
+    font-size: 14px;
+  }
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+  gap: 8px;
+  margin: 16px 0;
+  max-height: 400px;
+  overflow-y: auto;
+  padding: 8px;
+}
+
+@media (min-width: 640px) {
+  .card-grid {
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 12px;
+    margin: 20px 0;
+    max-height: 500px;
+    padding: 12px;
+  }
+}
+
+@media (min-width: 768px) {
+  .card-grid {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  }
+}
+
+.tarot-card {
+  aspect-ratio: 2/3;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  transform-style: preserve-3d;
+  min-height: 120px;
+  touch-action: manipulation;
+}
+
+@media (min-width: 640px) {
+  .tarot-card {
+    min-height: 150px;
+  }
+}
+
+.tarot-card:hover {
+  transform: translateY(-4px) scale(1.02);
+}
+
+.tarot-card.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.tarot-card.flipped {
+  transform: rotateY(180deg);
+}
+
+.card-face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: 600;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+@media (min-width: 640px) {
+  .card-face {
+    font-size: 24px;
+    border-radius: 10px;
+  }
+}
+
+.card-front {
+  background: linear-gradient(45deg, #4F46E5, #7C3AED);
+  color: white;
+}
+
+.card-back {
+  background: linear-gradient(45deg, #FBBF24, #F59E0B);
+  color: #1F2937;
+  transform: rotateY(180deg);
+  font-size: 11px;
+  text-align: center;
+  padding: 8px;
+  line-height: 1.2;
+}
+
+@media (min-width: 640px) {
+  .card-back {
+    font-size: 13px;
+    padding: 12px;
+  }
+}
+
+.tarot-reading {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  margin: 16px 0;
+}
+
+@media (min-width: 640px) {
+  .tarot-reading {
+    gap: 16px;
+    margin: 20px 0;
+  }
+}
+
+@media (min-width: 768px) {
+  .tarot-reading {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+}
+
+.reading-card {
+  padding: 12px;
+  background: #F9FAFB;
+  border-radius: 8px;
+  border-left: 4px solid #10B981;
+}
+
+@media (min-width: 640px) {
+  .reading-card {
+    padding: 16px;
+  }
+}
+
+.reflection-prompt {
+  background: rgba(34, 197, 94, 0.1);
+  padding: 12px;
+  border-radius: 8px;
+  margin: 16px 0;
+  font-style: italic;
+  color: #166534;
+  text-align: center;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+@media (min-width: 640px) {
+  .reflection-prompt {
+    padding: 16px;
+    margin: 20px 0;
+    font-size: 14px;
+  }
+}
+
+.action-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+@media (min-width: 640px) {
+  .action-buttons {
+    flex-direction: row;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 20px;
+  }
+}
+
+.reset-btn, .share-button {
+  padding: 10px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  min-height: 44px;
+  touch-action: manipulation;
+}
+
+@media (min-width: 640px) {
+  .reset-btn, .share-button {
+    padding: 12px 20px;
+    font-size: 15px;
+    min-height: auto;
+  }
+}
+
+.reset-btn {
+  background: linear-gradient(45deg, #6B7280, #4B5563);
+  color: white;
+}
+
+.share-button {
+  background: linear-gradient(45deg, #10B981, #059669);
+  color: white;
+}
+
+.reset-btn:hover, .share-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.reset-btn:active, .share-button:active {
+  transform: translateY(0);
+}
 .intro-text {
   text-align: center;
   margin-bottom: 30px;

@@ -9,8 +9,8 @@
         :class="{ 'text-blue-600 bg-blue-50': isActive(tool.name), 'text-gray-600': !isActive(tool.name) }"
         @click="handleNavClick(tool.name)"
       >
-        <div class="text-xl">{{ tool.icon }}</div>
-        <span class="text-xs font-medium">{{ t(tool.tabKey) }}</span>
+        <div class="text-lg sm:text-xl">{{ tool.icon }}</div>
+        <span class="text-xs font-medium sm:text-xs">{{ t(tool.tabKey) }}</span>
       </NuxtLink>
     </div>
   </nav>

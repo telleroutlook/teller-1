@@ -1,7 +1,7 @@
 <template>
-  <div>
-    <h2 class="section-title">{{ $t('chineseZodiacTitle') }}</h2>
-    <p class="intro-text">{{ $t('chineseZodiacIntro') }}</p>
+  <div class="chinese-zodiac-container">
+    <h2 class="mb-4 text-xl font-bold text-center text-gray-700 sm:mb-6 sm:text-2xl lg:text-3xl">{{ $t('chineseZodiacTitle') }}</h2>
+    <p class="mb-4 text-center text-sm text-gray-600 sm:mb-6 sm:text-base">{{ $t('chineseZodiacIntro') }}</p>
 
     <div class="form-group" :class="{ 'has-error': yearError }">
       <label for="birthYear">{{ $t('birthYearLabel') }}</label>
@@ -25,19 +25,21 @@
     <button @click="findZodiac" class="btn">{{ $t('findZodiacBtn') }}</button>
 
     <div v-if="zodiacResult && showResult" class="result show" aria-live="polite">
-      <h4>{{ $t('yourZodiac') }}</h4>
+      <h4 class="mb-4 text-lg font-semibold text-center text-gray-800 sm:text-xl">{{ $t('yourZodiac') }}</h4>
       <div class="zodiac-animal">
-        <div class="animal-emoji">{{ animalEmoji }}</div>
-        <h3>{{ $t('yearOf', { animal: animalName }) }}</h3>
+        <div class="animal-emoji text-4xl mb-3 text-center sm:text-5xl">{{ animalEmoji }}</div>
+        <h3 class="mb-4 text-lg font-bold text-center text-red-700 sm:text-xl lg:text-2xl">{{ $t('yearOf', { animal: animalName }) }}</h3>
         <div class="traits-section">
-          <h5>{{ $t('traits') }}</h5>
-          <p>{{ animalTraits }}</p>
+          <h5 class="mb-2 text-base font-medium text-gray-700 sm:text-lg">{{ $t('traits') }}</h5>
+          <p class="text-sm text-gray-600 leading-relaxed sm:text-base">{{ animalTraits }}</p>
         </div>
       </div>
       <div class="reflection-prompt">
         {{ $t('chineseZodiacReflection') }}
       </div>
-      <button @click="shareZodiac" class="share-button">{{ $t('shareZodiacBtn') }}</button>
+      <div class="action-buttons">
+        <button @click="shareZodiac" class="share-button">{{ $t('shareZodiacBtn') }}</button>
+      </div>
     </div>
   </div>
 </template>

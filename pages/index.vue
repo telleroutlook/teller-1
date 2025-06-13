@@ -3,17 +3,16 @@
     <!-- Hero Section -->
     <section class="relative px-4 pt-12 pb-16 sm:px-6 lg:px-8 lg:pt-20 lg:pb-24">
       <div class="mx-auto max-w-4xl text-center">
-        <!-- Main Title with explicit styling to fix H1 warning -->
-        <h1 class="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl lg:text-6xl" 
-            style="font-size: 2.25rem; margin: 0 0 1.5rem 0;">
+        <!-- Main Title with mobile-first responsive design -->
+        <h1 class="text-2xl font-bold tracking-tight text-gray-900 mb-6 sm:text-4xl md:text-5xl lg:text-6xl">
           {{ t('heroTitle') }}
         </h1>
-        <p class="mx-auto mt-6 max-w-3xl text-lg leading-8 text-gray-600 lg:text-xl">
+        <p class="mx-auto mt-4 max-w-3xl text-base leading-7 text-gray-600 sm:text-lg sm:leading-8 lg:text-xl">
           {{ t('heroSubtitle') }}
         </p>
         
         <!-- Feature highlights -->
-        <div class="mt-8 flex flex-wrap justify-center gap-4 text-sm text-gray-500">
+        <div class="mt-6 flex flex-wrap justify-center gap-3 text-xs text-gray-500 sm:gap-4 sm:text-sm">
           <span class="flex items-center gap-1">
             <span class="text-green-500">✓</span>
             {{ t('feature5Languages') }}
@@ -38,7 +37,7 @@
             v-for="tool in tools" 
             :key="tool.name"
             :to="localePath(`/${tool.name}`)"
-            class="group relative block transform overflow-hidden rounded-3xl bg-white p-8 shadow-lg transition-all duration-300 hover:scale-[1.02] hover:shadow-xl focus:scale-[1.02] focus:shadow-xl focus:outline-none focus:ring-4 focus:ring-blue-500/20"
+            class="group relative block transform overflow-hidden rounded-3xl bg-white p-8 shadow-lg transition-all duration-300 hover:scale-[1.02] hover:shadow-xl focus:scale-[1.02] focus:shadow-xl focus:outline-none focus:ring-4 focus:ring-blue-500/20 focus:ring-offset-2 focus:ring-offset-white"
             @click="handleToolClick(tool.name)"
           >
             <!-- Gradient overlay on hover -->
@@ -54,12 +53,12 @@
               </div>
               
               <!-- Title -->
-              <h3 class="mb-4 text-center text-xl font-semibold text-gray-900 group-hover:text-blue-600 sm:text-2xl">
+              <h3 class="mb-3 text-center text-lg font-semibold text-gray-900 group-hover:text-blue-600 sm:mb-4 sm:text-xl lg:text-2xl">
                 {{ t(tool.titleKey) }}
               </h3>
               
               <!-- Description -->
-              <p class="mb-6 text-center text-gray-600 leading-relaxed">
+              <p class="mb-4 text-center text-sm text-gray-600 leading-relaxed sm:mb-6 sm:text-base">
                 {{ t(tool.descriptionKey) }}
               </p>
               
@@ -91,10 +90,10 @@
     <!-- About Section -->
     <section class="bg-gray-50 px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
       <div class="mx-auto max-w-4xl text-center">
-        <h2 class="text-3xl font-bold text-gray-900 sm:text-4xl" style="margin-bottom: 1.5rem;">
+        <h2 class="mb-4 text-2xl font-bold text-gray-900 sm:mb-6 sm:text-3xl lg:text-4xl">
           {{ t('aboutTitle') }}
         </h2>
-        <p class="mx-auto max-w-3xl text-lg leading-8 text-gray-600">
+        <p class="mx-auto max-w-3xl text-sm leading-6 text-gray-600 sm:text-base sm:leading-7 lg:text-lg lg:leading-8">
           {{ t('aboutText') }}
         </p>
         
@@ -246,11 +245,7 @@ useSeoMeta({
   transition-duration: 300ms;
 }
 
-/* Enhanced focus styles for accessibility */
-.group:focus-visible {
-  ring-offset-width: 2px;
-  ring-offset-color: white;
-}
+/* Enhanced focus styles for accessibility are handled by Tailwind classes in template */
 
 /* Hover effects for desktop */
 @media (hover: hover) {

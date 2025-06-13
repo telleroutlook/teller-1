@@ -1,7 +1,7 @@
 <template>
   <div>
-    <h2 class="section-title">⭐ Daily Horoscope</h2>
-    <p class="intro-text">Select your zodiac sign to see your horoscope for today.</p>
+    <h2 class="mb-4 text-xl font-bold text-center text-gray-700 sm:mb-6 sm:text-2xl lg:text-3xl">⭐ Daily Horoscope</h2>
+    <p class="mb-4 text-center text-sm text-gray-600 sm:mb-6 sm:text-base">Select your zodiac sign to see your horoscope for today.</p>
     
     <div class="zodiac-signs">
       <button 
@@ -21,12 +21,14 @@
     </div>
 
     <div v-if="selectedSign" class="result show">
-      <h3>{{ selectedSign.name }} - Today's Horoscope</h3>
-      <p>{{ selectedSign.horoscope }}</p>
+      <h3 class="mb-4 text-lg font-bold text-center text-purple-700 sm:text-xl lg:text-2xl">{{ selectedSign.name }} - Today's Horoscope</h3>
+      <p class="mb-4 text-sm text-gray-700 leading-relaxed text-center sm:text-base lg:text-lg">{{ selectedSign.horoscope }}</p>
       <div class="reflection-prompt">
         Consider how this guidance might apply to your day ahead.
       </div>
-      <button @click="shareHoroscope" class="share-button">Share Today's Horoscope</button>
+      <div class="action-buttons">
+        <button @click="shareHoroscope" class="share-button">Share Today's Horoscope</button>
+      </div>
     </div>
   </div>
 </template>
@@ -110,32 +112,55 @@ const shareHoroscope = (): void => {
 </script>
 
 <style scoped>
-.intro-text {
-  text-align: center;
-  margin-bottom: 20px;
-  color: #6B7280;
-}
-
 .zodiac-signs {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 10px;
-  margin: 20px 0;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 8px;
+  margin: 16px 0;
+}
+
+@media (min-width: 640px) {
+  .zodiac-signs {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
+    margin: 20px 0;
+  }
+}
+
+@media (min-width: 768px) {
+  .zodiac-signs {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
 }
 
 .zodiac-btn {
   background: linear-gradient(45deg, #667eea, #764ba2);
   color: white;
   border: none;
-  padding: 15px;
-  border-radius: 10px;
+  padding: 12px 8px;
+  border-radius: 8px;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 14px;
+  font-weight: 500;
   transition: all 0.3s ease;
+  min-height: 48px;
+  touch-action: manipulation;
+}
+
+@media (min-width: 640px) {
+  .zodiac-btn {
+    padding: 15px 12px;
+    border-radius: 10px;
+    font-size: 16px;
+  }
 }
 
 .zodiac-btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+}
+
+.zodiac-btn:active {
+  transform: translateY(0);
 }
 </style> 

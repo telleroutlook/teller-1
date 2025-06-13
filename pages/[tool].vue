@@ -1,6 +1,6 @@
 <template>
   <div class="min-h-screen bg-white">
-    <div class="max-w-4xl mx-auto px-4 py-8">
+    <div class="max-w-4xl mx-auto px-3 py-4 sm:px-4 sm:py-6 lg:px-8 lg:py-8">
       <TarotReading v-if="tool === 'tarot'" />
       <AstrologyReading v-else-if="tool === 'astrology'" />
       <NumerologyReading v-else-if="tool === 'numerology'" />

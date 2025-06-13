@@ -115,10 +115,24 @@ header {
 }
 
 .section-title {
-  font-size: 1.6rem;
-  margin-bottom: 15px;
+  font-size: 1.25rem;
+  margin-bottom: 12px;
   text-align: center;
   color: #4a5568;
+  line-height: 1.3;
+}
+
+@media (min-width: 640px) {
+  .section-title {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+  }
+}
+
+@media (min-width: 768px) {
+  .section-title {
+    font-size: 1.6rem;
+  }
 }
 
 /* Form and Button Styles */
@@ -126,14 +140,25 @@ header {
   background: linear-gradient(45deg, #667eea, #764ba2);
   color: white;
   border: none;
-  padding: 12px 30px;
+  padding: 12px 24px;
   border-radius: 25px;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 600;
   transition: all 0.3s ease;
   display: block;
-  margin: 20px auto;
+  margin: 16px auto;
+  min-height: 48px;
+  touch-action: manipulation;
+}
+
+@media (min-width: 640px) {
+  .btn {
+    padding: 12px 30px;
+    font-size: 16px;
+    margin: 20px auto;
+    min-height: auto;
+  }
 }
 
 .btn:hover, .btn:focus {
@@ -181,11 +206,23 @@ label {
 
 input, select {
   width: 100%;
-  padding: 12px;
+  padding: 14px 12px;
   border: 2px solid #e2e8f0;
   border-radius: 8px;
   font-size: 16px;
   transition: all 0.3s ease;
+  min-height: 48px;
+  touch-action: manipulation;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+@media (min-width: 640px) {
+  input, select {
+    padding: 12px;
+    min-height: auto;
+  }
 }
 
 input:focus, select:focus {
@@ -329,22 +366,60 @@ input:focus, select:focus {
 }
 
 /* Responsive Design */
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .container {
-    padding: 15px 15px 90px 15px;
+    padding: 12px 12px 90px 12px;
   }
   
   .logo {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
+    line-height: 1.3;
   }
   
   .tagline {
-    font-size: 0.8rem;
+    font-size: 0.75rem;
+    line-height: 1.4;
   }
   
   #animation-overlay #animated-text {
-    font-size: 1.5rem;
-    padding: 0 20px;
+    font-size: 1.25rem;
+    padding: 0 16px;
+    line-height: 1.3;
+  }
+  
+  .content-section {
+    padding: 16px;
+    border-radius: 16px;
+  }
+  
+  .result {
+    padding: 12px;
+    border-radius: 6px;
+    margin-top: 12px;
+  }
+  
+  .result .reflection-prompt {
+    padding: 10px;
+    margin-top: 10px;
+    font-size: 13px;
+  }
+  
+  .result .share-button {
+    padding: 10px 14px;
+    font-size: 13px;
+    margin-top: 8px;
+  }
+  
+  .reset-btn {
+    padding: 10px 14px;
+    font-size: 13px;
+    margin: 8px 4px 0 0;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .container {
+    padding: 18px 18px 85px 18px;
   }
 }
 
@@ -364,6 +439,105 @@ select:focus,
 a:focus {
   outline: 2px solid #667eea;
   outline-offset: 2px;
+}
+
+/* Action buttons layout */
+.action-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+@media (min-width: 640px) {
+  .action-buttons {
+    flex-direction: row;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 20px;
+  }
+}
+
+/* Container improvements for mobile */
+.numerology-container,
+.chinese-zodiac-container,
+.tarot-container {
+  max-width: 100%;
+  padding: 0;
+}
+
+/* Form group mobile improvements */
+.form-group label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #4a5568;
+  margin-bottom: 6px;
+}
+
+@media (min-width: 640px) {
+  .form-group label {
+    font-size: 16px;
+  }
+}
+
+.form-group .input-help {
+  font-size: 12px;
+  color: #6B7280;
+  margin-top: 4px;
+  line-height: 1.4;
+}
+
+@media (min-width: 640px) {
+  .form-group .input-help {
+    font-size: 13px;
+  }
+}
+
+/* Results section improvements */
+.numerology-results {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  margin: 16px 0;
+}
+
+@media (min-width: 768px) {
+  .numerology-results {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin: 20px 0;
+  }
+}
+
+.number-result {
+  padding: 12px;
+  background: #F8FAFC;
+  border-radius: 8px;
+  border-left: 4px solid #3B82F6;
+}
+
+@media (min-width: 640px) {
+  .number-result {
+    padding: 16px;
+  }
+}
+
+.zodiac-animal {
+  text-align: center;
+  margin: 16px 0;
+}
+
+.traits-section {
+  margin-top: 16px;
+  padding: 12px;
+  background: #F1F5F9;
+  border-radius: 8px;
+}
+
+@media (min-width: 640px) {
+  .traits-section {
+    padding: 16px;
+  }
 }
 
 /* High contrast mode support */
