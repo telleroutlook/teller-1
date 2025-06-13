@@ -1,0 +1,1554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Teller.eu.org - Your Digital Fortune Teller</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html, body {
+            height: 100%;
+            overflow: hidden;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 10px 15px 75px 15px; /* Add padding-bottom for bottom nav */
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            height: 100%;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 15px;
+            color: white;
+            position: relative;
+            padding-top: 10px;
+            flex-shrink: 0;
+        }
+        
+        #language-selector {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            padding: 5px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            backdrop-filter: blur(10px);
+            z-index: 1001;
+            width: auto;
+        }
+        
+        #language-selector option {
+            color: black;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .tagline {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        
+        .main-content {
+            flex-grow: 1;
+            position: relative;
+        }
+
+        .content-section {
+            display: none;
+            background: rgba(255,255,255,0.98);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow-y: auto;
+            padding: 20px;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .content-section.active {
+            display: block;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section-title {
+            font-size: 1.6rem;
+            margin-bottom: 15px;
+            text-align: center;
+            color: #4a5568;
+        }
+
+        .tarot-progress {
+            text-align: center;
+            margin-bottom: 15px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #667eea;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+            gap: 10px;
+            margin: 15px auto;
+            max-width: 600px;
+            perspective: 1000px;
+        }
+
+        .tarot-card {
+            aspect-ratio: 2/3;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.6s;
+            cursor: pointer;
+        }
+        
+        .tarot-card .card-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 4px;
+        }
+
+        .card-face.card-front {
+            background: linear-gradient(45deg, #8B5CF6, #A855F7);
+            color: white;
+            font-size: 2rem;
+        }
+
+        .card-face.card-back {
+            background: linear-gradient(45deg, #FCD34D, #F59E0B);
+            color: #1F2937;
+            transform: rotateY(180deg);
+            font-size: 12px;
+            font-weight: bold;
+        }
+        
+        .tarot-card.flipped {
+            transform: rotateY(180deg);
+        }
+
+        .tarot-card.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            filter: grayscale(80%);
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        .form-group .error-message {
+            color: #EF4444;
+            font-size: 0.8rem;
+            margin-top: 4px;
+            display: none;
+            padding-left: 5px;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .form-group.has-error .error-message {
+            display: flex;
+        }
+
+        .form-group.has-error input {
+            border-color: #EF4444;
+            box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 600;
+            color: #4a5568;
+        }
+
+        .input-help {
+            font-size: 0.8rem;
+            color: #6B7280;
+            margin-top: 4px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .btn {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: block;
+            margin: 20px auto;
+        }
+
+        .btn:hover, .btn:focus {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+            outline: none;
+        }
+
+        .result {
+            background: linear-gradient(45deg, #F0FDF4, #DCFCE7);
+            border-left: 4px solid #22C55E;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            display: none;
+            max-height: 100%; /* Fix for mobile scrolling */
+        }
+
+        .result.show {
+            display: block;
+            animation: slideIn 0.5s ease-out;
+        }
+
+        .result .reflection-prompt {
+            background: rgba(34, 197, 94, 0.1);
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 12px;
+            font-style: italic;
+            color: #166534;
+        }
+
+        .result .share-button {
+            background: #2563EB;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 15px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-top: 15px;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .zodiac-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .zodiac-sign {
+            background: linear-gradient(45deg, #FF6B6B, #FF8E53);
+            color: white;
+            padding: 15px;
+            border-radius: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+        
+        .zodiac-sign.active {
+            box-shadow: 0 0 20px rgba(252, 211, 77, 0.8);
+            transform: scale(1.08);
+        }
+        
+        .selected-cards {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 15px 0;
+            flex-wrap: wrap;
+        }
+
+        .selected-card {
+            background: linear-gradient(45deg, #FCD34D, #F59E0B);
+            color: #1F2937;
+            padding: 8px;
+            border-radius: 8px;
+            min-width: 90px;
+            text-align: center;
+            font-weight: bold;
+            border: 2px solid #F97316;
+            font-size: 14px;
+        }
+
+        .reset-btn {
+            background: #EF4444;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 15px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+
+        #bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(20, 10, 30, 0.3);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-around;
+            padding: 5px 0;
+            z-index: 1000;
+        }
+        
+        .nav-btn {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            padding: 5px 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2px;
+            font-size: 11px;
+            opacity: 0.7;
+            transition: opacity 0.3s, transform 0.3s;
+            border-radius: 8px;
+        }
+
+        .nav-btn svg {
+            width: 24px;
+            height: 24px;
+            stroke-width: 1.5;
+        }
+
+        .nav-btn.active {
+            opacity: 1;
+            transform: scale(1.1);
+            color: #FCD34D;
+        }
+
+        #animation-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(10, 5, 20, 0.98);
+            z-index: 9999;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            overflow: hidden; 
+            pointer-events: none; 
+        }
+        
+        #animation-overlay.visible {
+            display: flex;
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        #animated-text {
+            position: relative;
+            width: 90%; 
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap; 
+            text-align: center;
+            z-index: 10001; 
+        }
+
+        #animated-text span {
+            position: relative;
+            display: inline-block;
+            color: white;
+            font-weight: bold;
+            pointer-events: none;
+            text-shadow: 0 0 8px #fff, 0 0 15px #fff, 0 0 25px #ff00ff, 0 0 40px #ff00ff;
+            margin: 0 0.1em; 
+        }
+        
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 10000;
+        }
+        
+        #animation-flare {
+            position: absolute;
+            width: 60vmax;
+            height: 60vmax;
+            background: radial-gradient(circle, rgba(120, 80, 255, 0.3) 0%, rgba(120, 80, 255, 0) 70%);
+            border-radius: 50%;
+            filter: blur(20px);
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        [lang="ar"] {
+            direction: rtl;
+        }
+
+        [lang="ar"] #language-selector {
+            left: auto;
+            right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="animation-overlay">
+        <div id="animation-flare"></div>
+        <div id="animated-text"></div>
+    </div>
+    <div class="container">
+        <header>
+            <select id="language-selector" onchange="changeLanguage(this.value)">
+                <option value="en">English</option>
+                <option value="zh">中文</option>
+                <option value="hi">हिन्दी</option>
+                <option value="fr">Français</option>
+                <option value="ar">العربية</option>
+            </select>
+            <div class="logo">🔮 Teller.eu.org</div>
+            <div class="tagline" data-translate="tagline">Discover Your Destiny Through Ancient Wisdom</div>
+        </header>
+        
+        <div class="main-content">
+            <section id="tarot" class="content-section active" role="tabpanel">
+                <h2 class="section-title" data-translate="tarotTitle">🃏 Tarot Reading</h2>
+                <p style="text-align: center; margin-bottom: 15px; font-size: 0.9rem;" data-translate="tarotIntro">Focus on a question and select 3 cards to reveal your fortune.</p>
+                <div class="tarot-progress" id="tarotProgress" aria-live="polite" data-translate="tarotProgressStart">Please select card 1 of 3</div>
+                <div class="selected-cards" id="selectedCards" aria-live="polite"></div>
+                <div class="card-grid" id="tarotDeck" role="group" aria-label="Tarot card deck"></div>
+                <div class="result" id="tarotResult" aria-live="polite">
+                    <div id="tarotInterpretation"></div>
+                    <div class="reflection-prompt" data-translate="tarotReflection">Take a moment to reflect on how these insights resonate...</div>
+                    <button class="reset-btn" onclick="resetTarot()" style="display: none;" id="resetTarotBtn" data-translate="resetReadingBtn">New Reading</button>
+                    <button class="share-button" onclick="shareResult('tarot')" data-translate="shareReadingBtn">Share this Reading</button>
+                </div>
+            </section>
+
+            <section id="astrology" class="content-section" role="tabpanel">
+                <h2 class="section-title" data-translate="horoscopeTitle">⭐ Daily Horoscope</h2>
+                <p style="text-align: center; margin-bottom: 15px; font-size: 0.9rem;" data-translate="horoscopeIntro">Select your zodiac sign to see your horoscope for today.</p>
+                <div class="zodiac-grid" role="group" aria-label="Zodiac signs">
+                    <button class="zodiac-sign" onclick="triggerHoroscopeAnimation('aries')" tabindex="0" data-zodiac="aries">♈ Aries</button>
+                    <button class="zodiac-sign" onclick="triggerHoroscopeAnimation('taurus')" tabindex="0" data-zodiac="taurus">♉ Taurus</button>
+                    <button class="zodiac-sign" onclick="triggerHoroscopeAnimation('gemini')" tabindex="0" data-zodiac="gemini">♊ Gemini</button>
+                    <button class="zodiac-sign" onclick="triggerHoroscopeAnimation('cancer')" tabindex="0" data-zodiac="cancer">♋ Cancer</button>
+                    <button class="zodiac-sign" onclick="triggerHoroscopeAnimation('leo')" tabindex="0" data-zodiac="leo">♌ Leo</button>
+                    <button class="zodiac-sign" onclick="triggerHoroscopeAnimation('virgo')" tabindex="0" data-zodiac="virgo">♍ Virgo</button>
+                    <button class="zodiac-sign" onclick="triggerHoroscopeAnimation('libra')" tabindex="0" data-zodiac="libra">♎ Libra</button>
+                    <button class="zodiac-sign" onclick="triggerHoroscopeAnimation('scorpio')" tabindex="0" data-zodiac="scorpio">♏ Scorpio</button>
+                    <button class="zodiac-sign" onclick="triggerHoroscopeAnimation('sagittarius')" tabindex="0" data-zodiac="sagittarius">♐ Sagittarius</button>
+                    <button class="zodiac-sign" onclick="triggerHoroscopeAnimation('capricorn')" tabindex="0" data-zodiac="capricorn">♑ Capricorn</button>
+                    <button class="zodiac-sign" onclick="triggerHoroscopeAnimation('aquarius')" tabindex="0" data-zodiac="aquarius">♒ Aquarius</button>
+                    <button class="zodiac-sign" onclick="triggerHoroscopeAnimation('pisces')" tabindex="0" data-zodiac="pisces">♓ Pisces</button>
+                </div>
+                <div class="result" id="horoscopeResult" aria-live="polite">
+                    <h3 id="horoscopeSign"></h3>
+                    <div id="horoscopeText"></div>
+                    <div class="reflection-prompt" data-translate="horoscopeReflection">Consider how this guidance might apply to your day ahead...</div>
+                    <button class="share-button" onclick="shareResult('horoscope')" data-translate="shareHoroscopeBtn">Share Today's Horoscope</button>
+                </div>
+            </section>
+
+            <section id="numerology" class="content-section" role="tabpanel">
+                <h2 class="section-title" data-translate="numerologyTitle">🔢 Numerology Reading</h2>
+                 <p style="text-align: center; margin-bottom: 15px; font-size: 0.9rem;" data-translate="numerologyIntro">Discover your Life Path Number and its meaning.</p>
+                <div class="form-group" id="birthDateGroup">
+                    <label for="birthDate" data-translate="birthDateLabel">Enter your date of birth:</label>
+                    <input type="date" id="birthDate" name="birthDate">
+                    <div class="error-message" id="birthDateError"><span class="error-icon">⚠️</span> <span data-translate="birthDateError"></span></div>
+                </div>
+                <div class="form-group" id="fullNameGroup">
+                    <label for="fullName" data-translate="fullNameLabel">Enter your full name:</label>
+                    <input type="text" id="fullName" name="fullName" data-translate-placeholder="fullNamePlaceholder">
+                    <div class="error-message" id="fullNameError"><span class="error-icon">⚠️</span> <span data-translate="fullNameError"></span></div>
+                </div>
+                <button class="btn" onclick="triggerNumerologyAnimation()" id="calculateBtn" data-translate="calculateBtn">Calculate My Numbers</button>
+                <div class="result" id="numerologyResult" aria-live="polite">
+                    <div id="numerologyText"></div>
+                    <div class="reflection-prompt" data-translate="numerologyReflection">How do these numerical insights align with your personal experiences...</div>
+                    <button class="reset-btn" onclick="resetNumerology()" style="display: none;" id="resetNumerologyBtn" data-translate="recalculateBtn">Recalculate</button>
+                    <button class="share-button" onclick="shareResult('numerology')" data-translate="shareNumbersBtn">Share My Numbers</button>
+                </div>
+            </section>
+
+            <section id="chinese" class="content-section" role="tabpanel">
+                <h2 class="section-title" data-translate="chineseZodiacTitle">🐉 Chinese Zodiac</h2>
+                <p style="text-align: center; margin-bottom: 15px; font-size: 0.9rem;" data-translate="chineseZodiacIntro">Discover your zodiac animal and its characteristics.</p>
+                <div class="form-group" id="birthYearGroup">
+                    <label for="birthYear" data-translate="birthYearLabel">Enter your birth year:</label>
+                    <input type="number" id="birthYear" name="birthYear" min="1900" max="2099" data-translate-placeholder="birthYearPlaceholder">
+                    <div class="input-help" id="lunarYearHelp" data-translate="lunarYearHelp">Note: For those born in Jan or Feb, results may vary.</div>
+                    <div class="error-message" id="birthYearError"><span class="error-icon">⚠️</span> <span data-translate="birthYearError"></span></div>
+                </div>
+                <button class="btn" onclick="triggerChineseZodiacAnimation()" id="chineseBtn" data-translate="findZodiacBtn">Find My Zodiac</button>
+                <div class="result" id="chineseResult" aria-live="polite">
+                    <div id="chineseText"></div>
+                    <div class="reflection-prompt" data-translate="chineseZodiacReflection">Embrace the wisdom of your zodiac animal...</div>
+                    <button class="reset-btn" onclick="resetChineseZodiac()" style="display: none;" id="resetChineseBtn" data-translate="recalculateBtn">Recalculate</button>
+                    <button class="share-button" onclick="shareResult('chinese')" data-translate="shareZodiacBtn">Share My Zodiac</button>
+                </div>
+            </section>
+        </div>
+    </div>
+    
+    <nav id="bottom-nav">
+        <button class="nav-btn active" onclick="showSection('tarot')" data-section="tarot">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"></rect><line x1="12" y1="4" x2="12" y2="20"></line><line x1="4" y1="12" x2="20" y2="12"></line></svg>
+            <span data-translate="tarotTab">Tarot</span>
+        </button>
+        <button class="nav-btn" onclick="showSection('astrology')" data-section="astrology">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+            <span data-translate="astrologyTab">Horoscope</span>
+        </button>
+        <button class="nav-btn" onclick="showSection('numerology')" data-section="numerology">
+           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7V4h16v3"></path><path d="M9 20h6"></path><path d="M12 4v16"></path></svg>
+            <span data-translate="numerologyTab">Numerology</span>
+        </button>
+        <button class="nav-btn" onclick="showSection('chinese')" data-section="chinese">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10z"></path><path d="M12 12a10.94 10.94 0 0 1-8.7-4.88"></path><path d="M2.5 12.5a10.94 10.94 0 0 1 0-1.22"></path><path d="M12 2.5a10.94 10.94 0 0 1 8.7 4.88"></path><path d="M21.5 12.5a10.94 10.94 0 0 1 0 1.22"></path><path d="M12 21.5a10.94 10.94 0 0 1-8.7-4.88"></path><path d="M2.5 11.5a10.94 10.94 0 0 0 0 1.22"></path><path d="M12 12a10.94 10.94 0 0 0 8.7 4.88"></path><path d="M21.5 11.5a10.94 10.94 0 0 0 0-1.22"></path></svg>
+            <span data-translate="chineseZodiacTab">Zodiac</span>
+        </button>
+    </nav>
+
+    <script>
+        // --- Translations and Data objects are unchanged ---
+        const translations = {
+            en: {
+                tagline: "Discover Your Destiny Through Ancient Wisdom",
+                tarotTab: "Tarot", astrologyTab: "Horoscope", numerologyTab: "Numerology", chineseZodiacTab: "Zodiac",
+                tarotTitle: "🃏 Tarot Reading",
+                tarotIntro: "Focus on a question and select 3 cards to reveal your fortune.",
+                tarotProgressStart: "Please select card 1 of 3",
+                tarotProgressRemain: "Please select {remaining} more card(s)",
+                tarotProgressDone: "Reading complete!",
+                yourReading: "Your Reading:",
+                tarotCard: "Tarot Card",
+                tarotCardSelected: "Selected Tarot Card: {cardName}",
+                tarotPast: "Past",
+                tarotPresent: "Present",
+                tarotFuture: "Future",
+                tarotReflection: "Take a moment to reflect on how these insights resonate with your current situation.",
+                resetReadingBtn: "New Reading",
+                shareReadingBtn: "Share this Reading",
+                horoscopeTitle: "⭐ Daily Horoscope",
+                horoscopeIntro: "Select your zodiac sign to see your horoscope for today.",
+                horoscopeFor: "{sign} - Today's Horoscope",
+                horoscopeReflection: "Consider how this guidance might apply to your day ahead.",
+                shareHoroscopeBtn: "Share Today's Horoscope",
+                numerologyTitle: "🔢 Numerology Reading",
+                numerologyIntro: "Discover your Life Path Number and its meaning.",
+                birthDateLabel: "Enter your date of birth:",
+                birthDateError: "Please enter a valid date of birth",
+                fullNameLabel: "Enter your full name:",
+                fullNamePlaceholder: "e.g., John Doe",
+                fullNameError: "Please enter your full name.",
+                calculateBtn: "Calculate My Numbers",
+                yourNumerologyProfile: "Your Numerology Profile:",
+                lifePathNumber: "Life Path Number:",
+                destinyNumber: "Destiny Number:",
+                numerologyReflection: "How do these numerical insights align with your personal experiences?",
+                recalculateBtn: "Recalculate",
+                shareNumbersBtn: "Share My Numbers",
+                chineseZodiacTitle: "🐉 Chinese Zodiac",
+                chineseZodiacIntro: "Discover your zodiac animal and its characteristics.",
+                birthYearLabel: "Enter your birth year:",
+                birthYearPlaceholder: "e.g., 1990",
+                lunarYearHelp: "Note: For those born in Jan or Feb, results may vary due to the Lunar New Year.",
+                birthYearError: "Please enter a valid year between 1900 and 2099",
+                findZodiacBtn: "Find My Zodiac",
+                yourZodiac: "Your Zodiac Animal:",
+                yearOf: "Year of the {animal}",
+                traits: "Traits:",
+                chineseZodiacReflection: "Embrace the wisdom of your zodiac animal.",
+                shareZodiacBtn: "Share My Zodiac",
+                shareTitle: "Share Result",
+                shareError: "Sharing failed or was cancelled. Your reading has been copied to the clipboard!",
+                shareSuccess: "Your reading has been copied to the clipboard!",
+                myTarotReading: "My Tarot Reading",
+                myHoroscope: "My Horoscope",
+                myNumerology: "My Numerology Reading",
+                myZodiac: "My Chinese Zodiac",
+                shareTextIntro: "Check out my fortune from Teller.eu.org! ",
+                closeModal: "Close modal",
+            },
+            zh: {
+                tagline: "通过古老的智慧发现你的命运",
+                tarotTab: "塔罗牌", astrologyTab: "星座", numerologyTab: "灵数", chineseZodiacTab: "生肖",
+                tarotTitle: "🃏 塔罗牌解读",
+                tarotIntro: "心中默念一个问题，然后选择3张牌来揭示你的运势。",
+                tarotProgressStart: "请选择3张牌中的第1张",
+                tarotProgressRemain: "还需选择 {remaining} 张牌",
+                tarotProgressDone: "解读完成!",
+                yourReading: "你的解读:",
+                tarotCard: "塔罗牌",
+                tarotCardSelected: "已选塔罗牌: {cardName}",
+                tarotPast: "过去",
+                tarotPresent: "现在",
+                tarotFuture: "未来",
+                tarotReflection: "花点时间反思这些见解如何与您当前的情况产生共鸣。",
+                resetReadingBtn: "重新解读",
+                shareReadingBtn: "分享这次解读",
+                horoscopeTitle: "⭐ 每日星座运势",
+                horoscopeIntro: "选择你的星座，查看今日运势。",
+                horoscopeFor: "{sign} - 今日运势",
+                horoscopeReflection: "思考这个指引如何应用于你未来的一天。",
+                shareHoroscopeBtn: "分享今日运势",
+                numerologyTitle: "🔢 生命灵数解读",
+                numerologyIntro: "发现你的生命路径数字及其含义。",
+                birthDateLabel: "输入您的出生日期：",
+                birthDateError: "请输入有效的出生日期",
+                fullNameLabel: "输入您的全名：",
+                fullNamePlaceholder: "例如：Zhang San / 张三",
+                fullNameError: "请输入您的全名。",
+                calculateBtn: "计算我的数字",
+                yourNumerologyProfile: "您的命理侧写:",
+                lifePathNumber: "生命路径数字:",
+                destinyNumber: "命运数字:",
+                numerologyReflection: "这些数字洞见如何与您的个人经历和抱负相符？",
+                recalculateBtn: "重新计算",
+                shareNumbersBtn: "分享我的数字",
+                chineseZodiacTitle: "🐉 中国生肖",
+                chineseZodiacIntro: "发现您的生肖动物和运势。",
+                birthYearLabel: "输入您的出生年份：",
+                birthYearPlaceholder: "例如：1990",
+                lunarYearHelp: "注意：此计算基于公历年份。对于1月或2月出生的用户，结果可能因农历新年而异。",
+                birthYearError: "请输入1900至2099之间的有效年份",
+                findZodiacBtn: "找到我的生肖",
+                yourZodiac: "您的生肖:",
+                yearOf: "{animal}年",
+                traits: "性格特点:",
+                chineseZodiacReflection: "拥抱你生肖动物的智慧。",
+                shareZodiacBtn: "分享我的生肖",
+                shareTitle: "分享结果",
+                shareError: "分享失败或已取消。您的解读已复制到剪贴板！",
+                shareSuccess: "您的解读已复制到剪贴板！",
+                myTarotReading: "我的塔罗牌解读",
+                myHoroscope: "我的星座运势",
+                myNumerology: "我的命理学解读",
+                myZodiac: "我的中国生肖",
+                shareTextIntro: "看看我在 Teller.eu.org 得到的运势! ",
+                closeModal: "关闭弹窗",
+            },
+            hi: {
+                tagline: "प्राचीन ज्ञान के माध्यम से अपने भाग्य की खोज करें",
+                tarotTab: "टैरो", astrologyTab: "राशिफल", numerologyTab: "अंक", chineseZodiacTab: "राशि",
+                tarotTitle: "🃏 टैरो रीडिंग",
+                tarotIntro: "एक प्रश्न पर ध्यान केंद्रित करें और अपना भाग्य प्रकट करने के लिए 3 कार्ड चुनें।",
+                tarotProgressStart: "कृपया 3 में से कार्ड 1 चुनें",
+                tarotProgressRemain: "कृपया {remaining} और कार्ड चुनें",
+                tarotProgressDone: "पढ़ना पूरा!",
+                yourReading: "आपकी रीडिंग:",
+                tarotCard: "टैरो कार्ड",
+                tarotCardSelected: "चुना हुआ टैरो कार्ड: {cardName}",
+                tarotPast: "अतीत",
+                tarotPresent: "वर्तमान",
+                tarotFuture: "भविष्य",
+                tarotReflection: "यह सोचने के लिए कुछ समय निकालें कि ये अंतर्दृष्टियाँ आपकी वर्तमान स्थिति से कैसे मेल खाती हैं।",
+                resetReadingBtn: "नई रीडिंग",
+                shareReadingBtn: "इस रीडिंग को साझा करें",
+                horoscopeTitle: "⭐ दैनिक राशिफल",
+                horoscopeIntro: "आज के लिए अपना राशिफल देखने के लिए अपनी राशि चुनें।",
+                horoscopeFor: "{sign} - आज का राशिफल",
+                horoscopeReflection: "विचार करें कि यह मार्गदर्शन आपके आने वाले दिन पर कैसे लागू हो सकता है।",
+                shareHoroscopeBtn: "आज का राशिफल साझा करें",
+                numerologyTitle: "🔢 अंक ज्योतिष रीडिंग",
+                numerologyIntro: "अपने जीवन पथ संख्या और उसके अर्थ की खोज करें।",
+                birthDateLabel: "अपनी जन्म तिथि दर्ज करें:",
+                birthDateError: "कृपया जन्म की एक वैध तारीख दर्ज करें",
+                fullNameLabel: "अपना पूरा नाम दर्ज करें:",
+                fullNamePlaceholder: "जैसे, Anil Kumar",
+                fullNameError: "कृपया अपना पूरा नाम दर्ज करें।",
+                calculateBtn: "मेरे नंबरों की गणना करें",
+                yourNumerologyProfile: "आपकी अंक ज्योतिष प्रोफाइल:",
+                lifePathNumber: "जीवन पथ संख्या:",
+                destinyNumber: "भाग्य संख्या:",
+                numerologyReflection: "ये संख्यात्मक अंतर्दृष्टियाँ आपके व्यक्तिगत अनुभवों और महत्वाकांक्षाओं के साथ कैसे मेल खाती हैं?",
+                recalculateBtn: "पुनर्गणना करें",
+                shareNumbersBtn: "मेरे नंबर साझा करें",
+                chineseZodiacTitle: "🐉 चीनी राशि",
+                chineseZodiacIntro: "अपने राशि चक्र जानवर और उसकी विशेषताओं की खोज करें।",
+                birthYearLabel: "अपना जन्म वर्ष दर्ज करें:",
+                birthYearPlaceholder: "जैसे, 1990",
+                lunarYearHelp: "ध्यान दें: यह गणना ग्रेगोरियन वर्ष पर आधारित है। जनवरी या फरवरी में पैदा हुए लोगों के लिए, चंद्र नव वर्ष के कारण परिणाम भिन्न हो सकते हैं।",
+                birthYearError: "कृपया 1900 और 2099 के बीच एक वैध वर्ष दर्ज करें",
+                findZodiacBtn: "मेरी राशि खोजें",
+                yourZodiac: "आपका राशि चक्र जानवर:",
+                yearOf: "{animal} का वर्ष",
+                traits: "लक्षण:",
+                chineseZodiacReflection: "अपने राशि चक्र जानवर के ज्ञान को अपनाएं।",
+                shareZodiacBtn: "मेरी राशि साझा करें",
+                shareTitle: "परिणाम साझा करें",
+                shareError: "साझा करना विफल रहा या रद्द कर दिया गया। आपकी रीडिंग क्लिपबोर्ड पर कॉपी कर दी गई है!",
+                shareSuccess: "आपकी रीडिंग क्लिपबोर्ड पर कॉपी कर दी गई है!",
+                myTarotReading: "मेरी टैरो रीडिंग",
+                myHoroscope: "मेरा राशिफल",
+                myNumerology: "मेरी अंक ज्योतिष रीडिंग",
+                myZodiac: "मेरी चीनी राशि",
+                shareTextIntro: "Teller.eu.org से मेरा भाग्य देखें! ",
+                closeModal: "मोडल बंद करें",
+            },
+            fr: {
+                tagline: "Découvrez Votre Destin Grâce à la Sagesse Ancienne",
+                tarotTab: "Tarot", astrologyTab: "Horoscope", numerologyTab: "Numéros", chineseZodiacTab: "Zodiaque",
+                tarotTitle: "🃏 Tirage de Tarot",
+                tarotIntro: "Concentrez-vous sur une question et sélectionnez 3 cartes pour révéler votre fortune.",
+                tarotProgressStart: "Veuillez sélectionner la carte 1 sur 3",
+                tarotProgressRemain: "Veuillez sélectionner {remaining} carte(s) supplémentaire(s)",
+                tarotProgressDone: "Lecture terminée !",
+                yourReading: "Votre Tirage :",
+                tarotCard: "Carte de Tarot",
+                tarotCardSelected: "Carte de Tarot sélectionnée : {cardName}",
+                tarotPast: "Passé",
+                tarotPresent: "Présent",
+                tarotFuture: "Futur",
+                tarotReflection: "Prenez un moment pour réfléchir à la façon dont ces informations résonnent avec votre situation actuelle.",
+                resetReadingBtn: "Nouveau Tirage",
+                shareReadingBtn: "Partager ce Tirage",
+                horoscopeTitle: "⭐ Horoscope du Jour",
+                horoscopeIntro: "Sélectionnez votre signe du zodiaque pour voir votre horoscope du jour.",
+                horoscopeFor: "{sign} - Horoscope du Jour",
+                horoscopeReflection: "Réfléchissez à la manière dont ces conseils pourraient s'appliquer à votre journée.",
+                shareHoroscopeBtn: "Partager l'Horoscope du Jour",
+                numerologyTitle: "🔢 Consultation de Numérologie",
+                numerologyIntro: "Découvrez votre Chemin de Vie et sa signification.",
+                birthDateLabel: "Entrez votre date de naissance :",
+                birthDateError: "Veuillez entrer une date de naissance valide",
+                fullNameLabel: "Entrez votre nom complet :",
+                fullNamePlaceholder: "ex: Jean Dupont",
+                fullNameError: "Veuillez entrer votre nom complet.",
+                calculateBtn: "Calculer Mes Nombres",
+                yourNumerologyProfile: "Votre Profil Numérologique :",
+                lifePathNumber: "Chemin de Vie :",
+                destinyNumber: "Nombre de Destinée :",
+                numerologyReflection: "Comment ces perspectives numériques s'alignent-elles sur vos expériences et ambitions personnelles ?",
+                recalculateBtn: "Recalculer",
+                shareNumbersBtn: "Partager Mes Nombres",
+                chineseZodiacTitle: "🐉 Zodiaque Chinois",
+                chineseZodiacIntro: "Découvrez votre animal du zodiaque et ses caractéristiques.",
+                birthYearLabel: "Entrez votre année de naissance :",
+                birthYearPlaceholder: "ex: 1990",
+                lunarYearHelp: "Note : Ce calcul est basé sur l'année grégorienne. Pour les personnes nées en janvier ou février, les résultats peuvent varier en raison du Nouvel An lunaire.",
+                birthYearError: "Veuillez entrer une année valide entre 1900 et 2099",
+                findZodiacBtn: "Trouver Mon Zodiaque",
+                yourZodiac: "Votre Animal du Zodiaque :",
+                yearOf: "Année du {animal}",
+                traits: "Traits :",
+                chineseZodiacReflection: "Accueillez la sagesse de votre animal du zodiaque.",
+                shareZodiacBtn: "Partager Mon Zodiaque",
+                shareTitle: "Partager le Résultat",
+                shareError: "Le partage a échoué ou a été annulé. Votre lecture a été copiée dans le presse-papiers !",
+                shareSuccess: "Votre lecture a été copiée dans le presse-papiers !",
+                myTarotReading: "Mon Tirage de Tarot",
+                myHoroscope: "Mon Horoscope",
+                myNumerology: "Ma Lecture de Numérologie",
+                myZodiac: "Mon Zodiaque Chinois",
+                shareTextIntro: "Découvrez ma fortune sur Teller.eu.org ! ",
+                closeModal: "Fermer la modale",
+            },
+            ar: {
+                tagline: "اكتشف مصيرك من خلال الحكمة القديمة",
+                tarotTab: "التاروت", astrologyTab: "الأبراج", numerologyTab: "الأعداد", chineseZodiacTab: "الأبراج",
+                tarotTitle: "🃏 قراءة التاروت",
+                tarotIntro: "ركز على سؤال واختر 3 بطاقات لتكشف عن ثروتك.",
+                tarotProgressStart: "الرجاء اختيار البطاقة 1 من 3",
+                tarotProgressRemain: "الرجاء اختيار {remaining} بطاقة إضافية",
+                tarotProgressDone: "اكتملت القراءة!",
+                yourReading: "قراءتك:",
+                tarotCard: "بطاقة التاروت",
+                tarotCardSelected: "بطاقة التاروت المختارة: {cardName}",
+                tarotPast: "الماضي",
+                tarotPresent: "الحاضر",
+                tarotFuture: "المستقبل",
+                tarotReflection: "خذ لحظة للتفكير في كيفية صدى هذه الأفكار مع وضعك الحالي.",
+                resetReadingBtn: "قراءة جديدة",
+                shareReadingBtn: "شارك هذه القراءة",
+                horoscopeTitle: "⭐ برجك اليومي",
+                horoscopeIntro: "اختر برجك لترى برجك لهذا اليوم.",
+                horoscopeFor: "{sign} - برجك اليوم",
+                horoscopeReflection: "فكر في كيفية تطبيق هذا التوجيه على يومك المقبل.",
+                shareHoroscopeBtn: "شارك برج اليوم",
+                numerologyTitle: "🔢 قراءة علم الأعداد",
+                numerologyIntro: "اكتشف رقم مسار حياتك ومعناه.",
+                birthDateLabel: "أدخل تاريخ ميلادك:",
+                birthDateError: "الرجاء إدخال تاريخ ميلاد صحيح",
+                fullNameLabel: "أدخل اسمك الكامل:",
+                fullNamePlaceholder: "مثال: John Doe",
+                fullNameError: "الرجاء إدخال اسمك الكامل.",
+                calculateBtn: "احسب أرقامي",
+                yourNumerologyProfile: "ملفك الشخصي في علم الأعداد:",
+                lifePathNumber: "رقم مسار الحياة:",
+                destinyNumber: "رقم المصير:",
+                numerologyReflection: "كيف تتماشى هذه الأفكار الرقمية مع تجاربك وطموحاتك الشخصية؟",
+                recalculateBtn: "إعادة الحساب",
+                shareNumbersBtn: "شارك أرقامي",
+                chineseZodiacTitle: "🐉 الأبراج الصينية",
+                chineseZodiacIntro: "اكتشف حيوانك في الأبراج وخصائصه.",
+                birthYearLabel: "أدخل سنة ميلادك:",
+                birthYearPlaceholder: "مثال: 1990",
+                lunarYearHelp: "ملاحظة: يعتمد هذا الحساب على السنة الميلادية. بالنسبة لأولئك الذين ولدوا في يناير أو فبراير ، قد تختلف النتائج بسبب السنة القمرية الجديدة.",
+                birthYearError: "الرجاء إدخال سنة صالحة بين 1900 و 2099",
+                findZodiacBtn: "ابحث عن برجي",
+                yourZodiac: "حيوانك في الأبراج:",
+                yearOf: "عام {animal}",
+                traits: "صفات:",
+                chineseZodiacReflection: "احتضن حكمة حيوانك في الأبراج.",
+                shareZodiacBtn: "شارك برجي",
+                shareTitle: "مشاركة النتيجة",
+                shareError: "فشلت المشاركة أو تم إلغاؤها. تم نسخ قراءتك إلى الحافظة!",
+                shareSuccess: "تم نسخ قراءتك إلى الحافظة!",
+                myTarotReading: "قراءة التاروت الخاصة بي",
+                myHoroscope: "برجي",
+                myNumerology: "قراءة علم الأعداد الخاصة بي",
+                myZodiac: "برجي الصيني",
+                shareTextIntro: "تحقق من حظي من Teller.eu.org! ",
+                closeModal: "أغلق النافذة",
+            }
+        };
+
+        const data = {
+            tarotCards: {
+                en: ["The Fool", "The Magician", "The High Priestess", "The Empress", "The Emperor", "The Hierophant", "The Lovers", "The Chariot", "Strength", "The Hermit", "Wheel of Fortune", "Justice", "The Hanged Man", "Death", "Temperance", "The Devil", "The Tower", "The Star", "The Moon", "The Sun", "Judgement", "The World"],
+                zh: ["愚人", "魔术师", "女祭司", "皇后", "皇帝", "教皇", "恋人", "战车", "力量", "隐士", "命运之轮", "正义", "倒吊人", "死亡", "节制", "恶魔", "塔", "星星", "月亮", "太阳", "审判", "世界"],
+                hi: ["मूर्ख", "जादूगर", "महायाजिका", "महारानी", "सम्राट", "धर्मगुरु", "प्रेमी", "रथ", "शक्ति", "एकांतवासी", "भाग्य का पहिया", "न्याय", "उल्टा लटका हुआ आदमी", "मृत्यु", "संयम", "शैतान", "टॉवर", "तारा", "चाँद", "सूरज", "निर्णय", "दुनिया"],
+                fr: ["Le Mat", "Le Bateleur", "La Papesse", "L'Impératrice", "L'Empereur", "Le Pape", "L'Amoureux", "Le Chariot", "La Force", "L'Hermite", "La Roue de Fortune", "La Justice", "Le Pendu", "La Mort", "Tempérance", "Le Diable", "La Maison Dieu", "L'Étoile", "La Lune", "Le Soleil", "Le Jugement", "Le Monde"],
+                ar: ["الأحمق", "الساحر", "الكاهنة العليا", "الإمبراطورة", "الإمبراطور", "الكاهن", "العشاق", "العربة", "القوة", "الناسك", "عجلة الحظ", "العدالة", "الرجل المشنوق", "الموت", "الاعتدال", "الشيطان", "البرج", "النجمة", "القمر", "الشمس", "الحكم", "العالم"]
+            },
+            tarotMeanings: {
+                en: ["New beginnings, spontaneity, innocence", "Manifestation, resourcefulness, power", "Intuition, sacred knowledge, divine feminine", "Femininity, beauty, nature, abundance", "Authority, establishment, structure, a father figure", "Spiritual wisdom, religious beliefs, conformity", "Love, harmony, relationships, values alignment", "Control, willpower, success, determination", "Strength, courage, persuasion, influence", "Soul-searching, introspection, inner guidance", "Good luck, karma, life cycles, destiny", "Justice, fairness, truth, cause and effect", "Suspension, restriction, letting go", "Endings, beginnings, change, transformation", "Balance, moderation, patience, purpose", "Shadow self, attachment, addiction, restriction", "Sudden change, upheaval, chaos, revelation", "Hope, faith, purpose, renewal, spirituality", "Illusion, fear, anxiety, subconscious, intuition", "Positivity, fun, warmth, success, vitality", "Judgement, rebirth, inner calling, absolution", "Completion, accomplishment, travel, success"],
+                zh: ["新的开始，自发性，纯真", "显化，足智多谋，力量", "直觉，神圣知识，神圣女性", "女性气质，美丽，自然，富足", "权威，建制，结构，父亲形象", "精神智慧，宗教信仰，整合", "爱，和谐，关系，价值观对齐", "控制，意志力，成功，决心", "力量，勇气，说服力，影响力", "灵魂探索，内省，内在指引", "好运，业力，生命周期，命运", "正义，公平，真理，因果", "悬挂，限制，放手", "结束，开始，改变，转变", "平衡，节制，耐心，目的", "阴暗面，执着，成瘾，限制", "突然的变化，剧变，混乱，启示", "希望，信念，目的，更新，灵性", "幻觉，恐惧，焦虑，潜意识，直觉", "积极，乐趣，温暖，成功，活力", "审判，重生，内在召唤，赦免", "完成，成就，旅行，成功"],
+                hi: ["नई शुरुआत, सहजता, मासूमियत", "प्रकटीकरण, साधन संपन्नता, शक्ति", "अंतर्ज्ञान, पवित्र ज्ञान, दिव्य स्त्री", "स्त्रीत्व, सौंदर्य, प्रकृति, प्रचुरता", "अधिकार, स्थापना, संरचना, एक पिता का आंकड़ा", "आध्यात्मिक ज्ञान, धार्मिक विश्वास, अनुरूपता", "प्रेम, सद्भाव, रिश्ते, मूल्यों का संरेखण", "नियंत्रण, इच्छाशक्ति, सफलता, दृढ़ संकल्प", "शक्ति, साहस, अनुनय, प्रभाव", "आत्मा-खोज, आत्मनिरीक्षण, आंतरिक मार्गदर्शन", "सौभाग्य, कर्म, जीवन चक्र, भाग्य", "न्याय, निष्पक्षता, सत्य, कारण और प्रभाव", "निलंबन, प्रतिबंध, जाने देना", "अंत, शुरुआत, परिवर्तन, परिवर्तन", "संतुलन, संयम, धैर्य, उद्देश्य", "छाया स्वयं, लगाव, व्यसन, प्रतिबंध", "अचानक परिवर्तन, उथल-पुथल, अराजकता, रहस्योद्घाटन", "आशा, विश्वास, उद्देश्य, नवीनीकरण, आध्यात्मिकता", "भ्रम, भय, चिंता, अवचेतन, अंतर्ज्ञान", "सकारात्मकता, मज़ा, गर्मी, सफलता, जीवन शक्ति", "निर्णय, पुनर्जन्म, आंतरिक बुलावा, दोषमुक्ति", "पूर्णता, उपलब्धि, यात्रा, सफलता"],
+                fr: ["Nouveaux départs, spontanéité, innocence", "Manifestation, ingéniosité, pouvoir", "Intuition, connaissance sacrée, féminin divin", "Féminité, beauté, nature, abondance", "Autorité, établissement, structure, une figure paternelle", "Sagesse spirituelle, croyances religieuses, conformité", "Amour, harmonie, relations, alignement des valeurs", "Contrôle, volonté, succès, détermination", "Force, courage, persuasion, influence", "Recherche de l'âme, introspection, guide intérieur", "Bonne fortune, karma, cycles de vie, destin", "Justice, équité, vérité, cause à effet", "Suspension, restriction, lâcher prise", "Fins, commencements, changement, transformation", "Équilibre, modération, patience, but", "Le côté sombre, l'attachement, la dépendance, la restriction", "Changement soudain, bouleversement, chaos, révélation", "Espoir, foi, but, renouveau, spiritualité", "Illusion, peur, anxiété, subconscient, intuition", "Positivité, plaisir, chaleur, succès, vitalité", "Jugement, renaissance, appel intérieur, absolution", "Achèvement, accomplissement, voyage, succès"],
+                ar: ["بدايات جديدة، عفوية، براءة", "تجلي، براعة، قوة", "حدس، معرفة مقدسة، أنوثة إلهية", "أنوثة، جمال، طبيعة، وفرة", "سلطة، مؤسسة، هيكل، شخصية أب", "حكمة روحية، معتقدات دينية, مطابقة", "حب، انسجام، علاقات، توافق القيم", "تحكم، قوة إرادة، نجاح، إصرار", "قوة، شجاعة، إقناع، تأثير", "بحث عن الذات، تأمل، توجيه داخلي", "حظ سعيد، كارما، دورات الحياة، مصير", "عدالة، إنصاف، حقيقة، سبب ونتيجة", "تعليق، تقييد، ترك", "نهايات، بدايات، تغيير، تحول", "توازن، اعتدال، صبر، هدف", "الجانب المظلم، تعلق، إدمان، تقييد", "تغيير مفاجئ، اضطراب، فوضى، كشف", "أمل، إيمان، هدف، تجديد، روحانية", "وهم، خوف، قلق، اللاوعي، حدس", "إيجابية، مرح، دفء، نجاح، حيوية", "حكم، ولادة جديدة، دعوة داخلية، غفران", "اكتمال، إنجاز، سفر، نجاح"]
+            },
+            horoscopes: {
+                en: { aries: "New opportunities for leadership arise today. Your natural charisma will attract success, both personally and professionally.", taurus: "Stability and patience will be your greatest assets today. Focus on building lasting foundations for future goals.", gemini: "Communication is key today. Your wit and charm will open doors to new connections and exciting possibilities.", cancer: "Trust your intuition today. Your emotional intelligence will guide you toward making the right decisions.", leo: "Your creativity is at its peak. It's an excellent time to showcase your talents and pursue artistic endeavors.", virgo: "Attention to detail will serve you well today. Focus on organization and practical solutions to current challenges.", libra: "Balance and harmony are within reach. Seek compromise in conflicts and find beauty in your surroundings.", scorpio: "Transformation is in the air. Embrace change and let go of what no longer serves your higher purpose.", sagittarius: "Adventure calls to you today. Broaden your horizons through learning, travel, or philosophical discussions.", capricorn: "Hard work and discipline will pay off today. Stay focused on your long-term goals and remain persistent.", aquarius: "Innovation and originality will set you apart today. Embrace your unique perspective and share your vision.", pisces: "Your compassion and creativity are highlighted today. Trust in your dreams and let your imagination guide you." },
+                zh: { aries: "今天为领导力带来了新的机会。你天生的魅力将在个人和职业上吸引成功。", taurus: "稳定和耐心将是你今天最大的财富。专注于为未来目标建立持久的基础。", gemini: "沟通是今天的关键。你的机智和魅力将为新的联系和令人兴奋的可能性打开大门。", cancer: "今天相信你的直觉。你的情商将引导你做出正确的决定。", leo: "你的创造力正处于顶峰。这是展示你的才华和追求艺术事业的绝佳时机。", virgo: "对细节的关注今天将对你大有裨益。专注于组织和对当前挑战的实际解决方案。", libra: "平衡与和谐触手可及。在冲突中寻求妥协，在周围环境中寻找美好。", scorpio: "变革在空气中。拥抱变化，放开不再服务于你更高目标的东西。", sagittarius: "冒险今天在呼唤你。通过学习、旅行或哲学讨论来拓宽你的视野。", capricorn: "辛勤工作和纪律今天将得到回报。专注于你的长期目标并保持毅力。", aquarius: "创新和独创性今天将使你脱颖而出。拥抱你独特的视角并分享你的Vision。", pisces: "你的同情心和创造力今天得到彰显。相信你的梦想，让你的想象力引导你。" },
+                hi: { aries: "आज नेतृत्व के नए अवसर पैदा होते हैं। आपका स्वाभाविक करिश्मा व्यक्तिगत और व्यावसायिक रूप से सफलता को आकर्षित करेगा।", taurus: "स्थिरता और धैर्य आज आपकी सबसे बड़ी संपत्ति होगी। भविष्य के लक्ष्यों के लिए स्थायी नींव बनाने पर ध्यान दें।", gemini: "आज संचार महत्वपूर्ण है। आपकी बुद्धि और आकर्षण नए कनेक्शन और रोमांचक संभावनाओं के द्वार खोलेंगे।", cancer: "आज अपनी अंतर्ज्ञान पर भरोसा करें। आपकी भावनात्मक बुद्धिमत्ता आपको सही निर्णय लेने की ओर मार्गदर्शन करेगी।", leo: "आपकी रचनात्मकता अपने चरम पर है। अपनी प्रतिभा का प्रदर्शन करने और कलात्मक प्रयासों को आगे बढ़ाने का यह एक उत्कृष्ट समय है।", virgo: "आज विस्तार पर ध्यान देना आपके लिए अच्छा रहेगा। वर्तमान चुनौतियों के लिए संगठन और व्यावहारिक समाधानों पर ध्यान दें।", libra: "संतुलन और सद्भाव पहुंच के भीतर हैं। संघर्षों में समझौता करें और अपने परिवेश में सुंदरता खोजें।", scorpio: "परिवर्तन हवा में है। परिवर्तन को गले लगाओ और जो अब आपके उच्च उद्देश्य की सेवा नहीं करता है उसे जाने दो।", sagittarius: "आज रोमांच आपको बुला रहा है। सीखने, यात्रा, या दार्शनिक चर्चाओं के माध्यम से अपने क्षितिज का विस्तार करें।", capricorn: "आज कड़ी मेहनत और अनुशासन का फल मिलेगा। अपने दीर्घकालिक लक्ष्यों पर ध्यान केंद्रित रहें और लगातार बने रहें।", aquarius: "आज नवीनता और मौलिकता आपको अलग करेगी। अपने अद्वितीय परिप्रेक्ष्य को अपनाएं और अपनी दृष्टि साझा करें।", pisces: "आज आपकी करुणा और रचनात्मकता पर प्रकाश डाला गया है। अपने सपनों पर भरोसा करें और अपनी कल्पना को आपका मार्गदर्शन करने दें।" },
+                fr: { aries: "De nouvelles opportunités de leadership se présentent aujourd'hui. Votre charisme naturel attirera le succès, tant sur le plan personnel que professionnel.", taurus: "La stabilité et la patience seront vos plus grands atouts aujourd'hui. Concentrez-vous sur la construction de fondations durables pour vos objectifs futurs.", gemini: "La communication est la clé aujourd'hui. Votre esprit et votre charme vous ouvriront les portes de nouvelles relations et de possibilités passionnantes.", cancer: "Faites confiance à votre intuition aujourd'hui. Votre intelligence émotionnelle vous guidera vers les bonnes décisions.", leo: "Votre créativité est à son apogée. C'est un excellent moment pour mettre en valeur vos talents et poursuivre des projets artistiques.", virgo: "L'attention aux détails vous sera très utile aujourd'hui. Concentrez-vous sur l'organisation et les solutions pratiques aux défis actuels.", libra: "L'équilibre et l'harmonie sont à portée de main. Cherchez le compromis dans les conflits et trouvez la beauté dans votre environnement.", scorpio: "La transformation est dans l'air. Accueillez le changement et abandonnez ce qui ne sert plus votre objectif supérieur.", sagittarius: "L'aventure vous appelle aujourd'hui. Élargissez vos horizons par l'apprentissage, les voyages ou les discussions philosophiques.", capricorn: "Le travail acharné et la discipline porteront leurs fruits aujourd'hui. Restez concentré sur vos objectifs à long terme et persévérez.", aquarius: "L'innovation et l'originalité vous distingueront aujourd'hui. Adoptez votre perspective unique et partagez votre vision.", pisces: "Votre compassion et votre créativité sont mises en avant aujourd'hui. Faites confiance à vos rêves et laissez votre imagination vous guider." },
+                ar: { aries: "تنشأ اليوم فرص جديدة للقيادة. ستجذب كاريزماك الطبيعية النجاح على الصعيدين الشخصي والمهني.", taurus: "سيكون الاستقرار والصبر أعظم أصولك اليوم. ركز على بناء أسس دائمة للأهداف المستقبلية.", gemini: "التواصل هو المفتاح اليوم. ستفتح فطنتك وسحرك الأبواب أمام اتصالات جديدة وإمكانيات مثيرة.", cancer: "ثق بحدسك اليوم. سيرشدك ذكائك العاطفي نحو اتخاذ القرارات الصحيحة.", leo: "إبداعك في ذروته. إنه وقت ممتاز لعرض مواهبك ومتابعة المساعي الفنية.", virgo: "سيخدمك الاهتمام بالتفاصيل جيدًا اليوم. ركز على التنظيم والحلول العملية للتحديات الحالية.", libra: "التوازن والانسجام في متناول اليد. ابحث عن حل وسط في النزاعات وابحث عن الجمال في محيطك.", scorpio: "التحول في الهواء. احتضن التغيير وتخلى عما لم يعد يخدم هدفك الأسمى.", sagittarius: "المغامرة تناديك اليوم. وسع آفاقك من خلال التعلم أو السفر أو المناقشات الفلسفية.", capricorn: "سيؤتي العمل الجاد والانضباط ثماره اليوم. ركز على أهدافك طويلة المدى وكن مثابرًا.", aquarius: "سيميزك الابتكار والأصالة اليوم. احتضن وجهة نظرك الفريدة وشارك رؤيتك.", pisces: "يتم تسليط الضوء على تعاطفك وإبداعك اليوم. ثق في أحلامك ودع خيالك يرشدك." }
+            },
+            zodiacSigns: {
+                en: { aries: "Aries", taurus: "Taurus", gemini: "Gemini", cancer: "Cancer", leo: "Leo", virgo: "Virgo", libra: "Libra", scorpio: "Scorpio", sagittarius: "Sagittarius", capricorn: "Capricorn", aquarius: "Aquarius", pisces: "Pisces" },
+                zh: { aries: "白羊座", taurus: "金牛座", gemini: "双子座", cancer: "巨蟹座", leo: "狮子座", virgo: "处女座", libra: "天秤座", scorpio: "天蝎座", sagittarius: "射手座", capricorn: "摩羯座", aquarius: "水瓶座", pisces: "双鱼座" },
+                hi: { aries: "मेष", taurus: "वृषभ", gemini: "मिथुन", cancer: "कर्क", leo: "सिंह", virgo: "कन्या", libra: "तुला", scorpio: "वृश्चिक", sagittarius: "धनु", capricorn: "मकर", aquarius: "कुंभ", pisces: "मीन" },
+                fr: { aries: "Bélier", taurus: "Taureau", gemini: "Gémeaux", cancer: "Cancer", leo: "Lion", virgo: "Vierge", libra: "Balance", scorpio: "Scorpion", sagittarius: "Sagittaire", capricorn: "Capricorne", aquarius: "Verseau", pisces: "Poissons" },
+                ar: { aries: "الحمل", taurus: "الثور", gemini: "الجوزاء", cancer: "السرطان", leo: "الأسد", virgo: "العذراء", libra: "الميزان", scorpio: "العقرب", sagittarius: "القوس", capricorn: "الجدي", aquarius: "الدلو", pisces: "الحوت" }
+            },
+            chineseZodiac: {
+                animals: {
+                    en: ["Rat", "Ox", "Tiger", "Rabbit", "Dragon", "Snake", "Horse", "Goat", "Monkey", "Rooster", "Dog", "Pig"],
+                    zh: ["鼠", "牛", "虎", "兔", "龙", "蛇", "马", "羊", "猴", "鸡", "狗", "猪"],
+                    hi: ["चूहा", "बैल", "बाघ", "खरगोश", "ड्रैगन", "साँप", "घोड़ा", "बकरी", "बंदर", "मुर्गा", "कुत्ता", "सुअर"],
+                    fr: ["Rat", "Bœuf", "Tigre", "Lapin", "Dragon", "Serpent", "Cheval", "Chèvre", "Singe", "Coq", "Chien", "Cochon"],
+                    ar: ["الفأر", "الثور", "النمر", "الأرنب", "التنين", "الثعبان", "الحصان", "الماعز", "القرد", "الديك", "الكلب", "الخنزير"]
+                },
+                traits: {
+                    en: {
+                        Rat: "Clever, adaptable, quick-witted, charming, artistic", Ox: "Loyal, reliable, thorough, strong, reasonable", Tiger: "Enthusiastic, courageous, ambitious, leadership", Rabbit: "Trustworthy, empathetic, modest, diplomatic, sincere", Dragon: "Lucky, flexible, eccentric, imaginative, artistic", Snake: "Philosophical, organized, intelligent, intuitive", Horse: "Adaptable, loyal, courageous, ambitious, intelligent", Goat: "Tasteful, crafty, warm, elegant, charming", Monkey: "Quick-witted, charming, lucky, adaptable, bright", Rooster: "Honest, energetic, intelligent, flamboyant, flexible", Dog: "Loyal, responsible, trustworthy, honest, reliable", Pig: "Honorable, philanthropic, determined, optimistic"
+                    },
+                    zh: {
+                        Rat: "聪明、适应能力强、机智、有魅力、有艺术感", Ox: "忠诚、可靠、彻底、坚强、理性", Tiger: "热情、勇敢、有抱负、有领导才能", Rabbit: "值得信赖、有同情心、谦虚、圆滑、真诚", Dragon: "幸运、灵活、古怪、富有想象力、有艺术感", Snake: "富有哲理、有条理、聪明、有直觉", Horse: "适应能力强、忠诚、勇敢、有抱负、聪明", Goat: "有品味、灵巧、温暖、优雅、有魅力", Monkey: "机智、迷人、幸运、适应能力强、聪明", Rooster: "诚实、精力充沛、聪明、华丽、灵活", Dog: "忠诚、负责、值得信赖、诚实、可靠", Pig: "可敬、乐善好施、坚定、乐观"
+                    },
+                    hi: {
+                        Rat: "चालाक, अनुकूलनीय, तेज-तर्रार, आकर्षक, कलात्मक", Ox: "वफादार, भरोसेमंद, संपूर्ण, मजबूत, उचित", Tiger: "उत्साही, साहसी, महत्वाकांक्षी, नेतृत्व", Rabbit: "विश्वसनीय, सहानुभूतिपूर्ण, विनम्र, राजनयिक, ईमानदार", Dragon: "भाग्यशाली, लचीला, सनकी, कल्पनाशील, कलात्मक", Snake: "दार्शनिक, संगठित, बुद्धिमान, सहज", Horse: "अनुकूलनीय, वफादार, साहसी, महत्वाकांक्षी, बुद्धिमान", Goat: "सुंदर, चालाक, गर्म, सुरुचिपूर्ण, आकर्षक", Monkey: "तेज-तर्रार, आकर्षक, भाग्यशाली, अनुकूलनीय, उज्ज्वल", Rooster: "ईमानदार, ऊर्जावान, बुद्धिमान, तेजतर्रार, लचीला", Dog: "वफादार, जिम्मेदार, भरोसेमंद, ईमानदार, विश्वसनीय", Pig: "सम्माननीय, परोपकारी, दृढ़निश्चयी, आशावादी"
+                    },
+                    fr: {
+                        Rat: "Intelligent, adaptable, vif d'esprit, charmant, artistique", Ox: "Loyal, fiable, minutieux, fort, raisonnable", Tiger: "Enthousiaste, courageous, ambitieux, leadership", Rabbit: "Digne de confiance, empathique, modeste, diplomate, sincère", Dragon: "Chanceux, flexible, excentrique, imaginatif, artistique", Serpent: "Philosophe, organisé, intelligent, intuitif", Cheval: "Adaptable, loyal, courageous, ambitieux, intelligent", Goat: "Raffiné, astucieux, chaleureux, élégant, charmant", Monkey: "Vif d'esprit, charmant, chanceux, adaptable, brillant", Rooster: "Honnête, énergique, intelligent, flamboyant, flexible", Dog: "Loyal, responsable, digne de confiance, honnête, fiable", Pig: "Honorable, philanthrope, déterminé, optimiste"
+                    },
+                    ar: {
+                        Rat: "ذكي، قابل للتكيف، سريع البديهة، ساحر، فني", Ox: "مخلص، موثوق، شامل، قوي، معقول", Tiger: "متحمس، شجاع، طموح، قيادي", Rabbit: "جدير بالثقة، متعاطف، متواضع، دبلوماسي، مخلص", Dragon: "محظوظ، مرن، غريب الأطوار، خيالي، فني", Snake: "فلسفي، منظم، ذكي، حدسي", Horse: "قابل للتكيف، مخلص، شجاع، طموح، ذكي", Goat: "ذواق، ماكر، دافئ، أنيق، ساحر", Monkey: "سريع البديهة، ساحر، محظوظ، قابل للتكيف، مشرق", Rooster: "صادق، نشيط، ذكي، براق، مرن", Dog: "مخلص، مسؤول، جدير بالثقة، صادق، موثوق", Pig: "شريف، خيري، حازم، متفائل"
+                    }
+                }
+            },
+            lifePathMeanings: {
+                en: { 1: "Leadership, independence, pioneering spirit", 2: "Cooperation, diplomacy, sensitivity", 3: "Creativity, communication, optimism", 4: "Hard work, stability, practicality", 5: "Freedom, adventure, versatility", 6: "Nurturing, responsibility, compassion", 7: "Spirituality, analysis, introspection", 8: "Material success, ambition, power", 9: "Humanitarianism, generosity, idealism", 11: "Master Number: Spiritual insight, intuition, enlightenment, visionary", 22: "Master Number: Master Builder, practical idealism, large-scale achievements", 33: "Master Number: Master Teacher, compassion, healing, spiritual guidance" },
+                zh: { 1: "领导力，独立，开拓精神", 2: "合作，外交，敏感", 3: "创造力，沟通，乐观", 4: "努力工作，稳定，务实", 5: "自由，冒险，多才多艺", 6: "养育，责任，同情", 7: "灵性，分析，内省", 8: "物质成功，野心，权力", 9: "人道主义，慷慨，理想主义", 11: "卓越数字：精神洞察力，直觉，启蒙，远见", 22: "卓越数字：大师级建造者，务实的理想主义，大规模成就", 33: "卓越数字：大师级教师，同情心，疗愈，精神指导" },
+                hi: { 1: "नेतृत्व, स्वतंत्रता, अग्रणी भावना", 2: "सहयोग, कूटनीति, संवेदनशीलता", 3: "रचनात्मकता, संचार, आशावाद", 4: "कड़ी मेहनत, स्थिरता, व्यावहारिकता", 5: "स्वतंत्रता, रोमांच, बहुमुखी प्रतिभा", 6: "पोषण, जिम्मेदारी, करुणा", 7: "आध्यात्मिकता, विश्लेषण, आत्मनिरीक्षण", 8: "भौतिक सफलता, महत्वाकांक्षा, शक्ति", 9: "मानवतावाद, उदारता, आदर्शवाद", 11: "मास्टर नंबर: आध्यात्मिक अंतर्दृष्टि, अंतर्ज्ञान, आत्मज्ञान, दूरदर्शी", 22: "मास्टर नंबर: मास्टर बिल्डर, व्यावहारिक आदर्शवाद, बड़े पैमाने पर उपलब्धियां", 33: "मास्टर नंबर: मास्टर शिक्षक, करुणा, उपचार, आध्यात्मिक मार्गदर्शन" },
+                fr: { 1: "Leadership, indépendance, esprit pionnier", 2: "Coopération, diplomatie, sensibilité", 3: "Créativité, communication, optimisme", 4: "Travail acharné, stabilité, sens pratique", 5: "Liberté, aventure, polyvalence", 6: "Nourricier, responsabilité, compassion", 7: "Spiritualité, analyse, introspection", 8: "Succès matériel, ambition, pouvoir", 9: "Humanitarisme, générosité, idéalisme", 11: "Maître Nombre : perspicacité spirituelle, intuition, illumination, visionnaire", 22: "Maître Nombre : Maître Bâtisseur, idéalisme pratique, réalisations à grande échelle", 33: "Maître Nombre : Maître Enseignant, compassion, guérison, guide spirituel" },
+                ar: { 1: "قيادة، استقلالية، روح رائدة", 2: "تعاون، دبلوماسية، حساسية", 3: "إبداع، تواصل، تفاؤل", 4: "عمل جاد، استقرار، عملية", 5: "حرية، مغامرة, تنوع", 6: "رعاية، مسؤولية، تعاطف", 7: "روحانية، تحليل، تأمل", 8: "نجاح مادي، طموح، قوة", 9: "إنسانية، كرم، مثالية", 11: "رقم رئيسي: بصيرة روحية، حدس، تنوير، رؤية", 22: "رقم رئيسي: باني رئيسي, مثالية عملية, إنجازات واسعة النطاق", 33: "رقم رئيسي: معلم رئيسي, تعاطف, شفاء, توجيه روحي" }
+            },
+        };
+
+        let selectedTarotCards = [];
+        let shuffledDeck = [];
+        let currentLang = 'en';
+
+        // --- All functions from the previous version remain, with upgrades below ---
+        function t(key, replacements = {}) {
+            let text = (translations[currentLang] && translations[currentLang][key]) || translations.en[key] || key;
+            for (const placeholder in replacements) {
+                text = text.replace(`{${placeholder}}`, replacements[placeholder]);
+            }
+            return text;
+        }
+
+        function changeLanguage(lang) {
+            const birthDateValue = document.getElementById('birthDate').value;
+            const fullNameValue = document.getElementById('fullName').value;
+            const birthYearValue = document.getElementById('birthYear').value;
+
+            currentLang = lang;
+            document.documentElement.lang = lang;
+            document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+
+            document.querySelectorAll('[data-translate]').forEach(el => {
+                const key = el.getAttribute('data-translate');
+                el.textContent = t(key);
+            });
+            
+            document.querySelectorAll('[data-translate-placeholder]').forEach(el => {
+                const key = el.getAttribute('data-translate-placeholder');
+                 el.placeholder = t(key);
+            });
+
+            document.getElementById('birthDate').value = birthDateValue;
+            document.getElementById('fullName').value = fullNameValue;
+            document.getElementById('birthYear').value = birthYearValue;
+
+            updateZodiacSigns();
+            clearAllResults();
+        }
+
+        function clearAllResults() {
+            resetTarot();
+            document.getElementById('horoscopeResult').classList.remove('show');
+            document.querySelectorAll('.zodiac-sign').forEach(s => s.classList.remove('active'));
+            document.getElementById('numerologyResult').classList.remove('show');
+            document.getElementById('resetNumerologyBtn').style.display = 'none';
+            document.getElementById('chineseResult').classList.remove('show');
+            document.getElementById('resetChineseBtn').style.display = 'none';
+        }
+
+        function showSection(sectionName) {
+            document.querySelectorAll('.nav-btn').forEach(button => button.classList.remove('active'));
+            document.querySelector(`.nav-btn[data-section="${sectionName}"]`).classList.add('active');
+
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            document.getElementById(sectionName).classList.add('active');
+        }
+        
+        function updateZodiacSigns() {
+            document.querySelectorAll('.zodiac-sign').forEach(button => {
+                const signKey = button.getAttribute('data-zodiac');
+                const emoji = button.textContent.split(' ')[0];
+                button.textContent = `${emoji} ${data.zodiacSigns[currentLang][signKey]}`;
+            });
+        }
+
+        function initializeTarotDeck() {
+            const currentTarotCards = data.tarotCards[currentLang];
+            shuffledDeck = currentTarotCards.map((name, index) => ({ name, index })).sort(() => Math.random() - 0.5);
+            
+            const deck = document.getElementById('tarotDeck');
+            deck.innerHTML = '';
+            
+            for (let i = 0; i < 22; i++) {
+                const card = document.createElement('div');
+                card.className = 'tarot-card';
+                card.onclick = () => selectTarotCard(card, i);
+                card.setAttribute('aria-label', `${t('tarotCard')} ${i + 1}`);
+                card.setAttribute('tabindex', '0');
+                card.innerHTML = `
+                    <div class="card-face card-front">🎴</div>
+                    <div class="card-face card-back"></div>
+                `;
+                deck.appendChild(card);
+            }
+        }
+
+        function selectTarotCard(cardElement, index) {
+            if (selectedTarotCards.length >= 3 || cardElement.classList.contains('flipped')) return;
+            
+            cardElement.classList.add('flipped');
+            
+            const selectedCard = shuffledDeck[index];
+            selectedTarotCards.push(selectedCard);
+            
+            const backFace = cardElement.querySelector('.card-back');
+            backFace.innerHTML = `<div>${selectedCard.name}</div>`;
+            cardElement.setAttribute('aria-label', t('tarotCardSelected', { cardName: selectedCard.name }));
+            
+            updateTarotProgress();
+            updateSelectedCards();
+            
+            if (selectedTarotCards.length === 3) {
+                disableRemainingCards();
+                triggerTarotAnimation();
+            }
+        }
+
+        function updateTarotProgress() {
+            const progress = document.getElementById('tarotProgress');
+            const remaining = 3 - selectedTarotCards.length;
+            
+            if (remaining > 0) {
+                progress.textContent = t('tarotProgressRemain', { remaining });
+            } else {
+                progress.textContent = t('tarotProgressDone');
+            }
+        }
+
+        function disableRemainingCards() {
+            const cards = document.querySelectorAll('.tarot-card:not(.flipped)');
+            cards.forEach(card => {
+                card.classList.add('disabled');
+            });
+        }
+
+        function updateSelectedCards() {
+            const container = document.getElementById('selectedCards');
+            container.innerHTML = '';
+            
+            const positions = [t('tarotPast'), t('tarotPresent'), t('tarotFuture')];
+            selectedTarotCards.forEach((card, index) => {
+                const cardElement = document.createElement('div');
+                cardElement.className = 'selected-card';
+                cardElement.innerHTML = `<strong>${positions[index]}:</strong><br>${card.name}`;
+                container.appendChild(cardElement);
+            });
+        }
+        
+        function showTarotReading() {
+            const positions = [t('tarotPast'), t('tarotPresent'), t('tarotFuture')];
+            let interpretation = `<h4>${t('yourReading')}</h4>`;
+            
+            selectedTarotCards.forEach((card, index) => {
+                const meaning = data.tarotMeanings[currentLang][card.index];
+                interpretation += `<p><strong>${positions[index]} - ${card.name}:</strong> ${meaning}</p>`;
+            });
+            
+            document.getElementById('tarotInterpretation').innerHTML = interpretation;
+            document.getElementById('tarotResult').classList.add('show');
+            document.getElementById('resetTarotBtn').style.display = 'inline-block';
+        }
+
+        function resetTarot() {
+            selectedTarotCards = [];
+            document.getElementById('selectedCards').innerHTML = '';
+            document.getElementById('tarotResult').classList.remove('show');
+            document.getElementById('tarotInterpretation').innerHTML = '';
+            document.getElementById('resetTarotBtn').style.display = 'none';
+            document.getElementById('tarotProgress').textContent = t('tarotProgressStart');
+            initializeTarotDeck();
+        }
+
+        function getHoroscope(signKey) {
+            document.querySelectorAll('.zodiac-sign').forEach(s => s.classList.remove('active'));
+            
+            const button = document.querySelector(`[data-zodiac="${signKey}"]`);
+            if (button) button.classList.add('active');
+            
+            const signName = data.zodiacSigns[currentLang][signKey];
+            document.getElementById('horoscopeSign').textContent = t('horoscopeFor', { sign: signName });
+            document.getElementById('horoscopeText').innerHTML = `<p>${data.horoscopes[currentLang][signKey]}</p>`;
+            
+            document.getElementById('horoscopeResult').classList.add('show');
+        }
+
+        function validateInput(inputElement, errorElementId, validationFn, errorMessageKey) {
+            const formGroupElement = inputElement.closest('.form-group');
+            const errorElement = document.getElementById(errorElementId);
+            if (!formGroupElement || !errorElement) return false;
+
+            const errorMessage = t(errorMessageKey);
+            let isValid = validationFn(inputElement.value);
+            
+            if (!isValid) {
+                formGroupElement.classList.add('has-error');
+                // Use querySelector on the specific error element to find the span to update
+                errorElement.querySelector('span:last-child').textContent = errorMessage;
+            } else {
+                // *** CRITICAL FIX: Corrected typo from "formGoupElement" to "formGroupElement" ***
+                formGroupElement.classList.remove('has-error');
+            }
+            return isValid;
+        }
+        
+        function normalizeName(name) {
+            let normalized = '';
+            for (let i = 0; i < name.length; i++) {
+                let char = name[i];
+                if (/[a-zA-Z]/.test(char)) {
+                    normalized += char;
+                } else {
+                    normalized += String.fromCharCode(65 + (char.charCodeAt(0) % 26));
+                }
+            }
+            return normalized;
+        }
+
+        function getResponsiveFontSize(text) {
+            const screenWidth = window.innerWidth;
+            const textLength = text.replace(/\s/g, '').length; 
+            if (textLength === 0) return 30;
+            
+            // 改进字体大小计算，确保短文本也有合适的大小
+            let baseSize;
+            if (textLength <= 5) {
+                // 对于很短的文本，使用固定的较大字体
+                baseSize = Math.min(screenWidth * 0.15, 80);
+            } else if (textLength <= 15) {
+                // 中等长度文本
+                baseSize = Math.min(screenWidth * 0.1, 60);
+            } else {
+                // 长文本使用原来的计算方式
+                baseSize = (screenWidth / textLength) * 1.5;
+            }
+            
+            const minSize = 24;  // 增加最小字体大小
+            const maxSize = 80;  // 降低最大字体大小
+            return Math.max(minSize, Math.min(baseSize, maxSize));
+        }
+        
+        function createAndAnimateParticles(container) {
+            const colors = ['#FFD700', '#FF69B4', '#00FFFF', '#9370DB', '#FFFFFF', '#76ff7a', '#ff9c3d'];
+            
+            // *** 彻底清理之前的粒子 ***
+            const existingParticles = container.querySelectorAll('.particle');
+            existingParticles.forEach(p => {
+                anime.remove(p); // 移除该元素上的所有动画
+                p.remove(); // 从DOM中移除
+            });
+
+            console.log("LOG: Creating", 70, "new particles...");
+
+            const particleCount = 70;
+            const newParticles = [];
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                const size = anime.random(1, 4) + 'px';
+                particle.style.width = size;
+                particle.style.height = size;
+                particle.style.left = anime.random(0, 100) + '%';
+                particle.style.top = anime.random(0, 100) + '%';
+                particle.style.backgroundColor = colors[anime.random(0, colors.length - 1)];
+                particle.style.position = 'absolute';
+                particle.style.borderRadius = '50%';
+                particle.style.pointerEvents = 'none';
+                particle.style.zIndex = '10000';
+                particle.style.opacity = '0';
+                container.appendChild(particle);
+                newParticles.push(particle);
+            }
+
+            // 等待DOM更新后再开始动画
+            setTimeout(() => {
+                console.log("LOG: Starting particle animations...");
+                anime({
+                    targets: '.particle',
+                    opacity: [
+                        { value: () => anime.random(0.2, 1), duration: () => anime.random(200, 800) },
+                        { value: 0, duration: () => anime.random(200, 600) }
+                    ],
+                    scale: [
+                        { value: () => anime.random(0.5, 1.5), duration: () => anime.random(300, 1000) },
+                        { value: 1, duration: () => anime.random(200, 500) }
+                    ],
+                    duration: () => anime.random(1500, 3000),
+                    easing: 'linear',
+                    loop: true,
+                    delay: anime.stagger(20),
+                });
+            }, 10);
+        }
+        
+        function runMysticalAnimation(text, callback) {
+            const overlay = document.getElementById('animation-overlay');
+            const textContainer = document.getElementById('animated-text');
+            const flare = document.getElementById('animation-flare');
+
+            if (!overlay || !textContainer || !flare) {
+                console.error("LOG: Animation elements not found in the DOM!");
+                if (callback) callback();
+                return;
+            }
+            
+            // 确保文本不为空，如果为空则使用占位符
+            if (!text || text.trim() === '') {
+                text = '✨';
+            }
+            
+            console.log("LOG: Starting animation with text:", text);
+            
+            // *** 彻底清理之前的动画状态 ***
+            console.log("LOG: Cleaning up previous animation state...");
+            
+            // 停止所有正在进行的anime.js动画
+            anime.remove('.particle');
+            anime.remove('#animated-text span');
+            anime.remove('#animation-flare');
+            anime.remove('#animation-overlay');
+            
+            // 清理粒子
+            const existingParticles = overlay.querySelectorAll('.particle');
+            existingParticles.forEach(p => p.remove());
+            
+            // 重置文本容器
+            textContainer.innerHTML = '';
+            
+            // 重置闪光效果 - 只重置必要属性
+            flare.style.transform = '';
+            flare.style.opacity = '0';
+            
+            // 重置overlay状态
+            overlay.classList.remove('visible');
+            overlay.style.display = 'none';
+            
+            // *** 强制重绘 ***
+            overlay.offsetHeight; // 触发重绘
+            
+            console.log("LOG: Cleanup complete, starting new animation...");
+            
+            // Step 1: Make the overlay visible immediately.
+            overlay.style.display = 'flex';
+            overlay.style.opacity = ''; // 清除内联opacity，让CSS类生效
+            overlay.classList.add('visible');
+            
+            // *** 使用更长的延迟确保DOM完全准备好 ***
+            setTimeout(() => {
+                console.log("LOG: Starting animation setup inside setTimeout.");
+                
+                // 创建新的粒子动画
+                createAndAnimateParticles(overlay);
+                
+                // 启动闪光动画
+                anime({
+                    targets: flare,
+                    translateX: [ '-50%', '50%'],
+                    translateY: ['-50%', '50%'],
+                    opacity: [0, 1, 0],
+                    duration: 4000,
+                    easing: 'easeInOutQuad',
+                    direction: 'alternate',
+                    loop: true
+                });
+
+                const fontSize = getResponsiveFontSize(text);
+                console.log("LOG: Calculated font size:", fontSize, "for text:", text);
+                
+                // 改进文本处理，确保每个字符都能正确显示
+                const characters = text.split('');
+                characters.forEach((char, index) => {
+                    const span = document.createElement('span');
+                    span.innerHTML = char === ' ' ? '&nbsp;' : char;
+                    span.style.fontSize = `${fontSize}px`;
+                    span.style.display = 'inline-block';
+                    span.style.opacity = '0';
+                    span.style.transform = 'scale(0) translateY(100%) rotateZ(180deg)';
+                    span.style.position = 'relative';
+                    span.style.color = 'white';
+                    span.style.fontWeight = 'bold';
+                    span.style.textShadow = '0 0 8px #fff, 0 0 15px #fff, 0 0 25px #ff00ff, 0 0 40px #ff00ff';
+                    span.style.margin = '0 0.1em';
+                    textContainer.appendChild(span);
+                });
+
+                // 调整动画参数以适配不同长度的文本
+                const textLength = characters.length;
+                const staggerDelay = Math.max(50, Math.min(120, 1000 / textLength));
+
+                console.log("LOG: Starting text animation with", textLength, "characters, stagger delay:", staggerDelay);
+
+                anime.timeline({
+                    complete: () => {
+                        console.log("LOG: Text animation complete, starting fade out");
+                        anime({
+                            targets: overlay,
+                            opacity: 0,
+                            duration: 500,
+                            easing: 'easeInOutQuad',
+                            complete: () => {
+                                console.log("LOG: Starting final cleanup...");
+                                
+                                // *** 彻底清理动画状态 ***
+                                overlay.classList.remove('visible');
+                                overlay.style.display = 'none';
+                                overlay.style.opacity = '';
+                                
+                                // 停止并移除所有动画
+                                anime.remove('.particle');
+                                anime.remove('#animated-text span');
+                                anime.remove('#animation-flare');
+                                
+                                // 清理DOM元素
+                                const particles = overlay.querySelectorAll('.particle');
+                                particles.forEach(p => p.remove());
+                                
+                                textContainer.innerHTML = '';
+                                
+                                // 重置flare - 只重置动画相关属性
+                                flare.style.transform = '';
+                                flare.style.opacity = '';
+                                
+                                console.log("LOG: Final cleanup complete.");
+                                
+                                if (callback) {
+                                    console.log("LOG: Animation complete. Running callback.");
+                                    // 使用短延迟确保DOM完全清理后再执行回调
+                                    setTimeout(callback, 50);
+                                }
+                            }
+                        });
+                    }
+                })
+                .add({
+                    targets: '#animated-text span',
+                    opacity: [0, 1],
+                    scale: [0, 1],
+                    translateY: ['100%', 0],
+                    rotateZ: [180, 0],
+                    duration: 1500,
+                    easing: 'easeOutExpo',
+                    delay: anime.stagger(staggerDelay)
+                })
+                .add({
+                    targets: '#animated-text span',
+                    opacity: 0,
+                    scale: 0.5,
+                    duration: 1000,
+                    easing: 'easeInExpo',
+                    delay: anime.stagger(Math.max(30, staggerDelay * 0.6), {start: 500})
+                }, '+=500');
+            }, 50); // 增加延迟时间确保DOM完全准备好
+        }
+        
+        function triggerTarotAnimation() {
+            console.log("LOG: Firing up TAROT animation.");
+            const cardNames = selectedTarotCards.map(c => c.name).join('  ');
+            runMysticalAnimation(cardNames, showTarotReading);
+        }
+
+        function triggerHoroscopeAnimation(signKey) {
+            console.log(`LOG: Firing up HOROSCOPE animation for: ${signKey}`);
+            const signName = data.zodiacSigns[currentLang][signKey];
+            runMysticalAnimation(signName, () => getHoroscope(signKey));
+        }
+
+        function triggerNumerologyAnimation() {
+            console.log("LOG: Attempting to fire NUMEROLOGY animation...");
+            const birthDateInput = document.getElementById('birthDate');
+            const fullNameInput = document.getElementById('fullName');
+            
+            let isValidBirthDate = validateInput(birthDateInput, 'birthDateError', (val) => val !== '', 'birthDateError');
+            let isValidFullName = validateInput(fullNameInput, 'fullNameError', (val) => val.trim() !== '', 'fullNameError');
+
+            if (!isValidBirthDate || !isValidFullName) {
+                console.log("LOG: Validation FAILED. Numerology animation aborted.");
+                return;
+            }
+            
+            console.log("LOG: Validation PASSED. Firing up Numerology animation.");
+            // 改进动画文本，使其更适合显示
+            const textToShow = `${fullNameInput.value.slice(0, 20)} ✨ ${birthDateInput.value}`;
+            runMysticalAnimation(textToShow, calculateNumerology);
+        }
+
+        function triggerChineseZodiacAnimation() {
+            console.log("LOG: Attempting to fire CHINESE ZODIAC animation...");
+            const birthYearInput = document.getElementById('birthYear');
+            
+            let isValidYear = validateInput(birthYearInput, 'birthYearError', (val) => !isNaN(val) && val >= 1900 && val <= 2099, 'birthYearError');
+
+            if (!isValidYear) {
+                console.log("LOG: Validation FAILED. Chinese Zodiac animation aborted.");
+                return;
+            }
+
+            console.log("LOG: Validation PASSED. Firing up Chinese Zodiac animation.");
+            // 改进动画文本，使其更有趣
+            const textToShow = `🐉 ${birthYearInput.value} 🐉`;
+            runMysticalAnimation(textToShow, getChineseZodiac);
+        }
+
+        function calculateNumerology() {
+            const birthDateInput = document.getElementById('birthDate');
+            const fullNameInput = document.getElementById('fullName');
+            const numerologyResult = document.getElementById('numerologyResult');
+            
+            const normalizedFullName = normalizeName(fullNameInput.value);
+            const lifePathNumber = getLifePathNumber(birthDateInput.value);
+            const destinyNumber = getDestinyNumber(normalizedFullName);
+            
+            let resultHtml = `<h4>${t('yourNumerologyProfile')}</h4>`;
+            resultHtml += `<p><strong>${t('lifePathNumber')} ${lifePathNumber}:</strong><br>${data.lifePathMeanings[currentLang][lifePathNumber]}</p>`;
+            resultHtml += `<p><strong>${t('destinyNumber')} ${destinyNumber}:</strong><br>${data.lifePathMeanings[currentLang][destinyNumber]}</p>`;
+            
+            document.getElementById('numerologyText').innerHTML = resultHtml;
+            numerologyResult.classList.add('show');
+            document.getElementById('resetNumerologyBtn').style.display = 'inline-block';
+        }
+
+        function getLifePathNumber(birthDate) {
+            const digits = birthDate.replace(/-/g, '').split('').map(Number);
+            let sum = digits.reduce((a, b) => a + b, 0);
+            while (sum > 9 && sum !== 11 && sum !== 22 && sum !== 33) {
+                sum = sum.toString().split('').map(Number).reduce((a, b) => a + b, 0);
+            }
+            return sum;
+        }
+
+        function getDestinyNumber(name) {
+            const values = { A: 1, B: 2, C: 3, D: 4, E: 5, F: 6, G: 7, H: 8, I: 9, J: 1, K: 2, L: 3, M: 4, N: 5, O: 6, P: 7, Q: 8, R: 9, S: 1, T: 2, U: 3, V: 4, W: 5, X: 6, Y: 7, Z: 8 };
+            let sum = name.toUpperCase().split('').reduce((acc, char) => acc + (values[char] || 0), 0);
+            if (sum === 0) return 1;
+            while (sum > 9 && sum !== 11 && sum !== 22 && sum !== 33) {
+                sum = sum.toString().split('').map(Number).reduce((a, b) => a + b, 0);
+            }
+            return sum;
+        }
+
+        function getChineseZodiac() {
+            const birthYearInput = document.getElementById('birthYear');
+            const chineseResult = document.getElementById('chineseResult');
+            const year = parseInt(birthYearInput.value);
+            
+            const animalIndex = (year - 4) % 12;
+            const animal = data.chineseZodiac.animals[currentLang][animalIndex];
+            const animalKey = data.chineseZodiac.animals['en'][animalIndex];
+            const traits = data.chineseZodiac.traits[currentLang][animalKey];
+            
+            let resultHtml = `<h4>${t('yourZodiac')}</h4>`;
+            resultHtml += `<p><strong>${year} - ${t('yearOf', {animal})}</strong></p>`;
+            resultHtml += `<p><strong>${t('traits')}</strong> ${traits}</p>`;
+            
+            document.getElementById('chineseText').innerHTML = resultHtml;
+            chineseResult.classList.add('show');
+            document.getElementById('resetChineseBtn').style.display = 'inline-block';
+        }
+
+        function resetNumerology() {
+            document.getElementById('numerologyResult').classList.remove('show');
+            document.getElementById('resetNumerologyBtn').style.display = 'none';
+        }
+
+        function resetChineseZodiac() {
+            document.getElementById('chineseResult').classList.remove('show');
+            document.getElementById('resetChineseBtn').style.display = 'none';
+        }
+
+        async function shareResult(type) {
+            let shareText = t('shareTextIntro');
+            let title = "";
+            let url = window.location.href;
+
+            if (type === 'tarot') {
+                title = t('myTarotReading');
+                shareText += `${title}\n${document.getElementById('tarotInterpretation').innerText}`;
+            } else if (type === 'horoscope') {
+                title = t('myHoroscope');
+                shareText += `${document.getElementById('horoscopeSign').textContent}\n${document.getElementById('horoscopeText').innerText}`;
+            } else if (type === 'numerology') {
+                title = t('myNumerology');
+                shareText += `${document.getElementById('numerologyText').innerText}`;
+            } else if (type === 'chinese') {
+                title = t('myZodiac');
+                shareText += `${document.getElementById('chineseText').innerText}`;
+            }
+            
+            const fullShareText = shareText + "\n\n" + url;
+
+            if (navigator.share) {
+                try {
+                    await navigator.share({ title: title, text: shareText, url: url });
+                } catch (error) {
+                    console.error("Share failed:", error);
+                    copyToClipboard(fullShareText);
+                    alert(t('shareError'));
+                }
+            } else {
+                copyToClipboard(fullShareText);
+                alert(t('shareSuccess'));
+            }
+        }
+
+        function copyToClipboard(text) {
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+        }
+
+        window.onload = function() {
+            const userLang = navigator.language.split('-')[0];
+            const langToLoad = translations[userLang] ? userLang : 'en';
+            document.getElementById('language-selector').value = langToLoad;
+            changeLanguage(langToLoad);
+            showSection('tarot');
+        };
+    </script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+Migration Plan: From Single-File HTML to a Nuxt 3 Application
+This document outlines the strategy for migrating the Teller.eu.org digital fortune teller from a single HTML file with vanilla JavaScript to a full-featured Nuxt 3 application. The primary goal is to improve code organization, maintainability, performance, and scalability by leveraging the features of the Nuxt framework.
+
+Phase 1: Project Scaffolding and Foundational Setup
+Initialize Nuxt 3 Project:
+
+Start by creating a new Nuxt 3 project using the command line: npx nuxi@latest init teller-nuxt-app. done!
+Establish Directory Structure:
+
+pages/: The core of the new structure. The four main <section> elements (Tarot, Astrology, Numerology, Chinese Zodiac) will be converted into separate pages. This improves routing and makes each feature's URL directly accessible and shareable.
+pages/index.vue (will redirect to /tarot)
+pages/tarot.vue
+pages/astrology.vue
+pages/numerology.vue
+pages/chinese-zodiac.vue
+layouts/: The common UI elements like the header and bottom navigation will reside in a default layout.
+layouts/default.vue
+components/: The UI will be broken down into smaller, reusable Vue components.
+composables/: Reusable logic, such as data fetching and calculations, will be extracted into composables.
+plugins/: For integrating third-party libraries like anime.js.
+assets/: For global CSS or other static assets.
+locales/: To store translation files for internationalization (I18n).
+Phase 2: Componentization and UI Refactoring
+Create a Default Layout (layouts/default.vue):
+
+Move the <header> and the <nav id="bottom-nav"> from the original HTML into this file.
+The main content area (<div class="main-content">) will be replaced with the <slot /> component, which will render the active page.
+Refactor Navigation:
+
+Create a components/BottomNav.vue component.
+Replace the onclick-based navigation with Nuxt's <NuxtLink> component for proper client-side routing.
+Example: <NuxtLink to="/tarot" class="nav-btn">...</NuxtLink>
+Leverage Nuxt's built-in router-link-active class to automatically style the active navigation button, removing the need for manual class toggling in JavaScript.
+Break Down UI into Components (components/):
+
+AppHeader.vue: Will contain the logo, tagline, and the language selector dropdown.
+TarotCard.vue: A component for a single tarot card. It will manage its own "flipped" state and emit an event (@click) when selected.
+ResultDisplay.vue: A generic component to show the final reading. It will accept the result text and any other relevant data as props.
+ZodiacSignButton.vue: A component for the horoscope section to represent each zodiac sign button.
+AnimationOverlay.vue: This component will encapsulate the entire full-screen "mystical" animation logic and UI.
+Create the Pages (pages/):
+
+For each .vue file in the pages directory, transfer the corresponding HTML content from the original <section> tags.
+Replace static HTML elements with the newly created Vue components (e.g., use <TarotCard /> inside pages/tarot.vue).
+Phase 3: Logic, Data, and State Management
+Data Management:
+
+The large static data object (containing tarot meanings, horoscopes, etc.) will be moved out of the main script.
+Recommendation: Create a composable composables/useDivinationData.ts. This composable will export functions to retrieve the necessary data (e.g., getTarotCards(), getHoroscopeFor(sign)). This keeps data organized and easily accessible.
+State Management:
+
+Replace global JavaScript variables with Vue's reactivity system.
+Page-Specific State: Use ref() or reactive() inside each page's <script setup> for state that doesn't need to be shared (e.g., the selectedTarotCards array will live inside pages/tarot.vue).
+Global State: For state that needs to be shared across components (like the current language), use Nuxt's useState composable.
+Internationalization (I18n):
+
+Replace the custom translations object and t() function with the official @nuxtjs/i18n module.
+The translations object will be split into separate JSON files (e.g., locales/en.json, locales/zh.json, etc.).
+The module will provide a robust $t() function and automatically handle language switching and route localization. This is a more standard and powerful approach.
+Business Logic as Composables (composables/):
+
+Extract the pure calculation functions into their own composables to promote reusability and separation of concerns.
+useNumerology.ts: Will contain getLifePathNumber() and getDestinyNumber().
+useChineseZodiac.ts: Will contain the zodiac calculation logic.
+useShare.ts: Will contain the shareResult() logic, ensuring navigator is only accessed on the client side.
+Phase 4: Styling and Animations
+Styling Strategy:
+
+Global Styles: Move the general styles from the original <style> tag (e.g., body, .container, font-family, gradients) into a global CSS file at assets/css/main.css and register it in nuxt.config.ts.
+Scoped Styles: For component-specific styles, use <style scoped> within each .vue file. This is a key benefit of Vue, preventing style conflicts between components.
+Animation Integration (anime.js):
+
+Create a client-side Nuxt plugin: plugins/anime.client.ts. This plugin will import anime.js and make it available throughout the application (e.g., by injecting it into the Nuxt app instance).
+The components/AnimationOverlay.vue component will be responsible for triggering and controlling the animation sequences, using the anime instance provided by the plugin.
+All animation logic will be self-contained within this component, which can be shown or hidden via a reactive boolean prop.
+Phase 5: Finalizing and Enhancements
+SEO and Metadata:
+
+Utilize Nuxt's useHead composable on each page (pages/*.vue).
+Dynamically set the page title, meta description, and other tags based on the current page and selected language. This significantly improves SEO compared to the original single-title approach.
+Build and Deployment:
+
+Given the static nature of the content, the site is a perfect candidate for Static Site Generation (SSG). Run npx nuxi generate to pre-render all pages into static HTML.
+Deploy the generated dist/ directory to any static hosting provider (e.g., Vercel, Netlify, Cloudflare Pages) for excellent performance and low cost.
+By following this plan, the application will be transformed into a professional, maintainable, and high-performance Nuxt 3 project, ready for future feature development.
