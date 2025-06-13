@@ -1,58 +1,127 @@
 <template>
-  <div class="homepage">
-    <div class="hero-section">
-      <h1 class="hero-title">{{ t('heroTitle') }}</h1>
-      <p class="hero-subtitle">{{ t('heroSubtitle') }}</p>
-    </div>
+  <div class="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
+    <!-- Hero Section -->
+    <section class="relative px-4 pt-8 pb-12 sm:px-6 lg:px-8 lg:pt-16 lg:pb-20">
+      <div class="mx-auto max-w-4xl text-center">
+        <h1 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl lg:text-5xl">
+          {{ t('heroTitle') }}
+        </h1>
+        <p class="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-gray-600 sm:text-lg lg:text-xl lg:mt-6">
+          {{ t('heroSubtitle') }}
+        </p>
+      </div>
+    </section>
 
-    <div class="tools-grid">
-      <div 
-        v-for="tool in tools" 
-        :key="tool.name"
-        class="tool-card"
-        @click="navigateToTool(tool.name)"
-        :aria-label="t(tool.descriptionKey)"
-        tabindex="0"
-        @keydown.enter="navigateToTool(tool.name)"
-        @keydown.space="navigateToTool(tool.name)"
-      >
-        <div class="tool-icon">{{ tool.icon }}</div>
-        <h3 class="tool-title">{{ t(tool.titleKey) }}</h3>
-        <p class="tool-description">{{ t(tool.descriptionKey) }}</p>
-        <div class="tool-features">
-          <span 
-            v-for="feature in tool.features" 
-            :key="feature" 
-            class="feature-tag"
+    <!-- Tools Grid -->
+    <section class="px-4 pb-12 sm:px-6 lg:px-8 lg:pb-20">
+      <div class="mx-auto max-w-7xl">
+        <div class="grid gap-4 sm:gap-6 md:grid-cols-2 lg:gap-8 xl:grid-cols-2">
+          <div 
+            v-for="tool in tools" 
+            :key="tool.name"
+            class="group relative transform overflow-hidden rounded-2xl bg-white p-6 shadow-sm transition-all duration-300 ease-out hover:scale-[1.02] hover:shadow-xl focus-within:scale-[1.02] focus-within:shadow-xl sm:p-8 lg:p-10"
+            @click="navigateToTool(tool.name)"
+            :aria-label="t(tool.descriptionKey)"
+            tabindex="0"
+            @keydown.enter="navigateToTool(tool.name)"
+            @keydown.space.prevent="navigateToTool(tool.name)"
+            role="button"
           >
-            {{ t(feature) }}
-          </span>
+            <!-- Gradient Border Effect -->
+            <div class="absolute inset-0 rounded-2xl bg-gradient-to-r from-blue-500 to-purple-600 opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus:opacity-100" 
+                 style="padding: 2px;">
+              <div class="h-full w-full rounded-2xl bg-white"></div>
+            </div>
+            
+            <!-- Card Content -->
+            <div class="relative z-10 flex h-full min-h-[280px] flex-col sm:min-h-[320px]">
+              <!-- Tool Icon -->
+              <div class="mb-4 flex justify-center">
+                <span class="text-5xl drop-shadow-sm sm:text-6xl lg:text-7xl" 
+                      role="img" 
+                      :aria-label="`${t(tool.titleKey)} icon`">
+                  {{ tool.icon }}
+                </span>
+              </div>
+              
+              <!-- Tool Title -->
+              <h3 class="mb-3 text-center text-xl font-semibold text-gray-900 sm:text-2xl lg:mb-4">
+                {{ t(tool.titleKey) }}
+              </h3>
+              
+              <!-- Tool Description -->
+              <p class="flex-1 text-center text-sm leading-relaxed text-gray-600 sm:text-base lg:text-lg">
+                {{ t(tool.descriptionKey) }}
+              </p>
+              
+              <!-- Feature Tags -->
+              <div class="mt-4 flex flex-wrap justify-center gap-2 lg:mt-6">
+                <span 
+                  v-for="feature in tool.features" 
+                  :key="feature" 
+                  class="inline-flex rounded-full bg-gradient-to-r from-blue-50 to-purple-50 px-3 py-1 text-xs font-medium text-blue-700 ring-1 ring-blue-200 sm:px-4 sm:py-1.5 sm:text-sm"
+                >
+                  {{ t(feature) }}
+                </span>
+              </div>
+              
+              <!-- Touch Indicator for Mobile -->
+              <div class="mt-4 flex justify-center sm:hidden">
+                <div class="h-1 w-12 rounded-full bg-gray-200 transition-colors duration-300 group-hover:bg-blue-500"></div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
+    </section>
 
-    <div class="about-section">
-      <h2 class="about-title">{{ t('aboutTitle') }}</h2>
-      <p class="about-text">{{ t('aboutText') }}</p>
-      
-      <div class="features-list">
-        <div v-for="feature in mainFeatures" :key="feature" class="feature-item">
-          <span class="feature-icon">✨</span>
-          <span>{{ t(feature) }}</span>
+    <!-- About Section -->
+    <section class="bg-white/80 px-4 py-12 backdrop-blur-sm sm:px-6 lg:px-8 lg:py-20">
+      <div class="mx-auto max-w-4xl">
+        <div class="text-center">
+          <h2 class="text-2xl font-bold text-gray-900 sm:text-3xl lg:text-4xl">
+            {{ t('aboutTitle') }}
+          </h2>
+          <p class="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-gray-600 sm:text-lg lg:mt-6 lg:text-xl">
+            {{ t('aboutText') }}
+          </p>
+        </div>
+        
+        <!-- Features List -->
+        <div class="mt-8 grid gap-4 sm:mt-12 sm:gap-6 md:grid-cols-2 lg:gap-8">
+          <div 
+            v-for="feature in mainFeatures" 
+            :key="feature" 
+            class="flex items-start gap-3 rounded-xl bg-gradient-to-r from-blue-50 to-purple-50 p-4 ring-1 ring-blue-100 sm:gap-4 sm:p-6"
+          >
+            <span class="flex-shrink-0 text-lg sm:text-xl" role="img" aria-hidden="true">✨</span>
+            <span class="text-sm font-medium text-gray-700 sm:text-base">{{ t(feature) }}</span>
+          </div>
         </div>
       </div>
-    </div>
+    </section>
+
+    <!-- Bottom Spacing for Mobile Navigation -->
+    <div class="h-8 sm:h-0"></div>
   </div>
 </template>
 
 <script setup lang="ts">
+interface Tool {
+  name: string
+  icon: string
+  titleKey: string
+  descriptionKey: string
+  features: string[]
+}
+
 const { t, locale } = useI18n()
 const router = useRouter()
 const localePath = useLocalePath()
 const { logger, LogCategory } = useLogger()
 
-// Define tools data
-const tools = ref([
+// Define tools data with proper typing
+const tools = ref<Tool[]>([
   {
     name: 'tarot',
     icon: '🃏',
@@ -83,20 +152,26 @@ const tools = ref([
   }
 ])
 
-const mainFeatures = ref([
+const mainFeatures = ref<string[]>([
   'feature5Languages',
   'featureModernDesign', 
   'featureInstantResults',
   'featureMobileOptimized'
 ])
 
-// Navigation function with logging
-const navigateToTool = async (toolName: string) => {
+// Enhanced navigation with touch feedback
+const navigateToTool = async (toolName: string): Promise<void> => {
   try {
+    // Add haptic feedback for mobile devices
+    if (process.client && 'vibrate' in navigator) {
+      navigator.vibrate(50)
+    }
+
     logger.logUserAction('Tool card clicked', { 
       tool: toolName,
       currentLocale: locale.value,
-      fromPage: 'homepage'
+      fromPage: 'homepage',
+      deviceType: process.client ? (window.innerWidth < 768 ? 'mobile' : 'desktop') : 'unknown'
     })
 
     const targetPath = localePath(`/${toolName}`)
@@ -122,7 +197,7 @@ const navigateToTool = async (toolName: string) => {
   }
 }
 
-// SEO Meta - using fallback if keys don't exist
+// SEO Meta with responsive optimization
 useSeoMeta({
   title: computed(() => {
     try {
@@ -137,15 +212,18 @@ useSeoMeta({
     } catch {
       return 'Discover your destiny through ancient wisdom with our digital fortune teller. Free tarot readings, astrology, numerology, and Chinese zodiac insights.'
     }
-  })
+  }),
+  viewport: 'width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes'
 })
 
-// Lifecycle logging
+// Mobile-specific optimizations
 onMounted(() => {
   logger.logComponentInit('Homepage', {
     locale: locale.value,
     toolsCount: tools.value.length,
-    userAgent: process.client ? navigator.userAgent : 'SSR'
+    userAgent: process.client ? navigator.userAgent : 'SSR',
+    screenSize: process.client ? `${window.innerWidth}x${window.innerHeight}` : 'unknown',
+    touchSupport: process.client ? 'ontouchstart' in window : false
   })
   
   // Log tool paths for validation
@@ -157,9 +235,14 @@ onMounted(() => {
       locale: locale.value
     })
   })
+
+  // Add scroll performance optimization for mobile
+  if (process.client && window.innerWidth < 768) {
+    document.body.style.overscrollBehavior = 'none'
+  }
 })
 
-// Watch locale changes
+// Watch locale changes with mobile considerations
 watch(locale, (newLocale, oldLocale) => {
   logger.logLanguageChange(oldLocale || 'unknown', newLocale)
   
@@ -173,236 +256,20 @@ watch(locale, (newLocale, oldLocale) => {
     })
   })
 })
-</script>
 
-<style scoped>
-.homepage {
-  padding: 40px 0 60px 0;
-  min-height: auto;
-}
-
-.hero-section {
-  text-align: center;
-  margin-bottom: 60px;
-  padding: 50px 30px;
-  background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
-  border-radius: 20px;
-  margin: 0 20px 60px 20px;
-}
-
-.hero-title {
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: #4a5568;
-  margin-bottom: 16px;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-.hero-subtitle {
-  font-size: 1.2rem;
-  color: #6b7280;
-  max-width: 600px;
-  margin: 0 auto;
-  line-height: 1.6;
-}
-
-.tools-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  gap: 40px;
-  margin: 0 20px 60px 20px;
-  padding: 0 20px;
-}
-
-.tool-card {
-  background: rgba(255, 255, 255, 0.98);
-  border-radius: 20px;
-  padding: 60px 40px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  border: 2px solid transparent;
-  position: relative;
-  overflow: hidden;
-  min-height: 450px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.tool-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 4px;
-  background: linear-gradient(90deg, #667eea, #764ba2);
-  transform: scaleX(0);
-  transition: transform 0.3s ease;
-}
-
-.tool-card:hover,
-.tool-card:focus {
-  transform: translateY(-8px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-  border-color: rgba(102, 126, 234, 0.2);
-  outline: none;
-}
-
-.tool-card:hover::before,
-.tool-card:focus::before {
-  transform: scaleX(1);
-}
-
-.tool-icon {
-  font-size: 4.5rem;
-  margin-bottom: 35px;
-  text-align: center;
-  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1));
-}
-
-.tool-title {
-  font-size: 1.75rem;
-  font-weight: 600;
-  color: #374151;
-  margin-bottom: 25px;
-  text-align: center;
-}
-
-.tool-description {
-  color: #6b7280;
-  line-height: 1.8;
-  margin-bottom: 35px;
-  text-align: center;
-  font-size: 1.1rem;
-  flex-grow: 1;
-}
-
-.tool-features {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  justify-content: center;
-}
-
-.feature-tag {
-  background: linear-gradient(45deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
-  color: #5b6bc0;
-  padding: 8px 14px;
-  border-radius: 20px;
-  font-size: 0.8rem;
-  font-weight: 500;
-  border: 1px solid rgba(102, 126, 234, 0.2);
-}
-
-.about-section {
-  background: rgba(255, 255, 255, 0.95);
-  border-radius: 20px;
-  padding: 60px 50px;
-  margin: 0 20px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-}
-
-.about-title {
-  font-size: 2rem;
-  font-weight: 600;
-  color: #374151;
-  text-align: center;
-  margin-bottom: 25px;
-}
-
-.about-text {
-  color: #6b7280;
-  line-height: 1.7;
-  text-align: center;
-  margin-bottom: 40px;
-  font-size: 1.05rem;
-  max-width: 800px;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 40px;
-}
-
-.features-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
-  max-width: 800px;
-  margin: 0 auto;
-}
-
-.feature-item {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  padding: 20px;
-  background: rgba(102, 126, 234, 0.05);
-  border-radius: 12px;
-  border-left: 4px solid #667eea;
-}
-
-.feature-icon {
-  font-size: 1.3rem;
-  flex-shrink: 0;
-}
-
-/* Mobile Responsive */
-@media (max-width: 768px) {
-  .homepage {
-    padding: 15px 0;
+// Handle screen orientation changes
+if (process.client) {
+  const handleOrientationChange = () => {
+    logger.debug(LogCategory.COMPONENT, 'Orientation changed', {
+      orientation: screen.orientation?.type || 'unknown',
+      screenSize: `${window.innerWidth}x${window.innerHeight}`
+    })
   }
   
-  .hero-section {
-    margin: 0 10px 40px 10px;
-    padding: 30px 20px;
-  }
+  window.addEventListener('orientationchange', handleOrientationChange)
   
-  .hero-title {
-    font-size: 2rem;
-  }
-  
-  .hero-subtitle {
-    font-size: 1rem;
-  }
-  
-  .tools-grid {
-    grid-template-columns: 1fr;
-    gap: 30px;
-    margin: 0 15px 50px 15px;
-    padding: 0 10px;
-  }
-  
-  .tool-card {
-    padding: 50px 30px;
-    min-height: 380px;
-  }
-  
-  .about-section {
-    margin: 0 10px;
-    padding: 35px 25px;
-  }
-  
-  .about-title {
-    font-size: 1.5rem;
-  }
-  
-  .features-list {
-    grid-template-columns: 1fr;
-    gap: 15px;
-  }
-  
-  .feature-item {
-    padding: 15px;
-  }
+  onUnmounted(() => {
+    window.removeEventListener('orientationchange', handleOrientationChange)
+  })
 }
-
-/* RTL Support */
-[dir="rtl"] .tool-card {
-  direction: rtl;
-}
-
-[dir="rtl"] .feature-item {
-  direction: rtl;
-}
-</style> 
+</script> 
