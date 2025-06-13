@@ -1,10 +1,18 @@
 {
   "tagline": "Découvrez Votre Destin Grâce à la Sagesse Ancienne",
+  "heroTitle": "Voyant Numérique",
+  "heroSubtitle": "Percez les mystères de votre avenir avec nos outils de divination complets. Explorez la sagesse ancienne grâce à la technologie moderne.",
+  "aboutTitle": "À Propos de Notre Divination Numérique",
+  "aboutText": "Notre plateforme combine des pratiques de divination séculaires avec la commodité numérique moderne. Que vous cherchiez des conseils par les cartes de tarot, l'astrologie, la numérologie ou la sagesse du zodiaque chinois, nos outils fournissent des perspectives personnalisées pour vous aider à naviguer dans le voyage de la vie.",
   "tarotTab": "Tarot",
   "astrologyTab": "Horoscope",
   "numerologyTab": "Numéros",
   "chineseZodiacTab": "Zodiaque",
   "tarotTitle": "🃏 Tirage de Tarot",
+  "tarotDescription": "Révélez votre passé, présent et futur à travers l'art ancien de la lecture de cartes de tarot.",
+  "tarotFeature1": "Tirage à 3 Cartes",
+  "tarotFeature2": "Passé-Présent-Futur",
+  "tarotFeature3": "Résultats Instantanés",
   "tarotIntro": "Concentrez-vous sur une question et sélectionnez 3 cartes pour révéler votre fortune.",
   "tarotProgressStart": "Veuillez sélectionner la carte 1 sur 3",
   "tarotProgressRemain": "Veuillez sélectionner {remaining} carte(s) supplémentaire(s)",
@@ -18,12 +26,20 @@
   "tarotReflection": "Prenez un moment pour réfléchir à la façon dont ces informations résonnent avec votre situation actuelle.",
   "resetReadingBtn": "Nouveau Tirage",
   "shareReadingBtn": "Partager ce Tirage",
-  "horoscopeTitle": "⭐ Horoscope du Jour",
+  "astrologyTitle": "⭐ Horoscope du Jour",
+  "astrologyDescription": "Obtenez des perspectives quotidiennes personnalisées basées sur votre signe du zodiaque et les alignements célestes.",
+  "astrologyFeature1": "12 Signes du Zodiaque",
+  "astrologyFeature2": "Mises à Jour Quotidiennes",
+  "astrologyFeature3": "Conseils Personnels",
   "horoscopeIntro": "Sélectionnez votre signe du zodiaque pour voir votre horoscope du jour.",
   "horoscopeFor": "{sign} - Horoscope du Jour",
   "horoscopeReflection": "Réfléchissez à la manière dont ces conseils pourraient s'appliquer à votre journée.",
   "shareHoroscopeBtn": "Partager l'Horoscope du Jour",
   "numerologyTitle": "🔢 Consultation de Numérologie",
+  "numerologyDescription": "Découvrez votre chemin de vie et votre destin à travers le pouvoir mystique des nombres.",
+  "numerologyFeature1": "Nombre de Chemin de Vie",
+  "numerologyFeature2": "Analyse du Destin",
+  "numerologyFeature3": "Nom et Date de Naissance",
   "numerologyIntro": "Découvrez votre Chemin de Vie et sa signification.",
   "birthDateLabel": "Entrez votre date de naissance :",
   "birthDateError": "Veuillez entrer une date de naissance valide",
@@ -38,6 +54,10 @@
   "recalculateBtn": "Recalculer",
   "shareNumbersBtn": "Partager Mes Nombres",
   "chineseZodiacTitle": "🐉 Zodiaque Chinois",
+  "chineseZodiacDescription": "Explorez vos traits de personnalité et votre fortune à travers le système du zodiaque chinois.",
+  "chineseFeature1": "12 Signes Animaux",
+  "chineseFeature2": "Traits de Personnalité",
+  "chineseFeature3": "Lecture Basée sur l'Année",
   "chineseZodiacIntro": "Découvrez votre animal du zodiaque et ses caractéristiques.",
   "birthYearLabel": "Entrez votre année de naissance :",
   "birthYearPlaceholder": "ex: 1990",
@@ -49,6 +69,10 @@
   "traits": "Traits :",
   "chineseZodiacReflection": "Accueillez la sagesse de votre animal du zodiaque.",
   "shareZodiacBtn": "Partager Mon Zodiaque",
+  "feature5Languages": "Disponible en 5 Langues",
+  "featureModernDesign": "Design Moderne et Intuitif",
+  "featureInstantResults": "Résultats et Partage Instantanés",
+  "featureMobileOptimized": "Expérience Optimisée Mobile",
   "shareError": "Le partage a échoué ou a été annulé. Votre lecture a été copiée dans le presse-papiers !",
   "shareSuccess": "Votre lecture a été copiée dans le presse-papiers !",
   "myTarotReading": "Mon Tirage de Tarot",
@@ -56,6 +80,10 @@
   "myNumerology": "Ma Lecture de Numérologie",
   "myZodiac": "Mon Zodiaque Chinois",
   "seo": {
+    "homepage": {
+      "title": "Voyant Numérique - Tarot, Astrologie et Numérologie Gratuits | Teller.eu.org",
+      "description": "Découvrez votre destin grâce à la sagesse ancienne avec notre voyant numérique. Tirages de tarot gratuits, astrologie, numérologie et perspectives du zodiaque chinois."
+    },
     "tarot": {
       "title": "Tirage de Tarot Gratuit - Découvrez votre Fortune | Teller.eu.org",
       "description": "Obtenez un tirage de tarot gratuit à 3 cartes pour révéler des perspectives sur votre passé, présent et futur. Interprétations professionnelles disponibles maintenant."
@@ -68,7 +96,7 @@
       "title": "Lecture de Numérologie Gratuite - Calculateur de Chemin de Vie | Teller.eu.org",
       "description": "Calculez vos nombres de Chemin de Vie et de Destinée avec notre calculateur de numérologie gratuit. Découvrez la signification de vos nombres personnels."
     },
-    "chinese-zodiac": {
+    "chinesezodiac": {
       "title": "Calculateur de Zodiaque Chinois - Trouvez votre Signe Animal | Teller.eu.org",
       "description": "Découvrez votre animal du zodiaque chinois et ses caractéristiques. Calculateur gratuit pour trouver votre signe animal de naissance et ses traits."
     }

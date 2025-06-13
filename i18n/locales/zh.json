@@ -1,10 +1,18 @@
 {
   "tagline": "通过古老的智慧发现你的命运",
+  "heroTitle": "数字占卜师",
+  "heroSubtitle": "通过我们全面的占卜工具揭开您未来的奥秘。通过现代技术探索古老的智慧。",
+  "aboutTitle": "关于我们的数字占卜",
+  "aboutText": "我们的平台将几个世纪的占卜实践与现代数字便利相结合。无论您是通过塔罗牌、占星术、数字学或中国十二生肖智慧寻求指导，我们的工具都提供个性化见解，帮助您导航人生旅程。",
   "tarotTab": "塔罗牌",
   "astrologyTab": "星座",
   "numerologyTab": "灵数",
   "chineseZodiacTab": "生肖",
   "tarotTitle": "🃏 塔罗牌解读",
+  "tarotDescription": "通过古老的塔罗牌解读艺术揭示您的过去、现在和未来。",
+  "tarotFeature1": "三张牌解读",
+  "tarotFeature2": "过去-现在-未来",
+  "tarotFeature3": "即时结果",
   "tarotIntro": "心中默念一个问题，然后选择3张牌来揭示你的运势。",
   "tarotProgressStart": "请选择3张牌中的第1张",
   "tarotProgressRemain": "还需选择 {remaining} 张牌",
@@ -18,17 +26,25 @@
   "tarotReflection": "花点时间反思这些见解如何与您当前的情况产生共鸣。",
   "resetReadingBtn": "重新解读",
   "shareReadingBtn": "分享这次解读",
-  "horoscopeTitle": "⭐ 每日星座运势",
+  "astrologyTitle": "⭐ 每日星座运势",
+  "astrologyDescription": "根据您的星座和天体排列获得个性化的每日洞察。",
+  "astrologyFeature1": "12个星座",
+  "astrologyFeature2": "每日更新",
+  "astrologyFeature3": "个人指导",
   "horoscopeIntro": "选择你的星座，查看今日运势。",
   "horoscopeFor": "{sign} - 今日运势",
   "horoscopeReflection": "思考这个指引如何应用于你未来的一天。",
   "shareHoroscopeBtn": "分享今日运势",
   "numerologyTitle": "🔢 生命灵数解读",
+  "numerologyDescription": "通过数字的神秘力量发现您的人生道路和命运。",
+  "numerologyFeature1": "生命路径数字",
+  "numerologyFeature2": "命运分析",
+  "numerologyFeature3": "姓名和生日",
   "numerologyIntro": "发现你的生命路径数字及其含义。",
   "birthDateLabel": "输入您的出生日期：",
   "birthDateError": "请输入有效的出生日期",
   "fullNameLabel": "输入您的全名：",
-  "fullNamePlaceholder": "例如：Zhang San / 张三",
+  "fullNamePlaceholder": "例如：张三",
   "fullNameError": "请输入您的全名。",
   "calculateBtn": "计算我的数字",
   "yourNumerologyProfile": "您的命理侧写:",
@@ -38,6 +54,10 @@
   "recalculateBtn": "重新计算",
   "shareNumbersBtn": "分享我的数字",
   "chineseZodiacTitle": "🐉 中国生肖",
+  "chineseZodiacDescription": "通过中国生肖系统探索您的性格特征和财运。",
+  "chineseFeature1": "12个动物标志",
+  "chineseFeature2": "性格特征",
+  "chineseFeature3": "基于年份的解读",
   "chineseZodiacIntro": "发现您的生肖动物和运势。",
   "birthYearLabel": "输入您的出生年份：",
   "birthYearPlaceholder": "例如：1990",
@@ -49,6 +69,10 @@
   "traits": "性格特点:",
   "chineseZodiacReflection": "拥抱你生肖动物的智慧。",
   "shareZodiacBtn": "分享我的生肖",
+  "feature5Languages": "支持5种语言",
+  "featureModernDesign": "现代直观设计",
+  "featureInstantResults": "即时结果和分享",
+  "featureMobileOptimized": "移动优化体验",
   "shareError": "分享失败或已取消。您的解读已复制到剪贴板！",
   "shareSuccess": "您的解读已复制到剪贴板！",
   "myTarotReading": "我的塔罗牌解读",
@@ -56,6 +80,10 @@
   "myNumerology": "我的命理学解读",
   "myZodiac": "我的中国生肖",
   "seo": {
+    "homepage": {
+      "title": "数字占卜师 - 免费塔罗、占星术和数字学 | Teller.eu.org",
+      "description": "通过我们的数字占卜师用古老的智慧发现你的命运。免费塔罗牌解读、占星术、数字学和中国生肖洞察。"
+    },
     "tarot": {
       "title": "免费塔罗牌解读 - 发现你的命运 | Teller.eu.org",
       "description": "获得免费的3张塔罗牌解读，揭示关于你的过去、现在和未来的洞察。现在提供专业的塔罗牌解释。"
@@ -68,7 +96,7 @@
       "title": "免费命理学解读 - 生命路径计算器 | Teller.eu.org",
       "description": "用我们的免费命理学计算器计算你的生命路径和命运数字。发现你个人数字背后的含义。"
     },
-    "chinese-zodiac": {
+    "chinesezodiac": {
       "title": "中国生肖计算器 - 找到你的动物标志 | Teller.eu.org",
       "description": "发现你的中国生肖动物及其特征。免费计算器来找到你的出生年份动物标志和特征。"
     }

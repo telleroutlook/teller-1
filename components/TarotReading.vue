@@ -48,6 +48,9 @@
 </template>
 
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n'
+import { useLogger } from '@/composables/useLogger'
+
 interface TarotCard {
   name: string
   meaning: string
@@ -56,20 +59,28 @@ interface TarotCard {
 }
 
 const { t: $t, locale } = useI18n()
+const { logger, LogCategory } = useLogger()
 
 // Simple animation function without anime.js for now
 const runMysticalAnimation = (text: string, callback?: () => void) => {
   if (!process.client) return
+  
+  logger.logAnimationStart('mystical-animation', { 
+    text: text.substring(0, 20) + '...', 
+    hasCallback: !!callback 
+  })
   
   const overlay = document.getElementById('animation-overlay')
   if (overlay) {
     overlay.classList.add('visible')
     setTimeout(() => {
       overlay.classList.remove('visible')
+      logger.logAnimationEnd('mystical-animation', 2000)
       if (callback) callback()
     }, 2000)
-  } else if (callback) {
-    callback()
+  } else {
+    logger.logError('TarotReading.runMysticalAnimation', 'Animation overlay not found')
+    if (callback) callback()
   }
 }
 
@@ -129,6 +140,12 @@ const initializeDeck = () => {
 const selectCard = (index: number) => {
   if (selectedCards.value.length >= 3 || shuffledDeck.value[index].flipped) return
   
+  logger.logUserAction('Tarot card selected', { 
+    cardIndex: index,
+    cardName: shuffledDeck.value[index].name,
+    selectedCount: selectedCards.value.length + 1 
+  })
+  
   const card = shuffledDeck.value[index]
   card.flipped = true
   selectedCards.value.push(card)
@@ -141,8 +158,15 @@ const selectCard = (index: number) => {
     
     // Trigger animation
     const cardNames = selectedCards.value.map(c => c.name).join('  ')
+    logger.logAnimationStart('tarot-reading-complete', { 
+      selectedCards: selectedCards.value.map(c => c.name) 
+    })
+    
     runMysticalAnimation(cardNames, () => {
       showResult.value = true
+      logger.logUserAction('Tarot reading completed', { 
+        cards: selectedCards.value.map(c => c.name) 
+      })
     })
   }
 }
@@ -153,12 +177,14 @@ const getPositionLabel = (index: number) => {
 }
 
 const resetReading = () => {
+  logger.logUserAction('Tarot reading reset')
   selectedCards.value = []
   showResult.value = false
   initializeDeck()
 }
 
 const shareReading = () => {
+  logger.logUserAction('Tarot reading share attempted')
   const reading = selectedCards.value.map((card: TarotCard, index: number) => 
     `${getPositionLabel(index)}: ${card.name} - ${card.meaning}`
   ).join('\n')
@@ -169,21 +195,27 @@ const shareReading = () => {
     navigator.share({
       title: $t('myTarotReading'),
       text: shareText
+    }).then(() => {
+      logger.logUserAction('Tarot reading shared successfully')
     }).catch(() => {
       navigator.clipboard.writeText(shareText)
       alert($t('shareError'))
+      logger.logUserAction('Tarot reading copied to clipboard (share failed)')
     })
   } else {
     navigator.clipboard.writeText(shareText)
     alert($t('shareSuccess'))
+    logger.logUserAction('Tarot reading copied to clipboard')
   }
 }
 
 onMounted(() => {
+  logger.logComponentInit('TarotReading', { locale: locale.value })
   initializeDeck()
 })
 
-watch(locale, () => {
+watch(locale, (newLocale, oldLocale) => {
+  logger.logLanguageChange(oldLocale || 'unknown', newLocale)
   if (selectedCards.value.length === 0) {
     initializeDeck()
   }
@@ -193,9 +225,11 @@ watch(locale, () => {
 <style scoped>
 .intro-text {
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
   color: #6B7280;
   font-size: 0.9rem;
+  line-height: 1.6;
+  padding: 0 10px;
 }
 
 .tarot-progress {

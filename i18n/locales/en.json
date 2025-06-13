@@ -1,10 +1,18 @@
 {
   "tagline": "Discover Your Destiny Through Ancient Wisdom",
+  "heroTitle": "Digital Fortune Teller",
+  "heroSubtitle": "Unlock the mysteries of your future with our comprehensive divination tools. Explore ancient wisdom through modern technology.",
+  "aboutTitle": "About Our Digital Divination",
+  "aboutText": "Our platform combines centuries-old divination practices with modern digital convenience. Whether you're seeking guidance through tarot cards, astrology, numerology, or Chinese zodiac wisdom, our tools provide personalized insights to help you navigate life's journey.",
   "tarotTab": "Tarot",
   "astrologyTab": "Horoscope",
   "numerologyTab": "Numerology",
   "chineseZodiacTab": "Zodiac",
   "tarotTitle": "🃏 Tarot Reading",
+  "tarotDescription": "Reveal your past, present, and future through the ancient art of tarot card reading.",
+  "tarotFeature1": "3-Card Reading",
+  "tarotFeature2": "Past-Present-Future",
+  "tarotFeature3": "Instant Results",
   "tarotIntro": "Focus on a question and select 3 cards to reveal your fortune.",
   "tarotProgressStart": "Please select card 1 of 3",
   "tarotProgressRemain": "Please select {remaining} more card(s)",
@@ -18,12 +26,20 @@
   "tarotReflection": "Take a moment to reflect on how these insights resonate with your current situation.",
   "resetReadingBtn": "New Reading",
   "shareReadingBtn": "Share this Reading",
-  "horoscopeTitle": "⭐ Daily Horoscope",
+  "astrologyTitle": "⭐ Daily Horoscope",
+  "astrologyDescription": "Get personalized daily insights based on your zodiac sign and celestial alignments.",
+  "astrologyFeature1": "12 Zodiac Signs",
+  "astrologyFeature2": "Daily Updates",
+  "astrologyFeature3": "Personal Guidance",
   "horoscopeIntro": "Select your zodiac sign to see your horoscope for today.",
   "horoscopeFor": "{sign} - Today's Horoscope",
   "horoscopeReflection": "Consider how this guidance might apply to your day ahead.",
   "shareHoroscopeBtn": "Share Today's Horoscope",
   "numerologyTitle": "🔢 Numerology Reading",
+  "numerologyDescription": "Discover your life path and destiny through the mystical power of numbers.",
+  "numerologyFeature1": "Life Path Number",
+  "numerologyFeature2": "Destiny Analysis",
+  "numerologyFeature3": "Name & Birth Date",
   "numerologyIntro": "Discover your Life Path Number and its meaning.",
   "birthDateLabel": "Enter your date of birth:",
   "birthDateError": "Please enter a valid date of birth",
@@ -38,6 +54,10 @@
   "recalculateBtn": "Recalculate",
   "shareNumbersBtn": "Share My Numbers",
   "chineseZodiacTitle": "🐉 Chinese Zodiac",
+  "chineseZodiacDescription": "Explore your personality traits and fortune through the Chinese zodiac system.",
+  "chineseFeature1": "12 Animal Signs",
+  "chineseFeature2": "Personality Traits",
+  "chineseFeature3": "Year-based Reading",
   "chineseZodiacIntro": "Discover your zodiac animal and its characteristics.",
   "birthYearLabel": "Enter your birth year:",
   "birthYearPlaceholder": "e.g., 1990",
@@ -49,6 +69,10 @@
   "traits": "Traits:",
   "chineseZodiacReflection": "Embrace the wisdom of your zodiac animal.",
   "shareZodiacBtn": "Share My Zodiac",
+  "feature5Languages": "Available in 5 Languages",
+  "featureModernDesign": "Modern & Intuitive Design",
+  "featureInstantResults": "Instant Results & Sharing",
+  "featureMobileOptimized": "Mobile Optimized Experience",
   "shareError": "Sharing failed or was cancelled. Your reading has been copied to the clipboard!",
   "shareSuccess": "Your reading has been copied to the clipboard!",
   "myTarotReading": "My Tarot Reading",
@@ -56,6 +80,10 @@
   "myNumerology": "My Numerology Reading",
   "myZodiac": "My Chinese Zodiac",
   "seo": {
+    "homepage": {
+      "title": "Digital Fortune Teller - Free Tarot, Astrology & Numerology | Teller.eu.org",
+      "description": "Discover your destiny through ancient wisdom with our digital fortune teller. Free tarot readings, astrology, numerology, and Chinese zodiac insights."
+    },
     "tarot": {
       "title": "Free Tarot Reading - Discover Your Fortune | Teller.eu.org",
       "description": "Get a free 3-card tarot reading to reveal insights about your past, present, and future. Professional tarot card interpretations available now."
@@ -68,7 +96,7 @@
       "title": "Free Numerology Reading - Life Path Calculator | Teller.eu.org",
       "description": "Calculate your Life Path and Destiny numbers with our free numerology calculator. Discover the meaning behind your personal numbers."
     },
-    "chinese-zodiac": {
+    "chinesezodiac": {
       "title": "Chinese Zodiac Calculator - Find Your Animal Sign | Teller.eu.org",
       "description": "Discover your Chinese zodiac animal and its characteristics. Free calculator to find your birth year animal sign and traits."
     }

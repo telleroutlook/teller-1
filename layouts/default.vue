@@ -33,18 +33,19 @@ const updateDocumentAttributes = () => {
 
 <style scoped>
 .container {
-  max-width: 1200px;
+  max-width: 1400px;
   width: 100%;
   margin: 0 auto;
-  padding: 10px 15px 75px 15px;
+  padding: 20px 25px 85px 25px;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  height: 100%;
+  min-height: 100vh;
 }
 
 .main-content {
   flex-grow: 1;
   position: relative;
+  padding: 20px 0;
 }
 </style> 
