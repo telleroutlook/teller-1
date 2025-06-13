@@ -1173,14 +1173,12 @@
         function createAndAnimateParticles(container) {
             const colors = ['#FFD700', '#FF69B4', '#00FFFF', '#9370DB', '#FFFFFF', '#76ff7a', '#ff9c3d'];
             
-            // *** 彻底清理之前的粒子 ***
+            // 清理之前的粒子
             const existingParticles = container.querySelectorAll('.particle');
             existingParticles.forEach(p => {
-                anime.remove(p); // 移除该元素上的所有动画
-                p.remove(); // 从DOM中移除
+                anime.remove(p);
+                p.remove();
             });
-
-            console.log("LOG: Creating", 70, "new particles...");
 
             const particleCount = 70;
             const newParticles = [];
@@ -1205,7 +1203,6 @@
 
             // 等待DOM更新后再开始动画
             setTimeout(() => {
-                console.log("LOG: Starting particle animations...");
                 anime({
                     targets: '.particle',
                     opacity: [
@@ -1230,7 +1227,6 @@
             const flare = document.getElementById('animation-flare');
 
             if (!overlay || !textContainer || !flare) {
-                console.error("LOG: Animation elements not found in the DOM!");
                 if (callback) callback();
                 return;
             }
@@ -1240,10 +1236,7 @@
                 text = '✨';
             }
             
-            console.log("LOG: Starting animation with text:", text);
-            
-            // *** 彻底清理之前的动画状态 ***
-            console.log("LOG: Cleaning up previous animation state...");
+            // 清理之前的动画状态
             
             // 停止所有正在进行的anime.js动画
             anime.remove('.particle');
@@ -1266,19 +1259,15 @@
             overlay.classList.remove('visible');
             overlay.style.display = 'none';
             
-            // *** 强制重绘 ***
-            overlay.offsetHeight; // 触发重绘
-            
-            console.log("LOG: Cleanup complete, starting new animation...");
+            // 强制重绘
+            overlay.offsetHeight;
             
             // Step 1: Make the overlay visible immediately.
             overlay.style.display = 'flex';
             overlay.style.opacity = ''; // 清除内联opacity，让CSS类生效
             overlay.classList.add('visible');
             
-            // *** 使用更长的延迟确保DOM完全准备好 ***
             setTimeout(() => {
-                console.log("LOG: Starting animation setup inside setTimeout.");
                 
                 // 创建新的粒子动画
                 createAndAnimateParticles(overlay);
@@ -1296,7 +1285,6 @@
                 });
 
                 const fontSize = getResponsiveFontSize(text);
-                console.log("LOG: Calculated font size:", fontSize, "for text:", text);
                 
                 // 改进文本处理，确保每个字符都能正确显示
                 const characters = text.split('');
@@ -1319,11 +1307,10 @@
                 const textLength = characters.length;
                 const staggerDelay = Math.max(50, Math.min(120, 1000 / textLength));
 
-                console.log("LOG: Starting text animation with", textLength, "characters, stagger delay:", staggerDelay);
+
 
                 anime.timeline({
                     complete: () => {
-                        console.log("LOG: Text animation complete, starting fade out");
                         anime({
                             targets: overlay,
                             opacity: 0,
