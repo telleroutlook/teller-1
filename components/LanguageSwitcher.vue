@@ -3,7 +3,10 @@
     id="language-selector" 
     :value="locale" 
     @change="changeLanguage"
-    class="px-3 py-2 bg-white/20 border border-white/30 rounded-lg text-white text-sm font-medium backdrop-blur-sm focus:bg-white/30 focus:outline-none focus:ring-2 focus:ring-white/50 transition-all duration-200 hover:bg-white/30"
+    :class="[
+      'language-selector',
+      { 'rtl-position': locale === 'ar' }
+    ]"
   >
     <option value="en">English</option>
     <option value="zh">中文</option>
@@ -25,10 +28,52 @@ const changeLanguage = async (event: Event) => {
 </script>
 
 <style scoped>
+.language-selector {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  z-index: 1001;
+  width: auto;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+.language-selector:hover {
+  background: rgba(255, 255, 255, 0.3);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.language-selector:focus {
+  background: rgba(255, 255, 255, 0.3);
+  border-color: rgba(255, 255, 255, 0.6);
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.2);
+}
+
+.language-selector.rtl-position {
+  left: auto;
+  right: 10px;
+}
+
 /* Option styling for better visibility */
-select option {
+.language-selector option {
   color: #333;
   background: white;
-  padding: 0.5rem;
+  padding: 8px 12px;
+  font-weight: 500;
+}
+
+/* RTL support */
+:global([dir="rtl"]) .language-selector {
+  left: auto;
+  right: 10px;
 }
 </style> 

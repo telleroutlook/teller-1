@@ -1,9 +1,30 @@
 export default defineNuxtPlugin(async () => {
   if (process.client) {
     try {
-      // Use dynamic import for animejs with type assertion
+      // Use dynamic import for animejs with proper typing
       const animeModule = await import('animejs') as any
-      const anime = animeModule.default || animeModule
+      
+      // Handle different export formats
+      let anime
+      if (animeModule.default) {
+        anime = animeModule.default
+      } else if (typeof animeModule === 'function') {
+        anime = animeModule
+      } else {
+        anime = animeModule
+      }
+      
+      // Verify that anime is a function
+      if (typeof anime !== 'function') {
+        console.warn('AnimejS: Loaded module is not a function:', typeof anime)
+        return {
+          provide: {
+            anime: null
+          }
+        }
+      }
+      
+      console.log('AnimejS: Successfully loaded')
       
       return {
         provide: {
@@ -11,7 +32,7 @@ export default defineNuxtPlugin(async () => {
         }
       }
     } catch (error) {
-      console.warn('Failed to load animejs:', error)
+      console.warn('AnimejS: Failed to load:', error)
       return {
         provide: {
           anime: null
@@ -20,6 +41,7 @@ export default defineNuxtPlugin(async () => {
     }
   }
   
+  // Server-side
   return {
     provide: {
       anime: null
