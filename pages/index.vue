@@ -223,12 +223,23 @@ onMounted(() => {
 useSeoMeta({
   title: t('seo.homepage.title'),
   description: t('seo.homepage.description'),
-  ogTitle: t('seo.homepage.title'),
-  ogDescription: t('seo.homepage.description'),
+  keywords: t('seo.homepage.keywords'),
+  ogTitle: t('seo.homepage.ogTitle'),
+  ogDescription: t('seo.homepage.ogDescription'),
   ogType: 'website',
-  twitterCard: 'summary_large_image',
-  twitterTitle: t('seo.homepage.title'),
-  twitterDescription: t('seo.homepage.description')
+  twitterCard: 'summary_large_image' as const,
+  twitterTitle: t('seo.homepage.twitterTitle'),
+  twitterDescription: t('seo.homepage.twitterDescription')
+})
+
+// Add structured data
+useHead({
+  script: [
+    {
+      type: 'application/ld+json',
+      innerHTML: JSON.stringify(t('seo.homepage.structuredData'))
+    }
+  ]
 })
 </script>
 

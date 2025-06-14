@@ -34,16 +34,35 @@ const seoData = computed(() => {
   const seoKey = tool.value.replace('-', '')
   return {
     title: t(`seo.${seoKey}.title`),
-    description: t(`seo.${seoKey}.description`)
+    description: t(`seo.${seoKey}.description`),
+    keywords: t(`seo.${seoKey}.keywords`),
+    ogTitle: t(`seo.${seoKey}.ogTitle`),
+    ogDescription: t(`seo.${seoKey}.ogDescription`),
+    twitterTitle: t(`seo.${seoKey}.twitterTitle`),
+    twitterDescription: t(`seo.${seoKey}.twitterDescription`),
+    structuredData: t(`seo.${seoKey}.structuredData`)
   }
 })
 
 useSeoMeta({
   title: seoData.value.title,
   description: seoData.value.description,
-  ogTitle: seoData.value.title,
-  ogDescription: seoData.value.description,
-  twitterTitle: seoData.value.title,
-  twitterDescription: seoData.value.description
+  keywords: seoData.value.keywords,
+  ogTitle: seoData.value.ogTitle,
+  ogDescription: seoData.value.ogDescription,
+  ogType: 'website',
+  twitterCard: 'summary_large_image' as const,
+  twitterTitle: seoData.value.twitterTitle,
+  twitterDescription: seoData.value.twitterDescription
+})
+
+// Add structured data
+useHead({
+  script: [
+    {
+      type: 'application/ld+json',
+      innerHTML: JSON.stringify(seoData.value.structuredData)
+    }
+  ]
 })
 </script> 

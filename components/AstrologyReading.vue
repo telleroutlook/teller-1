@@ -34,14 +34,42 @@
 </template>
 
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n'
+import { useLogger } from '@/composables/useLogger'
+import { useSeoMeta, useHead } from '#imports'
+
 interface ZodiacSign {
   name: string
   emoji: string
   horoscope: string
 }
 
+const { t: $t, locale } = useI18n()
 const { runMysticalAnimation } = useAnimations()
 const { logger } = useLogger()
+
+// Add SEO implementation
+useSeoMeta({
+  title: $t('seo.astrology.title'),
+  description: $t('seo.astrology.description'),
+  keywords: $t('seo.astrology.keywords'),
+  ogTitle: $t('seo.astrology.ogTitle'),
+  ogDescription: $t('seo.astrology.ogDescription'),
+  ogType: 'website',
+  twitterCard: 'summary_large_image' as const,
+  twitterTitle: $t('seo.astrology.twitterTitle'),
+  twitterDescription: $t('seo.astrology.twitterDescription')
+})
+
+// Add structured data
+useHead({
+  script: [
+    {
+      type: 'application/ld+json',
+      innerHTML: JSON.stringify($t('seo.astrology.structuredData'))
+    }
+  ]
+})
 
 const zodiacSigns = ref<ZodiacSign[]>([
   { name: "Aries", emoji: "♈", horoscope: "Today brings new opportunities for leadership and initiative." },

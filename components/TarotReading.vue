@@ -52,6 +52,7 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
 import { useLogger } from '@/composables/useLogger'
+import { useSeoMeta, useHead } from '#imports'
 
 interface TarotCard {
   name: string
@@ -65,6 +66,29 @@ const { logger, LogCategory } = useLogger()
 
 // Use the animation composable
 const { runMysticalAnimation } = useAnimations()
+
+// Add SEO implementation
+useSeoMeta({
+  title: $t('seo.tarot.title'),
+  description: $t('seo.tarot.description'),
+  keywords: $t('seo.tarot.keywords'),
+  ogTitle: $t('seo.tarot.ogTitle'),
+  ogDescription: $t('seo.tarot.ogDescription'),
+  ogType: 'website',
+  twitterCard: 'summary_large_image' as const,
+  twitterTitle: $t('seo.tarot.twitterTitle'),
+  twitterDescription: $t('seo.tarot.twitterDescription')
+})
+
+// Add structured data
+useHead({
+  script: [
+    {
+      type: 'application/ld+json',
+      innerHTML: JSON.stringify($t('seo.tarot.structuredData'))
+    }
+  ]
+})
 
 // Get data directly for now
 const getTarotCards = (locale: string) => {

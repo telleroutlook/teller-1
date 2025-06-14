@@ -60,6 +60,10 @@
 </template>
 
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n'
+import { useLogger } from '@/composables/useLogger'
+import { useSeoMeta, useHead } from '#imports'
+
 const { t: $t, locale } = useI18n()
 const { runMysticalAnimation } = useAnimations()
 const { logger, LogCategory } = useLogger()
@@ -75,6 +79,29 @@ const lifePathNumber = ref(0)
 const destinyNumber = ref(0)
 const lifePathMeaning = ref('')
 const destinyMeaning = ref('')
+
+// Add SEO implementation
+useSeoMeta({
+  title: $t('seo.numerology.title'),
+  description: $t('seo.numerology.description'),
+  keywords: $t('seo.numerology.keywords'),
+  ogTitle: $t('seo.numerology.ogTitle'),
+  ogDescription: $t('seo.numerology.ogDescription'),
+  ogType: 'website',
+  twitterCard: 'summary_large_image' as const,
+  twitterTitle: $t('seo.numerology.twitterTitle'),
+  twitterDescription: $t('seo.numerology.twitterDescription')
+})
+
+// Add structured data
+useHead({
+  script: [
+    {
+      type: 'application/ld+json',
+      innerHTML: JSON.stringify($t('seo.numerology.structuredData'))
+    }
+  ]
+})
 
 // Initialize component logging
 onMounted(() => {

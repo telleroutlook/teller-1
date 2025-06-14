@@ -45,10 +45,35 @@
 </template>
 
 <script setup lang="ts">
+import { useSeoMeta, useHead } from '#imports'
+
 const { t: $t, locale } = useI18n()
 const { runMysticalAnimation } = useAnimations()
 const { logger, LogCategory } = useLogger()
 const { setChineseZodiacData, getChineseZodiacData, clearChineseZodiacData } = useFormState()
+
+// Add SEO implementation
+useSeoMeta({
+  title: $t('seo.chinesezodiac.title'),
+  description: $t('seo.chinesezodiac.description'),
+  keywords: $t('seo.chinesezodiac.keywords'),
+  ogTitle: $t('seo.chinesezodiac.ogTitle'),
+  ogDescription: $t('seo.chinesezodiac.ogDescription'),
+  ogType: 'website',
+  twitterCard: 'summary_large_image' as const,
+  twitterTitle: $t('seo.chinesezodiac.twitterTitle'),
+  twitterDescription: $t('seo.chinesezodiac.twitterDescription')
+})
+
+// Add structured data
+useHead({
+  script: [
+    {
+      type: 'application/ld+json',
+      innerHTML: JSON.stringify($t('seo.chinesezodiac.structuredData'))
+    }
+  ]
+})
 
 const birthYear = ref('')
 const yearError = ref(false)

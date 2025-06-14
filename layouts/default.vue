@@ -5,6 +5,7 @@
       <slot />
     </main>
     <BottomNav />
+    <AppFooter />
     <AnimationOverlay />
   </div>
 </template>

@@ -79,26 +79,334 @@
   "myHoroscope": "我的星座运势",
   "myNumerology": "我的命理学解读",
   "myZodiac": "我的中国生肖",
+  "footer": {
+    "navigation": "导航",
+    "about": "关于我们",
+    "projects": "项目展示",
+    "faq": "常见问题",
+    "contact": "联系我们",
+    "privacy": "隐私政策",
+    "quickLinks": "快速链接",
+    "contactUs": "联系我们",
+    "contactText": "有问题？我们很乐意听取您的意见。",
+    "rights": "保留所有权利。"
+  },
+  "about": {
+    "title": "关于 Teller",
+    "introduction": "欢迎来到 Teller，您的数字占卜门户。我们结合传统实践和现代技术，提供准确而富有洞察力的解读。",
+    "ourMission": "我们的使命",
+    "missionText": "我们的使命是让每个人都能接触到占卜。我们相信通过古老的智慧实现自我发现和个人成长的力量。",
+    "ourTools": "我们的工具",
+    "tarotDescription": "通过我们的互动塔罗牌解读探索神秘世界。",
+    "astrologyDescription": "通过个性化星座运势发现您的宇宙之路。",
+    "numerologyDescription": "通过我们的数字命理计算器解锁数字中的隐藏含义。",
+    "chineseZodiacDescription": "了解您的生肖及其对生活的影响。",
+    "whyChooseUs": "为什么选择我们",
+    "feature1": "准确而富有洞察力的解读",
+    "feature2": "多种占卜方法",
+    "feature3": "用户友好的界面",
+    "feature4": "支持多种语言",
+    "feature5": "免费且人人可用"
+  },
+  "projects": {
+    "title": "我们的项目",
+    "introduction": "探索我们创新的网络应用程序和工具集合，旨在提升您的数字体验。",
+    "visitSite": "访问网站",
+    "byteslim": "一个强大的文件优化和压缩工具。",
+    "mvking": "您的音乐视频和娱乐内容终极目的地。",
+    "mdeditor": "一个现代化的 Markdown 编辑器，提供流畅的写作和编辑体验。",
+    "3we": "一个通过共同兴趣连接人们的社区平台。",
+    "calculatetoday": "为各种日常需求提供快速准确的计算。",
+    "trustavo": "为您的在线需求提供安全私密的临时电子邮件服务。",
+    "tags": {
+      "utility": "实用工具",
+      "performance": "性能优化",
+      "entertainment": "娱乐",
+      "media": "媒体",
+      "productivity": "生产力",
+      "writing": "写作",
+      "community": "社区",
+      "networking": "社交网络",
+      "calculator": "计算器",
+      "email": "电子邮件",
+      "privacy": "隐私"
+    }
+  },
+  "faq": {
+    "title": "常见问题",
+    "introduction": "查找关于我们服务和工具的常见问题解答。",
+    "general": {
+      "title": "一般问题",
+      "q1": "什么是 Teller？",
+      "a1": "Teller 是一个数字占卜平台，提供各种个人洞察和指导工具。",
+      "q2": "Teller 是免费的吗？",
+      "a2": "是的，我们所有的基本服务都是完全免费的。",
+      "q3": "解读的准确度如何？",
+      "a3": "我们的解读基于传统占卜方法，提供一般性指导。"
+    },
+    "tarot": {
+      "title": "塔罗牌解读",
+      "q1": "如何获得塔罗牌解读？",
+      "a1": "只需选择塔罗牌工具并选择三张牌进行解读。",
+      "q2": "牌的含义是什么？",
+      "a2": "每张牌都有其独特的含义和解释，我们会详细说明。",
+      "q3": "我可以保存我的解读吗？",
+      "a3": "是的，您可以保存和分享您的解读以供将来参考。"
+    },
+    "astrology": {
+      "title": "占星术",
+      "q1": "星座运势需要什么信息？",
+      "a1": "需要您的出生日期、时间和地点以获得准确的解读。",
+      "q2": "星座运势多久更新一次？",
+      "a2": "我们的星座运势每天更新，提供新的见解。",
+      "q3": "我可以获得配对解读吗？",
+      "a3": "是的，我们提供不同星座之间的配对解读。"
+    },
+    "numerology": {
+      "title": "数字命理",
+      "q1": "什么是数字命理？",
+      "a1": "数字命理是研究数字及其对我们生活影响的学科。",
+      "q2": "如何计算我的生命数字？",
+      "a2": "您的生命数字是根据您的出生日期计算的。",
+      "q3": "数字的含义是什么？",
+      "a3": "每个数字对生活的不同方面都有特定的含义和影响。"
+    }
+  },
+  "contact": {
+    "title": "联系我们",
+    "formTitle": "发送消息",
+    "name": "您的姓名",
+    "email": "电子邮箱",
+    "subject": "主题",
+    "message": "您的消息",
+    "send": "发送消息",
+    "sending": "发送中...",
+    "infoTitle": "联系信息",
+    "emailUs": "发送邮件",
+    "followUs": "关注我们",
+    "responseTime": "响应时间",
+    "responseTimeText": "我们通常在24-48小时内回复。"
+  },
+  "privacy": {
+    "title": "隐私政策",
+    "lastUpdated": "最后更新：2024年3月",
+    "introduction": {
+      "title": "简介",
+      "text": "本隐私政策说明我们如何收集、使用和保护您的个人信息。"
+    },
+    "information": {
+      "title": "我们收集的信息",
+      "personal": {
+        "title": "个人信息",
+        "text": "我们收集您直接提供给我们的信息，如姓名和电子邮箱。"
+      },
+      "usage": {
+        "title": "使用信息",
+        "text": "我们收集有关您如何使用我们的服务和与网站互动的信息。"
+      },
+      "sharing": {
+        "title": "信息共享",
+        "text": "我们不会向第三方出售或共享您的个人信息。"
+      }
+    },
+    "cookies": {
+      "title": "Cookie",
+      "text": "我们使用 Cookie 来改善您的网站体验。",
+      "essential": "基本网站功能所需的基本 Cookie",
+      "analytics": "了解您如何使用我们网站的分析 Cookie",
+      "preferences": "记住您设置的偏好 Cookie",
+      "marketing": "个性化内容的营销 Cookie"
+    },
+    "rights": {
+      "title": "您的权利",
+      "access": "访问您的个人数据的权利",
+      "correction": "更正不准确数据的权利",
+      "deletion": "请求删除数据的权利",
+      "restriction": "限制处理数据的权利",
+      "portability": "数据可携带权",
+      "objection": "反对处理的权利"
+    },
+    "contact": {
+      "title": "联系我们",
+      "text": "如果您对本隐私政策有任何疑问，请联系我们："
+    }
+  },
   "seo": {
     "homepage": {
       "title": "数字占卜师 - 免费塔罗、占星术和数字学 | Teller.eu.org",
-      "description": "通过我们的数字占卜师用古老的智慧发现你的命运。免费塔罗牌解读、占星术、数字学和中国生肖洞察。"
+      "description": "通过我们的数字占卜师用古老的智慧发现你的命运。免费塔罗牌解读、占星术、数字学和中国生肖洞察。",
+      "keywords": "占卜师, 塔罗牌, 占星术, 数字学, 中国生肖, 精神指导, 人生道路, 星座运势, 占卜",
+      "ogTitle": "数字占卜师 - 您的个人精神指南",
+      "ogDescription": "通过塔罗牌、占星术和数字命理学解锁您生命中的奥秘。获取个性化见解和指导。",
+      "twitterCard": "summary_large_image",
+      "twitterTitle": "数字占卜师 - 免费精神指导",
+      "twitterDescription": "通过免费塔罗牌解读、占星术和数字学洞察发现您的道路。",
+      "structuredData": {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "数字占卜师",
+        "description": "一个全面的数字占卜平台，提供塔罗牌解读、占星术、数字学和中国生肖洞察。",
+        "applicationCategory": "LifestyleApplication",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "CNY"
+        }
+      }
     },
     "tarot": {
       "title": "免费塔罗牌解读 - 发现你的命运 | Teller.eu.org",
-      "description": "获得免费的3张塔罗牌解读，揭示关于你的过去、现在和未来的洞察。现在提供专业的塔罗牌解释。"
+      "description": "获得免费的3张塔罗牌解读，揭示关于你的过去、现在和未来的洞察。现在提供专业的塔罗牌解释。",
+      "keywords": "塔罗牌解读, 塔罗牌, 占卜, 精神指导, 塔罗牌阵, 塔罗牌解释",
+      "ogTitle": "免费塔罗牌解读 - 三张牌阵",
+      "ogDescription": "通过我们的免费三张塔罗牌解读获取个性化见解。发现您的过去、现在和未来。",
+      "twitterCard": "summary_large_image",
+      "twitterTitle": "免费塔罗牌解读 - 您的个人指导",
+      "twitterDescription": "通过我们的免费三张塔罗牌解读解锁塔罗牌的智慧。获取关于您人生旅程的洞察。",
+      "structuredData": {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": "塔罗牌解读服务",
+        "description": "专业的塔罗牌解读服务，提供三张牌阵用于个人指导和洞察。",
+        "provider": {
+          "@type": "Organization",
+          "name": "Teller.eu.org"
+        }
+      }
     },
     "astrology": {
       "title": "每日星座运势 - 免费占星解读 | Teller.eu.org",
-      "description": "根据你的星座获得个性化的每日星座运势。免费占星解读，提供爱情、事业和生活指导的洞察。"
+      "description": "根据你的星座获得个性化的每日星座运势。免费占星解读，提供爱情、事业和生活指导的洞察。",
+      "keywords": "星座运势, 占星术, 星座, 每日运势, 占星解读, 星座标志",
+      "ogTitle": "每日星座运势 - 您的宇宙指导",
+      "ogDescription": "发现今天星星为您准备了什么。获取您的个性化每日星座运势解读。",
+      "twitterCard": "summary_large_image",
+      "twitterTitle": "每日星座运势 - 星星指引",
+      "twitterDescription": "根据您的星座提供个性化星座运势解读的每日宇宙指导。",
+      "structuredData": {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": "占星解读服务",
+        "description": "基于星座的每日运势和占星解读，用于个人指导。",
+        "provider": {
+          "@type": "Organization",
+          "name": "Teller.eu.org"
+        }
+      }
     },
     "numerology": {
       "title": "免费命理学解读 - 生命路径计算器 | Teller.eu.org",
-      "description": "用我们的免费命理学计算器计算你的生命路径和命运数字。发现你个人数字背后的含义。"
+      "description": "用我们的免费命理学计算器计算你的生命路径和命运数字。发现你个人数字背后的含义。",
+      "keywords": "命理学, 生命路径数字, 命运数字, 命理计算器, 数字含义",
+      "ogTitle": "命理学解读 - 生命路径计算器",
+      "ogDescription": "使用我们的免费命理计算器发现您的生命路径和命运数字。获取关于您个人数字的洞察。",
+      "twitterCard": "summary_large_image",
+      "twitterTitle": "命理学解读 - 您的数字",
+      "twitterDescription": "使用我们的免费命理计算器计算您的生命路径和命运数字。",
+      "structuredData": {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": "命理学解读服务",
+        "description": "专业的命理学服务，提供生命路径和命运数字计算。",
+        "provider": {
+          "@type": "Organization",
+          "name": "Teller.eu.org"
+        }
+      }
     },
     "chinesezodiac": {
       "title": "中国生肖计算器 - 找到你的动物标志 | Teller.eu.org",
-      "description": "发现你的中国生肖动物及其特征。免费计算器来找到你的出生年份动物标志和特征。"
+      "description": "发现你的中国生肖动物及其特征。免费计算器来找到你的出生年份动物标志和特征。",
+      "keywords": "中国生肖, 生肖动物, 中国占星术, 出生年份动物, 生肖计算器",
+      "ogTitle": "中国生肖 - 找到你的动物标志",
+      "ogDescription": "发现您的中国生肖动物，了解其特征和对您生活的影响。",
+      "twitterCard": "summary_large_image",
+      "twitterTitle": "中国生肖 - 您的动物标志",
+      "twitterDescription": "找到您的中国生肖动物标志，发现其含义和特征。",
+      "structuredData": {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": "中国生肖解读服务",
+        "description": "中国生肖计算器和解读服务，用于发现您的动物标志及其特征。",
+        "provider": {
+          "@type": "Organization",
+          "name": "Teller.eu.org"
+        }
+      }
+    },
+    "about": {
+      "title": "关于 Teller - 您的数字占卜师",
+      "description": "了解 Teller 通过现代技术和古老智慧使占卜变得人人可及的使命。",
+      "keywords": "关于 teller, 数字占卜师, 占卜工具, 塔罗牌解读, 占星术, 数字命理",
+      "ogTitle": "关于 Teller - 您的数字占卜师",
+      "ogDescription": "了解 Teller 如何结合古老智慧和现代技术提供准确的占卜解读。",
+      "twitterTitle": "关于 Teller - 您的数字占卜师",
+      "twitterDescription": "了解我们使占卜变得人人可及的使命。",
+      "structuredData": {
+        "@context": "https://schema.org",
+        "@type": "AboutPage",
+        "name": "关于 Teller",
+        "description": "了解 Teller 使占卜变得人人可及的使命。"
+      }
+    },
+    "projects": {
+      "title": "我们的项目 - Teller",
+      "description": "探索我们创新的网络应用程序和工具集合，旨在提升您的数字体验。",
+      "keywords": "网络项目, 数字工具, 文件优化, markdown编辑器, 计算器, 电子邮件服务",
+      "ogTitle": "我们的项目 - Teller",
+      "ogDescription": "发现我们为各种数字需求提供的创新网络应用程序和工具。",
+      "twitterTitle": "我们的项目 - Teller",
+      "twitterDescription": "探索我们创新的网络应用程序和工具集合。",
+      "structuredData": {
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        "name": "我们的项目",
+        "description": "创新网络应用程序和工具集合。"
+      }
+    },
+    "faq": {
+      "title": "常见问题 - Teller",
+      "description": "查找关于 Teller 服务、工具和功能的常见问题解答。",
+      "keywords": "常见问题, 塔罗牌解读, 占星术, 数字命理, 帮助",
+      "ogTitle": "常见问题 - Teller",
+      "ogDescription": "获取关于我们占卜服务和工具的问题解答。",
+      "twitterTitle": "常见问题 - Teller",
+      "twitterDescription": "查找关于我们服务的常见问题解答。",
+      "structuredData": {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": []
+      }
+    },
+    "contact": {
+      "title": "联系我们 - Teller",
+      "description": "联系 Teller 团队。我们随时为您提供帮助和反馈。",
+      "keywords": "联系, 支持, 帮助, 反馈, 客户服务",
+      "ogTitle": "联系我们 - Teller",
+      "ogDescription": "联系我们的团队获取支持和帮助。",
+      "twitterTitle": "联系我们 - Teller",
+      "twitterDescription": "联系我们的团队获取支持和帮助。",
+      "structuredData": {
+        "@context": "https://schema.org",
+        "@type": "ContactPage",
+        "name": "联系我们",
+        "description": "Teller 支持和帮助的联系页面。"
+      }
+    },
+    "privacy": {
+      "title": "隐私政策 - Teller",
+      "description": "了解 Teller 如何收集、使用和保护您的个人信息。",
+      "keywords": "隐私政策, 数据保护, cookie, 个人信息, GDPR",
+      "ogTitle": "隐私政策 - Teller",
+      "ogDescription": "我们保护您的隐私和个人信息的承诺。",
+      "twitterTitle": "隐私政策 - Teller",
+      "twitterDescription": "了解我们的隐私实践和数据保护。",
+      "structuredData": {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "隐私政策",
+        "description": "隐私政策和数据保护信息。"
+      }
     }
   }
 } 

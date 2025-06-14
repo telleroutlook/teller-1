@@ -79,26 +79,334 @@
   "myHoroscope": "My Horoscope",
   "myNumerology": "My Numerology Reading",
   "myZodiac": "My Chinese Zodiac",
+  "footer": {
+    "navigation": "Navigation",
+    "about": "About",
+    "projects": "Projects",
+    "faq": "FAQ",
+    "contact": "Contact",
+    "privacy": "Privacy",
+    "quickLinks": "Quick Links",
+    "contactUs": "Contact Us",
+    "contactText": "Have questions? We'd love to hear from you.",
+    "rights": "All rights reserved."
+  },
+  "about": {
+    "title": "About Teller",
+    "introduction": "Welcome to Teller, your digital gateway to ancient wisdom and modern divination. We combine traditional practices with cutting-edge technology to provide accurate and insightful readings.",
+    "ourMission": "Our Mission",
+    "missionText": "Our mission is to make divination accessible to everyone, everywhere. We believe in the power of self-discovery and personal growth through ancient wisdom.",
+    "ourTools": "Our Tools",
+    "tarotDescription": "Explore the mystical world of tarot with our interactive card readings.",
+    "astrologyDescription": "Discover your cosmic path with personalized horoscope readings.",
+    "numerologyDescription": "Unlock the hidden meanings in your numbers with our numerology calculator.",
+    "chineseZodiacDescription": "Learn about your Chinese zodiac sign and its influence on your life.",
+    "whyChooseUs": "Why Choose Us",
+    "feature1": "Accurate and insightful readings",
+    "feature2": "Multiple divination methods",
+    "feature3": "User-friendly interface",
+    "feature4": "Available in multiple languages",
+    "feature5": "Free and accessible to all"
+  },
+  "projects": {
+    "title": "Our Projects",
+    "introduction": "Explore our collection of innovative web applications and tools designed to enhance your digital experience.",
+    "visitSite": "Visit Site",
+    "byteslim": "A powerful tool for optimizing and compressing your files efficiently.",
+    "mvking": "Your ultimate destination for music videos and entertainment content.",
+    "mdeditor": "A modern markdown editor for seamless writing and editing experience.",
+    "3we": "A community platform connecting people through shared interests.",
+    "calculatetoday": "Quick and accurate calculations for various everyday needs.",
+    "trustavo": "Secure and private temporary email service for your online needs.",
+    "tags": {
+      "utility": "Utility",
+      "performance": "Performance",
+      "entertainment": "Entertainment",
+      "media": "Media",
+      "productivity": "Productivity",
+      "writing": "Writing",
+      "community": "Community",
+      "networking": "Networking",
+      "calculator": "Calculator",
+      "email": "Email",
+      "privacy": "Privacy"
+    }
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "introduction": "Find answers to common questions about our services and tools.",
+    "general": {
+      "title": "General Questions",
+      "q1": "What is Teller?",
+      "a1": "Teller is a digital divination platform offering various tools for personal insight and guidance.",
+      "q2": "Is Teller free to use?",
+      "a2": "Yes, all our basic services are completely free to use.",
+      "q3": "How accurate are the readings?",
+      "a3": "Our readings are based on traditional divination methods and provide general guidance."
+    },
+    "tarot": {
+      "title": "Tarot Reading",
+      "q1": "How do I get a tarot reading?",
+      "a1": "Simply select the tarot tool and choose three cards for your reading.",
+      "q2": "What do the cards mean?",
+      "a2": "Each card has its own meaning and interpretation, which we explain in detail.",
+      "q3": "Can I save my readings?",
+      "a3": "Yes, you can save and share your readings for future reference."
+    },
+    "astrology": {
+      "title": "Astrology",
+      "q1": "What information do I need for a horoscope?",
+      "a1": "Your birth date, time, and location are needed for accurate readings.",
+      "q2": "How often are horoscopes updated?",
+      "a2": "Our horoscopes are updated daily with fresh insights.",
+      "q3": "Can I get compatibility readings?",
+      "a3": "Yes, we offer compatibility readings between different zodiac signs."
+    },
+    "numerology": {
+      "title": "Numerology",
+      "q1": "What is numerology?",
+      "a1": "Numerology is the study of numbers and their influence on our lives.",
+      "q2": "How is my life path number calculated?",
+      "a2": "Your life path number is calculated from your birth date.",
+      "q3": "What do the numbers mean?",
+      "a3": "Each number has specific meanings and influences on different aspects of life."
+    }
+  },
+  "contact": {
+    "title": "Contact Us",
+    "formTitle": "Send us a Message",
+    "name": "Your Name",
+    "email": "Email Address",
+    "subject": "Subject",
+    "message": "Your Message",
+    "send": "Send Message",
+    "sending": "Sending...",
+    "infoTitle": "Contact Information",
+    "emailUs": "Email Us",
+    "followUs": "Follow Us",
+    "responseTime": "Response Time",
+    "responseTimeText": "We typically respond within 24-48 hours."
+  },
+  "privacy": {
+    "title": "Privacy Policy",
+    "lastUpdated": "Last updated: March 2024",
+    "introduction": {
+      "title": "Introduction",
+      "text": "This Privacy Policy explains how we collect, use, and protect your personal information."
+    },
+    "information": {
+      "title": "Information We Collect",
+      "personal": {
+        "title": "Personal Information",
+        "text": "We collect information that you provide directly to us, such as your name and email address."
+      },
+      "usage": {
+        "title": "Usage Information",
+        "text": "We collect information about how you use our services and interact with our website."
+      },
+      "sharing": {
+        "title": "Information Sharing",
+        "text": "We do not sell or share your personal information with third parties."
+      }
+    },
+    "cookies": {
+      "title": "Cookies",
+      "text": "We use cookies to improve your experience on our website.",
+      "essential": "Essential cookies for basic website functionality",
+      "analytics": "Analytics cookies to understand how you use our website",
+      "preferences": "Preference cookies to remember your settings",
+      "marketing": "Marketing cookies for personalized content"
+    },
+    "rights": {
+      "title": "Your Rights",
+      "access": "Right to access your personal data",
+      "correction": "Right to correct inaccurate data",
+      "deletion": "Right to request deletion of your data",
+      "restriction": "Right to restrict processing of your data",
+      "portability": "Right to data portability",
+      "objection": "Right to object to processing"
+    },
+    "contact": {
+      "title": "Contact Us",
+      "text": "If you have any questions about this Privacy Policy, please contact us at "
+    }
+  },
   "seo": {
     "homepage": {
       "title": "Digital Fortune Teller - Free Tarot, Astrology & Numerology | Teller.eu.org",
-      "description": "Discover your destiny through ancient wisdom with our digital fortune teller. Free tarot readings, astrology, numerology, and Chinese zodiac insights."
+      "description": "Discover your destiny through ancient wisdom with our digital fortune teller. Free tarot readings, astrology, numerology, and Chinese zodiac insights.",
+      "keywords": "fortune teller, tarot reading, astrology, numerology, Chinese zodiac, spiritual guidance, life path, horoscope, divination",
+      "ogTitle": "Digital Fortune Teller - Your Personal Spiritual Guide",
+      "ogDescription": "Unlock the mysteries of your life through tarot, astrology, and numerology. Get personalized insights and guidance.",
+      "twitterCard": "summary_large_image",
+      "twitterTitle": "Digital Fortune Teller - Free Spiritual Guidance",
+      "twitterDescription": "Discover your path with free tarot readings, astrology, and numerology insights.",
+      "structuredData": {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Digital Fortune Teller",
+        "description": "A comprehensive digital divination platform offering tarot readings, astrology, numerology, and Chinese zodiac insights.",
+        "applicationCategory": "LifestyleApplication",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        }
+      }
     },
     "tarot": {
       "title": "Free Tarot Reading - Discover Your Fortune | Teller.eu.org",
-      "description": "Get a free 3-card tarot reading to reveal insights about your past, present, and future. Professional tarot card interpretations available now."
+      "description": "Get a free 3-card tarot reading to reveal insights about your past, present, and future. Professional tarot card interpretations available now.",
+      "keywords": "tarot reading, tarot cards, fortune telling, spiritual guidance, tarot spread, tarot interpretation",
+      "ogTitle": "Free Tarot Reading - 3-Card Spread",
+      "ogDescription": "Get personalized insights through our free 3-card tarot reading. Discover what your past, present, and future hold.",
+      "twitterCard": "summary_large_image",
+      "twitterTitle": "Free Tarot Reading - Your Personal Guidance",
+      "twitterDescription": "Unlock the wisdom of tarot with our free 3-card reading. Get insights about your life journey.",
+      "structuredData": {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": "Tarot Reading Service",
+        "description": "Professional tarot reading service offering 3-card spreads for personal guidance and insights.",
+        "provider": {
+          "@type": "Organization",
+          "name": "Teller.eu.org"
+        }
+      }
     },
     "astrology": {
       "title": "Daily Horoscope - Free Astrology Reading | Teller.eu.org",
-      "description": "Get your personalized daily horoscope based on your zodiac sign. Free astrology readings with insights for love, career, and life guidance."
+      "description": "Get your personalized daily horoscope based on your zodiac sign. Free astrology readings with insights for love, career, and life guidance.",
+      "keywords": "horoscope, astrology, zodiac signs, daily horoscope, astrological reading, star signs",
+      "ogTitle": "Daily Horoscope - Your Cosmic Guidance",
+      "ogDescription": "Discover what the stars have in store for you today. Get your personalized daily horoscope reading.",
+      "twitterCard": "summary_large_image",
+      "twitterTitle": "Daily Horoscope - Star Guidance",
+      "twitterDescription": "Your daily cosmic guidance with personalized horoscope readings based on your zodiac sign.",
+      "structuredData": {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": "Astrology Reading Service",
+        "description": "Daily horoscope and astrological readings based on zodiac signs for personal guidance.",
+        "provider": {
+          "@type": "Organization",
+          "name": "Teller.eu.org"
+        }
+      }
     },
     "numerology": {
       "title": "Free Numerology Reading - Life Path Calculator | Teller.eu.org",
-      "description": "Calculate your Life Path and Destiny numbers with our free numerology calculator. Discover the meaning behind your personal numbers."
+      "description": "Calculate your Life Path and Destiny numbers with our free numerology calculator. Discover the meaning behind your personal numbers.",
+      "keywords": "numerology, life path number, destiny number, numerology calculator, number meanings",
+      "ogTitle": "Numerology Reading - Life Path Calculator",
+      "ogDescription": "Discover your life path and destiny numbers with our free numerology calculator. Get insights into your personal numbers.",
+      "twitterCard": "summary_large_image",
+      "twitterTitle": "Numerology Reading - Your Numbers",
+      "twitterDescription": "Calculate your life path and destiny numbers with our free numerology calculator.",
+      "structuredData": {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": "Numerology Reading Service",
+        "description": "Professional numerology service offering life path and destiny number calculations.",
+        "provider": {
+          "@type": "Organization",
+          "name": "Teller.eu.org"
+        }
+      }
     },
     "chinesezodiac": {
       "title": "Chinese Zodiac Calculator - Find Your Animal Sign | Teller.eu.org",
-      "description": "Discover your Chinese zodiac animal and its characteristics. Free calculator to find your birth year animal sign and traits."
+      "description": "Discover your Chinese zodiac animal and its characteristics. Free calculator to find your birth year animal sign and traits.",
+      "keywords": "Chinese zodiac, zodiac animals, Chinese astrology, birth year animal, zodiac calculator",
+      "ogTitle": "Chinese Zodiac - Find Your Animal Sign",
+      "ogDescription": "Discover your Chinese zodiac animal and learn about its characteristics and influence on your life.",
+      "twitterCard": "summary_large_image",
+      "twitterTitle": "Chinese Zodiac - Your Animal Sign",
+      "twitterDescription": "Find your Chinese zodiac animal sign and discover its meaning and characteristics.",
+      "structuredData": {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": "Chinese Zodiac Reading Service",
+        "description": "Chinese zodiac calculator and reading service to discover your animal sign and its characteristics.",
+        "provider": {
+          "@type": "Organization",
+          "name": "Teller.eu.org"
+        }
+      }
+    },
+    "about": {
+      "title": "About Teller - Your Digital Fortune Teller",
+      "description": "Learn about Teller's mission to make divination accessible to everyone through modern technology and ancient wisdom.",
+      "keywords": "about teller, digital fortune teller, divination tools, tarot reading, astrology, numerology",
+      "ogTitle": "About Teller - Your Digital Fortune Teller",
+      "ogDescription": "Discover how Teller combines ancient wisdom with modern technology to provide accurate divination readings.",
+      "twitterTitle": "About Teller - Your Digital Fortune Teller",
+      "twitterDescription": "Learn about our mission to make divination accessible to everyone.",
+      "structuredData": {
+        "@context": "https://schema.org",
+        "@type": "AboutPage",
+        "name": "About Teller",
+        "description": "Learn about Teller's mission to make divination accessible to everyone."
+      }
+    },
+    "projects": {
+      "title": "Our Projects - Teller",
+      "description": "Explore our collection of innovative web applications and tools designed to enhance your digital experience.",
+      "keywords": "web projects, digital tools, file optimization, markdown editor, calculator, email service",
+      "ogTitle": "Our Projects - Teller",
+      "ogDescription": "Discover our innovative web applications and tools for various digital needs.",
+      "twitterTitle": "Our Projects - Teller",
+      "twitterDescription": "Explore our collection of innovative web applications and tools.",
+      "structuredData": {
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        "name": "Our Projects",
+        "description": "Collection of innovative web applications and tools."
+      }
+    },
+    "faq": {
+      "title": "FAQ - Frequently Asked Questions | Teller",
+      "description": "Find answers to common questions about Teller's services, tools, and features.",
+      "keywords": "FAQ, frequently asked questions, tarot reading, astrology, numerology, help",
+      "ogTitle": "FAQ - Frequently Asked Questions | Teller",
+      "ogDescription": "Get answers to your questions about our divination services and tools.",
+      "twitterTitle": "FAQ - Frequently Asked Questions | Teller",
+      "twitterDescription": "Find answers to common questions about our services.",
+      "structuredData": {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": []
+      }
+    },
+    "contact": {
+      "title": "Contact Us - Teller",
+      "description": "Get in touch with the Teller team. We're here to help with any questions or feedback.",
+      "keywords": "contact, support, help, feedback, customer service",
+      "ogTitle": "Contact Us - Teller",
+      "ogDescription": "Reach out to our team for support and assistance.",
+      "twitterTitle": "Contact Us - Teller",
+      "twitterDescription": "Get in touch with our team for support and assistance.",
+      "structuredData": {
+        "@context": "https://schema.org",
+        "@type": "ContactPage",
+        "name": "Contact Us",
+        "description": "Contact page for Teller support and assistance."
+      }
+    },
+    "privacy": {
+      "title": "Privacy Policy - Teller",
+      "description": "Learn about how Teller collects, uses, and protects your personal information.",
+      "keywords": "privacy policy, data protection, cookies, personal information, GDPR",
+      "ogTitle": "Privacy Policy - Teller",
+      "ogDescription": "Our commitment to protecting your privacy and personal information.",
+      "twitterTitle": "Privacy Policy - Teller",
+      "twitterDescription": "Learn about our privacy practices and data protection.",
+      "structuredData": {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Privacy Policy",
+        "description": "Privacy policy and data protection information."
+      }
     }
   }
 } 

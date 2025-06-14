@@ -79,26 +79,334 @@
   "myHoroscope": "Mon Horoscope",
   "myNumerology": "Ma Lecture de Numérologie",
   "myZodiac": "Mon Zodiaque Chinois",
-  "seo": {
-    "homepage": {
-      "title": "Voyant Numérique - Tarot, Astrologie et Numérologie Gratuits | Teller.eu.org",
-      "description": "Découvrez votre destin grâce à la sagesse ancienne avec notre voyant numérique. Tirages de tarot gratuits, astrologie, numérologie et perspectives du zodiaque chinois."
+  "footer": {
+    "navigation": "Navigation",
+    "about": "À propos",
+    "projects": "Projets",
+    "faq": "FAQ",
+    "contact": "Contact",
+    "privacy": "Confidentialité",
+    "quickLinks": "Liens rapides",
+    "contactUs": "Contactez-nous",
+    "contactText": "Des questions ? Nous sommes là pour vous écouter.",
+    "rights": "Tous droits réservés."
+  },
+  "about": {
+    "title": "À propos de Teller",
+    "introduction": "Bienvenue chez Teller, votre portail de divination numérique. Nous combinons pratiques traditionnelles et technologie moderne pour fournir des lectures précises et perspicaces.",
+    "ourMission": "Notre mission",
+    "missionText": "Notre mission est de rendre la divination accessible à tous. Nous croyons au pouvoir de la découverte de soi et de la croissance personnelle à travers la sagesse ancienne.",
+    "ourTools": "Nos outils",
+    "tarotDescription": "Explorez le monde mystique avec nos lectures de tarot interactives.",
+    "astrologyDescription": "Découvrez votre chemin cosmique avec des horoscopes personnalisés.",
+    "numerologyDescription": "Débloquez les significations cachées des nombres avec notre calculateur de numérologie.",
+    "chineseZodiacDescription": "Découvrez votre signe zodiacal chinois et son influence sur votre vie.",
+    "whyChooseUs": "Pourquoi nous choisir",
+    "feature1": "Lectures précises et perspicaces",
+    "feature2": "Méthodes de divination variées",
+    "feature3": "Interface conviviale",
+    "feature4": "Support multilingue",
+    "feature5": "Gratuit et accessible à tous"
+  },
+  "projects": {
+    "title": "Nos projets",
+    "introduction": "Découvrez notre collection d'applications web et d'outils innovants conçus pour améliorer votre expérience numérique.",
+    "visitSite": "Visiter le site",
+    "byteslim": "Un puissant outil d'optimisation et de compression de fichiers.",
+    "mvking": "Votre destination ultime pour les vidéos musicales et le contenu divertissant.",
+    "mdeditor": "Un éditeur Markdown moderne offrant une expérience d'écriture fluide.",
+    "3we": "Une plateforme communautaire connectant les gens par des intérêts communs.",
+    "calculatetoday": "Des calculs rapides et précis pour divers besoins quotidiens.",
+    "trustavo": "Un service d'email temporaire sécurisé et privé pour vos besoins en ligne.",
+    "tags": {
+      "utility": "Utilitaire",
+      "performance": "Performance",
+      "entertainment": "Divertissement",
+      "media": "Médias",
+      "productivity": "Productivité",
+      "writing": "Écriture",
+      "community": "Communauté",
+      "networking": "Réseautage",
+      "calculator": "Calculateur",
+      "email": "Email",
+      "privacy": "Confidentialité"
+    }
+  },
+  "faq": {
+    "title": "Questions fréquentes",
+    "introduction": "Trouvez des réponses aux questions courantes sur nos services et outils.",
+    "general": {
+      "title": "Questions générales",
+      "q1": "Qu'est-ce que Teller ?",
+      "a1": "Teller est une plateforme de divination numérique offrant divers outils d'orientation personnelle.",
+      "q2": "Teller est-il gratuit ?",
+      "a2": "Oui, tous nos services de base sont entièrement gratuits.",
+      "q3": "Quelle est la précision des lectures ?",
+      "a3": "Nos lectures sont basées sur des méthodes de divination traditionnelles, fournissant des conseils généraux."
     },
     "tarot": {
-      "title": "Tirage de Tarot Gratuit - Découvrez votre Fortune | Teller.eu.org",
-      "description": "Obtenez un tirage de tarot gratuit à 3 cartes pour révéler des perspectives sur votre passé, présent et futur. Interprétations professionnelles disponibles maintenant."
+      "title": "Lectures de tarot",
+      "q1": "Comment obtenir une lecture de tarot ?",
+      "a1": "Sélectionnez simplement l'outil tarot et choisissez trois cartes pour une lecture.",
+      "q2": "Que signifient les cartes ?",
+      "a2": "Chaque carte a sa propre signification et interprétation, que nous expliquons en détail.",
+      "q3": "Puis-je sauvegarder ma lecture ?",
+      "a3": "Oui, vous pouvez sauvegarder et partager vos lectures pour référence future."
     },
     "astrology": {
-      "title": "Horoscope Quotidien - Lecture d'Astrologie Gratuite | Teller.eu.org",
-      "description": "Obtenez votre horoscope quotidien personnalisé basé sur votre signe du zodiaque. Lectures d'astrologie gratuites avec des conseils pour l'amour, la carrière et la vie."
+      "title": "Astrologie",
+      "q1": "Quelles informations sont nécessaires pour l'horoscope ?",
+      "a1": "Votre date, heure et lieu de naissance sont nécessaires pour une lecture précise.",
+      "q2": "À quelle fréquence les horoscopes sont-ils mis à jour ?",
+      "a2": "Nos horoscopes sont mis à jour quotidiennement avec de nouvelles perspectives.",
+      "q3": "Puis-je obtenir une lecture de compatibilité ?",
+      "a3": "Oui, nous proposons des lectures de compatibilité entre différents signes."
     },
     "numerology": {
-      "title": "Lecture de Numérologie Gratuite - Calculateur de Chemin de Vie | Teller.eu.org",
-      "description": "Calculez vos nombres de Chemin de Vie et de Destinée avec notre calculateur de numérologie gratuit. Découvrez la signification de vos nombres personnels."
+      "title": "Numérologie",
+      "q1": "Qu'est-ce que la numérologie ?",
+      "a1": "La numérologie est l'étude des nombres et de leur influence sur nos vies.",
+      "q2": "Comment calculer mon nombre de vie ?",
+      "a2": "Votre nombre de vie est calculé à partir de votre date de naissance.",
+      "q3": "Que signifient les nombres ?",
+      "a3": "Chaque nombre a des significations et influences spécifiques sur différents aspects de la vie."
+    }
+  },
+  "contact": {
+    "title": "Contact",
+    "formTitle": "Envoyer un message",
+    "name": "Votre nom",
+    "email": "Email",
+    "subject": "Sujet",
+    "message": "Votre message",
+    "send": "Envoyer",
+    "sending": "Envoi en cours...",
+    "infoTitle": "Informations de contact",
+    "emailUs": "Envoyez-nous un email",
+    "followUs": "Suivez-nous",
+    "responseTime": "Temps de réponse",
+    "responseTimeText": "Nous répondons généralement dans les 24-48 heures."
+  },
+  "privacy": {
+    "title": "Politique de confidentialité",
+    "lastUpdated": "Dernière mise à jour : Mars 2024",
+    "introduction": {
+      "title": "Introduction",
+      "text": "Cette politique de confidentialité explique comment nous collectons, utilisons et protégeons vos informations personnelles."
+    },
+    "information": {
+      "title": "Informations que nous collectons",
+      "personal": {
+        "title": "Informations personnelles",
+        "text": "Nous collectons les informations que vous nous fournissez directement, comme votre nom et email."
+      },
+      "usage": {
+        "title": "Informations d'utilisation",
+        "text": "Nous collectons des informations sur la façon dont vous utilisez nos services et interagissez avec le site."
+      },
+      "sharing": {
+        "title": "Partage d'informations",
+        "text": "Nous ne vendons ni ne partageons vos informations personnelles avec des tiers."
+      }
+    },
+    "cookies": {
+      "title": "Cookies",
+      "text": "Nous utilisons des cookies pour améliorer votre expérience sur le site.",
+      "essential": "Cookies essentiels nécessaires aux fonctionnalités de base du site",
+      "analytics": "Cookies d'analyse pour comprendre comment vous utilisez notre site",
+      "preferences": "Cookies de préférences pour mémoriser vos paramètres",
+      "marketing": "Cookies marketing pour personnaliser le contenu"
+    },
+    "rights": {
+      "title": "Vos droits",
+      "access": "Droit d'accès à vos données personnelles",
+      "correction": "Droit de rectification des données inexactes",
+      "deletion": "Droit à l'effacement des données",
+      "restriction": "Droit à la limitation du traitement",
+      "portability": "Droit à la portabilité des données",
+      "objection": "Droit d'opposition au traitement"
+    },
+    "contact": {
+      "title": "Nous contacter",
+      "text": "Si vous avez des questions sur cette politique de confidentialité, contactez-nous :"
+    }
+  },
+  "seo": {
+    "homepage": {
+      "title": "Voyant Numérique - Tarot, Astrologie & Numérologie Gratuits | Teller.eu.org",
+      "description": "Découvrez votre destinée grâce à la sagesse ancienne avec notre voyant numérique. Consultations gratuites de tarot, astrologie, numérologie et zodiaque chinois.",
+      "keywords": "voyant, tarot, astrologie, numérologie, zodiaque chinois, guidance spirituelle, chemin de vie, horoscope, divination",
+      "ogTitle": "Voyant Numérique - Votre Guide Spirituel Personnel",
+      "ogDescription": "Dévoilez les mystères de votre vie grâce au tarot, à l'astrologie et à la numérologie. Obtenez des conseils personnalisés.",
+      "twitterCard": "summary_large_image",
+      "twitterTitle": "Voyant Numérique - Guidance Spirituelle Gratuite",
+      "twitterDescription": "Découvrez votre chemin avec des consultations gratuites de tarot, d'astrologie et de numérologie.",
+      "structuredData": {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Voyant Numérique",
+        "description": "Une plateforme complète de divination numérique offrant des consultations de tarot, d'astrologie, de numérologie et de zodiaque chinois.",
+        "applicationCategory": "LifestyleApplication",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "EUR"
+        }
+      }
+    },
+    "tarot": {
+      "title": "Consultation de Tarot Gratuite - Découvrez Votre Fortune | Teller.eu.org",
+      "description": "Obtenez une consultation gratuite de 3 cartes de tarot pour révéler des aperçus de votre passé, présent et futur. Interprétations professionnelles de cartes de tarot disponibles maintenant.",
+      "keywords": "consultation tarot, cartes tarot, voyance, guidance spirituelle, tirage tarot, interprétation tarot",
+      "ogTitle": "Consultation de Tarot Gratuite - Tirage de 3 Cartes",
+      "ogDescription": "Obtenez des aperçus personnalisés grâce à notre consultation gratuite de 3 cartes de tarot. Découvrez ce que votre passé, présent et futur vous réservent.",
+      "twitterCard": "summary_large_image",
+      "twitterTitle": "Consultation de Tarot - Votre Guidance Personnelle",
+      "twitterDescription": "Dévoilez la sagesse du tarot avec notre consultation gratuite de 3 cartes. Obtenez des aperçus sur votre parcours de vie.",
+      "structuredData": {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": "Service de Consultation Tarot",
+        "description": "Service professionnel de consultation tarot offrant des tirages de 3 cartes pour la guidance personnelle et les aperçus.",
+        "provider": {
+          "@type": "Organization",
+          "name": "Teller.eu.org"
+        }
+      }
+    },
+    "astrology": {
+      "title": "Horoscope Quotidien - Consultation Astrologique Gratuite | Teller.eu.org",
+      "description": "Obtenez votre horoscope quotidien personnalisé basé sur votre signe zodiacal. Consultations astrologiques gratuites avec des aperçus pour l'amour, la carrière et la guidance de vie.",
+      "keywords": "horoscope, astrologie, signes zodiacaux, horoscope quotidien, consultation astrologique, signes astrologiques",
+      "ogTitle": "Horoscope Quotidien - Votre Guidance Cosmique",
+      "ogDescription": "Découvrez ce que les étoiles vous réservent aujourd'hui. Obtenez votre horoscope quotidien personnalisé.",
+      "twitterCard": "summary_large_image",
+      "twitterTitle": "Horoscope Quotidien - Guidance des Étoiles",
+      "twitterDescription": "Votre guidance cosmique quotidienne avec des horoscopes personnalisés basés sur votre signe zodiacal.",
+      "structuredData": {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": "Service de Consultation Astrologique",
+        "description": "Horoscopes quotidiens et consultations astrologiques basées sur les signes zodiacaux pour la guidance personnelle.",
+        "provider": {
+          "@type": "Organization",
+          "name": "Teller.eu.org"
+        }
+      }
+    },
+    "numerology": {
+      "title": "Consultation Numérologique Gratuite - Calculateur de Chemin de Vie | Teller.eu.org",
+      "description": "Calculez vos nombres de Chemin de Vie et de Destinée avec notre calculateur de numérologie gratuit. Découvrez la signification derrière vos nombres personnels.",
+      "keywords": "numérologie, nombre chemin de vie, nombre de destinée, calculateur numérologie, signification des nombres",
+      "ogTitle": "Consultation Numérologique - Calculateur de Chemin de Vie",
+      "ogDescription": "Découvrez vos nombres de Chemin de Vie et de Destinée avec notre calculateur de numérologie gratuit. Obtenez des aperçus sur vos nombres personnels.",
+      "twitterCard": "summary_large_image",
+      "twitterTitle": "Consultation Numérologique - Vos Nombres",
+      "twitterDescription": "Calculez vos nombres de Chemin de Vie et de Destinée avec notre calculateur de numérologie gratuit.",
+      "structuredData": {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": "Service de Consultation Numérologique",
+        "description": "Service professionnel de numérologie offrant des calculs de Chemin de Vie et de Destinée.",
+        "provider": {
+          "@type": "Organization",
+          "name": "Teller.eu.org"
+        }
+      }
     },
     "chinesezodiac": {
-      "title": "Calculateur de Zodiaque Chinois - Trouvez votre Signe Animal | Teller.eu.org",
-      "description": "Découvrez votre animal du zodiaque chinois et ses caractéristiques. Calculateur gratuit pour trouver votre signe animal de naissance et ses traits."
+      "title": "Calculateur de Zodiaque Chinois - Trouvez Votre Signe Animal | Teller.eu.org",
+      "description": "Découvrez votre animal du zodiaque chinois et ses caractéristiques. Calculateur gratuit pour trouver votre signe animal de naissance et ses traits.",
+      "keywords": "zodiaque chinois, animaux du zodiaque, astrologie chinoise, animal de naissance, calculateur zodiaque",
+      "ogTitle": "Zodiaque Chinois - Trouvez Votre Signe Animal",
+      "ogDescription": "Découvrez votre animal du zodiaque chinois et apprenez-en plus sur ses caractéristiques et son influence sur votre vie.",
+      "twitterCard": "summary_large_image",
+      "twitterTitle": "Zodiaque Chinois - Votre Signe Animal",
+      "twitterDescription": "Trouvez votre signe animal du zodiaque chinois et découvrez sa signification et ses caractéristiques.",
+      "structuredData": {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": "Service de Consultation Zodiaque Chinois",
+        "description": "Calculateur de zodiaque chinois et service de consultation pour découvrir votre signe animal et ses caractéristiques.",
+        "provider": {
+          "@type": "Organization",
+          "name": "Teller.eu.org"
+        }
+      }
+    },
+    "about": {
+      "title": "À propos de Teller - Votre divinateur numérique",
+      "description": "Découvrez la mission de Teller de rendre la divination accessible à tous grâce à la technologie moderne et à la sagesse ancienne.",
+      "keywords": "à propos teller, divinateur numérique, outils de divination, lecture tarot, astrologie, numérologie",
+      "ogTitle": "À propos de Teller - Votre divinateur numérique",
+      "ogDescription": "Découvrez comment Teller combine sagesse ancienne et technologie moderne pour des lectures précises.",
+      "twitterTitle": "À propos de Teller - Votre divinateur numérique",
+      "twitterDescription": "Découvrez notre mission de rendre la divination accessible à tous.",
+      "structuredData": {
+        "@context": "https://schema.org",
+        "@type": "AboutPage",
+        "name": "À propos de Teller",
+        "description": "Découvrez la mission de Teller de rendre la divination accessible à tous."
+      }
+    },
+    "projects": {
+      "title": "Nos projets - Teller",
+      "description": "Découvrez notre collection d'applications web et d'outils innovants conçus pour améliorer votre expérience numérique.",
+      "keywords": "projets web, outils numériques, optimisation de fichiers, éditeur markdown, calculateur, service email",
+      "ogTitle": "Nos projets - Teller",
+      "ogDescription": "Découvrez nos applications web et outils innovants pour divers besoins numériques.",
+      "twitterTitle": "Nos projets - Teller",
+      "twitterDescription": "Explorez notre collection d'applications web et d'outils innovants.",
+      "structuredData": {
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        "name": "Nos projets",
+        "description": "Collection d'applications web et d'outils innovants."
+      }
+    },
+    "faq": {
+      "title": "FAQ - Teller",
+      "description": "Trouvez des réponses aux questions courantes sur les services, outils et fonctionnalités de Teller.",
+      "keywords": "faq, lecture tarot, astrologie, numérologie, aide",
+      "ogTitle": "FAQ - Teller",
+      "ogDescription": "Obtenez des réponses à vos questions sur nos services de divination et outils.",
+      "twitterTitle": "FAQ - Teller",
+      "twitterDescription": "Trouvez des réponses aux questions courantes sur nos services.",
+      "structuredData": {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": []
+      }
+    },
+    "contact": {
+      "title": "Contact - Teller",
+      "description": "Contactez l'équipe Teller. Nous sommes là pour vous aider et recueillir vos commentaires.",
+      "keywords": "contact, support, aide, feedback, service client",
+      "ogTitle": "Contact - Teller",
+      "ogDescription": "Contactez notre équipe pour du support et de l'aide.",
+      "twitterTitle": "Contact - Teller",
+      "twitterDescription": "Contactez notre équipe pour du support et de l'aide.",
+      "structuredData": {
+        "@context": "https://schema.org",
+        "@type": "ContactPage",
+        "name": "Contact",
+        "description": "Page de contact pour le support et l'aide de Teller."
+      }
+    },
+    "privacy": {
+      "title": "Politique de confidentialité - Teller",
+      "description": "Découvrez comment Teller collecte, utilise et protège vos informations personnelles.",
+      "keywords": "politique de confidentialité, protection des données, cookies, informations personnelles, RGPD",
+      "ogTitle": "Politique de confidentialité - Teller",
+      "ogDescription": "Notre engagement à protéger votre vie privée et vos informations personnelles.",
+      "twitterTitle": "Politique de confidentialité - Teller",
+      "twitterDescription": "Découvrez nos pratiques de confidentialité et de protection des données.",
+      "structuredData": {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Politique de confidentialité",
+        "description": "Informations sur la politique de confidentialité et la protection des données."
+      }
     }
   }
 } 
