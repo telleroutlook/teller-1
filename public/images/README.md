@@ -21,13 +21,13 @@ This directory contains SEO-related images for the website. Please prepare image
   - Can be a cropped version of og-image.png
 
 ## App Screenshots (for PWA)
-### Mobile Screenshot (screenshot-mobile.png)
+### Mobile Screenshot (screenshot-mobile.jpg)
 - **Dimensions**: 390 × 844 pixels (iPhone 12/13/14 standard size)
 - **Format**: PNG
 - **Purpose**: Preview image for PWA installation
 - **Content**: Mobile interface screenshot of the main app
 
-### Desktop Screenshot (screenshot-desktop.png)
+### Desktop Screenshot (screenshot-desktop.jpg)
 - **Dimensions**: 1920 × 1080 pixels
 - **Format**: PNG
 - **Purpose**: Preview image for PWA installation
