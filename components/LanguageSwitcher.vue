@@ -18,12 +18,29 @@
 
 <script setup lang="ts">
 const { locale, setLocale } = useI18n()
+const { logger } = useLogger()
+
+// Load saved language preference on component mount
+onMounted(() => {
+  if (process.client) {
+    const savedLocale = localStorage.getItem('preferred_language')
+    if (savedLocale && savedLocale !== locale.value) {
+      setLocale(savedLocale as 'en' | 'fr' | 'zh' | 'hi' | 'ar')
+    }
+  }
+})
 
 const changeLanguage = async (event: Event) => {
   const target = event.target as HTMLSelectElement
   const newLocale = target.value as 'en' | 'fr' | 'zh' | 'hi' | 'ar'
   
+  // Save the selected language to localStorage
+  if (process.client) {
+    localStorage.setItem('preferred_language', newLocale)
+  }
+  
   await setLocale(newLocale)
+  logger.logLanguageChange(locale.value, newLocale)
 }
 </script>
 
