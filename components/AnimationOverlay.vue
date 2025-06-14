@@ -12,6 +12,8 @@ const animatedTextRef = ref<HTMLElement>()
 const flareRef = ref<HTMLElement>()
 
 let currentCallbackId: string | null = null
+let animationTimeouts: (number | NodeJS.Timeout)[] = []
+let isAnimationRunning = false
 
 // Check if anime is available
 const isAnimeAvailable = computed(() => {
@@ -27,6 +29,12 @@ const isAnimeAvailable = computed(() => {
   return available
 })
 
+// Clear all timeouts
+const clearAnimationTimeouts = () => {
+  animationTimeouts.forEach(timeout => clearTimeout(timeout))
+  animationTimeouts = []
+}
+
 // Listen for global animation events
 onMounted(() => {
   if (process.client) {
@@ -38,10 +46,18 @@ onMounted(() => {
 onUnmounted(() => {
   if (process.client) {
     window.removeEventListener('mystical-animation-start', handleAnimationStart as EventListener)
+    clearAnimationTimeouts()
+    isAnimationRunning = false
   }
 })
 
 const handleAnimationStart = (event: Event) => {
+  // Prevent multiple simultaneous animations
+  if (isAnimationRunning) {
+    console.log('Animation already running, skipping new request')
+    return
+  }
+  
   const customEvent = event as CustomEvent
   const { text, callbackId } = customEvent.detail
   console.log('Animation start event received:', { text, callbackId })
@@ -61,9 +77,20 @@ const showAnimation = (text: string, callback?: () => void) => {
     return
   }
 
+  // Prevent multiple simultaneous animations
+  if (isAnimationRunning) {
+    console.log('Animation already running, ignoring request')
+    if (callback) callback()
+    return
+  }
+
   console.log('showAnimation called:', { text, animeAvailable: isAnimeAvailable.value })
   
+  isAnimationRunning = true
   isVisible.value = true
+  
+  // Clear any existing timeouts
+  clearAnimationTimeouts()
   
   // Clear previous content and particles
   if (animatedTextRef.value) {
@@ -110,27 +137,32 @@ const runFallbackAnimation = (text: string, callback?: () => void) => {
   })
 
   // Trigger animations
-  setTimeout(() => {
+  const showTimeout = setTimeout(() => {
     const spans = animatedTextRef.value?.querySelectorAll('span')
     spans?.forEach(span => {
       ;(span as HTMLElement).style.opacity = '1'
       ;(span as HTMLElement).style.transform = 'translateY(0) scale(1)'
     })
   }, 100)
+  animationTimeouts.push(showTimeout)
 
   // Hide animation after delay
-  setTimeout(() => {
+  const hideTimeout = setTimeout(() => {
     const spans = animatedTextRef.value?.querySelectorAll('span')
     spans?.forEach(span => {
       ;(span as HTMLElement).style.opacity = '0'
       ;(span as HTMLElement).style.transform = 'translateY(-100px) scale(0)'
     })
     
-    setTimeout(() => {
+    const finalTimeout = setTimeout(() => {
       hideAnimation()
+      isAnimationRunning = false
+      console.log('Fallback animation completed')
       if (callback) callback()
     }, 500)
+    animationTimeouts.push(finalTimeout)
   }, 6000)
+  animationTimeouts.push(hideTimeout)
 }
 
 const runMysticalAnimation = (text: string, callback?: () => void) => {
@@ -182,7 +214,7 @@ const runMysticalAnimation = (text: string, callback?: () => void) => {
         complete: () => {
           // Hold animation for exactly 3 seconds (定格时间 - increased for better visibility)
           console.log('Animation freeze period started - 3 seconds')
-          setTimeout(() => {
+          const freezeTimeout = setTimeout(() => {
             console.log('Animation freeze period ended, starting exit')
             // Exit animation after the 3-second freeze
             $anime.animate(spans, {
@@ -199,13 +231,18 @@ const runMysticalAnimation = (text: string, callback?: () => void) => {
                   easing: 'easeInOutQuad',
                   complete: () => {
                     hideAnimation()
+                    isAnimationRunning = false
                     console.log('Animation completed - total ~7 seconds')
-                    if (callback) setTimeout(callback, 50)
+                    if (callback) {
+                      const callbackTimeout = setTimeout(callback, 50)
+                      animationTimeouts.push(callbackTimeout)
+                    }
                   }
                 })
               }
             })
           }, 3000) // 3-second freeze period (定格时间)
+          animationTimeouts.push(freezeTimeout)
         }
       })
     } else {
@@ -403,10 +440,25 @@ const createFallbackParticles = () => {
 
 const hideAnimation = () => {
   isVisible.value = false
+  isAnimationRunning = false
+  
+  // Clear all timeouts
+  clearAnimationTimeouts()
   
   // Clean up all particle types
   const particles = document.querySelectorAll('.particle, .particle-trail, .stardust, .magic-particle, .meteor-trail, .css-particle, .stardust-particle')
   particles.forEach(p => p.remove())
+  
+  // Clear animation content
+  if (animatedTextRef.value) {
+    animatedTextRef.value.innerHTML = ''
+  }
+  
+  // Reset overlay opacity
+  const overlay = document.getElementById('animation-overlay')
+  if (overlay) {
+    overlay.style.opacity = ''
+  }
 }
 
 // Expose methods for parent components (backwards compatibility)
