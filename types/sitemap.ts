@@ -47,7 +47,11 @@ export const SITEMAP_CONFIG: SitemapConfig = {
     'chinese-zodiac'
   ],
   staticPages: [
-    // Add any additional static pages here
+    'about',
+    'contact',
+    'faq',
+    'privacy',
+    'projects'
   ],
   excludedPages: [
     // Add pages to exclude from sitemap here

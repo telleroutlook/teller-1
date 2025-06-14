@@ -1,5 +1,6 @@
 {
   "tagline": "Your Personal Spiritual Guide",
+  "subtitle": "Spiritual guidance through tarot, astrology, numerology, and Chinese zodiac",
   "heroTitle": "Discover Your Path",
   "heroSubtitle": "Unlock the mysteries of your life through tarot, astrology, and numerology",
   "aboutTitle": "About Our Digital Divination",
@@ -87,9 +88,22 @@
     "contact": "Contact",
     "privacy": "Privacy",
     "quickLinks": "Quick Links",
+    "quickAccess": "Quick Access",
+    "company": "Company",
+    "support": "Support",
+    "connect": "Stay Connected",
+    "email": "Email Us",
+    "connectText": "Get the latest updates and insights",
+    "shareAria": "Share this website",
+    "bookmarkAria": "Bookmark this website",
+    "version": "Version",
     "contactUs": "Contact Us",
     "contactText": "Have questions? We'd love to hear from you.",
     "rights": "All rights reserved."
+  },
+  "navigation": {
+    "bottomNav": "Bottom Navigation",
+    "navigateTo": "Navigate to"
   },
   "about": {
     "title": "About Teller",

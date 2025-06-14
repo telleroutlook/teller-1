@@ -1,5 +1,6 @@
 {
   "tagline": "Votre Guide Spirituel Personnel",
+  "subtitle": "Guidance spirituelle à travers le tarot, l'astrologie, la numérologie et le zodiaque chinois",
   "heroTitle": "Découvrez Votre Chemin",
   "heroSubtitle": "Dévoilez les mystères de votre vie à travers le tarot, l'astrologie et la numérologie",
   "aboutTitle": "À Propos de Notre Divination Numérique",
@@ -87,9 +88,22 @@
     "contact": "Contact",
     "privacy": "Confidentialité",
     "quickLinks": "Liens rapides",
+    "quickAccess": "Accès rapide",
+    "company": "Entreprise",
+    "support": "Assistance",
+    "connect": "Restez connecté",
+    "email": "Nous contacter",
+    "connectText": "Recevez les dernières mises à jour et informations",
+    "shareAria": "Partager ce site web",
+    "bookmarkAria": "Ajouter ce site aux favoris",
+    "version": "Version",
     "contactUs": "Contactez-nous",
     "contactText": "Des questions ? Nous sommes là pour vous écouter.",
     "rights": "Tous droits réservés."
+  },
+  "navigation": {
+    "bottomNav": "Navigation du bas",
+    "navigateTo": "Naviguer vers"
   },
   "about": {
     "title": "À propos de Teller",

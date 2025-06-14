@@ -13,6 +13,7 @@ export default defineEventHandler(async (event) => {
     // Log sitemap generation for monitoring
     console.log(`Generated sitemap with ${generator.getUrlCount()} URLs`)
     
+    // Return XML content directly
     return sitemap
   } catch (error) {
     // Handle errors gracefully

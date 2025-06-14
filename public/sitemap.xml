@@ -1,784 +1,563 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://teller.vercel.app</loc>
+    <loc>https://teller.eu.org/en</loc>
     <lastmod>2025-06-14</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="en" 
-      href="https://teller.vercel.app"/>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="zh" 
-      href="https://teller.vercel.app/zh"/>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="fr" 
-      href="https://teller.vercel.app/fr"/>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="hi" 
-      href="https://teller.vercel.app/hi"/>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="ar" 
-      href="https://teller.vercel.app/ar"/>
+    <priority>1</priority>
+    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://teller.eu.org/fr" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://teller.eu.org/zh" />
+    <xhtml:link rel="alternate" hreflang="hi-IN" href="https://teller.eu.org/hi" />
+    <xhtml:link rel="alternate" hreflang="ar-SA" href="https://teller.eu.org/ar" />
   </url>
   <url>
-    <loc>https://teller.vercel.app/zh</loc>
+    <loc>https://teller.eu.org/fr</loc>
     <lastmod>2025-06-14</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="en" 
-      href="https://teller.vercel.app"/>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="zh" 
-      href="https://teller.vercel.app/zh"/>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="fr" 
-      href="https://teller.vercel.app/fr"/>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="hi" 
-      href="https://teller.vercel.app/hi"/>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="ar" 
-      href="https://teller.vercel.app/ar"/>
+    <priority>1</priority>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://teller.eu.org/en" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://teller.eu.org/zh" />
+    <xhtml:link rel="alternate" hreflang="hi-IN" href="https://teller.eu.org/hi" />
+    <xhtml:link rel="alternate" hreflang="ar-SA" href="https://teller.eu.org/ar" />
   </url>
   <url>
-    <loc>https://teller.vercel.app/fr</loc>
+    <loc>https://teller.eu.org/zh</loc>
     <lastmod>2025-06-14</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="en" 
-      href="https://teller.vercel.app"/>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="zh" 
-      href="https://teller.vercel.app/zh"/>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="fr" 
-      href="https://teller.vercel.app/fr"/>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="hi" 
-      href="https://teller.vercel.app/hi"/>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="ar" 
-      href="https://teller.vercel.app/ar"/>
+    <priority>1</priority>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://teller.eu.org/en" />
+    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://teller.eu.org/fr" />
+    <xhtml:link rel="alternate" hreflang="hi-IN" href="https://teller.eu.org/hi" />
+    <xhtml:link rel="alternate" hreflang="ar-SA" href="https://teller.eu.org/ar" />
   </url>
   <url>
-    <loc>https://teller.vercel.app/hi</loc>
+    <loc>https://teller.eu.org/hi</loc>
     <lastmod>2025-06-14</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="en" 
-      href="https://teller.vercel.app"/>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="zh" 
-      href="https://teller.vercel.app/zh"/>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="fr" 
-      href="https://teller.vercel.app/fr"/>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="hi" 
-      href="https://teller.vercel.app/hi"/>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="ar" 
-      href="https://teller.vercel.app/ar"/>
+    <priority>1</priority>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://teller.eu.org/en" />
+    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://teller.eu.org/fr" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://teller.eu.org/zh" />
+    <xhtml:link rel="alternate" hreflang="ar-SA" href="https://teller.eu.org/ar" />
   </url>
   <url>
-    <loc>https://teller.vercel.app/ar</loc>
+    <loc>https://teller.eu.org/ar</loc>
     <lastmod>2025-06-14</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="en" 
-      href="https://teller.vercel.app"/>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="zh" 
-      href="https://teller.vercel.app/zh"/>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="fr" 
-      href="https://teller.vercel.app/fr"/>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="hi" 
-      href="https://teller.vercel.app/hi"/>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="ar" 
-      href="https://teller.vercel.app/ar"/>
+    <priority>1</priority>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://teller.eu.org/en" />
+    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://teller.eu.org/fr" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://teller.eu.org/zh" />
+    <xhtml:link rel="alternate" hreflang="hi-IN" href="https://teller.eu.org/hi" />
   </url>
   <url>
-    <loc>https://teller.vercel.app/about</loc>
+    <loc>https://teller.eu.org/en/tarot</loc>
     <lastmod>2025-06-14</lastmod>
-    <changefreq>weekly</changefreq>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="en" 
-      href="https://teller.vercel.app/about"/>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="zh" 
-      href="https://teller.vercel.app/zh/about"/>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="fr" 
-      href="https://teller.vercel.app/fr/about"/>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="hi" 
-      href="https://teller.vercel.app/hi/about"/>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="ar" 
-      href="https://teller.vercel.app/ar/about"/>
+    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://teller.eu.org/fr/tarot" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://teller.eu.org/zh/tarot" />
+    <xhtml:link rel="alternate" hreflang="hi-IN" href="https://teller.eu.org/hi/tarot" />
+    <xhtml:link rel="alternate" hreflang="ar-SA" href="https://teller.eu.org/ar/tarot" />
   </url>
   <url>
-    <loc>https://teller.vercel.app/zh/about</loc>
+    <loc>https://teller.eu.org/en/astrology</loc>
     <lastmod>2025-06-14</lastmod>
-    <changefreq>weekly</changefreq>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="en" 
-      href="https://teller.vercel.app/about"/>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="zh" 
-      href="https://teller.vercel.app/zh/about"/>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="fr" 
-      href="https://teller.vercel.app/fr/about"/>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="hi" 
-      href="https://teller.vercel.app/hi/about"/>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="ar" 
-      href="https://teller.vercel.app/ar/about"/>
+    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://teller.eu.org/fr/astrology" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://teller.eu.org/zh/astrology" />
+    <xhtml:link rel="alternate" hreflang="hi-IN" href="https://teller.eu.org/hi/astrology" />
+    <xhtml:link rel="alternate" hreflang="ar-SA" href="https://teller.eu.org/ar/astrology" />
   </url>
   <url>
-    <loc>https://teller.vercel.app/fr/about</loc>
+    <loc>https://teller.eu.org/en/numerology</loc>
     <lastmod>2025-06-14</lastmod>
-    <changefreq>weekly</changefreq>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="en" 
-      href="https://teller.vercel.app/about"/>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="zh" 
-      href="https://teller.vercel.app/zh/about"/>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="fr" 
-      href="https://teller.vercel.app/fr/about"/>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="hi" 
-      href="https://teller.vercel.app/hi/about"/>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="ar" 
-      href="https://teller.vercel.app/ar/about"/>
+    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://teller.eu.org/fr/numerology" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://teller.eu.org/zh/numerology" />
+    <xhtml:link rel="alternate" hreflang="hi-IN" href="https://teller.eu.org/hi/numerology" />
+    <xhtml:link rel="alternate" hreflang="ar-SA" href="https://teller.eu.org/ar/numerology" />
   </url>
   <url>
-    <loc>https://teller.vercel.app/hi/about</loc>
+    <loc>https://teller.eu.org/en/chinese-zodiac</loc>
     <lastmod>2025-06-14</lastmod>
-    <changefreq>weekly</changefreq>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="en" 
-      href="https://teller.vercel.app/about"/>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="zh" 
-      href="https://teller.vercel.app/zh/about"/>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="fr" 
-      href="https://teller.vercel.app/fr/about"/>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="hi" 
-      href="https://teller.vercel.app/hi/about"/>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="ar" 
-      href="https://teller.vercel.app/ar/about"/>
+    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://teller.eu.org/fr/chinese-zodiac" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://teller.eu.org/zh/chinese-zodiac" />
+    <xhtml:link rel="alternate" hreflang="hi-IN" href="https://teller.eu.org/hi/chinese-zodiac" />
+    <xhtml:link rel="alternate" hreflang="ar-SA" href="https://teller.eu.org/ar/chinese-zodiac" />
   </url>
   <url>
-    <loc>https://teller.vercel.app/ar/about</loc>
+    <loc>https://teller.eu.org/fr/tarot</loc>
     <lastmod>2025-06-14</lastmod>
-    <changefreq>weekly</changefreq>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="en" 
-      href="https://teller.vercel.app/about"/>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="zh" 
-      href="https://teller.vercel.app/zh/about"/>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="fr" 
-      href="https://teller.vercel.app/fr/about"/>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="hi" 
-      href="https://teller.vercel.app/hi/about"/>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="ar" 
-      href="https://teller.vercel.app/ar/about"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://teller.eu.org/en/tarot" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://teller.eu.org/zh/tarot" />
+    <xhtml:link rel="alternate" hreflang="hi-IN" href="https://teller.eu.org/hi/tarot" />
+    <xhtml:link rel="alternate" hreflang="ar-SA" href="https://teller.eu.org/ar/tarot" />
   </url>
   <url>
-    <loc>https://teller.vercel.app/projects</loc>
+    <loc>https://teller.eu.org/fr/astrology</loc>
     <lastmod>2025-06-14</lastmod>
-    <changefreq>weekly</changefreq>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="en" 
-      href="https://teller.vercel.app/projects"/>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="zh" 
-      href="https://teller.vercel.app/zh/projects"/>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="fr" 
-      href="https://teller.vercel.app/fr/projects"/>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="hi" 
-      href="https://teller.vercel.app/hi/projects"/>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="ar" 
-      href="https://teller.vercel.app/ar/projects"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://teller.eu.org/en/astrology" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://teller.eu.org/zh/astrology" />
+    <xhtml:link rel="alternate" hreflang="hi-IN" href="https://teller.eu.org/hi/astrology" />
+    <xhtml:link rel="alternate" hreflang="ar-SA" href="https://teller.eu.org/ar/astrology" />
   </url>
   <url>
-    <loc>https://teller.vercel.app/zh/projects</loc>
+    <loc>https://teller.eu.org/fr/numerology</loc>
     <lastmod>2025-06-14</lastmod>
-    <changefreq>weekly</changefreq>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="en" 
-      href="https://teller.vercel.app/projects"/>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="zh" 
-      href="https://teller.vercel.app/zh/projects"/>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="fr" 
-      href="https://teller.vercel.app/fr/projects"/>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="hi" 
-      href="https://teller.vercel.app/hi/projects"/>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="ar" 
-      href="https://teller.vercel.app/ar/projects"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://teller.eu.org/en/numerology" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://teller.eu.org/zh/numerology" />
+    <xhtml:link rel="alternate" hreflang="hi-IN" href="https://teller.eu.org/hi/numerology" />
+    <xhtml:link rel="alternate" hreflang="ar-SA" href="https://teller.eu.org/ar/numerology" />
   </url>
   <url>
-    <loc>https://teller.vercel.app/fr/projects</loc>
+    <loc>https://teller.eu.org/fr/chinese-zodiac</loc>
     <lastmod>2025-06-14</lastmod>
-    <changefreq>weekly</changefreq>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="en" 
-      href="https://teller.vercel.app/projects"/>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="zh" 
-      href="https://teller.vercel.app/zh/projects"/>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="fr" 
-      href="https://teller.vercel.app/fr/projects"/>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="hi" 
-      href="https://teller.vercel.app/hi/projects"/>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="ar" 
-      href="https://teller.vercel.app/ar/projects"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://teller.eu.org/en/chinese-zodiac" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://teller.eu.org/zh/chinese-zodiac" />
+    <xhtml:link rel="alternate" hreflang="hi-IN" href="https://teller.eu.org/hi/chinese-zodiac" />
+    <xhtml:link rel="alternate" hreflang="ar-SA" href="https://teller.eu.org/ar/chinese-zodiac" />
   </url>
   <url>
-    <loc>https://teller.vercel.app/hi/projects</loc>
+    <loc>https://teller.eu.org/zh/tarot</loc>
     <lastmod>2025-06-14</lastmod>
-    <changefreq>weekly</changefreq>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="en" 
-      href="https://teller.vercel.app/projects"/>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="zh" 
-      href="https://teller.vercel.app/zh/projects"/>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="fr" 
-      href="https://teller.vercel.app/fr/projects"/>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="hi" 
-      href="https://teller.vercel.app/hi/projects"/>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="ar" 
-      href="https://teller.vercel.app/ar/projects"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://teller.eu.org/en/tarot" />
+    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://teller.eu.org/fr/tarot" />
+    <xhtml:link rel="alternate" hreflang="hi-IN" href="https://teller.eu.org/hi/tarot" />
+    <xhtml:link rel="alternate" hreflang="ar-SA" href="https://teller.eu.org/ar/tarot" />
   </url>
   <url>
-    <loc>https://teller.vercel.app/ar/projects</loc>
+    <loc>https://teller.eu.org/zh/astrology</loc>
     <lastmod>2025-06-14</lastmod>
-    <changefreq>weekly</changefreq>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="en" 
-      href="https://teller.vercel.app/projects"/>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="zh" 
-      href="https://teller.vercel.app/zh/projects"/>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="fr" 
-      href="https://teller.vercel.app/fr/projects"/>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="hi" 
-      href="https://teller.vercel.app/hi/projects"/>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="ar" 
-      href="https://teller.vercel.app/ar/projects"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://teller.eu.org/en/astrology" />
+    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://teller.eu.org/fr/astrology" />
+    <xhtml:link rel="alternate" hreflang="hi-IN" href="https://teller.eu.org/hi/astrology" />
+    <xhtml:link rel="alternate" hreflang="ar-SA" href="https://teller.eu.org/ar/astrology" />
   </url>
   <url>
-    <loc>https://teller.vercel.app/faq</loc>
+    <loc>https://teller.eu.org/zh/numerology</loc>
     <lastmod>2025-06-14</lastmod>
-    <changefreq>weekly</changefreq>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="en" 
-      href="https://teller.vercel.app/faq"/>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="zh" 
-      href="https://teller.vercel.app/zh/faq"/>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="fr" 
-      href="https://teller.vercel.app/fr/faq"/>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="hi" 
-      href="https://teller.vercel.app/hi/faq"/>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="ar" 
-      href="https://teller.vercel.app/ar/faq"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://teller.eu.org/en/numerology" />
+    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://teller.eu.org/fr/numerology" />
+    <xhtml:link rel="alternate" hreflang="hi-IN" href="https://teller.eu.org/hi/numerology" />
+    <xhtml:link rel="alternate" hreflang="ar-SA" href="https://teller.eu.org/ar/numerology" />
   </url>
   <url>
-    <loc>https://teller.vercel.app/zh/faq</loc>
+    <loc>https://teller.eu.org/zh/chinese-zodiac</loc>
     <lastmod>2025-06-14</lastmod>
-    <changefreq>weekly</changefreq>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="en" 
-      href="https://teller.vercel.app/faq"/>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="zh" 
-      href="https://teller.vercel.app/zh/faq"/>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="fr" 
-      href="https://teller.vercel.app/fr/faq"/>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="hi" 
-      href="https://teller.vercel.app/hi/faq"/>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="ar" 
-      href="https://teller.vercel.app/ar/faq"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://teller.eu.org/en/chinese-zodiac" />
+    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://teller.eu.org/fr/chinese-zodiac" />
+    <xhtml:link rel="alternate" hreflang="hi-IN" href="https://teller.eu.org/hi/chinese-zodiac" />
+    <xhtml:link rel="alternate" hreflang="ar-SA" href="https://teller.eu.org/ar/chinese-zodiac" />
   </url>
   <url>
-    <loc>https://teller.vercel.app/fr/faq</loc>
+    <loc>https://teller.eu.org/hi/tarot</loc>
     <lastmod>2025-06-14</lastmod>
-    <changefreq>weekly</changefreq>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="en" 
-      href="https://teller.vercel.app/faq"/>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="zh" 
-      href="https://teller.vercel.app/zh/faq"/>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="fr" 
-      href="https://teller.vercel.app/fr/faq"/>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="hi" 
-      href="https://teller.vercel.app/hi/faq"/>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="ar" 
-      href="https://teller.vercel.app/ar/faq"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://teller.eu.org/en/tarot" />
+    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://teller.eu.org/fr/tarot" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://teller.eu.org/zh/tarot" />
+    <xhtml:link rel="alternate" hreflang="ar-SA" href="https://teller.eu.org/ar/tarot" />
   </url>
   <url>
-    <loc>https://teller.vercel.app/hi/faq</loc>
+    <loc>https://teller.eu.org/hi/astrology</loc>
     <lastmod>2025-06-14</lastmod>
-    <changefreq>weekly</changefreq>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="en" 
-      href="https://teller.vercel.app/faq"/>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="zh" 
-      href="https://teller.vercel.app/zh/faq"/>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="fr" 
-      href="https://teller.vercel.app/fr/faq"/>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="hi" 
-      href="https://teller.vercel.app/hi/faq"/>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="ar" 
-      href="https://teller.vercel.app/ar/faq"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://teller.eu.org/en/astrology" />
+    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://teller.eu.org/fr/astrology" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://teller.eu.org/zh/astrology" />
+    <xhtml:link rel="alternate" hreflang="ar-SA" href="https://teller.eu.org/ar/astrology" />
   </url>
   <url>
-    <loc>https://teller.vercel.app/ar/faq</loc>
+    <loc>https://teller.eu.org/hi/numerology</loc>
     <lastmod>2025-06-14</lastmod>
-    <changefreq>weekly</changefreq>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="en" 
-      href="https://teller.vercel.app/faq"/>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="zh" 
-      href="https://teller.vercel.app/zh/faq"/>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="fr" 
-      href="https://teller.vercel.app/fr/faq"/>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="hi" 
-      href="https://teller.vercel.app/hi/faq"/>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="ar" 
-      href="https://teller.vercel.app/ar/faq"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://teller.eu.org/en/numerology" />
+    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://teller.eu.org/fr/numerology" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://teller.eu.org/zh/numerology" />
+    <xhtml:link rel="alternate" hreflang="ar-SA" href="https://teller.eu.org/ar/numerology" />
   </url>
   <url>
-    <loc>https://teller.vercel.app/contact</loc>
+    <loc>https://teller.eu.org/hi/chinese-zodiac</loc>
     <lastmod>2025-06-14</lastmod>
-    <changefreq>weekly</changefreq>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="en" 
-      href="https://teller.vercel.app/contact"/>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="zh" 
-      href="https://teller.vercel.app/zh/contact"/>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="fr" 
-      href="https://teller.vercel.app/fr/contact"/>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="hi" 
-      href="https://teller.vercel.app/hi/contact"/>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="ar" 
-      href="https://teller.vercel.app/ar/contact"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://teller.eu.org/en/chinese-zodiac" />
+    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://teller.eu.org/fr/chinese-zodiac" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://teller.eu.org/zh/chinese-zodiac" />
+    <xhtml:link rel="alternate" hreflang="ar-SA" href="https://teller.eu.org/ar/chinese-zodiac" />
   </url>
   <url>
-    <loc>https://teller.vercel.app/zh/contact</loc>
+    <loc>https://teller.eu.org/ar/tarot</loc>
     <lastmod>2025-06-14</lastmod>
-    <changefreq>weekly</changefreq>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="en" 
-      href="https://teller.vercel.app/contact"/>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="zh" 
-      href="https://teller.vercel.app/zh/contact"/>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="fr" 
-      href="https://teller.vercel.app/fr/contact"/>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="hi" 
-      href="https://teller.vercel.app/hi/contact"/>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="ar" 
-      href="https://teller.vercel.app/ar/contact"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://teller.eu.org/en/tarot" />
+    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://teller.eu.org/fr/tarot" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://teller.eu.org/zh/tarot" />
+    <xhtml:link rel="alternate" hreflang="hi-IN" href="https://teller.eu.org/hi/tarot" />
   </url>
   <url>
-    <loc>https://teller.vercel.app/fr/contact</loc>
+    <loc>https://teller.eu.org/ar/astrology</loc>
     <lastmod>2025-06-14</lastmod>
-    <changefreq>weekly</changefreq>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="en" 
-      href="https://teller.vercel.app/contact"/>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="zh" 
-      href="https://teller.vercel.app/zh/contact"/>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="fr" 
-      href="https://teller.vercel.app/fr/contact"/>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="hi" 
-      href="https://teller.vercel.app/hi/contact"/>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="ar" 
-      href="https://teller.vercel.app/ar/contact"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://teller.eu.org/en/astrology" />
+    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://teller.eu.org/fr/astrology" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://teller.eu.org/zh/astrology" />
+    <xhtml:link rel="alternate" hreflang="hi-IN" href="https://teller.eu.org/hi/astrology" />
   </url>
   <url>
-    <loc>https://teller.vercel.app/hi/contact</loc>
+    <loc>https://teller.eu.org/ar/numerology</loc>
     <lastmod>2025-06-14</lastmod>
-    <changefreq>weekly</changefreq>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="en" 
-      href="https://teller.vercel.app/contact"/>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="zh" 
-      href="https://teller.vercel.app/zh/contact"/>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="fr" 
-      href="https://teller.vercel.app/fr/contact"/>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="hi" 
-      href="https://teller.vercel.app/hi/contact"/>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="ar" 
-      href="https://teller.vercel.app/ar/contact"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://teller.eu.org/en/numerology" />
+    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://teller.eu.org/fr/numerology" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://teller.eu.org/zh/numerology" />
+    <xhtml:link rel="alternate" hreflang="hi-IN" href="https://teller.eu.org/hi/numerology" />
   </url>
   <url>
-    <loc>https://teller.vercel.app/ar/contact</loc>
+    <loc>https://teller.eu.org/ar/chinese-zodiac</loc>
     <lastmod>2025-06-14</lastmod>
-    <changefreq>weekly</changefreq>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="en" 
-      href="https://teller.vercel.app/contact"/>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="zh" 
-      href="https://teller.vercel.app/zh/contact"/>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="fr" 
-      href="https://teller.vercel.app/fr/contact"/>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="hi" 
-      href="https://teller.vercel.app/hi/contact"/>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="ar" 
-      href="https://teller.vercel.app/ar/contact"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://teller.eu.org/en/chinese-zodiac" />
+    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://teller.eu.org/fr/chinese-zodiac" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://teller.eu.org/zh/chinese-zodiac" />
+    <xhtml:link rel="alternate" hreflang="hi-IN" href="https://teller.eu.org/hi/chinese-zodiac" />
   </url>
   <url>
-    <loc>https://teller.vercel.app/privacy</loc>
+    <loc>https://teller.eu.org</loc>
     <lastmod>2025-06-14</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="en" 
-      href="https://teller.vercel.app/privacy"/>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="zh" 
-      href="https://teller.vercel.app/zh/privacy"/>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="fr" 
-      href="https://teller.vercel.app/fr/privacy"/>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="hi" 
-      href="https://teller.vercel.app/hi/privacy"/>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="ar" 
-      href="https://teller.vercel.app/ar/privacy"/>
+    <priority>1</priority>
   </url>
   <url>
-    <loc>https://teller.vercel.app/zh/privacy</loc>
+    <loc>https://teller.eu.org/tarot</loc>
     <lastmod>2025-06-14</lastmod>
-    <changefreq>weekly</changefreq>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="en" 
-      href="https://teller.vercel.app/privacy"/>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="zh" 
-      href="https://teller.vercel.app/zh/privacy"/>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="fr" 
-      href="https://teller.vercel.app/fr/privacy"/>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="hi" 
-      href="https://teller.vercel.app/hi/privacy"/>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="ar" 
-      href="https://teller.vercel.app/ar/privacy"/>
   </url>
   <url>
-    <loc>https://teller.vercel.app/fr/privacy</loc>
+    <loc>https://teller.eu.org/astrology</loc>
     <lastmod>2025-06-14</lastmod>
-    <changefreq>weekly</changefreq>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="en" 
-      href="https://teller.vercel.app/privacy"/>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="zh" 
-      href="https://teller.vercel.app/zh/privacy"/>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="fr" 
-      href="https://teller.vercel.app/fr/privacy"/>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="hi" 
-      href="https://teller.vercel.app/hi/privacy"/>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="ar" 
-      href="https://teller.vercel.app/ar/privacy"/>
   </url>
   <url>
-    <loc>https://teller.vercel.app/hi/privacy</loc>
+    <loc>https://teller.eu.org/numerology</loc>
     <lastmod>2025-06-14</lastmod>
-    <changefreq>weekly</changefreq>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="en" 
-      href="https://teller.vercel.app/privacy"/>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="zh" 
-      href="https://teller.vercel.app/zh/privacy"/>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="fr" 
-      href="https://teller.vercel.app/fr/privacy"/>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="hi" 
-      href="https://teller.vercel.app/hi/privacy"/>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="ar" 
-      href="https://teller.vercel.app/ar/privacy"/>
   </url>
   <url>
-    <loc>https://teller.vercel.app/ar/privacy</loc>
+    <loc>https://teller.eu.org/chinese-zodiac</loc>
     <lastmod>2025-06-14</lastmod>
-    <changefreq>weekly</changefreq>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="en" 
-      href="https://teller.vercel.app/privacy"/>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="zh" 
-      href="https://teller.vercel.app/zh/privacy"/>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="fr" 
-      href="https://teller.vercel.app/fr/privacy"/>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="hi" 
-      href="https://teller.vercel.app/hi/privacy"/>
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="ar" 
-      href="https://teller.vercel.app/ar/privacy"/>
+  </url>
+  <url>
+    <loc>https://teller.eu.org/about</loc>
+    <lastmod>2025-06-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://teller.eu.org/contact</loc>
+    <lastmod>2025-06-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://teller.eu.org/faq</loc>
+    <lastmod>2025-06-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://teller.eu.org/privacy</loc>
+    <lastmod>2025-06-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://teller.eu.org/projects</loc>
+    <lastmod>2025-06-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://teller.eu.org/en/about</loc>
+    <lastmod>2025-06-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://teller.eu.org/fr/about" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://teller.eu.org/zh/about" />
+    <xhtml:link rel="alternate" hreflang="hi-IN" href="https://teller.eu.org/hi/about" />
+    <xhtml:link rel="alternate" hreflang="ar-SA" href="https://teller.eu.org/ar/about" />
+  </url>
+  <url>
+    <loc>https://teller.eu.org/en/contact</loc>
+    <lastmod>2025-06-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://teller.eu.org/fr/contact" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://teller.eu.org/zh/contact" />
+    <xhtml:link rel="alternate" hreflang="hi-IN" href="https://teller.eu.org/hi/contact" />
+    <xhtml:link rel="alternate" hreflang="ar-SA" href="https://teller.eu.org/ar/contact" />
+  </url>
+  <url>
+    <loc>https://teller.eu.org/en/faq</loc>
+    <lastmod>2025-06-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://teller.eu.org/fr/faq" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://teller.eu.org/zh/faq" />
+    <xhtml:link rel="alternate" hreflang="hi-IN" href="https://teller.eu.org/hi/faq" />
+    <xhtml:link rel="alternate" hreflang="ar-SA" href="https://teller.eu.org/ar/faq" />
+  </url>
+  <url>
+    <loc>https://teller.eu.org/en/privacy</loc>
+    <lastmod>2025-06-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://teller.eu.org/fr/privacy" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://teller.eu.org/zh/privacy" />
+    <xhtml:link rel="alternate" hreflang="hi-IN" href="https://teller.eu.org/hi/privacy" />
+    <xhtml:link rel="alternate" hreflang="ar-SA" href="https://teller.eu.org/ar/privacy" />
+  </url>
+  <url>
+    <loc>https://teller.eu.org/en/projects</loc>
+    <lastmod>2025-06-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://teller.eu.org/fr/projects" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://teller.eu.org/zh/projects" />
+    <xhtml:link rel="alternate" hreflang="hi-IN" href="https://teller.eu.org/hi/projects" />
+    <xhtml:link rel="alternate" hreflang="ar-SA" href="https://teller.eu.org/ar/projects" />
+  </url>
+  <url>
+    <loc>https://teller.eu.org/fr/about</loc>
+    <lastmod>2025-06-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://teller.eu.org/en/about" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://teller.eu.org/zh/about" />
+    <xhtml:link rel="alternate" hreflang="hi-IN" href="https://teller.eu.org/hi/about" />
+    <xhtml:link rel="alternate" hreflang="ar-SA" href="https://teller.eu.org/ar/about" />
+  </url>
+  <url>
+    <loc>https://teller.eu.org/fr/contact</loc>
+    <lastmod>2025-06-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://teller.eu.org/en/contact" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://teller.eu.org/zh/contact" />
+    <xhtml:link rel="alternate" hreflang="hi-IN" href="https://teller.eu.org/hi/contact" />
+    <xhtml:link rel="alternate" hreflang="ar-SA" href="https://teller.eu.org/ar/contact" />
+  </url>
+  <url>
+    <loc>https://teller.eu.org/fr/faq</loc>
+    <lastmod>2025-06-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://teller.eu.org/en/faq" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://teller.eu.org/zh/faq" />
+    <xhtml:link rel="alternate" hreflang="hi-IN" href="https://teller.eu.org/hi/faq" />
+    <xhtml:link rel="alternate" hreflang="ar-SA" href="https://teller.eu.org/ar/faq" />
+  </url>
+  <url>
+    <loc>https://teller.eu.org/fr/privacy</loc>
+    <lastmod>2025-06-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://teller.eu.org/en/privacy" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://teller.eu.org/zh/privacy" />
+    <xhtml:link rel="alternate" hreflang="hi-IN" href="https://teller.eu.org/hi/privacy" />
+    <xhtml:link rel="alternate" hreflang="ar-SA" href="https://teller.eu.org/ar/privacy" />
+  </url>
+  <url>
+    <loc>https://teller.eu.org/fr/projects</loc>
+    <lastmod>2025-06-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://teller.eu.org/en/projects" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://teller.eu.org/zh/projects" />
+    <xhtml:link rel="alternate" hreflang="hi-IN" href="https://teller.eu.org/hi/projects" />
+    <xhtml:link rel="alternate" hreflang="ar-SA" href="https://teller.eu.org/ar/projects" />
+  </url>
+  <url>
+    <loc>https://teller.eu.org/zh/about</loc>
+    <lastmod>2025-06-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://teller.eu.org/en/about" />
+    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://teller.eu.org/fr/about" />
+    <xhtml:link rel="alternate" hreflang="hi-IN" href="https://teller.eu.org/hi/about" />
+    <xhtml:link rel="alternate" hreflang="ar-SA" href="https://teller.eu.org/ar/about" />
+  </url>
+  <url>
+    <loc>https://teller.eu.org/zh/contact</loc>
+    <lastmod>2025-06-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://teller.eu.org/en/contact" />
+    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://teller.eu.org/fr/contact" />
+    <xhtml:link rel="alternate" hreflang="hi-IN" href="https://teller.eu.org/hi/contact" />
+    <xhtml:link rel="alternate" hreflang="ar-SA" href="https://teller.eu.org/ar/contact" />
+  </url>
+  <url>
+    <loc>https://teller.eu.org/zh/faq</loc>
+    <lastmod>2025-06-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://teller.eu.org/en/faq" />
+    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://teller.eu.org/fr/faq" />
+    <xhtml:link rel="alternate" hreflang="hi-IN" href="https://teller.eu.org/hi/faq" />
+    <xhtml:link rel="alternate" hreflang="ar-SA" href="https://teller.eu.org/ar/faq" />
+  </url>
+  <url>
+    <loc>https://teller.eu.org/zh/privacy</loc>
+    <lastmod>2025-06-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://teller.eu.org/en/privacy" />
+    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://teller.eu.org/fr/privacy" />
+    <xhtml:link rel="alternate" hreflang="hi-IN" href="https://teller.eu.org/hi/privacy" />
+    <xhtml:link rel="alternate" hreflang="ar-SA" href="https://teller.eu.org/ar/privacy" />
+  </url>
+  <url>
+    <loc>https://teller.eu.org/zh/projects</loc>
+    <lastmod>2025-06-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://teller.eu.org/en/projects" />
+    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://teller.eu.org/fr/projects" />
+    <xhtml:link rel="alternate" hreflang="hi-IN" href="https://teller.eu.org/hi/projects" />
+    <xhtml:link rel="alternate" hreflang="ar-SA" href="https://teller.eu.org/ar/projects" />
+  </url>
+  <url>
+    <loc>https://teller.eu.org/hi/about</loc>
+    <lastmod>2025-06-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://teller.eu.org/en/about" />
+    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://teller.eu.org/fr/about" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://teller.eu.org/zh/about" />
+    <xhtml:link rel="alternate" hreflang="ar-SA" href="https://teller.eu.org/ar/about" />
+  </url>
+  <url>
+    <loc>https://teller.eu.org/hi/contact</loc>
+    <lastmod>2025-06-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://teller.eu.org/en/contact" />
+    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://teller.eu.org/fr/contact" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://teller.eu.org/zh/contact" />
+    <xhtml:link rel="alternate" hreflang="ar-SA" href="https://teller.eu.org/ar/contact" />
+  </url>
+  <url>
+    <loc>https://teller.eu.org/hi/faq</loc>
+    <lastmod>2025-06-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://teller.eu.org/en/faq" />
+    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://teller.eu.org/fr/faq" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://teller.eu.org/zh/faq" />
+    <xhtml:link rel="alternate" hreflang="ar-SA" href="https://teller.eu.org/ar/faq" />
+  </url>
+  <url>
+    <loc>https://teller.eu.org/hi/privacy</loc>
+    <lastmod>2025-06-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://teller.eu.org/en/privacy" />
+    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://teller.eu.org/fr/privacy" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://teller.eu.org/zh/privacy" />
+    <xhtml:link rel="alternate" hreflang="ar-SA" href="https://teller.eu.org/ar/privacy" />
+  </url>
+  <url>
+    <loc>https://teller.eu.org/hi/projects</loc>
+    <lastmod>2025-06-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://teller.eu.org/en/projects" />
+    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://teller.eu.org/fr/projects" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://teller.eu.org/zh/projects" />
+    <xhtml:link rel="alternate" hreflang="ar-SA" href="https://teller.eu.org/ar/projects" />
+  </url>
+  <url>
+    <loc>https://teller.eu.org/ar/about</loc>
+    <lastmod>2025-06-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://teller.eu.org/en/about" />
+    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://teller.eu.org/fr/about" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://teller.eu.org/zh/about" />
+    <xhtml:link rel="alternate" hreflang="hi-IN" href="https://teller.eu.org/hi/about" />
+  </url>
+  <url>
+    <loc>https://teller.eu.org/ar/contact</loc>
+    <lastmod>2025-06-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://teller.eu.org/en/contact" />
+    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://teller.eu.org/fr/contact" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://teller.eu.org/zh/contact" />
+    <xhtml:link rel="alternate" hreflang="hi-IN" href="https://teller.eu.org/hi/contact" />
+  </url>
+  <url>
+    <loc>https://teller.eu.org/ar/faq</loc>
+    <lastmod>2025-06-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://teller.eu.org/en/faq" />
+    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://teller.eu.org/fr/faq" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://teller.eu.org/zh/faq" />
+    <xhtml:link rel="alternate" hreflang="hi-IN" href="https://teller.eu.org/hi/faq" />
+  </url>
+  <url>
+    <loc>https://teller.eu.org/ar/privacy</loc>
+    <lastmod>2025-06-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://teller.eu.org/en/privacy" />
+    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://teller.eu.org/fr/privacy" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://teller.eu.org/zh/privacy" />
+    <xhtml:link rel="alternate" hreflang="hi-IN" href="https://teller.eu.org/hi/privacy" />
+  </url>
+  <url>
+    <loc>https://teller.eu.org/ar/projects</loc>
+    <lastmod>2025-06-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://teller.eu.org/en/projects" />
+    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://teller.eu.org/fr/projects" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://teller.eu.org/zh/projects" />
+    <xhtml:link rel="alternate" hreflang="hi-IN" href="https://teller.eu.org/hi/projects" />
   </url>
 </urlset>

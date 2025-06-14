@@ -1,5 +1,6 @@
 {
   "tagline": "您的个人精神指南",
+  "subtitle": "塔罗牌、占星术、数字学和中国生肖的精神指导",
   "heroTitle": "发现您的道路",
   "heroSubtitle": "通过塔罗牌、占星术和数字命理学揭示您生命中的奥秘",
   "aboutTitle": "关于我们的数字占卜",
@@ -87,9 +88,22 @@
     "contact": "联系我们",
     "privacy": "隐私政策",
     "quickLinks": "快速链接",
+    "quickAccess": "快捷访问",
+    "company": "公司信息",
+    "support": "支持服务",
+    "connect": "保持联系",
+    "email": "邮箱联系",
+    "connectText": "获取最新更新和见解",
+    "shareAria": "分享此网站",
+    "bookmarkAria": "收藏此网站",
+    "version": "版本",
     "contactUs": "联系我们",
     "contactText": "有问题？我们很乐意听取您的意见。",
     "rights": "保留所有权利。"
+  },
+  "navigation": {
+    "bottomNav": "底部导航",
+    "navigateTo": "导航到"
   },
   "about": {
     "title": "关于 Teller",

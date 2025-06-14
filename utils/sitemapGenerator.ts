@@ -94,6 +94,18 @@ export class SitemapGenerator {
       })
     }
 
+    // Default static pages
+    if (this.config.staticPages?.length) {
+      for (const page of this.config.staticPages) {
+        urls.push({
+          loc: `${this.config.baseUrl}/${page}`,
+          lastmod: this.currentDate,
+          changefreq: CHANGE_FREQUENCY.STATIC_PAGES,
+          priority: PRIORITY_LEVELS.STATIC_PAGES
+        })
+      }
+    }
+
     return urls
   }
 
@@ -140,32 +152,27 @@ export class SitemapGenerator {
   generateXmlSitemap(): string {
     const urls = this.generateUrls()
     
-    let xml = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" 
-        xmlns:xhtml="http://www.w3.org/1999/xhtml">
-`
+    let xml = '<?xml version="1.0" encoding="UTF-8"?>\n'
+    xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n'
 
     for (const url of urls) {
-      xml += `  <url>
-    <loc>${this.escapeXml(url.loc)}</loc>
-    <lastmod>${url.lastmod}</lastmod>
-    <changefreq>${url.changefreq}</changefreq>
-    <priority>${url.priority}</priority>
-`
+      xml += '  <url>\n'
+      xml += `    <loc>${this.escapeXml(url.loc)}</loc>\n`
+      xml += `    <lastmod>${url.lastmod}</lastmod>\n`
+      xml += `    <changefreq>${url.changefreq}</changefreq>\n`
+      xml += `    <priority>${url.priority}</priority>\n`
 
       // Add alternate language links
       if (url.alternates?.length) {
         for (const alternate of url.alternates) {
-          xml += `    <xhtml:link rel="alternate" hreflang="${alternate.hreflang}" href="${this.escapeXml(alternate.href)}" />
-`
+          xml += `    <xhtml:link rel="alternate" hreflang="${alternate.hreflang}" href="${this.escapeXml(alternate.href)}" />\n`
         }
       }
 
-      xml += `  </url>
-`
+      xml += '  </url>\n'
     }
 
-    xml += `</urlset>`
+    xml += '</urlset>'
     
     return xml
   }

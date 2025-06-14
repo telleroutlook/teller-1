@@ -1,90 +1,176 @@
 <template>
-  <footer class="bg-gradient-to-r from-blue-600 to-purple-700 text-white py-8 mt-auto">
+  <footer class="bg-white border-t border-gray-100 pb-16 sm:pb-0">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <!-- Navigation Links -->
-        <div>
-          <h3 class="text-lg font-semibold mb-4">{{ t('footer.navigation') }}</h3>
-          <ul class="space-y-2">
-            <li>
-              <NuxtLink :to="localePath('/about')" class="hover:text-blue-200 transition-colors">
-                {{ t('footer.about') }}
+      <!-- Mobile-first collapsed layout -->
+      <div class="pt-8 pb-6">
+        <!-- Main navigation - Accordion style for mobile -->
+        <div class="space-y-6 sm:space-y-0 sm:grid sm:grid-cols-2 lg:grid-cols-4 sm:gap-8">
+          <!-- Quick Access Section -->
+          <div class="space-y-4">
+            <h3 class="text-sm font-bold text-gray-900 uppercase tracking-wider">
+              {{ t('footer.quickAccess') }}
+            </h3>
+            <div class="grid grid-cols-2 gap-3 sm:grid-cols-1 sm:gap-2">
+              <NuxtLink 
+                v-for="tool in quickTools" 
+                :key="tool.name"
+                :to="localePath(`/${tool.name}`)"
+                class="group flex items-center gap-3 p-3 rounded-xl bg-gray-50 hover:bg-primary-50 transition-all duration-200 hover:shadow-sm"
+              >
+                <span class="text-xl group-hover:scale-110 transition-transform duration-200">
+                  {{ tool.icon }}
+                </span>
+                <span class="text-sm font-medium text-gray-700 group-hover:text-primary-600">
+                  {{ t(tool.tabKey) }}
+                </span>
               </NuxtLink>
-            </li>
-            <li>
-              <NuxtLink :to="localePath('/projects')" class="hover:text-blue-200 transition-colors">
-                {{ t('footer.projects') }}
-              </NuxtLink>
-            </li>
-            <li>
-              <NuxtLink :to="localePath('/faq')" class="hover:text-blue-200 transition-colors">
-                {{ t('footer.faq') }}
-              </NuxtLink>
-            </li>
-            <li>
-              <NuxtLink :to="localePath('/contact')" class="hover:text-blue-200 transition-colors">
-                {{ t('footer.contact') }}
-              </NuxtLink>
-            </li>
-            <li>
-              <NuxtLink :to="localePath('/privacy')" class="hover:text-blue-200 transition-colors">
-                {{ t('footer.privacy') }}
-              </NuxtLink>
-            </li>
-          </ul>
-        </div>
+            </div>
+          </div>
 
-        <!-- Quick Links -->
-        <div>
-          <h3 class="text-lg font-semibold mb-4">{{ t('footer.quickLinks') }}</h3>
-          <ul class="space-y-2">
-            <li>
-              <NuxtLink :to="localePath('/tarot')" class="hover:text-blue-200 transition-colors">
-                {{ t('tarotTab') }}
-              </NuxtLink>
-            </li>
-            <li>
-              <NuxtLink :to="localePath('/astrology')" class="hover:text-blue-200 transition-colors">
-                {{ t('astrologyTab') }}
-              </NuxtLink>
-            </li>
-            <li>
-              <NuxtLink :to="localePath('/numerology')" class="hover:text-blue-200 transition-colors">
-                {{ t('numerologyTab') }}
-              </NuxtLink>
-            </li>
-            <li>
-              <NuxtLink :to="localePath('/chinese-zodiac')" class="hover:text-blue-200 transition-colors">
-                {{ t('chineseZodiacTab') }}
-              </NuxtLink>
-            </li>
-          </ul>
-        </div>
+          <!-- Company Info -->
+          <div class="space-y-4">
+            <h3 class="text-sm font-bold text-gray-900 uppercase tracking-wider">
+              {{ t('footer.company') }}
+            </h3>
+            <ul class="space-y-3">
+              <li>
+                <NuxtLink 
+                  :to="localePath('/about')" 
+                  class="text-sm text-gray-600 hover:text-primary-600 transition-colors duration-200 flex items-center gap-2"
+                >
+                  <span>{{ t('footer.about') }}</span>
+                </NuxtLink>
+              </li>
+              <li>
+                <NuxtLink 
+                  :to="localePath('/projects')" 
+                  class="text-sm text-gray-600 hover:text-primary-600 transition-colors duration-200 flex items-center gap-2"
+                >
+                  <span>{{ t('footer.projects') }}</span>
+                </NuxtLink>
+              </li>
+              <li>
+                <NuxtLink 
+                  :to="localePath('/contact')" 
+                  class="text-sm text-gray-600 hover:text-primary-600 transition-colors duration-200 flex items-center gap-2"
+                >
+                  <span>{{ t('footer.contact') }}</span>
+                </NuxtLink>
+              </li>
+            </ul>
+          </div>
 
-        <!-- Contact Info -->
-        <div>
-          <h3 class="text-lg font-semibold mb-4">{{ t('footer.contactUs') }}</h3>
-          <p class="mb-4">{{ t('footer.contactText') }}</p>
-          <div class="flex space-x-4">
-            <a href="mailto:contact@teller.eu.org" class="hover:text-blue-200 transition-colors">
-              <span class="sr-only">Email</span>
-              <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-              </svg>
-            </a>
+          <!-- Support -->
+          <div class="space-y-4">
+            <h3 class="text-sm font-bold text-gray-900 uppercase tracking-wider">
+              {{ t('footer.support') }}
+            </h3>
+            <ul class="space-y-3">
+              <li>
+                <NuxtLink 
+                  :to="localePath('/faq')" 
+                  class="text-sm text-gray-600 hover:text-primary-600 transition-colors duration-200 flex items-center gap-2"
+                >
+                  <span>{{ t('footer.faq') }}</span>
+                </NuxtLink>
+              </li>
+              <li>
+                <NuxtLink 
+                  :to="localePath('/privacy')" 
+                  class="text-sm text-gray-600 hover:text-primary-600 transition-colors duration-200 flex items-center gap-2"
+                >
+                  <span>{{ t('footer.privacy') }}</span>
+                </NuxtLink>
+              </li>
+              <li>
+                <a 
+                  href="mailto:contact@teller.eu.org" 
+                  class="text-sm text-gray-600 hover:text-primary-600 transition-colors duration-200 flex items-center gap-2"
+                >
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                  </svg>
+                  <span>{{ t('footer.email') }}</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Newsletter & Social -->
+          <div class="space-y-4">
+            <h3 class="text-sm font-bold text-gray-900 uppercase tracking-wider">
+              {{ t('footer.connect') }}
+            </h3>
+            <div class="space-y-3">
+              <p class="text-sm text-gray-600">
+                {{ t('footer.connectText') }}
+              </p>
+              <div class="flex gap-3">
+                <button 
+                  type="button"
+                  class="p-2 rounded-lg bg-gray-100 hover:bg-primary-100 text-gray-600 hover:text-primary-600 transition-colors duration-200"
+                  :aria-label="t('footer.shareAria')"
+                >
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.367 2.684 3 3 0 00-5.367-2.684z" />
+                  </svg>
+                </button>
+                <button 
+                  type="button"
+                  class="p-2 rounded-lg bg-gray-100 hover:bg-primary-100 text-gray-600 hover:text-primary-600 transition-colors duration-200"
+                  :aria-label="t('footer.bookmarkAria')"
+                >
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
+                  </svg>
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
-      <!-- Copyright -->
-      <div class="mt-8 pt-8 border-t border-white/10 text-center text-sm">
-        <p>&copy; {{ new Date().getFullYear() }} Teller.eu.org. {{ t('footer.rights') }}</p>
+      <!-- Bottom section -->
+      <div class="border-t border-gray-100 py-6">
+        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
+          <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
+            <p class="text-sm text-gray-500">
+              &copy; {{ new Date().getFullYear() }} Teller.eu.org
+            </p>
+            <span class="hidden sm:inline text-gray-300">•</span>
+            <p class="text-sm text-gray-500">
+              {{ t('footer.rights') }}
+            </p>
+          </div>
+          
+          <div class="flex items-center gap-4">
+            <LanguageSwitcher />
+            <div class="flex items-center gap-2 text-xs text-gray-400">
+              <span>{{ t('footer.version') }}</span>
+              <span class="font-mono">v2.0.0</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </footer>
 </template>
 
 <script setup lang="ts">
+interface QuickTool {
+  name: string
+  icon: string
+  tabKey: string
+}
+
 const { t } = useI18n()
 const localePath = useLocalePath()
+
+// Quick access tools for mobile-first design
+const quickTools = ref<QuickTool[]>([
+  { name: 'tarot', icon: '🃏', tabKey: 'tarotTab' },
+  { name: 'astrology', icon: '⭐', tabKey: 'astrologyTab' },
+  { name: 'numerology', icon: '🔢', tabKey: 'numerologyTab' },
+  { name: 'chinese-zodiac', icon: '🐉', tabKey: 'chineseZodiacTab' }
+])
 </script> 
