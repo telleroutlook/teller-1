@@ -8,19 +8,19 @@
     <!-- Main header content with mobile-first spacing -->
     <div class="px-4 py-8 text-center sm:py-10 lg:py-16">
       <div class="mx-auto max-w-4xl">
-        <!-- Logo with responsive sizing -->
-        <h1 class="text-2xl font-bold mb-3 sm:text-3xl lg:text-4xl xl:text-5xl logo-glow">
+        <!-- Logo with mobile-optimized sizing -->
+        <h1 class="text-2xl font-bold mb-3 logo-glow">
           <span class="inline-block mr-2 animate-pulse-soft">🔮</span>
           <span class="tracking-tight">Teller.eu.org</span>
         </h1>
         
-        <!-- Tagline with better mobile typography -->
-        <p class="text-sm opacity-90 font-medium sm:text-base lg:text-lg xl:text-xl max-w-2xl mx-auto leading-relaxed">
+        <!-- Tagline with mobile-first typography -->
+        <p class="text-sm opacity-90 font-medium max-w-2xl mx-auto leading-relaxed">
           {{ t('tagline') }}
         </p>
         
-        <!-- Optional subtitle for larger screens -->
-        <p class="hidden sm:block text-xs opacity-75 mt-2 lg:text-sm xl:text-base">
+        <!-- Subtitle for mobile screens -->
+        <p class="text-xs opacity-75 mt-2">
           {{ t('subtitle') }}
         </p>
       </div>

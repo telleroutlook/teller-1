@@ -103,8 +103,15 @@
   },
   "navigation": {
     "bottomNav": "Bottom Navigation",
-    "navigateTo": "Navigate to"
+    "desktopNav": "Desktop Navigation",
+    "navigateTo": "Navigate to",
+    "home": "Home",
+    "toggleMenu": "Toggle Menu"
   },
+  "tarotShort": "Tarot",
+  "astrologyShort": "Astro",
+  "numerologyShort": "Numerology",
+  "chineseZodiacShort": "Zodiac",
   "about": {
     "title": "About Teller",
     "introduction": "Welcome to Teller, your digital gateway to ancient wisdom and modern divination. We combine traditional practices with cutting-edge technology to provide accurate and insightful readings.",

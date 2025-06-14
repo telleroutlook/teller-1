@@ -103,8 +103,15 @@
   },
   "navigation": {
     "bottomNav": "Navigation du bas",
-    "navigateTo": "Naviguer vers"
+    "desktopNav": "Navigation bureau",
+    "navigateTo": "Naviguer vers",
+    "home": "Accueil",
+    "toggleMenu": "Basculer le menu"
   },
+  "tarotShort": "Tarot",
+  "astrologyShort": "Astro",
+  "numerologyShort": "Numérologie",
+  "chineseZodiacShort": "Zodiaque",
   "about": {
     "title": "À propos de Teller",
     "introduction": "Bienvenue chez Teller, votre portail de divination numérique. Nous combinons pratiques traditionnelles et technologie moderne pour fournir des lectures précises et perspicaces.",

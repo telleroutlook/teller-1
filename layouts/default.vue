@@ -1,14 +1,25 @@
 <template>
   <div class="min-h-screen flex flex-col bg-gradient-to-br from-indigo-50/50 via-white to-purple-50/50">
-    <AppHeader />
-    <main class="flex-1 px-4 sm:px-6 lg:px-8 pb-20 sm:pb-8">
+    <!-- Mobile Header (visible on mobile only) -->
+    <AppHeader class="sm:hidden" />
+    
+    <!-- Desktop Navigation (visible on desktop only) -->
+    <DesktopNav />
+    
+    <!-- Main Content with responsive spacing -->
+    <main class="flex-1 px-4 sm:px-6 lg:px-8 pb-20 sm:pb-6 lg:pb-8">
       <div class="max-w-7xl mx-auto">
-        <div class="py-4 sm:py-6 lg:py-8">
+        <!-- Enhanced typography for better desktop readability -->
+        <div class="py-4 sm:py-6 lg:py-8 text-sm sm:text-desktop-sm lg:text-desktop-base">
           <slot />
         </div>
       </div>
     </main>
+    
+    <!-- Mobile Navigation (visible on mobile only) -->
     <BottomNav />
+    
+    <!-- Footer with responsive spacing -->
     <AppFooter />
     <AnimationOverlay />
   </div>

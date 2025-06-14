@@ -103,8 +103,15 @@
   },
   "navigation": {
     "bottomNav": "التنقل السفلي",
-    "navigateTo": "انتقل إلى"
+    "desktopNav": "تنقل سطح المكتب",
+    "navigateTo": "انتقل إلى",
+    "home": "الصفحة الرئيسية",
+    "toggleMenu": "تبديل القائمة"
   },
+    "tarotShort": "التاروت",
+  "astrologyShort": "الأبراج",
+  "numerologyShort": "علم الأرقام",
+  "chineseZodiacShort": "الأبراج الصينية",
   "about": {
     "title": "عن تيلر",
     "introduction": "مرحباً بك في تيلر، بوابتك الرقمية للعرافة. نجمع بين الممارسات التقليدية والتكنولوجيا الحديثة لتقديم قراءات دقيقة وثاقبة.",

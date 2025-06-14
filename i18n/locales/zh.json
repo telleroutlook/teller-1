@@ -103,8 +103,15 @@
   },
   "navigation": {
     "bottomNav": "底部导航",
-    "navigateTo": "导航到"
+    "desktopNav": "桌面导航",
+    "navigateTo": "导航到",
+    "home": "首页",
+    "toggleMenu": "切换菜单"
   },
+  "tarotShort": "塔罗",
+  "astrologyShort": "占星",
+  "numerologyShort": "数字命理",
+  "chineseZodiacShort": "生肖",
   "about": {
     "title": "关于 Teller",
     "introduction": "欢迎来到 Teller，您的数字占卜门户。我们结合传统实践和现代技术，提供准确而富有洞察力的解读。",

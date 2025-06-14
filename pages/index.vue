@@ -3,41 +3,42 @@
     <!-- Hero Section -->
     <section class="relative px-4 pt-12 pb-16 sm:px-6 lg:px-8 lg:pt-20 lg:pb-24">
       <div class="mx-auto max-w-4xl text-center">
-        <!-- Main Title with mobile-first responsive design -->
-        <h1 class="text-2xl font-bold tracking-tight text-gray-900 mb-6 sm:text-4xl md:text-5xl lg:text-6xl">
+        <!-- Main Title with enhanced desktop typography -->
+        <h1 class="text-2xl font-bold tracking-tight text-gray-900 mb-6 sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl leading-tight">
           {{ t('heroTitle') }}
         </h1>
-        <p class="mx-auto mt-4 max-w-3xl text-base leading-7 text-gray-600 sm:text-lg sm:leading-8 lg:text-xl">
+        <p class="mx-auto mt-4 max-w-3xl text-desktop-sm leading-7 text-gray-600 sm:text-desktop-lg sm:leading-8 lg:text-desktop-xl lg:leading-9 xl:text-desktop-2xl xl:leading-10">
           {{ t('heroSubtitle') }}
         </p>
         
-        <!-- Feature highlights -->
-        <div class="mt-6 flex flex-wrap justify-center gap-3 text-xs text-gray-500 sm:gap-4 sm:text-sm">
+        <!-- Feature highlights with better desktop readability -->
+        <div class="mt-6 flex flex-wrap justify-center gap-3 text-xs text-gray-500 sm:gap-4 sm:text-desktop-sm lg:text-desktop-base">
           <span class="flex items-center gap-1">
-            <span class="text-green-500">✓</span>
+            <span class="text-green-500 text-sm">✓</span>
             {{ t('feature5Languages') }}
           </span>
           <span class="flex items-center gap-1">
-            <span class="text-green-500">✓</span>
+            <span class="text-green-500 text-sm">✓</span>
             {{ t('featureInstantResults') }}
           </span>
           <span class="flex items-center gap-1">
-            <span class="text-green-500">✓</span>
+            <span class="text-green-500 text-sm">✓</span>
             {{ t('featureMobileOptimized') }}
           </span>
         </div>
       </div>
     </section>
 
-    <!-- Tools Grid -->
+    <!-- Tools Grid with enhanced desktop experience -->
     <section class="px-4 pb-16 sm:px-6 lg:px-8 lg:pb-24">
       <div class="mx-auto max-w-6xl">
-        <div class="grid gap-6 sm:grid-cols-2 lg:gap-8">
+        <!-- Enhanced grid layout for desktop -->
+        <div class="grid gap-6 sm:grid-cols-2 lg:gap-8 xl:grid-cols-2 xl:gap-12">
           <NuxtLink 
             v-for="tool in tools" 
             :key="tool.name"
             :to="localePath(`/${tool.name}`)"
-            class="group relative block transform overflow-hidden rounded-3xl bg-white p-8 shadow-lg transition-all duration-300 hover:scale-[1.02] hover:shadow-xl focus:scale-[1.02] focus:shadow-xl focus:outline-none focus:ring-4 focus:ring-blue-500/20 focus:ring-offset-2 focus:ring-offset-white"
+            class="group relative block transform overflow-hidden rounded-3xl bg-white p-6 sm:p-8 lg:p-10 xl:p-12 shadow-lg transition-all duration-300 hover:scale-[1.02] hover:shadow-xl focus:scale-[1.02] focus:shadow-xl focus:outline-none focus:ring-4 focus:ring-blue-500/20 focus:ring-offset-2 focus:ring-offset-white"
             @click="handleToolClick(tool.name)"
           >
             <!-- Gradient overlay on hover -->
@@ -45,31 +46,31 @@
             
             <!-- Content -->
             <div class="relative">
-              <!-- Icon -->
+              <!-- Icon with responsive sizing -->
               <div class="mb-6 flex justify-center">
-                <div class="flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-blue-500 to-purple-600 text-3xl text-white shadow-lg">
+                <div class="flex h-16 w-16 sm:h-18 sm:w-18 lg:h-20 lg:w-20 xl:h-24 xl:w-24 items-center justify-center rounded-2xl bg-gradient-to-br from-blue-500 to-purple-600 text-3xl sm:text-4xl lg:text-5xl xl:text-6xl text-white shadow-lg">
                   {{ tool.icon }}
                 </div>
               </div>
               
-              <!-- Title -->
-              <h3 class="mb-3 text-center text-lg font-semibold text-gray-900 group-hover:text-blue-600 sm:mb-4 sm:text-xl lg:text-2xl">
+              <!-- Title with enhanced typography -->
+              <h3 class="mb-3 text-center text-lg font-semibold text-gray-900 group-hover:text-blue-600 sm:mb-4 sm:text-desktop-xl lg:text-desktop-2xl xl:text-desktop-3xl">
                 {{ t(tool.titleKey) }}
               </h3>
               
-              <!-- Description -->
-              <p class="mb-4 text-center text-sm text-gray-600 leading-relaxed sm:mb-6 sm:text-base">
+              <!-- Description with improved readability -->
+              <p class="mb-4 text-center text-desktop-sm text-gray-600 leading-relaxed sm:mb-6 sm:text-desktop-base lg:text-desktop-lg xl:leading-7">
                 {{ t(tool.descriptionKey) }}
               </p>
               
-              <!-- Features -->
-              <div class="space-y-2">
+              <!-- Features with better spacing and typography -->
+              <div class="space-y-3">
                 <div 
                   v-for="feature in tool.features" 
                   :key="feature"
-                  class="flex items-center gap-3 text-sm text-gray-600"
+                  class="flex items-center gap-3 text-desktop-sm sm:text-desktop-base text-gray-600"
                 >
-                  <span class="flex h-5 w-5 items-center justify-center rounded-full bg-green-100 text-green-600 text-xs">✓</span>
+                  <span class="flex h-6 w-6 items-center justify-center rounded-full bg-green-100 text-green-600 text-sm font-medium">✓</span>
                   {{ t(feature) }}
                 </div>
               </div>
@@ -87,40 +88,40 @@
       </div>
     </section>
 
-    <!-- About Section -->
+    <!-- About Section with enhanced desktop typography -->
     <section class="bg-gray-50 px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
       <div class="mx-auto max-w-4xl text-center">
-        <h2 class="mb-4 text-2xl font-bold text-gray-900 sm:mb-6 sm:text-3xl lg:text-4xl">
+        <h2 class="mb-4 text-2xl font-bold text-gray-900 sm:mb-6 sm:text-desktop-2xl lg:text-desktop-3xl xl:text-5xl">
           {{ t('aboutTitle') }}
         </h2>
-        <p class="mx-auto max-w-3xl text-sm leading-6 text-gray-600 sm:text-base sm:leading-7 lg:text-lg lg:leading-8">
+        <p class="mx-auto max-w-3xl text-desktop-sm leading-6 text-gray-600 sm:text-desktop-base sm:leading-7 lg:text-desktop-lg lg:leading-8 xl:text-desktop-xl xl:leading-9">
           {{ t('aboutText') }}
         </p>
         
-        <!-- Quick stats -->
-        <div class="mt-12 grid grid-cols-2 gap-8 sm:grid-cols-4">
+        <!-- Quick stats with enhanced desktop styling -->
+        <div class="mt-12 grid grid-cols-2 gap-8 sm:grid-cols-4 lg:gap-12">
           <div class="text-center">
-            <div class="text-2xl font-bold text-blue-600">4</div>
-            <div class="text-sm text-gray-600">Divination Tools</div>
+            <div class="text-2xl font-bold text-blue-600 sm:text-3xl lg:text-4xl xl:text-5xl">4</div>
+            <div class="text-desktop-sm text-gray-600 lg:text-desktop-base xl:text-desktop-lg">Divination Tools</div>
           </div>
           <div class="text-center">
-            <div class="text-2xl font-bold text-purple-600">5</div>
-            <div class="text-sm text-gray-600">Languages</div>
+            <div class="text-2xl font-bold text-purple-600 sm:text-3xl lg:text-4xl xl:text-5xl">5</div>
+            <div class="text-desktop-sm text-gray-600 lg:text-desktop-base xl:text-desktop-lg">Languages</div>
           </div>
           <div class="text-center">
-            <div class="text-2xl font-bold text-green-600">∞</div>
-            <div class="text-sm text-gray-600">Free Readings</div>
+            <div class="text-2xl font-bold text-green-600 sm:text-3xl lg:text-4xl xl:text-5xl">∞</div>
+            <div class="text-desktop-sm text-gray-600 lg:text-desktop-base xl:text-desktop-lg">Free Readings</div>
           </div>
           <div class="text-center">
-            <div class="text-2xl font-bold text-orange-600">24/7</div>
-            <div class="text-sm text-gray-600">Available</div>
+            <div class="text-2xl font-bold text-orange-600 sm:text-3xl lg:text-4xl xl:text-5xl">24/7</div>
+            <div class="text-desktop-sm text-gray-600 lg:text-desktop-base xl:text-desktop-lg">Available</div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Bottom spacing for mobile navigation -->
-    <div class="h-20 sm:h-8"></div>
+    <!-- Responsive bottom spacing - less on desktop -->
+    <div class="h-20 sm:h-6 lg:h-8"></div>
   </div>
 </template>
 
