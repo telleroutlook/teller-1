@@ -10,7 +10,7 @@
     <main class="flex-1 px-4 sm:px-6 lg:px-8 pb-20 sm:pb-6 lg:pb-8">
       <div class="max-w-7xl mx-auto">
         <!-- Enhanced typography for better desktop readability -->
-        <div class="py-4 sm:py-6 lg:py-8 text-sm sm:text-desktop-sm lg:text-desktop-base">
+        <div class="py-4 sm:py-6 lg:py-8 text-sm sm:text-base lg:text-lg">
           <slot />
         </div>
       </div>

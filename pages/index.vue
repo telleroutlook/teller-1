@@ -7,12 +7,12 @@
         <h1 class="text-2xl font-bold tracking-tight text-gray-900 mb-6 sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl leading-tight">
           {{ t('heroTitle') }}
         </h1>
-        <p class="mx-auto mt-4 max-w-3xl text-desktop-sm leading-7 text-gray-600 sm:text-desktop-lg sm:leading-8 lg:text-desktop-xl lg:leading-9 xl:text-desktop-2xl xl:leading-10">
+        <p class="mx-auto mt-4 max-w-3xl text-sm leading-7 text-gray-600 sm:text-lg sm:leading-8 lg:text-xl lg:leading-9 xl:text-2xl xl:leading-10">
           {{ t('heroSubtitle') }}
         </p>
         
         <!-- Feature highlights with better desktop readability -->
-        <div class="mt-6 flex flex-wrap justify-center gap-3 text-xs text-gray-500 sm:gap-4 sm:text-desktop-sm lg:text-desktop-base">
+        <div class="mt-6 flex flex-wrap justify-center gap-3 text-xs text-gray-500 sm:gap-4 sm:text-sm lg:text-base">
           <span class="flex items-center gap-1">
             <span class="text-green-500 text-sm">✓</span>
             {{ t('feature5Languages') }}
@@ -54,12 +54,12 @@
               </div>
               
               <!-- Title with enhanced typography -->
-              <h3 class="mb-3 text-center text-lg font-semibold text-gray-900 group-hover:text-blue-600 sm:mb-4 sm:text-desktop-xl lg:text-desktop-2xl xl:text-desktop-3xl">
+              <h3 class="mb-3 text-center text-lg font-semibold text-gray-900 group-hover:text-blue-600 sm:mb-4 sm:text-xl lg:text-2xl xl:text-3xl">
                 {{ t(tool.titleKey) }}
               </h3>
               
               <!-- Description with improved readability -->
-              <p class="mb-4 text-center text-desktop-sm text-gray-600 leading-relaxed sm:mb-6 sm:text-desktop-base lg:text-desktop-lg xl:leading-7">
+              <p class="mb-4 text-center text-sm text-gray-600 leading-relaxed sm:mb-6 sm:text-base lg:text-lg xl:leading-7">
                 {{ t(tool.descriptionKey) }}
               </p>
               
@@ -68,7 +68,7 @@
                 <div 
                   v-for="feature in tool.features" 
                   :key="feature"
-                  class="flex items-center gap-3 text-desktop-sm sm:text-desktop-base text-gray-600"
+                  class="flex items-center gap-3 text-sm sm:text-base text-gray-600"
                 >
                   <span class="flex h-6 w-6 items-center justify-center rounded-full bg-green-100 text-green-600 text-sm font-medium">✓</span>
                   {{ t(feature) }}
@@ -91,10 +91,10 @@
     <!-- About Section with enhanced desktop typography -->
     <section class="bg-gray-50 px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
       <div class="mx-auto max-w-4xl text-center">
-        <h2 class="mb-4 text-2xl font-bold text-gray-900 sm:mb-6 sm:text-desktop-2xl lg:text-desktop-3xl xl:text-5xl">
+        <h2 class="mb-4 text-2xl font-bold text-gray-900 sm:mb-6 sm:text-3xl lg:text-4xl xl:text-5xl">
           {{ t('aboutTitle') }}
         </h2>
-        <p class="mx-auto max-w-3xl text-desktop-sm leading-6 text-gray-600 sm:text-desktop-base sm:leading-7 lg:text-desktop-lg lg:leading-8 xl:text-desktop-xl xl:leading-9">
+        <p class="mx-auto max-w-3xl text-sm leading-6 text-gray-600 sm:text-base sm:leading-7 lg:text-lg lg:leading-8 xl:text-xl xl:leading-9">
           {{ t('aboutText') }}
         </p>
         
@@ -102,19 +102,19 @@
         <div class="mt-12 grid grid-cols-2 gap-8 sm:grid-cols-4 lg:gap-12">
           <div class="text-center">
             <div class="text-2xl font-bold text-blue-600 sm:text-3xl lg:text-4xl xl:text-5xl">4</div>
-            <div class="text-desktop-sm text-gray-600 lg:text-desktop-base xl:text-desktop-lg">Divination Tools</div>
+            <div class="text-sm text-gray-600 lg:text-base xl:text-lg">Divination Tools</div>
           </div>
           <div class="text-center">
             <div class="text-2xl font-bold text-purple-600 sm:text-3xl lg:text-4xl xl:text-5xl">5</div>
-            <div class="text-desktop-sm text-gray-600 lg:text-desktop-base xl:text-desktop-lg">Languages</div>
+            <div class="text-sm text-gray-600 lg:text-base xl:text-lg">Languages</div>
           </div>
           <div class="text-center">
             <div class="text-2xl font-bold text-green-600 sm:text-3xl lg:text-4xl xl:text-5xl">∞</div>
-            <div class="text-desktop-sm text-gray-600 lg:text-desktop-base xl:text-desktop-lg">Free Readings</div>
+            <div class="text-sm text-gray-600 lg:text-base xl:text-lg">Free Readings</div>
           </div>
           <div class="text-center">
             <div class="text-2xl font-bold text-orange-600 sm:text-3xl lg:text-4xl xl:text-5xl">24/7</div>
-            <div class="text-desktop-sm text-gray-600 lg:text-desktop-base xl:text-desktop-lg">Available</div>
+            <div class="text-sm text-gray-600 lg:text-base xl:text-lg">Available</div>
           </div>
         </div>
       </div>
