@@ -152,29 +152,36 @@ export class SitemapGenerator {
   generateXmlSitemap(): string {
     const urls = this.generateUrls()
     
-    let xml = '<?xml version="1.0" encoding="UTF-8"?>\n'
-    xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n'
+    const xmlLines: string[] = [
+      '<?xml version="1.0" encoding="UTF-8"?>',
+      '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">'
+    ]
 
     for (const url of urls) {
-      xml += '  <url>\n'
-      xml += `    <loc>${this.escapeXml(url.loc)}</loc>\n`
-      xml += `    <lastmod>${url.lastmod}</lastmod>\n`
-      xml += `    <changefreq>${url.changefreq}</changefreq>\n`
-      xml += `    <priority>${url.priority}</priority>\n`
+      const urlLines: string[] = [
+        '  <url>',
+        `    <loc>${this.escapeXml(url.loc)}</loc>`,
+        `    <lastmod>${url.lastmod}</lastmod>`,
+        `    <changefreq>${url.changefreq}</changefreq>`,
+        `    <priority>${url.priority}</priority>`
+      ]
 
       // Add alternate language links
       if (url.alternates?.length) {
         for (const alternate of url.alternates) {
-          xml += `    <xhtml:link rel="alternate" hreflang="${alternate.hreflang}" href="${this.escapeXml(alternate.href)}" />\n`
+          urlLines.push(
+            `    <xhtml:link rel="alternate" hreflang="${alternate.hreflang}" href="${this.escapeXml(alternate.href)}" />`
+          )
         }
       }
 
-      xml += '  </url>\n'
+      urlLines.push('  </url>')
+      xmlLines.push(...urlLines)
     }
 
-    xml += '</urlset>'
+    xmlLines.push('</urlset>')
     
-    return xml
+    return xmlLines.join('\n')
   }
 
   /**
