@@ -14,5 +14,9 @@ export default defineI18nConfig(() => ({
   warnHtmlMessage: false,
   silentTranslationWarn: true,
   missingWarn: false,
-  silentFallbackWarn: true
+  silentFallbackWarn: true,
+  globalInjection: true,
+  precompile: {
+    strictMessage: false
+  }
 })) 

@@ -9,6 +9,12 @@ export default defineNuxtConfig({
     '@nuxtjs/tailwindcss'
   ],
   
+  // 开发环境配置
+  sourcemap: {
+    server: true,
+    client: true
+  },
+  
   // SEO 和 Meta 配置
   app: {
     head: {
@@ -108,7 +114,10 @@ export default defineNuxtConfig({
     defaultLocale: 'en',
     strategy: 'prefix',
     bundle: {
-      optimizeTranslationDirective: false
+      optimizeTranslationDirective: false,
+      runtimeOnly: false,
+      fullInstall: true,
+      compositionOnly: false
     }
   },
   css: ['~/assets/css/main.css'],

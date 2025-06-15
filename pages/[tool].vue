@@ -28,41 +28,25 @@ if (!validTools.includes(tool.value)) {
   })
 }
 
-// SEO based on tool
-const { t } = useI18n()
-const seoData = computed(() => {
-  const seoKey = tool.value.replace('-', '')
-  return {
-    title: t(`seo.${seoKey}.title`),
-    description: t(`seo.${seoKey}.description`),
-    keywords: t(`seo.${seoKey}.keywords`),
-    ogTitle: t(`seo.${seoKey}.ogTitle`),
-    ogDescription: t(`seo.${seoKey}.ogDescription`),
-    twitterTitle: t(`seo.${seoKey}.twitterTitle`),
-    twitterDescription: t(`seo.${seoKey}.twitterDescription`),
-    structuredData: t(`seo.${seoKey}.structuredData`)
+// SEO based on tool - 使用安全的SEO处理
+const { setSafeSeoMeta, setSafeStructuredData } = useSafeSeo()
+
+const seoKey = computed(() => tool.value.replace('-', ''))
+
+// 设置SEO meta数据
+watchEffect(() => {
+  if (seoKey.value) {
+    setSafeSeoMeta(`seo.${seoKey.value}`)
   }
 })
 
-useSeoMeta({
-  title: seoData.value.title,
-  description: seoData.value.description,
-  keywords: seoData.value.keywords,
-  ogTitle: seoData.value.ogTitle,
-  ogDescription: seoData.value.ogDescription,
-  ogType: 'website',
-  twitterCard: 'summary_large_image' as const,
-  twitterTitle: seoData.value.twitterTitle,
-  twitterDescription: seoData.value.twitterDescription
-})
-
-// Add structured data
-useHead({
-  script: [
-    {
-      type: 'application/ld+json',
-      innerHTML: JSON.stringify(seoData.value.structuredData)
-    }
-  ]
+// 设置结构化数据
+watchEffect(() => {
+  if (seoKey.value) {
+    setSafeStructuredData(`seo.${seoKey.value}.structuredData`, {
+      name: `${tool.value} service`,
+      description: `Professional ${tool.value} service for personal guidance and insights`
+    })
+  }
 })
 </script> 

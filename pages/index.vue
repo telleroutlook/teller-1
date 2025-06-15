@@ -220,27 +220,18 @@ onMounted(() => {
   })
 })
 
-// SEO Meta
-useSeoMeta({
-  title: t('seo.homepage.title'),
-  description: t('seo.homepage.description'),
-  keywords: t('seo.homepage.keywords'),
-  ogTitle: t('seo.homepage.ogTitle'),
-  ogDescription: t('seo.homepage.ogDescription'),
-  ogType: 'website',
-  twitterCard: 'summary_large_image' as const,
-  twitterTitle: t('seo.homepage.twitterTitle'),
-  twitterDescription: t('seo.homepage.twitterDescription')
-})
+// SEO Meta - 使用安全的SEO处理
+const { setSafeSeoMeta, setSafeStructuredData } = useSafeSeo()
 
-// Add structured data
-useHead({
-  script: [
-    {
-      type: 'application/ld+json',
-      innerHTML: JSON.stringify(t('seo.homepage.structuredData'))
-    }
-  ]
+// 设置SEO meta数据
+setSafeSeoMeta('seo.homepage')
+
+// 设置结构化数据
+setSafeStructuredData('seo.homepage.structuredData', {
+  name: 'Digital Fortune Teller',
+  description: 'A comprehensive digital divination platform',
+  applicationCategory: 'LifestyleApplication',
+  url: 'https://teller.eu.org'
 })
 </script>
 
