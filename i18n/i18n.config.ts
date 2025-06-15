@@ -15,8 +15,13 @@ export default defineI18nConfig(() => ({
   silentTranslationWarn: true,
   missingWarn: false,
   silentFallbackWarn: true,
+  fallbackWarn: false,
   globalInjection: true,
   precompile: {
     strictMessage: false
+  },
+  modifiers: {
+    fallback: () => '',
+    missing: () => ''
   }
 })) 

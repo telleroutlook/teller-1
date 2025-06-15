@@ -11,8 +11,15 @@ export default defineNuxtConfig({
   
   // 开发环境配置
   sourcemap: {
-    server: true,
-    client: true
+    server: process.env.NODE_ENV === 'development',
+    client: process.env.NODE_ENV === 'development'
+  },
+  
+  // Vite配置优化
+  vite: {
+    build: {
+      sourcemap: process.env.NODE_ENV === 'development'
+    }
   },
   
   // SEO 和 Meta 配置
@@ -114,11 +121,13 @@ export default defineNuxtConfig({
     defaultLocale: 'en',
     strategy: 'prefix',
     bundle: {
-      optimizeTranslationDirective: false,
+      optimizeTranslationDirective: true,
       runtimeOnly: false,
       fullInstall: true,
       compositionOnly: false
-    }
+    },
+    // 减少翻译回退警告
+    debug: false
   },
   css: ['~/assets/css/main.css'],
   postcss: {
