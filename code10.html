@@ -539,7 +539,7 @@
             </section>
 
             <section id="chinese" class="content-section" role="tabpanel">
-                <h2 class="section-title" data-translate="chineseZodiacTitle">🐉 Chinese Zodiac</h2>
+                <h2 class="section-title" data-translate="chineseZodiacTitle">Chinese Zodiac</h2>
                 <p style="text-align: center; margin-bottom: 15px; font-size: 0.9rem;" data-translate="chineseZodiacIntro">Discover your zodiac animal and its characteristics.</p>
                 <div class="form-group" id="birthYearGroup">
                     <label for="birthYear" data-translate="birthYearLabel">Enter your birth year:</label>
@@ -615,7 +615,7 @@
                 numerologyReflection: "How do these numerical insights align with your personal experiences?",
                 recalculateBtn: "Recalculate",
                 shareNumbersBtn: "Share My Numbers",
-                chineseZodiacTitle: "🐉 Chinese Zodiac",
+                chineseZodiacTitle: "Chinese Zodiac",
                 chineseZodiacIntro: "Discover your zodiac animal and its characteristics.",
                 birthYearLabel: "Enter your birth year:",
                 birthYearPlaceholder: "e.g., 1990",
@@ -670,7 +670,7 @@
                 numerologyReflection: "这些数字洞见如何与您的个人经历和抱负相符？",
                 recalculateBtn: "重新计算",
                 shareNumbersBtn: "分享我的数字",
-                chineseZodiacTitle: "🐉 中国生肖",
+                chineseZodiacTitle: "中国生肖",
                 chineseZodiacIntro: "发现您的生肖动物和运势。",
                 birthYearLabel: "输入您的出生年份：",
                 birthYearPlaceholder: "例如：1990",
@@ -725,7 +725,7 @@
                 numerologyReflection: "ये संख्यात्मक अंतर्दृष्टियाँ आपके व्यक्तिगत अनुभवों और महत्वाकांक्षाओं के साथ कैसे मेल खाती हैं?",
                 recalculateBtn: "पुनर्गणना करें",
                 shareNumbersBtn: "मेरे नंबर साझा करें",
-                chineseZodiacTitle: "🐉 चीनी राशि",
+                chineseZodiacTitle: "चीनी राशि",
                 chineseZodiacIntro: "अपने राशि चक्र जानवर और उसकी विशेषताओं की खोज करें।",
                 birthYearLabel: "अपना जन्म वर्ष दर्ज करें:",
                 birthYearPlaceholder: "जैसे, 1990",
@@ -780,7 +780,7 @@
                 numerologyReflection: "Comment ces perspectives numériques s'alignent-elles sur vos expériences et ambitions personnelles ?",
                 recalculateBtn: "Recalculer",
                 shareNumbersBtn: "Partager Mes Nombres",
-                chineseZodiacTitle: "🐉 Zodiaque Chinois",
+                chineseZodiacTitle: "Zodiaque Chinois",
                 chineseZodiacIntro: "Découvrez votre animal du zodiaque et ses caractéristiques.",
                 birthYearLabel: "Entrez votre année de naissance :",
                 birthYearPlaceholder: "ex: 1990",
@@ -835,7 +835,7 @@
                 numerologyReflection: "كيف تتماشى هذه الأفكار الرقمية مع تجاربك وطموحاتك الشخصية؟",
                 recalculateBtn: "إعادة الحساب",
                 shareNumbersBtn: "شارك أرقامي",
-                chineseZodiacTitle: "🐉 الأبراج الصينية",
+                chineseZodiacTitle: "الأبراج الصينية",
                 chineseZodiacIntro: "اكتشف حيوانك في الأبراج وخصائصه.",
                 birthYearLabel: "أدخل سنة ميلادك:",
                 birthYearPlaceholder: "مثال: 1990",
@@ -1337,7 +1337,7 @@
             const triggerChineseZodiacAnimation = () => {
                 const isValidYear = validateInput(ui.birthYearInput, 'birthYearError', val => !isNaN(val) && val >= 1900 && val <= 2099, 'birthYearError');
                 if (isValidYear) {
-                    const textToShow = `🐉 ${ui.birthYearInput.value} 🐉`;
+                    const textToShow = `${ui.birthYearInput.value}`;
                     runMysticalAnimation(textToShow, getChineseZodiac);
                 }
             };

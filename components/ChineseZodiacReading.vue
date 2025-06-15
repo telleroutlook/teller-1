@@ -149,7 +149,7 @@ const getAnimalEmoji = (animal: string): string => {
   return emojis[animal.toLowerCase()] || '🐉'
 }
 
-const findZodiac = () => {
+const findZodiac = async () => {
   clearErrors()
   
   if (!validateYear()) {
@@ -159,7 +159,7 @@ const findZodiac = () => {
   const year = parseInt(birthYear.value)
   const textToShow = `${year} 🐉✨`
   
-  runMysticalAnimation(textToShow, () => {
+  await showAnimation(textToShow, () => {
     updateZodiacResult()
     showResult.value = true
     

@@ -10,10 +10,12 @@
       class="animated-text"
     ></div>
     
-    <!-- 添加一些装饰性星星 -->
-    <div class="stars">
-      <div class="star" v-for="i in 20" :key="i" :style="getStarStyle(i)">✨</div>
-    </div>
+    <!-- 添加一些装饰性星星 - 只在客户端渲染 -->
+    <ClientOnly>
+      <div class="stars">
+        <div class="star" v-for="i in 20" :key="i" :style="getStarStyle(i)">✨</div>
+      </div>
+    </ClientOnly>
   </div>
 </template>
 
@@ -30,12 +32,21 @@ const clearAnimationTimeouts = () => {
   animationTimeouts = []
 }
 
-// 生成随机星星样式
+// 简单的伪随机数生成器，基于种子
+const seededRandom = (seed: number) => {
+  const x = Math.sin(seed) * 10000
+  return x - Math.floor(x)
+}
+
+// 生成一致的星星样式（使用种子确保SSR和客户端一致）
 const getStarStyle = (index: number) => {
-  const top = Math.random() * 100
-  const left = Math.random() * 100
-  const delay = Math.random() * 2
-  const duration = 2 + Math.random() * 3
+  // 使用索引作为种子，确保相同索引总是产生相同的随机值
+  const seed = index * 12345
+  const top = seededRandom(seed + 1) * 100
+  const left = seededRandom(seed + 2) * 100
+  const delay = seededRandom(seed + 3) * 2
+  const duration = 2 + seededRandom(seed + 4) * 3
+  const opacity = seededRandom(seed + 5) * 0.8 + 0.2
   
   return {
     position: 'absolute' as const,
@@ -43,7 +54,7 @@ const getStarStyle = (index: number) => {
     left: `${left}%`,
     animationDelay: `${delay}s`,
     animationDuration: `${duration}s`,
-    opacity: Math.random() * 0.8 + 0.2
+    opacity
   }
 }
 

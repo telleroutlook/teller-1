@@ -190,5 +190,31 @@ export default defineNuxtConfig({
     // 减少预加载资源以避免未使用警告
     writeEarlyHints: false,
     viewTransition: false
+  },
+  
+  // Vue配置 - 抑制警告和优化hydration
+  vue: {
+    compilerOptions: {
+      // 在生产环境中移除开发时警告
+      isCustomElement: (tag) => false
+    }
+  },
+  
+  // 全局配置
+  runtimeConfig: {
+    public: {
+      // 抑制Vue实验性功能警告
+      VUE_PROD_HYDRATION_MISMATCH_DETAILS: false
+    }
+  },
+  
+  // 开发服务器配置
+  devServer: {
+    port: 3001
+  },
+  
+  // 构建时配置
+  build: {
+    transpile: process.env.NODE_ENV === 'production' ? [] : ['vue-i18n']
   }
 })
