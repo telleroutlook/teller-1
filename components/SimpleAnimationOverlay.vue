@@ -156,17 +156,18 @@ const hideAnimation = () => {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: linear-gradient(45deg, 
-    rgba(30, 27, 75, 0.95), 
-    rgba(74, 20, 140, 0.95), 
-    rgba(139, 69, 19, 0.85)
+  background: linear-gradient(135deg, 
+    rgba(15, 23, 42, 0.98), 
+    rgba(88, 28, 135, 0.95), 
+    rgba(126, 34, 206, 0.92),
+    rgba(15, 23, 42, 0.98)
   );
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 9999;
-  backdrop-filter: blur(10px);
-  transition: opacity 0.5s ease;
+  backdrop-filter: blur(15px);
+  transition: all 0.5s ease;
 }
 
 .animate-fade-in {

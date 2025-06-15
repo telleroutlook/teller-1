@@ -1,127 +1,225 @@
 <template>
-  <div class="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50">
+  <div class="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+    <!-- Animated Background -->
+    <div class="fixed inset-0 overflow-hidden pointer-events-none">
+      <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-purple-500/20 via-transparent to-transparent"></div>
+      <div class="absolute -top-40 -right-40 w-80 h-80 bg-purple-500/30 rounded-full mix-blend-multiply filter blur-xl animate-pulse-slow"></div>
+      <div class="absolute -bottom-40 -left-40 w-80 h-80 bg-blue-500/30 rounded-full mix-blend-multiply filter blur-xl animate-pulse-slow" style="animation-delay: 2s"></div>
+      <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-60 h-60 bg-indigo-500/20 rounded-full mix-blend-multiply filter blur-xl animate-pulse-slow" style="animation-delay: 4s"></div>
+    </div>
+
+    <!-- Language Switcher - Fixed top right -->
+    <div class="fixed top-4 right-4 z-50">
+      <LanguageSwitcher />
+    </div>
+
+    <!-- Navigation -->
+    <nav class="relative z-10 px-4 pt-6 sm:px-6 lg:px-8">
+      <div class="mx-auto max-w-7xl flex items-center justify-between">
+        <NuxtLink to="/" class="flex items-center space-x-3 hover:opacity-80 transition-opacity">
+          <img src="/favicon/favicon-32x32.png" alt="Teller.eu.org" class="w-10 h-10 rounded-xl">
+          <span class="text-white font-semibold text-lg">teller.eu.org</span>
+        </NuxtLink>
+        <div class="hidden md:flex items-center space-x-8">
+          <a href="#tools" class="text-gray-300 hover:text-white transition-colors">Tools</a>
+          <a href="#about" class="text-gray-300 hover:text-white transition-colors">About</a>
+          <NuxtLink :to="localePath('/contact')" class="text-gray-300 hover:text-white transition-colors">Contact</NuxtLink>
+        </div>
+      </div>
+    </nav>
+
     <!-- Hero Section -->
-    <section class="relative px-4 pt-12 pb-16 sm:px-6 lg:px-8 lg:pt-20 lg:pb-24">
-      <div class="mx-auto max-w-4xl text-center">
-        <!-- Main Title with enhanced desktop typography -->
-        <h1 class="text-2xl font-bold tracking-tight text-gray-900 mb-6 sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl leading-tight">
-          {{ t('heroTitle') }}
-        </h1>
-        <p class="mx-auto mt-4 max-w-3xl text-sm leading-7 text-gray-600 sm:text-lg sm:leading-8 lg:text-xl lg:leading-9 xl:text-2xl xl:leading-10">
-          {{ t('heroSubtitle') }}
-        </p>
-        
-        <!-- Feature highlights with better desktop readability -->
-        <div class="mt-6 flex flex-wrap justify-center gap-3 text-xs text-gray-500 sm:gap-4 sm:text-sm lg:text-base">
-          <span class="flex items-center gap-1">
-            <span class="text-green-500 text-sm">✓</span>
-            {{ t('feature5Languages') }}
-          </span>
-          <span class="flex items-center gap-1">
-            <span class="text-green-500 text-sm">✓</span>
-            {{ t('featureInstantResults') }}
-          </span>
-          <span class="flex items-center gap-1">
-            <span class="text-green-500 text-sm">✓</span>
-            {{ t('featureMobileOptimized') }}
-          </span>
+    <section class="relative z-10 px-4 pt-20 pb-32 sm:px-6 lg:px-8 lg:pt-32">
+      <div class="mx-auto max-w-7xl text-center">
+        <!-- Floating Cards Background -->
+        <div class="absolute inset-0 overflow-hidden pointer-events-none">
+          <div class="absolute top-20 left-10 w-16 h-24 bg-gradient-to-b from-purple-500/20 to-pink-500/20 rounded-xl rotate-12 animate-float"></div>
+          <div class="absolute top-40 right-20 w-12 h-18 bg-gradient-to-b from-blue-500/20 to-purple-500/20 rounded-lg -rotate-12 animate-float" style="animation-delay: 1s"></div>
+          <div class="absolute bottom-40 left-20 w-14 h-20 bg-gradient-to-b from-indigo-500/20 to-purple-500/20 rounded-xl rotate-6 animate-float" style="animation-delay: 2s"></div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="relative">
+          <h1 class="text-4xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-white via-purple-200 to-pink-200 mb-8 sm:text-6xl lg:text-7xl xl:text-8xl leading-tight">
+            {{ t('heroTitle') }}
+          </h1>
+          <p class="mx-auto mt-8 max-w-4xl text-lg leading-8 text-gray-300 sm:text-xl lg:text-2xl lg:leading-10">
+            {{ t('heroSubtitle') }}
+          </p>
+          
+          <!-- Feature Pills -->
+          <div class="mt-12 flex flex-wrap justify-center gap-4">
+            <div class="flex items-center gap-2 px-6 py-3 bg-white/10 backdrop-blur-sm rounded-full border border-white/20">
+              <span class="text-emerald-400 text-sm">✨</span>
+              <span class="text-white text-sm font-medium">{{ t('feature5Languages') }}</span>
+            </div>
+            <div class="flex items-center gap-2 px-6 py-3 bg-white/10 backdrop-blur-sm rounded-full border border-white/20">
+              <span class="text-purple-400 text-sm">⚡</span>
+              <span class="text-white text-sm font-medium">{{ t('featureInstantResults') }}</span>
+            </div>
+            <div class="flex items-center gap-2 px-6 py-3 bg-white/10 backdrop-blur-sm rounded-full border border-white/20">
+              <span class="text-blue-400 text-sm">📱</span>
+              <span class="text-white text-sm font-medium">{{ t('featureMobileOptimized') }}</span>
+            </div>
+          </div>
+
+
         </div>
       </div>
     </section>
 
-    <!-- Tools Grid with enhanced desktop experience -->
-    <section class="px-4 pb-16 sm:px-6 lg:px-8 lg:pb-24">
-      <div class="mx-auto max-w-6xl">
-        <!-- Enhanced grid layout for desktop -->
-        <div class="grid gap-6 sm:grid-cols-2 lg:gap-8 xl:grid-cols-2 xl:gap-12">
+    <!-- Tools Grid -->
+    <section id="tools" class="relative z-10 px-4 pb-32 sm:px-6 lg:px-8">
+      <div class="mx-auto max-w-7xl">
+        <!-- Section Header -->
+        <div class="text-center mb-20">
+          <h2 class="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-300 mb-4 sm:text-4xl lg:text-5xl">
+            Divination Tools
+          </h2>
+          <p class="text-gray-400 text-lg lg:text-xl max-w-2xl mx-auto">
+            Choose your path to spiritual insight and personal discovery
+          </p>
+        </div>
+
+        <!-- Tools Grid -->
+        <div class="grid gap-8 sm:grid-cols-2 lg:gap-12">
           <NuxtLink 
-            v-for="tool in tools" 
+            v-for="(tool, index) in tools" 
             :key="tool.name"
             :to="localePath(`/${tool.name}`)"
-            class="group relative block transform overflow-hidden rounded-3xl bg-white p-6 sm:p-8 lg:p-10 xl:p-12 shadow-lg transition-all duration-300 hover:scale-[1.02] hover:shadow-xl focus:scale-[1.02] focus:shadow-xl focus:outline-none focus:ring-4 focus:ring-blue-500/20 focus:ring-offset-2 focus:ring-offset-white"
+            class="group relative block overflow-hidden rounded-3xl bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm border border-white/20 p-8 lg:p-10 transition-all duration-500 hover:from-white/20 hover:to-white/10 hover:border-white/30 hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/20 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-transparent"
+            :style="{ 'animation-delay': `${index * 0.1}s` }"
             @click="handleToolClick(tool.name)"
           >
-            <!-- Gradient overlay on hover -->
-            <div class="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-purple-500/5 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
+            <!-- Animated Background Glow -->
+            <div class="absolute inset-0 bg-gradient-to-br from-purple-500/10 via-transparent to-pink-500/10 opacity-0 transition-opacity duration-500 group-hover:opacity-100"></div>
             
-            <!-- Content -->
-            <div class="relative">
-              <!-- Icon with responsive sizing -->
-              <div class="mb-6 flex justify-center">
-                <div class="flex h-16 w-16 sm:h-18 sm:w-18 lg:h-20 lg:w-20 xl:h-24 xl:w-24 items-center justify-center rounded-2xl bg-gradient-to-br from-blue-500 to-purple-600 text-3xl sm:text-4xl lg:text-5xl xl:text-6xl text-white shadow-lg">
-                  {{ tool.icon }}
-                </div>
+            <!-- Tool Icon -->
+            <div class="relative mb-8">
+              <div class="inline-flex items-center justify-center w-20 h-20 lg:w-24 lg:h-24 bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-2xl backdrop-blur-sm border border-purple-500/30 group-hover:scale-110 transition-transform duration-300">
+                <span class="text-4xl lg:text-5xl filter drop-shadow-lg">{{ tool.icon }}</span>
               </div>
-              
-              <!-- Title with enhanced typography -->
-              <h3 class="mb-3 text-center text-lg font-semibold text-gray-900 group-hover:text-blue-600 sm:mb-4 sm:text-xl lg:text-2xl xl:text-3xl">
-                {{ t(tool.titleKey) }}
-              </h3>
-              
-              <!-- Description with improved readability -->
-              <p class="mb-4 text-center text-sm text-gray-600 leading-relaxed sm:mb-6 sm:text-base lg:text-lg xl:leading-7">
-                {{ t(tool.descriptionKey) }}
-              </p>
-              
-              <!-- Features with better spacing and typography -->
-              <div class="space-y-3">
-                <div 
-                  v-for="feature in tool.features" 
-                  :key="feature"
-                  class="flex items-center gap-3 text-sm sm:text-base text-gray-600"
-                >
-                  <span class="flex h-6 w-6 items-center justify-center rounded-full bg-green-100 text-green-600 text-sm font-medium">✓</span>
-                  {{ t(feature) }}
+              <!-- Floating particles -->
+              <div class="absolute -top-2 -right-2 w-3 h-3 bg-purple-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 animate-ping"></div>
+              <div class="absolute -bottom-1 -left-1 w-2 h-2 bg-pink-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 animate-ping" style="animation-delay: 0.5s"></div>
+            </div>
+            
+            <!-- Tool Title -->
+            <h3 class="mb-4 text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-300 group-hover:from-purple-200 group-hover:to-pink-200 transition-all duration-300 lg:text-3xl">
+              {{ t(tool.titleKey) }}
+            </h3>
+            
+            <!-- Tool Description -->
+            <p class="mb-8 text-gray-400 text-base leading-relaxed lg:text-lg group-hover:text-gray-300 transition-colors duration-300">
+              {{ t(tool.descriptionKey) }}
+            </p>
+            
+            <!-- Features List -->
+            <div class="space-y-4">
+              <div 
+                v-for="feature in tool.features" 
+                :key="feature"
+                class="flex items-start gap-3"
+              >
+                <div class="flex-shrink-0 w-6 h-6 bg-gradient-to-br from-emerald-500 to-green-500 rounded-full flex items-center justify-center mt-1">
+                  <svg class="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
+                  </svg>
                 </div>
+                <span class="text-gray-300 text-sm lg:text-base">{{ t(feature) }}</span>
               </div>
-              
-                             <!-- Action indicator -->
-               <div class="mt-6 flex items-center justify-center gap-2 text-sm font-medium text-blue-600 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                 <span>Explore</span>
-                 <svg class="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                 </svg>
-               </div>
+            </div>
+            
+            <!-- Action Arrow -->
+            <div class="absolute bottom-8 right-8 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-2 group-hover:translate-x-0">
+              <div class="w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center">
+                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                </svg>
+              </div>
             </div>
           </NuxtLink>
         </div>
       </div>
     </section>
 
-    <!-- About Section with enhanced desktop typography -->
-    <section class="bg-gray-50 px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
-      <div class="mx-auto max-w-4xl text-center">
-        <h2 class="mb-4 text-2xl font-bold text-gray-900 sm:mb-6 sm:text-3xl lg:text-4xl xl:text-5xl">
-          {{ t('aboutTitle') }}
-        </h2>
-        <p class="mx-auto max-w-3xl text-sm leading-6 text-gray-600 sm:text-base sm:leading-7 lg:text-lg lg:leading-8 xl:text-xl xl:leading-9">
-          {{ t('aboutText') }}
-        </p>
-        
-        <!-- Quick stats with enhanced desktop styling -->
-        <div class="mt-12 grid grid-cols-2 gap-8 sm:grid-cols-4 lg:gap-12">
-          <div class="text-center">
-            <div class="text-2xl font-bold text-blue-600 sm:text-3xl lg:text-4xl xl:text-5xl">4</div>
-            <div class="text-sm text-gray-600 lg:text-base xl:text-lg">Divination Tools</div>
+    <!-- About Section -->
+    <section id="about" class="relative z-10 px-4 py-32 sm:px-6 lg:px-8">
+      <div class="mx-auto max-w-7xl">
+        <!-- Background Elements -->
+        <div class="absolute inset-0 overflow-hidden pointer-events-none">
+          <div class="absolute top-0 left-1/4 w-px h-full bg-gradient-to-b from-transparent via-purple-500/20 to-transparent"></div>
+          <div class="absolute top-0 right-1/4 w-px h-full bg-gradient-to-b from-transparent via-pink-500/20 to-transparent"></div>
+        </div>
+
+        <div class="relative">
+          <!-- Section Header -->
+          <div class="text-center mb-20">
+            <h2 class="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-300 mb-6 sm:text-4xl lg:text-5xl">
+              {{ t('aboutTitle') }}
+            </h2>
+            <p class="mx-auto max-w-4xl text-gray-400 text-lg leading-8 lg:text-xl lg:leading-9">
+              {{ t('aboutText') }}
+            </p>
           </div>
-          <div class="text-center">
-            <div class="text-2xl font-bold text-purple-600 sm:text-3xl lg:text-4xl xl:text-5xl">5</div>
-            <div class="text-sm text-gray-600 lg:text-base xl:text-lg">Languages</div>
-          </div>
-          <div class="text-center">
-            <div class="text-2xl font-bold text-green-600 sm:text-3xl lg:text-4xl xl:text-5xl">∞</div>
-            <div class="text-sm text-gray-600 lg:text-base xl:text-lg">Free Readings</div>
-          </div>
-          <div class="text-center">
-            <div class="text-2xl font-bold text-orange-600 sm:text-3xl lg:text-4xl xl:text-5xl">24/7</div>
-            <div class="text-sm text-gray-600 lg:text-base xl:text-lg">Available</div>
+
+          <!-- Stats Grid -->
+          <div class="grid grid-cols-2 gap-8 sm:grid-cols-4 lg:gap-16">
+            <div class="text-center group">
+              <div class="relative">
+                <div class="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400 mb-2 sm:text-5xl lg:text-6xl group-hover:scale-110 transition-transform duration-300">
+                  4
+                </div>
+                <div class="absolute -inset-4 bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-xl"></div>
+              </div>
+              <div class="text-gray-400 text-sm lg:text-base">Divination Tools</div>
+            </div>
+            <div class="text-center group">
+              <div class="relative">
+                <div class="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400 mb-2 sm:text-5xl lg:text-6xl group-hover:scale-110 transition-transform duration-300">
+                  5
+                </div>
+                <div class="absolute -inset-4 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-xl"></div>
+              </div>
+              <div class="text-gray-400 text-sm lg:text-base">Languages</div>
+            </div>
+            <div class="text-center group">
+              <div class="relative">
+                <div class="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-green-400 mb-2 sm:text-5xl lg:text-6xl group-hover:scale-110 transition-transform duration-300">
+                  ∞
+                </div>
+                <div class="absolute -inset-4 bg-gradient-to-r from-emerald-500/20 to-green-500/20 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-xl"></div>
+              </div>
+              <div class="text-gray-400 text-sm lg:text-base">Free Readings</div>
+            </div>
+            <div class="text-center group">
+              <div class="relative">
+                <div class="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-red-400 mb-2 sm:text-5xl lg:text-6xl group-hover:scale-110 transition-transform duration-300">
+                  24/7
+                </div>
+                <div class="absolute -inset-4 bg-gradient-to-r from-orange-500/20 to-red-500/20 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-xl"></div>
+              </div>
+              <div class="text-gray-400 text-sm lg:text-base">Available</div>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Responsive bottom spacing - less on desktop -->
-    <div class="h-20 sm:h-6 lg:h-8"></div>
+    <!-- Footer -->
+    <footer class="relative z-10 border-t border-white/10 bg-black/20 backdrop-blur-sm">
+      <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+        <div class="text-center">
+          <div class="flex items-center justify-center space-x-3 mb-4">
+            <img src="/favicon/favicon-32x32.png" alt="Teller.eu.org" class="w-8 h-8 rounded-lg">
+            <span class="text-white font-semibold">teller.eu.org</span>
+          </div>
+          <p class="text-gray-400 text-sm">
+            Discover your path through the wisdom of the universe
+          </p>
+        </div>
+      </div>
+    </footer>
   </div>
 </template>
 
@@ -236,7 +334,52 @@ setSafeStructuredData('seo.homepage.structuredData', {
 </script>
 
 <style scoped>
-/* Additional styles for enhanced interactions */
+/* Custom animations */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-20px) rotate(2deg);
+  }
+}
+
+@keyframes pulse-slow {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.05);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 4s ease-in-out infinite;
+}
+
+/* Enhanced scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom gradient text animations */
+.bg-clip-text {
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+
+/* Glass morphism effects */
+.backdrop-blur-sm {
+  backdrop-filter: blur(8px);
+}
+
+/* Enhanced interactions */
 .group:active {
   transform: scale(0.98);
 }
@@ -248,24 +391,48 @@ setSafeStructuredData('seo.homepage.structuredData', {
   transition-duration: 300ms;
 }
 
-/* Enhanced focus styles for accessibility are handled by Tailwind classes in template */
-
-/* Hover effects for desktop */
-@media (hover: hover) {
-  .group:hover .h-4 {
-    transform: translateX(0.25rem);
-  }
-}
-
 /* Touch device optimizations */
 @media (pointer: coarse) {
   .group {
-    min-height: 280px;
+    min-height: 300px;
   }
   
   .group:active {
     transform: scale(0.95);
     transition-duration: 100ms;
   }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .text-gray-300 {
+    color: #ffffff;
+  }
+  
+  .text-gray-400 {
+    color: #e5e5e5;
+  }
+  
+  .border-white\/20 {
+    border-color: rgba(255, 255, 255, 0.5);
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .animate-float,
+  .animate-pulse-slow,
+  .animate-ping {
+    animation: none;
+  }
+  
+  * {
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Dark mode support (already dark, but for consistency) */
+@media (prefers-color-scheme: dark) {
+  /* Already optimized for dark theme */
 }
 </style> 
