@@ -164,7 +164,10 @@ export default defineNuxtConfig({
     // 减少翻译回退警告
     debug: false
   },
-  css: ['~/assets/css/main.css'],
+  css: [
+    '~/assets/css/main.css',
+    '~/assets/css/mystical-theme.css'
+  ],
   postcss: {
     plugins: {
       '@tailwindcss/postcss': {},

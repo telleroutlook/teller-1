@@ -1,5 +1,5 @@
 <template>
-  <footer class="bg-white border-t border-gray-100 pb-16 sm:pb-0">
+  <footer class="mystical-bg border-t border-white/10 pb-16 sm:pb-0">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <!-- Mobile-first collapsed layout -->
       <div class="pt-8 pb-6">
@@ -7,7 +7,7 @@
         <div class="space-y-6 sm:space-y-0 sm:grid sm:grid-cols-2 lg:grid-cols-4 sm:gap-8">
           <!-- Quick Access Section -->
           <div class="space-y-4">
-            <h3 class="text-sm font-bold text-gray-900 uppercase tracking-wider">
+            <h3 class="text-sm font-bold mystical-text-gradient uppercase tracking-wider">
               {{ t('footer.quickAccess') }}
             </h3>
             <div class="grid grid-cols-2 gap-3 sm:grid-cols-1 sm:gap-2">
@@ -15,12 +15,12 @@
                 v-for="tool in quickTools" 
                 :key="tool.name"
                 :to="localePath(`/${tool.name}`)"
-                class="group flex items-center gap-3 p-3 rounded-xl bg-gray-50 hover:bg-primary-50 transition-all duration-200 hover:shadow-sm"
+                class="mystical-card group flex items-center gap-3 p-3"
               >
-                <span class="text-xl group-hover:scale-110 transition-transform duration-200">
+                <span class="text-xl group-hover:scale-110 transition-transform duration-200 filter drop-shadow-lg">
                   {{ tool.icon }}
                 </span>
-                <span class="text-sm font-medium text-gray-700 group-hover:text-primary-600">
+                <span class="text-sm font-bold mystical-text-primary">
                   {{ t(tool.tabKey) }}
                 </span>
               </NuxtLink>
@@ -29,14 +29,14 @@
 
           <!-- Company Info -->
           <div class="space-y-4">
-            <h3 class="text-sm font-bold text-gray-900 uppercase tracking-wider">
+            <h3 class="text-sm font-bold mystical-text-gradient uppercase tracking-wider">
               {{ t('footer.company') }}
             </h3>
             <ul class="space-y-3">
               <li>
                 <NuxtLink 
                   :to="localePath('/about')" 
-                  class="text-sm text-gray-600 hover:text-primary-600 transition-colors duration-200 flex items-center gap-2"
+                  class="text-sm mystical-text-primary mystical-footer-link flex items-center gap-2 font-medium"
                 >
                   <span>{{ t('footer.about') }}</span>
                 </NuxtLink>
@@ -44,7 +44,7 @@
               <li>
                 <NuxtLink 
                   :to="localePath('/projects')" 
-                  class="text-sm text-gray-600 hover:text-primary-600 transition-colors duration-200 flex items-center gap-2"
+                  class="text-sm mystical-text-primary mystical-footer-link flex items-center gap-2 font-medium"
                 >
                   <span>{{ t('footer.projects') }}</span>
                 </NuxtLink>
@@ -52,7 +52,7 @@
               <li>
                 <NuxtLink 
                   :to="localePath('/contact')" 
-                  class="text-sm text-gray-600 hover:text-primary-600 transition-colors duration-200 flex items-center gap-2"
+                  class="text-sm mystical-text-primary mystical-footer-link flex items-center gap-2 font-medium"
                 >
                   <span>{{ t('footer.contact') }}</span>
                 </NuxtLink>
@@ -62,14 +62,14 @@
 
           <!-- Support -->
           <div class="space-y-4">
-            <h3 class="text-sm font-bold text-gray-900 uppercase tracking-wider">
+            <h3 class="text-sm font-bold mystical-text-gradient uppercase tracking-wider">
               {{ t('footer.support') }}
             </h3>
             <ul class="space-y-3">
               <li>
                 <NuxtLink 
                   :to="localePath('/faq')" 
-                  class="text-sm text-gray-600 hover:text-primary-600 transition-colors duration-200 flex items-center gap-2"
+                  class="text-sm mystical-text-primary mystical-footer-link flex items-center gap-2 font-medium"
                 >
                   <span>{{ t('footer.faq') }}</span>
                 </NuxtLink>
@@ -77,7 +77,7 @@
               <li>
                 <NuxtLink 
                   :to="localePath('/privacy')" 
-                  class="text-sm text-gray-600 hover:text-primary-600 transition-colors duration-200 flex items-center gap-2"
+                  class="text-sm mystical-text-primary mystical-footer-link flex items-center gap-2 font-medium"
                 >
                   <span>{{ t('footer.privacy') }}</span>
                 </NuxtLink>
@@ -85,7 +85,7 @@
               <li>
                 <a 
                   href="mailto:contact@teller.eu.org" 
-                  class="text-sm text-gray-600 hover:text-primary-600 transition-colors duration-200 flex items-center gap-2"
+                  class="text-sm mystical-text-primary mystical-footer-link flex items-center gap-2 font-medium"
                 >
                   <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
@@ -98,17 +98,17 @@
 
           <!-- Newsletter & Social -->
           <div class="space-y-4">
-            <h3 class="text-sm font-bold text-gray-900 uppercase tracking-wider">
+            <h3 class="text-sm font-bold mystical-text-gradient uppercase tracking-wider">
               {{ t('footer.connect') }}
             </h3>
             <div class="space-y-3">
-              <p class="text-sm text-gray-600">
+              <p class="text-sm mystical-text-primary font-medium">
                 {{ t('footer.connectText') }}
               </p>
               <div class="flex gap-3">
                 <button 
                   type="button"
-                  class="p-2 rounded-lg bg-gray-100 hover:bg-primary-100 text-gray-600 hover:text-primary-600 transition-colors duration-200"
+                  class="mystical-card p-2 mystical-text-primary"
                   :aria-label="t('footer.shareAria')"
                 >
                   <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -117,7 +117,7 @@
                 </button>
                 <button 
                   type="button"
-                  class="p-2 rounded-lg bg-gray-100 hover:bg-primary-100 text-gray-600 hover:text-primary-600 transition-colors duration-200"
+                  class="mystical-card p-2 mystical-text-primary"
                   :aria-label="t('footer.bookmarkAria')"
                 >
                   <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -131,21 +131,20 @@
       </div>
 
       <!-- Bottom section -->
-      <div class="border-t border-gray-100 py-6">
+      <div class="border-t border-white/10 py-6">
         <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
           <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
-            <p class="text-sm text-gray-500">
+            <p class="text-sm mystical-text-primary font-medium">
               &copy; {{ new Date().getFullYear() }} Teller.eu.org
             </p>
-            <span class="hidden sm:inline text-gray-300">•</span>
-            <p class="text-sm text-gray-500">
+            <span class="hidden sm:inline mystical-text-primary font-bold">•</span>
+            <p class="text-sm mystical-text-primary font-medium">
               {{ t('footer.rights') }}
             </p>
           </div>
           
           <div class="flex items-center gap-4">
-            <LanguageSwitcher />
-            <div class="flex items-center gap-2 text-xs text-gray-400">
+            <div class="flex items-center gap-2 text-xs mystical-text-secondary font-medium">
               <span>{{ t('footer.version') }}</span>
               <span class="font-mono">v2.0.0</span>
             </div>
@@ -173,4 +172,5 @@ const quickTools = ref<QuickTool[]>([
   { name: 'numerology', icon: '🔢', tabKey: 'numerologyTab' },
   { name: 'chinese-zodiac', icon: '🐉', tabKey: 'chineseZodiacTab' }
 ])
-</script> 
+</script>
+

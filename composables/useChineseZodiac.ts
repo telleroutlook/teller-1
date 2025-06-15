@@ -1,6 +1,6 @@
 export const useChineseZodiac = () => {
   const getChineseZodiacAnimal = (year: number, locale: string = 'en') => {
-    const { getChineseZodiac, getChineseTraits } = useDivinationData()
+    const { getChineseZodiac, getChineseTraits } = useChineseZodiacData()
     
     const animalIndex = (year - 4) % 12
     const animals = getChineseZodiac(locale)

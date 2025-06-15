@@ -1,5 +1,5 @@
 <template>
-  <header class="relative bg-gradient-to-r from-blue-600 to-purple-700 text-white">
+  <header class="relative mystical-bg border-b border-white/10">
     <!-- Language switcher positioned better for mobile -->
     <div class="absolute top-4 right-4 z-10">
       <LanguageSwitcher />
@@ -11,16 +11,16 @@
         <!-- Logo with mobile-optimized sizing -->
         <h1 class="text-2xl font-bold mb-3 logo-glow">
           <span class="inline-block mr-2 animate-pulse-soft">🔮</span>
-          <span class="tracking-tight">Teller.eu.org</span>
+          <span class="tracking-tight mystical-text-primary">Teller.eu.org</span>
         </h1>
         
         <!-- Tagline with mobile-first typography -->
-        <p class="text-sm opacity-90 font-medium max-w-2xl mx-auto leading-relaxed">
+        <p class="text-sm opacity-90 font-medium max-w-2xl mx-auto leading-relaxed mystical-text-primary">
           {{ t('tagline') }}
         </p>
         
         <!-- Subtitle for mobile screens -->
-        <p class="text-xs opacity-75 mt-2">
+        <p class="text-xs opacity-75 mt-2 mystical-text-secondary">
           {{ t('subtitle') }}
         </p>
       </div>
@@ -42,18 +42,17 @@ useSeoMeta({
 </script>
 
 <style scoped>
-/* Enhanced mobile-first header styles */
+/* Enhanced mobile-first header styles with mystical theme */
 header {
-  /* Ensure proper contrast and readability */
-  color: white;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  /* Remove custom text shadow, let mystical theme handle styling */
+  color: inherit;
 }
 
-/* Enhanced logo glow effect */
+/* Enhanced logo glow effect matching mystical theme */
 .logo-glow {
   text-shadow: 
     0 0 20px rgba(255, 255, 255, 0.5),
-    0 0 40px rgba(255, 255, 255, 0.3),
+    0 0 40px rgba(139, 92, 246, 0.3),
     0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
@@ -62,6 +61,7 @@ header {
   .logo-glow {
     text-shadow: 
       0 0 15px rgba(255, 255, 255, 0.4),
+      0 0 30px rgba(139, 92, 246, 0.2),
       0 1px 2px rgba(0, 0, 0, 0.3);
   }
 }
@@ -85,7 +85,6 @@ header {
 /* High contrast mode support */
 @media (prefers-contrast: high) {
   header {
-    background: linear-gradient(to right, #1d4ed8, #7c3aed);
     border-bottom: 2px solid white;
   }
   
@@ -103,13 +102,6 @@ header {
   
   .logo-glow {
     text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-  }
-}
-
-/* Dark mode preparation */
-@media (prefers-color-scheme: dark) {
-  header {
-    background: linear-gradient(to right, #1e40af, #6b21a8);
   }
 }
 </style> 

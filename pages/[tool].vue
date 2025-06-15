@@ -1,12 +1,17 @@
 <template>
-  <div class="min-h-screen bg-white">
+  <div class="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+    <!-- Language Switcher - Fixed top right -->
+    <div class="fixed top-4 right-4 z-50">
+      <LanguageSwitcher />
+    </div>
+
     <div class="max-w-4xl mx-auto px-3 py-4 sm:px-4 sm:py-6 lg:px-8 lg:py-8">
       <ClientOnly>
         <template #default>
           <!-- 加载状态 -->
           <div v-if="isLoading" class="text-center py-12">
-            <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
-            <p class="text-gray-600">{{ $t('loading') }}...</p>
+            <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-400 mx-auto mb-4"></div>
+            <p class="text-gray-300">{{ $t('loading') }}...</p>
           </div>
           
           <!-- 懒加载组件 -->
@@ -14,8 +19,8 @@
           
           <!-- 未找到工具 -->
           <div v-else class="text-center">
-            <h1 class="text-2xl font-bold text-gray-900 mb-4">Tool not found</h1>
-            <NuxtLink to="/" class="text-blue-600 hover:text-blue-800 underline">
+            <h1 class="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-300 mb-4">Tool not found</h1>
+            <NuxtLink to="/" class="text-purple-300 hover:text-purple-200 underline">
               Return to Home
             </NuxtLink>
           </div>
@@ -24,8 +29,8 @@
         <template #fallback>
           <!-- 服务端渲染占位符 -->
           <div class="text-center py-12">
-            <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
-            <p class="text-gray-600">{{ $t('loading') }}...</p>
+            <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-400 mx-auto mb-4"></div>
+            <p class="text-gray-300">{{ $t('loading') }}...</p>
           </div>
         </template>
       </ClientOnly>

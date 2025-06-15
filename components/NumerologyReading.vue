@@ -1,14 +1,15 @@
 <template>
   <div class="numerology-container">
-    <h2 class="mb-4 text-xl font-bold text-center text-gray-700 sm:mb-6 sm:text-2xl lg:text-3xl">{{ $t('numerologyTitle') }}</h2>
-    <p class="mb-4 text-center text-sm text-gray-600 sm:mb-6 sm:text-base">{{ $t('numerologyIntro') }}</p>
+    <h2 class="mb-4 text-xl font-bold text-center mystical-text-gradient sm:mb-6 sm:text-2xl lg:text-3xl">{{ $t('numerologyTitle') }}</h2>
+    <p class="mb-4 text-center text-sm mystical-text-primary sm:mb-6 sm:text-base">{{ $t('numerologyIntro') }}</p>
 
     <div class="form-group" :class="{ 'has-error': birthDateError }">
-      <label for="birthDate">{{ $t('birthDateLabel') }}</label>
+      <label for="birthDate" class="mystical-text-primary">{{ $t('birthDateLabel') }}</label>
       <input 
         id="birthDate"
         v-model="birthDate"
         type="date" 
+        class="mystical-input"
         :class="{ error: birthDateError }"
         @input="handleBirthDateInput"
       />
@@ -19,11 +20,12 @@
     </div>
 
     <div class="form-group" :class="{ 'has-error': fullNameError }">
-      <label for="fullName">{{ $t('fullNameLabel') }}</label>
+      <label for="fullName" class="mystical-text-primary">{{ $t('fullNameLabel') }}</label>
       <input 
         id="fullName"
         v-model="fullName"
         type="text" 
+        class="mystical-input"
         :placeholder="$t('fullNamePlaceholder')"
         :class="{ error: fullNameError }"
         @input="handleFullNameInput"
@@ -34,26 +36,26 @@
       </div>
     </div>
 
-    <button @click="calculateNumerology" class="btn">{{ $t('calculateBtn') }}</button>
+    <button @click="calculateNumerology" class="mystical-button">{{ $t('calculateBtn') }}</button>
 
     <div v-if="numerologyResult && showResult" class="result show" aria-live="polite">
-      <h4 class="mb-4 text-lg font-semibold text-center text-gray-800 sm:text-xl">{{ $t('yourNumerologyProfile') }}</h4>
+      <h4 class="mb-4 text-lg font-semibold text-center mystical-text-gradient sm:text-xl">{{ $t('yourNumerologyProfile') }}</h4>
       <div class="numerology-results">
-        <div class="number-result">
-          <h5 class="mb-2 text-base font-medium text-blue-700 sm:text-lg">{{ $t('lifePathNumber') }} {{ lifePathNumber }}</h5>
-          <p class="text-sm text-gray-600 sm:text-base">{{ lifePathMeaning }}</p>
+        <div class="number-result mystical-card">
+          <h5 class="mb-2 text-base font-medium mystical-text-card sm:text-lg">{{ $t('lifePathNumber') }} {{ lifePathNumber }}</h5>
+          <p class="text-sm mystical-text-card sm:text-base">{{ lifePathMeaning }}</p>
         </div>
-        <div class="number-result">
-          <h5 class="mb-2 text-base font-medium text-purple-700 sm:text-lg">{{ $t('destinyNumber') }} {{ destinyNumber }}</h5>
-          <p class="text-sm text-gray-600 sm:text-base">{{ destinyMeaning }}</p>
+        <div class="number-result mystical-card">
+          <h5 class="mb-2 text-base font-medium mystical-text-card sm:text-lg">{{ $t('destinyNumber') }} {{ destinyNumber }}</h5>
+          <p class="text-sm mystical-text-card sm:text-base">{{ destinyMeaning }}</p>
         </div>
       </div>
-      <div class="reflection-prompt">
+      <div class="mystical-card mystical-text-card reflection-prompt">
         {{ $t('numerologyReflection') }}
       </div>
       <div class="action-buttons">
-        <button @click="resetCalculation" class="reset-btn">{{ $t('recalculateBtn') }}</button>
-        <button @click="shareNumbers" class="share-button">{{ $t('shareNumbersBtn') }}</button>
+        <button @click="resetCalculation" class="mystical-button mystical-button-danger">{{ $t('recalculateBtn') }}</button>
+        <button @click="shareNumbers" class="mystical-button">{{ $t('shareNumbersBtn') }}</button>
       </div>
     </div>
   </div>
@@ -303,13 +305,6 @@ const shareNumbers = () => {
 </script>
 
 <style scoped>
-.intro-text {
-  text-align: center;
-  margin-bottom: 20px;
-  color: #6B7280;
-  font-size: 0.9rem;
-}
-
 .form-group {
   margin-bottom: 15px;
   position: relative;
@@ -319,31 +314,10 @@ const shareNumbers = () => {
   display: flex;
 }
 
-.form-group.has-error input {
-  border-color: #EF4444;
-  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
-}
-
 label {
   display: block;
   margin-bottom: 6px;
   font-weight: 600;
-  color: #4a5568;
-}
-
-input {
-  width: 100%;
-  padding: 12px;
-  border: 2px solid #e2e8f0;
-  border-radius: 8px;
-  font-size: 16px;
-  transition: all 0.3s ease;
-}
-
-input:focus {
-  outline: none;
-  border-color: #667eea;
-  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
 }
 
 .error-message {
@@ -362,48 +336,30 @@ input:focus {
   margin: 20px 0;
 }
 
-.number-result {
-  background: #F8FAFC;
-  padding: 15px;
-  border-radius: 8px;
-  border-left: 4px solid #667eea;
-}
-
-.number-result h5 {
-  color: #667eea;
-  margin-bottom: 8px;
-  font-size: 1.1rem;
-}
-
 .reflection-prompt {
-  background: rgba(34, 197, 94, 0.1);
-  padding: 12px;
-  border-radius: 8px;
-  margin-top: 12px;
+  padding: 16px;
+  border-radius: 12px;
+  margin: 16px 0;
   font-style: italic;
-  color: #166534;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.4;
 }
 
-.reset-btn {
-  background: #EF4444;
-  color: white;
-  border: none;
-  padding: 8px 16px;
-  border-radius: 15px;
-  cursor: pointer;
-  font-size: 14px;
-  margin-top: 10px;
-  margin-right: 10px;
+.action-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 16px;
 }
 
-.share-button {
-  background: #2563EB;
-  color: white;
-  border: none;
-  padding: 8px 16px;
-  border-radius: 15px;
-  cursor: pointer;
-  font-size: 14px;
-  margin-top: 15px;
+@media (min-width: 640px) {
+  .action-buttons {
+    flex-direction: row;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 20px;
+  }
 }
 </style> 

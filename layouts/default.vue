@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen flex flex-col bg-gradient-to-br from-indigo-50/50 via-white to-purple-50/50">
+  <div class="min-h-screen flex flex-col bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
     <!-- Mobile Header (visible on mobile only) -->
     <AppHeader class="sm:hidden" />
     

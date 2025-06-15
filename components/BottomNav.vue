@@ -11,8 +11,8 @@
         :to="localePath(`/${tool.name}`)"
         class="group flex flex-col items-center gap-1 px-3 py-2 rounded-xl transition-all duration-200 hover:bg-blue-50 focus:bg-blue-50 focus:outline-none focus:ring-2 focus:ring-blue-500/20 active:scale-95"
         :class="{ 
-          'text-blue-600 bg-blue-50/80': isActive(tool.name), 
-          'text-gray-600 hover:text-gray-900': !isActive(tool.name) 
+          'text-blue-700 bg-blue-50/80': isActive(tool.name), 
+          'text-gray-700 hover:text-gray-900': !isActive(tool.name) 
         }"
         @click="handleNavClick(tool.name)"
         :aria-label="`${t('navigation.navigateTo')} ${t(tool.tabKey)}`"
@@ -31,8 +31,8 @@
         <span 
           class="text-xs font-medium transition-colors duration-200 leading-tight text-center"
           :class="{ 
-            'text-blue-600 font-semibold': isActive(tool.name),
-            'text-gray-600 group-hover:text-gray-900': !isActive(tool.name)
+            'text-blue-700 font-semibold': isActive(tool.name),
+            'text-gray-700 group-hover:text-gray-900': !isActive(tool.name)
           }"
         >
           {{ t(tool.tabKey) }}
@@ -41,7 +41,7 @@
         <!-- Active indicator -->
         <div 
           v-if="isActive(tool.name)"
-          class="absolute -top-px left-1/2 transform -translate-x-1/2 w-8 h-0.5 bg-blue-600 rounded-full"
+          class="absolute -top-px left-1/2 transform -translate-x-1/2 w-8 h-0.5 bg-blue-700 rounded-full"
           aria-hidden="true"
         />
       </NuxtLink>

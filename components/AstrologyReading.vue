@@ -1,7 +1,7 @@
 <template>
-  <div>
-    <h2 class="mb-4 text-xl font-bold text-center text-gray-700 sm:mb-6 sm:text-2xl lg:text-3xl">⭐ Daily Horoscope</h2>
-    <p class="mb-4 text-center text-sm text-gray-600 sm:mb-6 sm:text-base">Select your zodiac sign to see your horoscope for today.</p>
+  <div class="astrology-container">
+    <h2 class="mb-4 text-xl font-bold text-center mystical-text-gradient sm:mb-6 sm:text-2xl lg:text-3xl">⭐ Daily Horoscope</h2>
+    <p class="mb-4 text-center text-sm mystical-text-primary sm:mb-6 sm:text-base">Select your zodiac sign to see your horoscope for today.</p>
     
     <div class="zodiac-signs">
       <button 
@@ -9,25 +9,27 @@
         :key="sign.name"
         @click="selectSign(sign)"
         :disabled="isAnimating"
-        class="zodiac-btn"
+        class="mystical-button"
         :class="{ 'opacity-50 cursor-not-allowed': isAnimating }"
       >
         {{ sign.emoji }} {{ sign.name }}
       </button>
     </div>
 
-    <div v-if="isAnimating" class="text-center my-4">
-      <p class="text-purple-600 font-medium">✨ Consulting the stars... ✨</p>
+    <div v-if="isAnimating" class="mystical-progress mystical-text-primary text-center my-4">
+      ✨ Consulting the stars... ✨
     </div>
 
     <div v-if="selectedSign" class="result show">
-      <h3 class="mb-4 text-lg font-bold text-center text-purple-700 sm:text-xl lg:text-2xl">{{ selectedSign.name }} - Today's Horoscope</h3>
-      <p class="mb-4 text-sm text-gray-700 leading-relaxed text-center sm:text-base lg:text-lg">{{ selectedSign.horoscope }}</p>
-      <div class="reflection-prompt">
+      <h3 class="mb-4 text-lg font-bold text-center mystical-text-gradient sm:text-xl lg:text-2xl">{{ selectedSign.name }} - Today's Horoscope</h3>
+      <div class="mystical-card mb-4">
+        <p class="text-sm mystical-text-card leading-relaxed text-center sm:text-base lg:text-lg">{{ selectedSign.horoscope }}</p>
+      </div>
+      <div class="mystical-card mystical-text-card reflection-prompt">
         Consider how this guidance might apply to your day ahead.
       </div>
       <div class="action-buttons">
-        <button @click="shareHoroscope" class="share-button">Share Today's Horoscope</button>
+        <button @click="shareHoroscope" class="mystical-button">Share Today's Horoscope</button>
       </div>
     </div>
   </div>
@@ -161,34 +163,30 @@ const shareHoroscope = (): void => {
   }
 }
 
-.zodiac-btn {
-  background: linear-gradient(45deg, #667eea, #764ba2);
-  color: white;
-  border: none;
-  padding: 12px 8px;
-  border-radius: 8px;
-  cursor: pointer;
+.reflection-prompt {
+  padding: 16px;
+  border-radius: 12px;
+  margin: 16px 0;
+  font-style: italic;
+  text-align: center;
   font-size: 14px;
-  font-weight: 500;
-  transition: all 0.3s ease;
-  min-height: 48px;
-  touch-action: manipulation;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.action-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 16px;
 }
 
 @media (min-width: 640px) {
-  .zodiac-btn {
-    padding: 15px 12px;
-    border-radius: 10px;
-    font-size: 16px;
+  .action-buttons {
+    flex-direction: row;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 20px;
   }
-}
-
-.zodiac-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
-}
-
-.zodiac-btn:active {
-  transform: translateY(0);
 }
 </style> 

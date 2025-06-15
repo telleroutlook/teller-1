@@ -1,44 +1,45 @@
 <template>
   <div class="chinese-zodiac-container">
-    <h2 class="mb-4 text-xl font-bold text-center text-gray-700 sm:mb-6 sm:text-2xl lg:text-3xl">{{ $t('chineseZodiacTitle') }}</h2>
-    <p class="mb-4 text-center text-sm text-gray-600 sm:mb-6 sm:text-base">{{ $t('chineseZodiacIntro') }}</p>
+    <h2 class="mb-4 text-xl font-bold text-center mystical-text-gradient sm:mb-6 sm:text-2xl lg:text-3xl">{{ $t('chineseZodiacTitle') }}</h2>
+    <p class="mb-4 text-center text-sm mystical-text-primary sm:mb-6 sm:text-base">{{ $t('chineseZodiacIntro') }}</p>
 
     <div class="form-group" :class="{ 'has-error': yearError }">
-      <label for="birthYear">{{ $t('birthYearLabel') }}</label>
+      <label for="birthYear" class="mystical-text-primary">{{ $t('birthYearLabel') }}</label>
       <input 
         id="birthYear"
         v-model="birthYear"
         type="number" 
+        class="mystical-input"
         :placeholder="$t('birthYearPlaceholder')"
         min="1900"
         max="2099"
         :class="{ error: yearError }"
         @input="handleBirthYearInput"
       />
-      <div class="input-help">{{ $t('lunarYearHelp') }}</div>
+      <div class="input-help mystical-text-primary">{{ $t('lunarYearHelp') }}</div>
       <div v-if="yearError" class="error-message">
         <span class="error-icon">⚠️</span>
         <span>{{ $t('birthYearError') }}</span>
       </div>
     </div>
 
-    <button @click="findZodiac" class="btn">{{ $t('findZodiacBtn') }}</button>
+    <button @click="findZodiac" class="mystical-button">{{ $t('findZodiacBtn') }}</button>
 
     <div v-if="zodiacResult && showResult" class="result show" aria-live="polite">
-      <h4 class="mb-4 text-lg font-semibold text-center text-gray-800 sm:text-xl">{{ $t('yourZodiac') }}</h4>
-      <div class="zodiac-animal">
+      <h4 class="mb-4 text-lg font-semibold text-center mystical-text-gradient sm:text-xl">{{ $t('yourZodiac') }}</h4>
+      <div class="zodiac-animal mystical-card">
         <div class="animal-emoji text-4xl mb-3 text-center sm:text-5xl">{{ animalEmoji }}</div>
-        <h3 class="mb-4 text-lg font-bold text-center text-red-700 sm:text-xl lg:text-2xl">{{ $t('yearOf', { animal: animalName }) }}</h3>
+        <h3 class="mb-4 text-lg font-bold text-center mystical-text-gradient sm:text-xl lg:text-2xl">{{ $t('yearOf', { animal: animalName }) }}</h3>
         <div class="traits-section">
-          <h5 class="mb-2 text-base font-medium text-gray-700 sm:text-lg">{{ $t('traits') }}</h5>
-          <p class="text-sm text-gray-600 leading-relaxed sm:text-base">{{ animalTraits }}</p>
+          <h5 class="mb-2 text-base font-medium mystical-text-card sm:text-lg">{{ $t('traits') }}</h5>
+          <p class="text-sm mystical-text-card leading-relaxed sm:text-base">{{ animalTraits }}</p>
         </div>
       </div>
-      <div class="reflection-prompt">
+      <div class="mystical-card mystical-text-card reflection-prompt">
         {{ $t('chineseZodiacReflection') }}
       </div>
       <div class="action-buttons">
-        <button @click="shareZodiac" class="share-button">{{ $t('shareZodiacBtn') }}</button>
+        <button @click="shareZodiac" class="mystical-button">{{ $t('shareZodiacBtn') }}</button>
       </div>
     </div>
   </div>
@@ -205,13 +206,6 @@ const shareZodiac = () => {
 </script>
 
 <style scoped>
-.intro-text {
-  text-align: center;
-  margin-bottom: 20px;
-  color: #6B7280;
-  font-size: 0.9rem;
-}
-
 .form-group {
   margin-bottom: 15px;
   position: relative;
@@ -221,36 +215,14 @@ const shareZodiac = () => {
   display: flex;
 }
 
-.form-group.has-error input {
-  border-color: #EF4444;
-  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
-}
-
 label {
   display: block;
   margin-bottom: 6px;
   font-weight: 600;
-  color: #4a5568;
-}
-
-input {
-  width: 100%;
-  padding: 12px;
-  border: 2px solid #e2e8f0;
-  border-radius: 8px;
-  font-size: 16px;
-  transition: all 0.3s ease;
-}
-
-input:focus {
-  outline: none;
-  border-color: #667eea;
-  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
 }
 
 .input-help {
   font-size: 0.8rem;
-  color: #6B7280;
   margin-top: 4px;
 }
 
@@ -274,43 +246,34 @@ input:focus {
   margin-bottom: 15px;
 }
 
-.zodiac-animal h3 {
-  color: #667eea;
-  margin-bottom: 15px;
-  font-size: 1.4rem;
-}
-
 .traits-section {
-  background: #F8FAFC;
-  padding: 15px;
-  border-radius: 8px;
-  border-left: 4px solid #667eea;
   margin-top: 15px;
-}
-
-.traits-section h5 {
-  color: #667eea;
-  margin-bottom: 8px;
-  font-size: 1.1rem;
 }
 
 .reflection-prompt {
-  background: rgba(34, 197, 94, 0.1);
-  padding: 12px;
-  border-radius: 8px;
-  margin-top: 12px;
+  padding: 16px;
+  border-radius: 12px;
+  margin: 16px 0;
   font-style: italic;
-  color: #166534;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.4;
 }
 
-.share-button {
-  background: #2563EB;
-  color: white;
-  border: none;
-  padding: 8px 16px;
-  border-radius: 15px;
-  cursor: pointer;
-  font-size: 14px;
-  margin-top: 15px;
+.action-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+@media (min-width: 640px) {
+  .action-buttons {
+    flex-direction: row;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 20px;
+  }
 }
 </style> 
