@@ -9,6 +9,8 @@ export const useChineseZodiac = () => {
     
     const animal = animals[animalIndex]
     const englishAnimal = englishAnimals[animalIndex]
+    
+    // 现在所有语言版本的traits都使用英文动物名作为键
     const animalTraits = traits[englishAnimal as keyof typeof traits]
     
     return {

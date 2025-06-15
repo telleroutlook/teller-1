@@ -1,7 +1,7 @@
 <template>
   <div class="numerology-container">
-    <h2 class="mb-4 text-xl font-bold text-center mystical-text-gradient sm:mb-6 sm:text-2xl lg:text-3xl">{{ $t('numerologyTitle') }}</h2>
-    <p class="mb-4 text-center text-sm mystical-text-primary sm:mb-6 sm:text-base">{{ $t('numerologyIntro') }}</p>
+    <h2 class="mb-4 text-2xl font-bold text-center mystical-text-gradient sm:mb-6 sm:text-3xl lg:text-4xl">🔢 {{ $t('numerologyTitle') }}</h2>
+    <p class="mb-4 text-center text-base mystical-text-primary sm:mb-6 sm:text-lg">{{ $t('numerologyIntro') }}</p>
 
     <div class="form-group" :class="{ 'has-error': birthDateError }">
       <label for="birthDate" class="mystical-text-primary">{{ $t('birthDateLabel') }}</label>
@@ -306,7 +306,7 @@ const shareNumbers = () => {
 
 <style scoped>
 .form-group {
-  margin-bottom: 15px;
+  margin-bottom: 18px;
   position: relative;
 }
 
@@ -316,50 +316,79 @@ const shareNumbers = () => {
 
 label {
   display: block;
-  margin-bottom: 6px;
+  margin-bottom: 8px;
   font-weight: 600;
+  font-size: 16px;
+}
+
+@media (min-width: 640px) {
+  label {
+    font-size: 17px;
+  }
 }
 
 .error-message {
   color: #EF4444;
-  font-size: 0.8rem;
-  margin-top: 4px;
+  font-size: 14px;
+  margin-top: 6px;
   display: none;
-  padding-left: 5px;
+  padding-left: 6px;
   align-items: center;
-  gap: 5px;
+  gap: 6px;
+  line-height: 1.4;
+}
+
+@media (min-width: 640px) {
+  .error-message {
+    font-size: 15px;
+  }
 }
 
 .numerology-results {
   display: grid;
-  gap: 15px;
-  margin: 20px 0;
+  gap: 18px;
+  margin: 22px 0;
+}
+
+@media (min-width: 640px) {
+  .numerology-results {
+    gap: 20px;
+    margin: 24px 0;
+  }
 }
 
 .reflection-prompt {
-  padding: 16px;
+  padding: 18px;
   border-radius: 12px;
-  margin: 16px 0;
+  margin: 18px 0;
   font-style: italic;
   text-align: center;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 600;
-  line-height: 1.4;
+  line-height: 1.5;
+}
+
+@media (min-width: 640px) {
+  .reflection-prompt {
+    padding: 20px;
+    margin: 20px 0;
+    font-size: 17px;
+  }
 }
 
 .action-buttons {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  margin-top: 16px;
+  gap: 10px;
+  margin-top: 18px;
 }
 
 @media (min-width: 640px) {
   .action-buttons {
     flex-direction: row;
     justify-content: center;
-    gap: 12px;
-    margin-top: 20px;
+    gap: 14px;
+    margin-top: 22px;
   }
 }
 </style> 

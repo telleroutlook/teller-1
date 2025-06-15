@@ -1,7 +1,7 @@
 <template>
   <div class="astrology-container">
-    <h2 class="mb-4 text-xl font-bold text-center mystical-text-gradient sm:mb-6 sm:text-2xl lg:text-3xl">⭐ Daily Horoscope</h2>
-    <p class="mb-4 text-center text-sm mystical-text-primary sm:mb-6 sm:text-base">Select your zodiac sign to see your horoscope for today.</p>
+    <h2 class="mb-4 text-2xl font-bold text-center mystical-text-gradient sm:mb-6 sm:text-3xl lg:text-4xl">⭐ Daily Horoscope</h2>
+    <p class="mb-4 text-center text-base mystical-text-primary sm:mb-6 sm:text-lg">Select your zodiac sign to see your horoscope for today.</p>
     
     <div class="zodiac-signs">
       <button 
@@ -21,9 +21,9 @@
     </div>
 
     <div v-if="selectedSign" class="result show">
-      <h3 class="mb-4 text-lg font-bold text-center mystical-text-gradient sm:text-xl lg:text-2xl">{{ selectedSign.name }} - Today's Horoscope</h3>
+      <h3 class="mb-4 text-xl font-bold text-center mystical-text-gradient sm:text-2xl lg:text-3xl">{{ selectedSign.name }} - Today's Horoscope</h3>
       <div class="mystical-card mb-4">
-        <p class="text-sm mystical-text-card leading-relaxed text-center sm:text-base lg:text-lg">{{ selectedSign.horoscope }}</p>
+        <p class="text-base mystical-text-card leading-relaxed text-center sm:text-lg lg:text-xl">{{ selectedSign.horoscope }}</p>
       </div>
       <div class="mystical-card mystical-text-card reflection-prompt">
         Consider how this guidance might apply to your day ahead.
@@ -144,49 +144,57 @@ const shareHoroscope = (): void => {
 <style scoped>
 .zodiac-signs {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-  gap: 8px;
-  margin: 16px 0;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 10px;
+  margin: 18px 0;
 }
 
 @media (min-width: 640px) {
   .zodiac-signs {
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 12px;
-    margin: 20px 0;
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    gap: 14px;
+    margin: 22px 0;
   }
 }
 
 @media (min-width: 768px) {
   .zodiac-signs {
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
   }
 }
 
 .reflection-prompt {
-  padding: 16px;
+  padding: 18px;
   border-radius: 12px;
-  margin: 16px 0;
+  margin: 18px 0;
   font-style: italic;
   text-align: center;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 600;
-  line-height: 1.4;
+  line-height: 1.5;
+}
+
+@media (min-width: 640px) {
+  .reflection-prompt {
+    padding: 20px;
+    margin: 20px 0;
+    font-size: 17px;
+  }
 }
 
 .action-buttons {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  margin-top: 16px;
+  gap: 10px;
+  margin-top: 18px;
 }
 
 @media (min-width: 640px) {
   .action-buttons {
     flex-direction: row;
     justify-content: center;
-    gap: 12px;
-    margin-top: 20px;
+    gap: 14px;
+    margin-top: 22px;
   }
 }
 </style> 
