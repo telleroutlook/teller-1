@@ -48,7 +48,7 @@
 import { useSeoMeta, useHead } from '#imports'
 
 const { t: $t, locale } = useI18n()
-const { runMysticalAnimation } = useAnimations()
+const { showAnimation } = useSimpleAnimation()
 const { logger, LogCategory } = useLogger()
 const { setChineseZodiacData, getChineseZodiacData, clearChineseZodiacData } = useFormState()
 

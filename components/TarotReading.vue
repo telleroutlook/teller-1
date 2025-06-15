@@ -64,8 +64,8 @@ interface TarotCard {
 const { t: $t, locale } = useI18n()
 const { logger, LogCategory } = useLogger()
 
-// Use the animation composable
-const { runMysticalAnimation } = useAnimations()
+// Use the simplified animation composable
+const { showAnimation } = useSimpleAnimation()
 
 // Add SEO implementation
 useSeoMeta({
@@ -90,28 +90,8 @@ useHead({
   ]
 })
 
-// Get data directly for now
-const getTarotCards = (locale: string) => {
-  const cards = {
-    en: ["The Fool", "The Magician", "The High Priestess", "The Empress", "The Emperor", "The Hierophant", "The Lovers", "The Chariot", "Strength", "The Hermit", "Wheel of Fortune", "Justice", "The Hanged Man", "Death", "Temperance", "The Devil", "The Tower", "The Star", "The Moon", "The Sun", "Judgement", "The World"],
-    zh: ["愚人", "魔术师", "女祭司", "皇后", "皇帝", "教皇", "恋人", "战车", "力量", "隐士", "命运之轮", "正义", "倒吊人", "死亡", "节制", "恶魔", "塔", "星星", "月亮", "太阳", "审判", "世界"],
-    hi: ["मूर्ख", "जादूगर", "महायाजिका", "महारानी", "सम्राट", "धर्मगुरु", "प्रेमी", "रथ", "शक्ति", "एकांतवासी", "भाग्य का पहिया", "न्याय", "उल्टा लटका हुआ आदमी", "मृत्यु", "संयम", "शैतान", "टॉवर", "तारा", "चाँद", "सूरज", "निर्णय", "दुनिया"],
-    fr: ["Le Mat", "Le Bateleur", "La Papesse", "L'Impératrice", "L'Empereur", "Le Pape", "L'Amoureux", "Le Chariot", "La Force", "L'Hermite", "La Roue de Fortune", "La Justice", "Le Pendu", "La Mort", "Tempérance", "Le Diable", "La Maison Dieu", "L'Étoile", "La Lune", "Le Soleil", "Le Jugement", "Le Monde"],
-    ar: ["الأحمق", "الساحر", "الكاهنة العليا", "الإمبراطورة", "الإمبراطور", "الكاهن", "العشاق", "العربة", "القوة", "الناسك", "عجلة الحظ", "العدالة", "الرجل المشنوق", "الموت", "الاعتدال", "الشيطان", "البرج", "النجمة", "القمر", "الشمس", "الحكم", "العالم"]
-  }
-  return cards[locale as keyof typeof cards] || cards.en
-}
-
-const getTarotMeanings = (locale: string) => {
-  const meanings = {
-    en: ["New beginnings, spontaneity, innocence", "Manifestation, resourcefulness, power", "Intuition, sacred knowledge, divine feminine", "Femininity, beauty, nature, abundance", "Authority, establishment, structure, a father figure", "Spiritual wisdom, religious beliefs, conformity", "Love, harmony, relationships, values alignment", "Control, willpower, success, determination", "Strength, courage, persuasion, influence", "Soul-searching, introspection, inner guidance", "Good luck, karma, life cycles, destiny", "Justice, fairness, truth, cause and effect", "Suspension, restriction, letting go", "Endings, beginnings, change, transformation", "Balance, moderation, patience, purpose", "Shadow self, attachment, addiction, restriction", "Sudden change, upheaval, chaos, revelation", "Hope, faith, purpose, renewal, spirituality", "Illusion, fear, anxiety, subconscious, intuition", "Positivity, fun, warmth, success, vitality", "Judgement, rebirth, inner calling, absolution", "Completion, accomplishment, travel, success"],
-    zh: ["新的开始，自发性，纯真", "显化，足智多谋，力量", "直觉，神圣知识，神圣女性", "女性气质，美丽，自然，富足", "权威，建制，结构，父亲形象", "精神智慧，宗教信仰，整合", "爱，和谐，关系，价值观对齐", "控制，意志力，成功，决心", "力量，勇气，说服力，影响力", "灵魂探索，内省，内在指引", "好运，业力，生命周期，命运", "正义，公平，真理，因果", "悬挂，限制，放手", "结束，开始，改变，转变", "平衡，节制，耐心，目的", "阴暗面，执着，成瘾，限制", "突然的变化，剧变，混乱，启示", "希望，信念，目的，更新，灵性", "幻觉，恐惧，焦虑，潜意识，直觉", "积极，乐趣，温暖，成功，活力", "审判，重生，内在召唤，赦免", "完成，成就，旅行，成功"],
-    hi: ["नई शुरुआत, सहजता, मासूमियत", "प्रकटीकरण, साधन संपन्नता, शक्ति", "अंतर्ज्ञान, पवित्र ज्ञान, दिव्य स्त्री", "स्त्रीत्व, सौंदर्य, प्रकृति, प्रचुरता", "अधिकार, स्थापना, संरचना, एक पिता का आंकड़ा", "आध्यात्मिक ज्ञान, धार्मिक विश्वास, अनुरूपता", "प्रेम, सद्भाव, रिश्ते, मूल्यों का संरेखण", "नियंत्रण, इच्छाशक्ति, सफलता, दृढ़ संकल्प", "शक्ति, साहस, अनुनय, प्रभाव", "आत्मा-खोज, आत्मनिरीक्षण, आंतरिक मार्गदर्शन", "सौभाग्य, कर्म, जीवन चक्र, भाग्य", "न्याय, निष्पक्षता, सत्य, कारण और प्रभाव", "निलंबन, प्रतिबंध, जाने देना", "अंत, शुरुआत, परिवर्तन, परिवर्तन", "संतुलन, संयम, धैर्य, उद्देश्य", "छाया स्वयं, लगाव, व्यसन, प्रतिबंध", "अचानक परिवर्तन, उथल-पुथल, अराजकता, रहस्योद्घाटन", "आशा, विश्वास, उद्देश्य, नवीनीकरण, आध्यात्मिकता", "भ्रम, भय, चिंता, अवचेतन, अंतर्ज्ञान", "सकारात्मकता, मज़ा, गर्मी, सफलता, जीवन शक्ति", "निर्णय, पुनर्जन्म, आंतरिक बुलावा, दोषमुक्ति", "पूर्णता, उपलब्धि, यात्रा, सफलता"],
-    fr: ["Nouveaux départs, spontanéité, innocence", "Manifestation, ingéniosité, pouvoir", "Intuition, connaissance sacrée, féminin divin", "Féminité, beauté, nature, abondance", "Autorité, établissement, structure, une figure paternelle", "Sagesse spirituelle, croyances religieuses, conformité", "Amour, harmonie, relations, alignement des valeurs", "Contrôle, volonté, succès, détermination", "Force, courage, persuasion, influence", "Recherche de l'âme, introspection, guide intérieur", "Bonne fortune, karma, cycles de vie, destin", "Justice, équité, vérité, cause à effet", "Suspension, restriction, lâcher prise", "Fins, commencements, changement, transformation", "Équilibre, modération, patience, but", "Le côté sombre, l'attachement, la dépendance, la restriction", "Changement soudain, bouleversement, chaos, révélation", "Espoir, foi, but, renouveau, spiritualité", "Illusion, peur, anxiété, subconscient, intuition", "Positivité, plaisir, chaleur, succès, vitalité", "Jugement, renaissance, appel intérieur, absolution", "Achèvement, accomplissement, voyage, succès"],
-    ar: ["بدايات جديدة، عفوية، براءة", "تجلي، براعة، قوة", "حدس، معرفة مقدسة، أنوثة إلهية", "أنوثة، جمال، طبيعة، وفرة", "سلطة، مؤسسة، هيكل، شخصية أب", "حكمة روحية، معتقدات دينية, مطابقة", "حب، انسجام، علاقات، توافق القيم", "تحكم، قوة إرادة، نجاح، إصرار", "قوة، شجاعة، إقناع، تأثير", "بحث عن الذات، تأمل، توجيه داخلي", "حظ سعيد، كارما، دورات الحياة، مصير", "عدالة، إنصاف، حقيقة، سبب ونتيجة", "تعليق، تقييد، ترك", "نهايات، بدايات، تغيير، تحول", "توازن، اعتدال، صبر، هدف", "الجانب المظلم، تعلق، إدمان، تقييد", "تغيير مفاجئ، اضطراب، فوضى، كشف", "أمل، إيمان، هدف، تجديد، روحانية", "وهم، خوف، قلق، اللاوعي، حدس", "إيجابية، مرح، دفء، نجاح، حيوية", "حكم، ولادة جديدة، دعوة داخلية، غفران", "اكتمال، إنجاز، سفر، نجاح"]
-  }
-  return meanings[locale as keyof typeof meanings] || meanings.en
-}
+// 使用分离的塔罗牌数据composable
+const { getTarotCards, getTarotMeanings } = useDivinationData()
 
 const selectedCards = ref<TarotCard[]>([])
 const shuffledDeck = ref<TarotCard[]>([])
@@ -144,7 +124,7 @@ const initializeDeck = () => {
   shuffledDeck.value = deck.sort(() => Math.random() - 0.5)
 }
 
-const selectCard = (index: number) => {
+const selectCard = async (index: number) => {
   if (selectedCards.value.length >= 3 || shuffledDeck.value[index].flipped) return
   
   logger.logUserAction('Tarot card selected', { 
@@ -164,19 +144,18 @@ const selectCard = (index: number) => {
     })
     
     // Wait for the third card's flip animation to complete before starting global animation
-    setTimeout(() => {
+    setTimeout(async () => {
       // Trigger animation after the flip animation completes
       const cardNames = selectedCards.value.map(c => c.name).join('  ')
       logger.logAnimationStart('tarot-reading-complete', { 
         selectedCards: selectedCards.value.map(c => c.name) 
       })
       
-      runMysticalAnimation(cardNames, () => {
-        showCardGrid.value = false // Hide card grid after animation
-        showResult.value = true
-        logger.logUserAction('Tarot reading completed', { 
-          cards: selectedCards.value.map(c => c.name) 
-        })
+      await showAnimation(cardNames)
+      showCardGrid.value = false // Hide card grid after animation
+      showResult.value = true
+      logger.logUserAction('Tarot reading completed', { 
+        cards: selectedCards.value.map(c => c.name) 
       })
     }, 1500) // Increased from 600ms to 1500ms for a longer pause after the third card flip
   }

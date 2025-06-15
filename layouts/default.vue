@@ -21,7 +21,7 @@
     
     <!-- Footer with responsive spacing -->
     <AppFooter />
-    <AnimationOverlay />
+    <!-- Animation overlay now in app.vue -->
   </div>
 </template>
 

@@ -18,7 +18,45 @@ export default defineNuxtConfig({
   // Vite配置优化
   vite: {
     build: {
-      sourcemap: process.env.NODE_ENV === 'development'
+      sourcemap: process.env.NODE_ENV === 'development',
+      rollupOptions: {
+        output: {
+          manualChunks: (id) => {
+            // 将node_modules中的库分组，避免过度分割
+            if (id.includes('node_modules')) {
+              // Vue相关库保持在一起
+              if (id.includes('vue') || id.includes('@vue')) {
+                return 'vue-vendor'
+              }
+              // 动画库单独分组
+              if (id.includes('animejs')) {
+                return 'animation-vendor'
+              }
+              // 其他第三方库
+              return 'vendor'
+            }
+            
+            // 将各个工具组件及其相关数据分割成独立chunk
+            if (id.includes('TarotReading') || (id.includes('useDivinationData') && id.includes('tarot'))) {
+              return 'tarot-module'
+            }
+            if (id.includes('AstrologyReading') || (id.includes('useAstrologyData'))) {
+              return 'astrology-module'
+            }
+            if (id.includes('NumerologyReading') || (id.includes('useNumerologyData'))) {
+              return 'numerology-module'
+            }
+            if (id.includes('ChineseZodiacReading') || (id.includes('useChineseZodiacData'))) {
+              return 'chinese-zodiac-module'
+            }
+            
+            // 动画相关代码（但不包括animejs库本身）
+            if (id.includes('AnimationOverlay') || id.includes('useAnimations')) {
+              return 'animations'
+            }
+          }
+        }
+      }
     }
   },
   
@@ -79,10 +117,7 @@ export default defineNuxtConfig({
         // Web App Manifest
         { rel: 'manifest', href: '/manifest.json' },
         
-        // Preconnect for performance
-        { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
-        { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' },
-        { rel: 'dns-prefetch', href: '//fonts.googleapis.com' },
+        // 移除未使用的字体预连接以避免警告
         
         // Canonical URL (will be set dynamically per page)
         { rel: 'canonical', href: 'https://teller.example.com' }
@@ -140,7 +175,20 @@ export default defineNuxtConfig({
     routeRules: {
       '/sitemap.xml': { 
         proxy: '/api/sitemap'
-      }
+      },
+      // 优化各页面的渲染策略
+      '/': { prerender: true },
+      '/tarot': { ssr: true },
+      '/astrology': { ssr: true },
+      '/numerology': { ssr: true },
+      '/chinese-zodiac': { ssr: true }
     }
+  },
+  
+  // 优化资源提示
+  experimental: {
+    // 减少预加载资源以避免未使用警告
+    writeEarlyHints: false,
+    viewTransition: false
   }
 })

@@ -65,7 +65,7 @@ import { useLogger } from '@/composables/useLogger'
 import { useSeoMeta, useHead } from '#imports'
 
 const { t: $t, locale } = useI18n()
-const { runMysticalAnimation } = useAnimations()
+const { showAnimation } = useSimpleAnimation()
 const { logger, LogCategory } = useLogger()
 const { setNumerologyData, getNumerologyData, clearNumerologyData } = useFormState()
 
@@ -255,7 +255,7 @@ const clearErrors = () => {
   fullNameError.value = false
 }
 
-const calculateNumerology = () => {
+const calculateNumerology = async () => {
   clearErrors()
   
   if (!validateInputs()) {
@@ -264,7 +264,7 @@ const calculateNumerology = () => {
   
   const textToShow = `${fullName.value.slice(0, 20)} ✨ ${birthDate.value}`
   
-  runMysticalAnimation(textToShow, () => {
+  await showAnimation(textToShow, () => {
     lifePathNumber.value = getLifePathNumber(birthDate.value)
     destinyNumber.value = getDestinyNumber(fullName.value)
     lifePathMeaning.value = getMeaning(lifePathNumber.value)

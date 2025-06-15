@@ -1,0 +1,292 @@
+{
+  "loading": "Loading",
+  "appName": "Teller",
+  "tagline": "Professional Divination Services",
+  "description": "Professional divination platform offering tarot cards, astrology, numerology and fortune telling services. For entertainment purposes only.",
+  
+  "nav": {
+    "home": "Home",
+    "tarot": "Tarot",
+    "astrology": "Astrology", 
+    "numerology": "Numerology",
+    "chineseZodiac": "Chinese Zodiac",
+    "about": "About",
+    "projects": "Projects",
+    "faq": "FAQ",
+    "contact": "Contact",
+    "privacy": "Privacy"
+  },
+
+  "hero": {
+    "title": "Professional Divination Services",
+    "subtitle": "Discover your future through the ancient arts of tarot, astrology, and numerology",
+    "cta": "Start Your Reading"
+  },
+
+  "services": {
+    "title": "Our Services",
+    "tarot": {
+      "title": "Tarot Reading",
+      "description": "Discover insights about your past, present, and future through the mystical art of tarot cards."
+    },
+    "astrology": {
+      "title": "Astrology",
+      "description": "Explore your personality and destiny through the positions of celestial bodies at your birth."
+    },
+    "numerology": {
+      "title": "Numerology",
+      "description": "Uncover hidden meanings in numbers and their influence on your life path."
+    },
+    "chineseZodiac": {
+      "title": "Chinese Zodiac",
+      "description": "Learn about your character and fortune through the ancient Chinese zodiac system."
+    }
+  },
+
+  "tarotTitle": "Tarot Card Reading",
+  "tarotIntro": "Select 3 cards to reveal insights about your past, present, and future. Focus on your question and trust your intuition as you choose your cards.",
+  "tarotProgressStart": "Select your first card to begin the reading",
+  "tarotProgressRemain": "Choose {remaining} more cards",
+  "tarotProgressDone": "All cards selected. Revealing your reading...",
+  "tarotPast": "Past",
+  "tarotPresent": "Present", 
+  "tarotFuture": "Future",
+  "yourReading": "Your Tarot Reading",
+  "tarotReflection": "Take a moment to reflect on how these insights relate to your current situation and question.",
+  "resetReadingBtn": "New Reading",
+  "shareReadingBtn": "Share Reading",
+  "tarotCard": "Tarot card",
+  "myTarotReading": "My Tarot Reading",
+  "shareSuccess": "Reading copied to clipboard!",
+  "shareError": "Sharing failed, but reading was copied to clipboard!",
+
+  "astrologyTitle": "Astrology Reading",
+  "astrologyIntro": "Discover what the stars have in store for you today. Select your zodiac sign to receive your personalized horoscope.",
+  "selectZodiacSign": "Select Your Zodiac Sign",
+  "yourHoroscope": "Your Horoscope for Today",
+  "backToSelection": "Choose Different Sign",
+
+  "numerologyTitle": "Numerology Reading",
+  "numerologyIntro": "Discover your life path number and its meaning. Enter your birth date to calculate your numerological profile.",
+  "enterBirthDate": "Enter Your Birth Date",
+  "birthDate": "Birth Date",
+  "calculateBtn": "Calculate Life Path",
+  "yourLifePath": "Your Life Path Number",
+  "lifePathMeaning": "Life Path Meaning",
+
+  "chineseZodiacTitle": "Chinese Zodiac Reading",
+  "chineseZodiacIntro": "Discover your Chinese zodiac animal and its characteristics. Enter your birth year to find your zodiac sign.",
+  "enterBirthYear": "Enter Your Birth Year",
+  "birthYear": "Birth Year",
+  "findZodiacBtn": "Find My Zodiac",
+  "yourChineseZodiac": "Your Chinese Zodiac",
+  "zodiacTraits": "Character Traits",
+  "backToYearSelection": "Enter Different Year",
+
+  "disclaimer": {
+    "title": "Important Notice",
+    "text": "Our divination services are provided for entertainment purposes only. The insights and predictions offered should not be used as a substitute for professional advice in matters of health, finance, legal issues, or other important life decisions. Please use your own judgment and consult qualified professionals when making significant choices."
+  },
+
+  "footer": {
+    "about": "Teller is a professional divination platform offering insights through traditional mystical arts.",
+    "quickLinks": "Quick Links",
+    "services": "Services", 
+    "legalNotice": "For entertainment purposes only. Not a substitute for professional advice.",
+    "copyright": "© 2024 Teller. All rights reserved.",
+    "builtWith": "Built with Nuxt 3"
+  },
+
+  "about": {
+    "title": "About Teller",
+    "subtitle": "Your Trusted Guide to Mystical Insights",
+    "mission": {
+      "title": "Our Mission",
+      "text": "We believe in the power of ancient wisdom to provide guidance and insight in modern times. Our platform combines traditional divination practices with contemporary accessibility."
+    },
+    "values": {
+      "title": "Our Values",
+      "accuracy": {
+        "title": "Accuracy",
+        "text": "We strive to provide the most accurate interpretations based on established traditions and practices."
+      },
+      "respect": {
+        "title": "Respect",
+        "text": "We honor the ancient traditions and treat all divination practices with the respect they deserve."
+      },
+      "accessibility": {
+        "title": "Accessibility", 
+        "text": "We make mystical wisdom accessible to everyone, regardless of their background or experience level."
+      }
+    }
+  },
+
+  "projects": {
+    "title": "Our Services",
+    "subtitle": "Explore the mystical arts through our comprehensive divination platform",
+    "features": {
+      "title": "Platform Features",
+      "multiLanguage": {
+        "title": "Multi-Language Support",
+        "text": "Available in English, Chinese, Hindi, French, and Arabic"
+      },
+      "responsive": {
+        "title": "Responsive Design", 
+        "text": "Optimized for all devices and screen sizes"
+      },
+      "accurate": {
+        "title": "Accurate Readings",
+        "text": "Based on traditional practices and interpretations"
+      }
+    }
+  },
+
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "subtitle": "Everything you need to know about our divination services",
+    "questions": {
+      "accuracy": {
+        "question": "How accurate are the readings?",
+        "answer": "Our readings are based on traditional interpretations and established practices. However, they are provided for entertainment purposes and should not replace professional advice."
+      },
+      "frequency": {
+        "question": "How often can I get a reading?",
+        "answer": "You can get readings as often as you like. However, for tarot readings, it's recommended to wait before asking the same question again."
+      },
+      "privacy": {
+        "question": "Is my information kept private?",
+        "answer": "Yes, we respect your privacy. We don't store personal information from readings, and all sessions are confidential."
+      },
+      "meaning": {
+        "question": "What if I don't understand the reading?",
+        "answer": "Each reading comes with detailed explanations. Take time to reflect on how the insights might relate to your situation."
+      }
+    }
+  },
+
+  "contact": {
+    "title": "Contact Us",
+    "subtitle": "Get in touch with our team",
+    "form": {
+      "name": "Your Name",
+      "email": "Email Address", 
+      "subject": "Subject",
+      "message": "Your Message",
+      "send": "Send Message"
+    },
+    "info": {
+      "title": "Get in Touch",
+      "text": "Have questions about our services or need support? We're here to help.",
+      "email": "Email us at: hello@teller.example.com",
+      "response": "We typically respond within 24 hours."
+    }
+  },
+
+  "privacy": {
+    "title": "Privacy Policy",
+    "lastUpdated": "Last updated: December 2024",
+    "intro": "This Privacy Policy describes how Teller collects, uses, and protects your information when you use our divination services.",
+    "sections": {
+      "collection": {
+        "title": "Information We Collect",
+        "text": "We only collect information necessary to provide our services, such as birth dates for numerology calculations. We do not store personal readings or sensitive information."
+      },
+      "usage": {
+        "title": "How We Use Information",
+        "text": "Information is used solely to generate your reading results. We do not share, sell, or use your information for any other purposes."
+      },
+      "storage": {
+        "title": "Data Storage",
+        "text": "Reading data is processed in real-time and not permanently stored on our servers. Your privacy and confidentiality are our top priorities."
+      },
+      "contact": {
+        "title": "Contact Us",
+        "text": "If you have any questions about this Privacy Policy, please contact us at privacy@teller.example.com"
+      }
+    }
+  },
+
+  "seo": {
+    "tarot": {
+      "title": "Free Tarot Card Reading Online | Teller",
+      "description": "Get a free 3-card tarot reading online. Discover insights about your past, present, and future with our interactive tarot card divination service.",
+      "keywords": "tarot reading, free tarot cards, online tarot, divination, tarot card meanings, fortune telling",
+      "ogTitle": "Free Online Tarot Card Reading | Teller",
+      "ogDescription": "Discover your future with our free online tarot card reading. Get insights about your past, present, and future.",
+      "twitterTitle": "Free Tarot Reading | Teller",
+      "twitterDescription": "Get a free online tarot card reading and discover insights about your life path.",
+      "structuredData": {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": "Tarot Card Reading",
+        "description": "Professional online tarot card reading service offering insights into past, present, and future",
+        "provider": {
+          "@type": "Organization",
+          "name": "Teller"
+        },
+        "category": "Divination Service",
+        "audience": {
+          "@type": "Audience",
+          "audienceType": "People seeking spiritual guidance"
+        }
+      }
+    },
+    "astrology": {
+      "title": "Free Astrology Reading & Daily Horoscope | Teller",
+      "description": "Get your free daily horoscope and astrology reading based on your zodiac sign. Discover what the stars have in store for you today.",
+      "keywords": "astrology, horoscope, zodiac signs, daily horoscope, star signs, astrological reading",
+      "ogTitle": "Free Astrology Reading & Horoscope | Teller",
+      "ogDescription": "Get your personalized astrology reading and daily horoscope based on your zodiac sign.",
+      "twitterTitle": "Daily Horoscope & Astrology | Teller",
+      "twitterDescription": "Discover what the stars have in store for you with our free astrology reading.",
+      "structuredData": {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": "Astrology Reading",
+        "description": "Professional astrology reading and daily horoscope service based on zodiac signs",
+        "provider": {
+          "@type": "Organization",
+          "name": "Teller"
+        }
+      }
+    },
+    "numerology": {
+      "title": "Free Numerology Reading & Life Path Calculator | Teller",
+      "description": "Calculate your life path number and get a free numerology reading. Discover the hidden meanings in numbers and their influence on your life.",
+      "keywords": "numerology, life path number, numerology calculator, birth date numerology, numbers meaning",
+      "ogTitle": "Free Numerology Reading | Teller",
+      "ogDescription": "Calculate your life path number and discover the influence of numbers on your destiny.",
+      "twitterTitle": "Numerology Reading | Teller", 
+      "twitterDescription": "Discover your life path number and its meaning with our free numerology calculator.",
+      "structuredData": {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": "Numerology Reading",
+        "description": "Professional numerology reading service and life path number calculation",
+        "provider": {
+          "@type": "Organization",
+          "name": "Teller"
+        }
+      }
+    },
+    "chinesezodiac": {
+      "title": "Chinese Zodiac Reading & Animal Signs | Teller",
+      "description": "Discover your Chinese zodiac animal and its characteristics. Get insights into your personality and fortune through the ancient Chinese zodiac system.",
+      "keywords": "chinese zodiac, zodiac animals, chinese astrology, zodiac signs, year of birth, chinese horoscope",
+      "ogTitle": "Chinese Zodiac Reading | Teller",
+      "ogDescription": "Find your Chinese zodiac animal and discover your character traits and fortune.",
+      "twitterTitle": "Chinese Zodiac Animals | Teller",
+      "twitterDescription": "Discover your Chinese zodiac animal and what it reveals about your personality.",
+      "structuredData": {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": "Chinese Zodiac Reading",
+        "description": "Chinese zodiac animal reading and character analysis service",
+        "provider": {
+          "@type": "Organization",
+          "name": "Teller"
+        }
+      }
+    }
+  }
+} 

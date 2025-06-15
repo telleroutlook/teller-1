@@ -45,7 +45,7 @@ interface ZodiacSign {
 }
 
 const { t: $t, locale } = useI18n()
-const { runMysticalAnimation } = useAnimations()
+const { showAnimation } = useSimpleAnimation()
 const { logger } = useLogger()
 
 // Add SEO implementation
@@ -101,7 +101,7 @@ const selectSign = async (sign: ZodiacSign): Promise<void> => {
     })
 
     // Show mystical animation with the sign's name and emoji
-    await runMysticalAnimation(`${sign.emoji} ${sign.name} ${sign.emoji}`)
+            await showAnimation(`${sign.emoji} ${sign.name} ${sign.emoji}`)
     
     // Set the selected sign after animation
     selectedSign.value = sign
